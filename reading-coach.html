@@ -177,9 +177,16 @@ function speak(onend){
   if(!synth||!voices.length){$('clipstatus').textContent='No Swedish voice is available on this device.';return}
   const v=currentVoice(),u=new SpeechSynthesisUtterance(sentences[index]);
   u.voice=v;u.lang=v.lang;u.rate=Number($('rate').value)||0.85;
-  u.onend=()=>{if(onend)onend()};
-  u.onerror=e=>{if(e.error!=='canceled'&&e.error!=='interrupted')$('clipstatus').textContent='The AI voice could not play.'};
-  synth.speak(u);
+  let started=false;
+  u.onstart=()=>{started=true};
+  u.onend=()=>{started=true;if(onend)onend()};
+  u.onerror=e=>{started=true;if(e.error!=='canceled'&&e.error!=='interrupted')$('clipstatus').textContent='The AI voice could not play ('+e.error+'). Try another voice in the picker.'};
+  /* iOS WebKit can drop speech queued right after cancel(); wait briefly and resume first */
+  setTimeout(()=>{
+    try{synth.resume()}catch(e){}
+    synth.speak(u);
+    setTimeout(()=>{if(!started)$('clipstatus').textContent='The AI voice did not start. Check silent mode and volume, or pick another voice.'},3000);
+  },150);
 }
 function playUrl(url,onend){
   player.src=url;
