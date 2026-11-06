@@ -262,7 +262,7 @@ listen('Listen. What is the rug like?','Mattan är väldigt mjuk.',['Very soft',
 pick('Story check: what does Leo think of the lamp?','Leo: Nej, den är för gammal.',['It is too old.','It is too big.','It is really nice.'],0,'För gammal = too old.','Leo says no because the lamp is too old.'),
 pick('Story check: why does Leo want the rug?','Leo: Perfekt! På vintern är golvet kallt.',['The floor is cold in winter.','The floor is red.','Sixten needs a bed.'],0,'Kallt = cold.','På vintern är golvet kallt = in winter the floor is cold.')
 ],
-boss:'Use the room studio below. Furnish a room, then tell your partner three things about it without reading the generated descriptions.'
+boss:'Use the room studio above. Furnish a room, then tell your partner three things about it without reading the generated descriptions.'
 };
 LESSONS[6]={
 unit:7,title:'Lost in Göteborg',sv:'På stan',place:'CITY',
