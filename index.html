@@ -1,292 +1,293 @@
-  <!doctype html>
-  <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Swedish Studies · Mission edition</title><style>
-  :root{--bg:#f7f3e9;--ink:#203536;--muted:#526665;--accent:#a53e23;--line:#c8cec3;--wash:#e7eddf;--r:14px}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 'Trebuchet MS',Arial,sans-serif}button,input,select{font:inherit}button,a,input,select{touch-action:manipulation}button{border:1px solid var(--line);border-radius:var(--r);background:transparent;color:var(--ink);padding:11px 17px;cursor:pointer;transition:background .15s}button:hover{background:var(--wash)}button:disabled{opacity:.45;cursor:default}button.primary,.selected{background:var(--accent);border-color:var(--accent);color:white}button.primary:hover{background:#943619}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:4px}a{color:var(--accent)}header,main,footer{max-width:1120px;margin:auto;padding:24px}header{display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid var(--line);flex-wrap:wrap}nav,.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}nav a{font-size:14px;font-weight:bold}h1{font-size:clamp(42px,7vw,78px);line-height:1.02;letter-spacing:-.055em;margin:18px 0;text-wrap:balance}h2{font-size:32px;line-height:1.15;letter-spacing:-.03em}h3{font-size:21px}p{max-width:65ch;text-wrap:pretty}.label{font-size:12px;text-transform:uppercase;letter-spacing:.13em;font-weight:bold;color:var(--muted)}.hero{padding:38px 0;display:grid;grid-template-columns:1.25fr 1fr;gap:35px;align-items:center}.hero p{font-size:19px}.board{background:var(--wash);padding:24px;border-radius:var(--r)}.passport{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stamp{border:2px dashed var(--line);padding:14px 6px;text-align:center;font-size:12px;border-radius:var(--r)}.stamp.earned{border:2px solid var(--accent);color:var(--accent);font-weight:bold}.stats{display:flex;gap:24px;border-top:1px solid var(--line);padding-top:20px;font-variant-numeric:tabular-nums}section{padding:30px 0;border-top:1px solid var(--line);scroll-margin-top:15px}.missions{display:grid;grid-template-columns:1fr 1fr;gap:0 32px}.mission{display:flex;gap:18px;text-align:left;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:23px 0;width:100%;align-items:center}.num{font-size:30px;color:var(--accent);font-weight:bold}.mission small{display:block;color:var(--muted)}.mission strong{font-size:21px}.game{border:2px solid var(--ink);padding:clamp(18px,4vw,36px);border-radius:var(--r);margin:25px 0;background:#fffdf7}.gamehead{display:flex;justify-content:space-between;gap:15px;align-items:center}.rail{display:flex;gap:8px;flex-wrap:wrap;min-height:78px;border-bottom:2px dashed var(--line);padding:15px 0;margin-bottom:20px}.rail button{background:var(--wash)}.tiles{display:flex;flex-wrap:wrap;gap:9px;margin:20px 0}.tiles button{font-size:20px;font-weight:bold;background:white;border:2px solid var(--ink)}.feedback{padding:12px 0;min-height:52px;font-weight:bold}.hint{background:var(--wash);padding:15px;border-radius:var(--r)}progress{width:100%;height:12px;accent-color:var(--accent)}.scene{background:var(--wash);padding:20px;border-radius:var(--r);font-size:21px;white-space:pre-line;margin:20px 0}.choices{display:grid;gap:10px;margin:20px 0}.choices button{text-align:left}.split{display:grid;grid-template-columns:1fr 1fr;gap:32px}.trackgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin:20px 0}.trackgrid button{padding:8px}.file{display:block;border:1px dashed var(--ink);padding:18px;border-radius:var(--r)}input[type=file]{max-width:100%;display:block;margin-top:10px}audio{width:100%;margin:15px 0}details{padding:16px 0;border-bottom:1px solid var(--line)}summary{cursor:pointer;font-weight:bold}.room{height:300px;position:relative;border:2px solid var(--ink);background:#eee9dc;border-radius:var(--r);overflow:hidden;margin:20px 0}.room:before{content:'';position:absolute;top:58%;width:100%;border-top:2px solid var(--line)}.object{position:absolute;min-width:65px;text-align:center;border:2px solid var(--ink);padding:10px;background:var(--wash);font-size:14px;font-weight:bold}.object.active{outline:3px solid var(--accent)}.room label{position:absolute;top:12px;left:15px;font-size:12px;color:var(--muted)}select{padding:10px;border:1px solid var(--ink);border-radius:var(--r);background:white;color:var(--ink)}.muted{color:var(--muted)}[hidden]{display:none!important}footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line)}@media(max-width:700px){.hero,.split,.missions{grid-template-columns:1fr}.trackgrid{grid-template-columns:repeat(4,1fr)}header,main,footer{padding:18px}.hero{padding:24px 0}.gamehead{align-items:flex-start}.stats{gap:15px}}
-  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Swedish Studies · Mission edition</title><style>
+:root{--bg:#f7f3e9;--ink:#203536;--muted:#526665;--accent:#a53e23;--line:#c8cec3;--wash:#e7eddf;--r:14px}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 'Trebuchet MS',Arial,sans-serif}button,input,select{font:inherit}button,a,input,select{touch-action:manipulation}button{border:1px solid var(--line);border-radius:var(--r);background:transparent;color:var(--ink);padding:11px 17px;cursor:pointer;transition:background .15s}button:hover{background:var(--wash)}button:disabled{opacity:.45;cursor:default}button.primary,.selected{background:var(--accent);border-color:var(--accent);color:white}button.primary:hover{background:#943619}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:4px}a{color:var(--accent)}header,main,footer{max-width:1120px;margin:auto;padding:24px}header{display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid var(--line);flex-wrap:wrap}nav,.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}nav a{font-size:14px;font-weight:bold}h1{font-size:clamp(42px,7vw,78px);line-height:1.02;letter-spacing:-.055em;margin:18px 0;text-wrap:balance}h2{font-size:32px;line-height:1.15;letter-spacing:-.03em}h3{font-size:21px}p{max-width:65ch;text-wrap:pretty}.label{font-size:12px;text-transform:uppercase;letter-spacing:.13em;font-weight:bold;color:var(--muted)}.hero{padding:38px 0;display:grid;grid-template-columns:1.25fr 1fr;gap:35px;align-items:center}.hero p{font-size:19px}.board{background:var(--wash);padding:24px;border-radius:var(--r)}.passport{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stamp{border:2px dashed var(--line);padding:14px 6px;text-align:center;font-size:12px;border-radius:var(--r)}.stamp.earned{border:2px solid var(--accent);color:var(--accent);font-weight:bold}.stats{display:flex;gap:24px;border-top:1px solid var(--line);padding-top:20px;font-variant-numeric:tabular-nums}section{padding:30px 0;border-top:1px solid var(--line);scroll-margin-top:15px}.missions{display:grid;grid-template-columns:1fr 1fr;gap:0 32px}.mission{display:flex;gap:18px;text-align:left;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:23px 0;width:100%;align-items:center}.num{font-size:30px;color:var(--accent);font-weight:bold}.mission small{display:block;color:var(--muted)}.mission strong{font-size:21px}.game{border:2px solid var(--ink);padding:clamp(18px,4vw,36px);border-radius:var(--r);margin:25px 0;background:#fffdf7}.gamehead{display:flex;justify-content:space-between;gap:15px;align-items:center}.rail{display:flex;gap:8px;flex-wrap:wrap;min-height:78px;border-bottom:2px dashed var(--line);padding:15px 0;margin-bottom:20px}.rail button{background:var(--wash)}.tiles{display:flex;flex-wrap:wrap;gap:9px;margin:20px 0}.tiles button{font-size:20px;font-weight:bold;background:white;border:2px solid var(--ink)}.feedback{padding:12px 0;min-height:52px;font-weight:bold}.hint{background:var(--wash);padding:15px;border-radius:var(--r)}progress{width:100%;height:12px;accent-color:var(--accent)}.scene{background:var(--wash);padding:20px;border-radius:var(--r);font-size:21px;white-space:pre-line;margin:20px 0}.choices{display:grid;gap:10px;margin:20px 0}.choices button{text-align:left}.split{display:grid;grid-template-columns:1fr 1fr;gap:32px}.trackgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin:20px 0}.trackgrid button{padding:8px}.file{display:block;border:1px dashed var(--ink);padding:18px;border-radius:var(--r)}input[type=file]{max-width:100%;display:block;margin-top:10px}audio{width:100%;margin:15px 0}details{padding:16px 0;border-bottom:1px solid var(--line)}summary{cursor:pointer;font-weight:bold}.room{height:300px;position:relative;border:2px solid var(--ink);background:#eee9dc;border-radius:var(--r);overflow:hidden;margin:20px 0}.room:before{content:'';position:absolute;top:58%;width:100%;border-top:2px solid var(--line)}.object{position:absolute;min-width:65px;text-align:center;border:2px solid var(--ink);padding:10px;background:var(--wash);font-size:14px;font-weight:bold}.object.active{outline:3px solid var(--accent)}.room label{position:absolute;top:12px;left:15px;font-size:12px;color:var(--muted)}select{padding:10px;border:1px solid var(--ink);border-radius:var(--r);background:white;color:var(--ink)}.muted{color:var(--muted)}[hidden]{display:none!important}footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line)}@media(max-width:700px){.hero,.split,.missions{grid-template-columns:1fr}.trackgrid{grid-template-columns:repeat(4,1fr)}header,main,footer{padding:18px}.hero{padding:24px 0}.gamehead{align-items:flex-start}.stats{gap:15px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 
-  /* Main navigation */
+/* Main navigation */
+header nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+
+header nav a {
+  padding: 6px 0;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+header nav a[aria-current="page"] {
+  color: var(--ink);
+  font-weight: bold;
+  border-bottom: 2px solid var(--accent);
+}
+
+header nav a:hover {
+  text-decoration: underline;
+}
+
+/* Smaller shortcuts beneath the introduction */
+.page-shortcuts {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  padding: 16px 0;
+  font-size: 14px;
+}
+
+.page-shortcuts > span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.page-shortcuts a {
+  color: var(--muted);
+  font-weight: normal;
+  text-underline-offset: 4px;
+}
+
+.page-shortcuts a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 700px) {
+  header {
+    align-items: flex-start;
+  }
+
   header nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 18px;
-  }
-
-  header nav a {
-    padding: 6px 0;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: normal;
-  }
-
-  header nav a[aria-current="page"] {
-    color: var(--ink);
-    font-weight: bold;
-    border-bottom: 2px solid var(--accent);
-  }
-
-  header nav a:hover {
-    text-decoration: underline;
-  }
-
-  /* Smaller shortcuts beneath the introduction */
-  .page-shortcuts {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px 18px;
-    padding: 16px 0;
-    font-size: 14px;
+    width: 100%;
   }
 
   .page-shortcuts > span {
-    color: var(--muted);
-    font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    flex-basis: 100%;
   }
+}
 
-  .page-shortcuts a {
-    color: var(--muted);
-    font-weight: normal;
-    text-underline-offset: 4px;
-  }
-
-  .page-shortcuts a:hover {
-    color: var(--accent);
-  }
-
-  @media (max-width: 700px) {
-    header {
-      align-items: flex-start;
-    }
-
-    header nav {
-      width: 100%;
-    }
-
-    .page-shortcuts > span {
-      flex-basis: 100%;
-    }
-  }
-
-  .tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:18px 0}.tabs button{padding:9px 6px;line-height:1.2}.tabs small{display:block;font-size:12px;opacity:.85}
-  .svtitle{font-weight:normal;color:var(--muted);font-size:.7em}
-  .say{padding:6px 10px;font-size:16px;line-height:1;flex:none}
-  .wordgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;margin:12px 0}.word{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--line)}.word b{font-size:19px}.word .en{color:var(--muted);margin-left:auto;text-align:right}
-  .hide-en .word .en{visibility:hidden}.hide-en .word{cursor:pointer}.hide-en .word.show .en{visibility:visible}
-  .story{margin:16px 0}.storyline{display:flex;gap:14px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);cursor:pointer}.storyline p{margin:0}.storyline p[lang]{font-size:21px}.storyline .en{display:none;font-size:15px}.show-en .storyline .en,.storyline.show .en{display:block}
-  .scene .say{vertical-align:middle;margin-left:6px}
-  input.gap{font:inherit;font-size:21px;width:9em;max-width:60%;padding:4px 10px;border:2px solid var(--ink);border-radius:10px;background:white;color:var(--ink);margin:0 4px}
-  .letters button{min-width:52px;font-size:20px;font-weight:bold}
-  .solvedline{display:flex;gap:12px;align-items:center;background:var(--wash);border-radius:var(--r);padding:12px 16px;font-size:21px;margin:8px 0}
-  #toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:white;padding:12px 18px;border-radius:var(--r);max-width:min(92vw,520px);z-index:10;font-size:15px}
-  @media(max-width:700px){.wordgrid{grid-template-columns:1fr}.tabs{grid-template-columns:repeat(2,1fr)}}
-  </style></head><body><header>
-    <strong>SWEDISH / STUDIES</strong>
-    <nav aria-label="Main navigation">
-      <a href="index.html" aria-current="page">Missions</a>
-      <a href="school-books.html">School Books</a>
-      <a href="reading-coach.html">Reading Coach</a>
-    </nav>
-  </header><main><div class="hero"><div><div class="label">Mission edition · Units 1–12</div><h1>A little Swedish.<br>A real mission.</h1><p>Run a café. Catch a train. Plan a party. Learn the words, read the story, build the sentences — and hear every word in Swedish.</p><button class="primary" id="continue">Choose your next mission</button><p class="muted">No timer. No lost lives. Try, investigate, try again.</p></div><aside class="board"><div class="label">Your mission passport</div><h2>Twelve places to go.</h2><div id="passport" class="passport"></div><div class="stats"><span><b id="solved">0</b> challenges solved</span><span><b id="stamps">0</b> / <span id="stamptotal">12</span> stamps</span></div></aside></div>
-  <nav class="page-shortcuts" aria-label="On this page">
-    <span>On this page</span>
-    <a href="#missions">Choose a mission</a>
-    
-    
-    <a href="#coach">Coach desk</a>
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:18px 0}.tabs button{padding:9px 6px;line-height:1.2}.tabs small{display:block;font-size:12px;opacity:.85}
+.svtitle{font-weight:normal;color:var(--muted);font-size:.7em}
+.say{padding:6px 10px;font-size:16px;line-height:1;flex:none}
+.wordgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;margin:12px 0}.word{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--line)}.word b{font-size:19px}.word .en{color:var(--muted);margin-left:auto;text-align:right}
+.hide-en .word .en{visibility:hidden}.hide-en .word{cursor:pointer}.hide-en .word.show .en{visibility:visible}
+.story{margin:16px 0}.storyline{display:flex;gap:14px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);cursor:pointer}.storyline p{margin:0}.storyline p[lang]{font-size:21px}.storyline .en{display:none;font-size:15px}.show-en .storyline .en,.storyline.show .en{display:block}
+.scene .say{vertical-align:middle;margin-left:6px}
+input.gap{font:inherit;font-size:21px;width:9em;max-width:60%;padding:4px 10px;border:2px solid var(--ink);border-radius:10px;background:white;color:var(--ink);margin:0 4px}
+.letters button{min-width:52px;font-size:20px;font-weight:bold}
+.solvedline{display:flex;gap:12px;align-items:center;background:var(--wash);border-radius:var(--r);padding:12px 16px;font-size:21px;margin:8px 0}
+#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:white;padding:12px 18px;border-radius:var(--r);max-width:min(92vw,520px);z-index:10;font-size:15px}
+@media(max-width:700px){.wordgrid{grid-template-columns:1fr}.tabs{grid-template-columns:repeat(2,1fr)}}
+</style></head><body><header>
+  <strong>SWEDISH / STUDIES</strong>
+  <nav aria-label="Main navigation">
+    <a href="index.html" aria-current="page">Missions</a>
+    <a href="school-books.html">School Books</a>
+    <a href="reading-coach.html">Reading Coach</a>
+    <a href="kemi.html">Kemi</a>
   </nav>
-    <section id="missions"><div class="label">Pick any mission · replay whenever you like</div><h2>Where are we going?</h2><div class="missions" id="missionlist"></div><article id="game" class="game" hidden></article></section>
-  <div id="studioholder" hidden><div id="designer" class="studio"><div class="split"><div><div class="label">Room studio · build, then describe</div><h3>Your room. Your rules.</h3><p>Add furniture. Select an object to change its colour or size. The Swedish description changes with it.</p><div class="row" id="furniture"></div><p id="roomstatus" class="muted" role="status">Add something to start furnishing.</p><div id="objectcontrols" hidden><div class="row"><label>Colour <select id="colour"><option value="red">röd · red</option><option value="white">vit · white</option><option value="blue">blå · blue</option><option value="green">grön · green</option><option value="yellow">gul · yellow</option><option value="black">svart · black</option></select></label><label>Size <select id="size"><option value="small">liten · small</option><option value="large">stor · large</option></select></label><button id="remove">Remove selected</button></div></div></div><div><div id="room" class="room" aria-label="Interactive furnished room"><label>Click an object to describe it.</label></div><p id="description" lang="sv" class="scene">Det här är ett rum.</p><div class="row"><button id="describe">Describe the whole room</button><button id="saydesc">🔊 Hear it</button></div></div></div></div></div>
+</header><main><div class="hero"><div><div class="label">Mission edition · Units 1–12</div><h1>A little Swedish.<br>A real mission.</h1><p>Run a café. Catch a train. Plan a party. Learn the words, read the story, build the sentences — and hear every word in Swedish.</p><button class="primary" id="continue">Choose your next mission</button><p class="muted">No timer. No lost lives. Try, investigate, try again.</p></div><aside class="board"><div class="label">Your mission passport</div><h2>Twelve places to go.</h2><div id="passport" class="passport"></div><div class="stats"><span><b id="solved">0</b> challenges solved</span><span><b id="stamps">0</b> / <span id="stamptotal">12</span> stamps</span></div></aside></div>
+<nav class="page-shortcuts" aria-label="On this page">
+  <span>On this page</span>
+  <a href="#missions">Choose a mission</a>
+  
+  
+  <a href="#coach">Coach desk</a>
+</nav>
+  <section id="missions"><div class="label">Pick any mission · replay whenever you like</div><h2>Where are we going?</h2><div class="missions" id="missionlist"></div><article id="game" class="game" hidden></article></section>
+<div id="studioholder" hidden><div id="designer" class="studio"><div class="split"><div><div class="label">Room studio · build, then describe</div><h3>Your room. Your rules.</h3><p>Add furniture. Select an object to change its colour or size. The Swedish description changes with it.</p><div class="row" id="furniture"></div><p id="roomstatus" class="muted" role="status">Add something to start furnishing.</p><div id="objectcontrols" hidden><div class="row"><label>Colour <select id="colour"><option value="red">röd · red</option><option value="white">vit · white</option><option value="blue">blå · blue</option><option value="green">grön · green</option><option value="yellow">gul · yellow</option><option value="black">svart · black</option></select></label><label>Size <select id="size"><option value="small">liten · small</option><option value="large">stor · large</option></select></label><button id="remove">Remove selected</button></div></div></div><div><div id="room" class="room" aria-label="Interactive furnished room"><label>Click an object to describe it.</label></div><p id="description" lang="sv" class="scene">Det här är ett rum.</p><div class="row"><button id="describe">Describe the whole room</button><button id="saydesc">🔊 Hear it</button></div></div></div></div></div>
 
-  <section id="coach"><div class="label">Reference & grown-up controls</div><h2>The rules are here when you need them.</h2><p>Start with a mission. Open a rule only when it helps. Accept a well-explained alternative answer in conversation; tile puzzles use one supplied model.</p><div id="references"></div><details open><summary>Voice for 🔊 buttons</summary><div class="row"><label>Voice <select id="voice"></select></label><label>Speed <select id="rate"><option value="1">Normal</option><option value="0.9" selected>A little slower</option><option value="0.75">Slow</option></select></label><button id="voicetest">🔊 Test</button></div><p id="voicenote" class="muted"></p><p class="muted">Uses the Swedish voice built into this device. On iPad/Mac: Settings → Accessibility → Spoken Content → Voices → Swedish, and download a better voice.</p></details><details><summary>Run a short lesson together</summary><p>Choose one mission. Let the learner attempt it before explaining. Ask “What did you notice?” after a correction. Finish by acting out the situation with invented details. Suggested order per mission: Words (hear and repeat) → Story (read along, then read alone) → Challenges → Speak.</p></details><details><summary>Progress, privacy & publishing</summary><p>Mission progress and the Unit 6 room save in this browser under a separate key from your original site. No account, analytics, database, or external libraries. Storage can be blocked by browser settings. Export a backup if your progress matters.</p><div class="row"><button id="export">Export progress</button><label>Import backup<input id="import" type="file" accept="application/json"></label><button id="reset">Reset this version</button></div><p id="datastatus" role="status"></p><p>Publish this page as index.html together with lessons.js in your Swedish_studies repository. This is a new mission practice edition, not a copy of every original lesson. Keep the original site for its longer readings, vocabulary and notebooks.</p><a href="https://tetisheri12.github.io/swedish-together/" target="_blank" rel="noopener">Open the original reference course</a></details></section></main><div id="toast" role="status" hidden></div><footer>Swedish Studies · Original practice activities following the Units 1–12 topic sequence of Colloquial Swedish, fourth edition. Independent project, not affiliated with the publisher. Fictional characters and situations. No copyrighted recordings included.</footer>
-  <script src="lessons.js"></script>
-  <script>
-  'use strict';
-  const $=id=>document.getElementById(id);
-  const missions=Array.isArray(window.LESSONS)?window.LESSONS.filter(Boolean):[];
-  const KEY='swedish-missions-v1',VKEY='swedish-missions-voice-v1',RKEY='swedish-missions-rate-v1';
-  let state={solved:[],boss:[],room:[]};try{const old=JSON.parse(localStorage.getItem(KEY));if(old&&Array.isArray(old.solved)&&Array.isArray(old.boss)&&Array.isArray(old.room))state=old}catch(e){}
-  let current=0,step=0,view='words',order=[],choice=null,passed=false,tries=0,selectedObject=null,hideEn=false,showStoryEn=false;
-  function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){$('datastatus').textContent='Browser storage unavailable. Export progress before closing.'}}
-  function node(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n}
-  function button(text,fn,cls){let b=node('button',text,cls);b.type='button';b.onclick=fn;return b}
-  function sv(tag,text,cls){const n=node(tag,text,cls);n.lang='sv';return n}
-  let toastTimer=null;function toast(msg){const t=$('toast');t.textContent=msg;t.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>{t.hidden=true},4000)}
+<section id="coach"><div class="label">Reference & grown-up controls</div><h2>The rules are here when you need them.</h2><p>Start with a mission. Open a rule only when it helps. Accept a well-explained alternative answer in conversation; tile puzzles use one supplied model.</p><div id="references"></div><details open><summary>Voice for 🔊 buttons</summary><div class="row"><label>Voice <select id="voice"></select></label><label>Speed <select id="rate"><option value="1">Normal</option><option value="0.9" selected>A little slower</option><option value="0.75">Slow</option></select></label><button id="voicetest">🔊 Test</button></div><p id="voicenote" class="muted"></p><p class="muted">Uses the Swedish voice built into this device. On iPad/Mac: Settings → Accessibility → Spoken Content → Voices → Swedish, and download a better voice.</p></details><details><summary>Run a short lesson together</summary><p>Choose one mission. Let the learner attempt it before explaining. Ask “What did you notice?” after a correction. Finish by acting out the situation with invented details. Suggested order per mission: Words (hear and repeat) → Story (read along, then read alone) → Challenges → Speak.</p></details><details><summary>Progress, privacy & publishing</summary><p>Mission progress and the Unit 6 room save in this browser under a separate key from your original site. No account, analytics, database, or external libraries. Storage can be blocked by browser settings. Export a backup if your progress matters.</p><div class="row"><button id="export">Export progress</button><label>Import backup<input id="import" type="file" accept="application/json"></label><button id="reset">Reset this version</button></div><p id="datastatus" role="status"></p><p>Publish this page as index.html together with lessons.js in your Swedish_studies repository. This is a new mission practice edition, not a copy of every original lesson. Keep the original site for its longer readings, vocabulary and notebooks.</p><a href="https://tetisheri12.github.io/swedish-together/" target="_blank" rel="noopener">Open the original reference course</a></details></section></main><div id="toast" role="status" hidden></div><footer>Swedish Studies · Original practice activities following the Units 1–12 topic sequence of Colloquial Swedish, fourth edition. Independent project, not affiliated with the publisher. Fictional characters and situations. No copyrighted recordings included.</footer>
+<script src="lessons.js"></script>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const missions=Array.isArray(window.LESSONS)?window.LESSONS.filter(Boolean):[];
+const KEY='swedish-missions-v1',VKEY='swedish-missions-voice-v1',RKEY='swedish-missions-rate-v1';
+let state={solved:[],boss:[],room:[]};try{const old=JSON.parse(localStorage.getItem(KEY));if(old&&Array.isArray(old.solved)&&Array.isArray(old.boss)&&Array.isArray(old.room))state=old}catch(e){}
+let current=0,step=0,view='words',order=[],choice=null,passed=false,tries=0,selectedObject=null,hideEn=false,showStoryEn=false;
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){$('datastatus').textContent='Browser storage unavailable. Export progress before closing.'}}
+function node(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n}
+function button(text,fn,cls){let b=node('button',text,cls);b.type='button';b.onclick=fn;return b}
+function sv(tag,text,cls){const n=node(tag,text,cls);n.lang='sv';return n}
+let toastTimer=null;function toast(msg){const t=$('toast');t.textContent=msg;t.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>{t.hidden=true},4000)}
 
-  /* ---------- Speech: device Swedish voice ---------- */
-  const synth=window.speechSynthesis||null;let voices=[];
-  function vscore(v){if(!v)return 0;const n=(v.name+' '+v.voiceURI).toLowerCase();let s=0;if(n.includes('premium'))s+=50;if(n.includes('enhanced')||n.includes('förbättrad'))s+=40;if(n.includes('natural')||n.includes('neural'))s+=40;else if(n.includes('online'))s+=20;if(/^sv[-_]se$/i.test(v.lang))s+=1;return s}
-  function loadVoices(){
-    if(!synth){voiceNote();return}
-    const list=synth.getVoices().filter(v=>/^sv([-_]|$)/i.test(v.lang));
-    if(!list.length&&voices.length)return;
-    voices=list.sort((a,b)=>vscore(b)-vscore(a)||a.name.localeCompare(b.name));
-    const sel=$('voice');let want=sel.value;if(!want){try{want=localStorage.getItem(VKEY)||''}catch(e){}}
-    sel.replaceChildren();
-    if(!voices.length){const o=node('option','No Swedish voice found');o.value='';sel.append(o)}
-    else voices.forEach(v=>{const o=node('option',v.name+(vscore(v)>=40?' ★':''));o.value=v.voiceURI;sel.append(o)});
-    if(voices.some(v=>v.voiceURI===want))sel.value=want;
-    voiceNote();
-  }
-  function curVoice(){return voices.find(v=>v.voiceURI===$('voice').value)||voices[0]}
-  function voiceNote(){$('voicenote').textContent=!synth?'This browser cannot play speech.':!voices.length?'No Swedish voice found. Install one in your device settings (Accessibility → Spoken Content → Voices → Swedish), then reload.':'Using '+curVoice().name+'.'}
-  function rate(){return Number($('rate').value)||0.9}
-  function speakable(t){return String(t).replace(/^[^:\n]{1,24}:\s/gm,'').replace(/_{3,}/g,' … ').replace(/[–—]/g,', ')}
-  function utter(text,r){const v=curVoice(),u=new SpeechSynthesisUtterance(speakable(text));u.voice=v;u.lang=v.lang;u.rate=r||rate();return u}
-  function say(text,r){
-    if(!synth||!voices.length){toast('No Swedish voice on this device. See “Voice for 🔊” in the Coach desk.');return}
-    synth.cancel();const u=utter(text,r);
-    setTimeout(()=>{try{synth.resume()}catch(e){}synth.speak(u)},120);
-  }
-  function sayAll(list){
-    if(!synth||!voices.length){toast('No Swedish voice on this device.');return}
-    synth.cancel();setTimeout(()=>{try{synth.resume()}catch(e){}list.forEach(t=>synth.speak(utter(t)))},120);
-  }
-  function sayBtn(text,label){const b=button(label||'🔊',e=>{e.stopPropagation();say(text)},'say');b.setAttribute('aria-label','Listen: '+text);return b}
-  const SV_WORDS=new Set('jag du han hon vi ni de är och det en ett har inte kan vill ska på i till med för som var vad hur heter bor tack hej min mitt mina din ditt den här där finns ligger går kommer får gillar tycker också men eller om att nu idag sedan har ser ja nej'.split(' '));
-  const EN_WORDS=new Set('the is are a an of to and which who what choose find point owns room you your this that with for it in on'.split(' '));
-  function isSwedish(t){const w=String(t).toLowerCase().match(/[a-zåäöé]+/g)||[];let s=0,e=0;w.forEach(x=>{if(SV_WORDS.has(x))s++;if(EN_WORDS.has(x))e++});if(/[åäö]/i.test(t))s+=2;return s>e}
-  if(synth){loadVoices();if('onvoiceschanged' in synth)synth.onvoiceschanged=loadVoices;[300,1000,2500].forEach(ms=>setTimeout(loadVoices,ms))}else voiceNote();
-  $('voice').onchange=()=>{try{localStorage.setItem(VKEY,$('voice').value)}catch(e){}voiceNote()};
-  try{const r=localStorage.getItem(RKEY);if(r)$('rate').value=r}catch(e){}
-  $('rate').onchange=()=>{try{localStorage.setItem(RKEY,$('rate').value)}catch(e){}};
-  $('voicetest').onclick=()=>say('Hej! Jag heter Leo. Vad heter du?');
-  let unlocked=false;document.addEventListener('pointerdown',()=>{if(unlocked||!synth)return;unlocked=true;const u=new SpeechSynthesisUtterance(' ');u.volume=0;synth.speak(u)},{capture:true});
+/* ---------- Speech: device Swedish voice ---------- */
+const synth=window.speechSynthesis||null;let voices=[];
+function vscore(v){if(!v)return 0;const n=(v.name+' '+v.voiceURI).toLowerCase();let s=0;if(n.includes('premium'))s+=50;if(n.includes('enhanced')||n.includes('förbättrad'))s+=40;if(n.includes('natural')||n.includes('neural'))s+=40;else if(n.includes('online'))s+=20;if(/^sv[-_]se$/i.test(v.lang))s+=1;return s}
+function loadVoices(){
+  if(!synth){voiceNote();return}
+  const list=synth.getVoices().filter(v=>/^sv([-_]|$)/i.test(v.lang));
+  if(!list.length&&voices.length)return;
+  voices=list.sort((a,b)=>vscore(b)-vscore(a)||a.name.localeCompare(b.name));
+  const sel=$('voice');let want=sel.value;if(!want){try{want=localStorage.getItem(VKEY)||''}catch(e){}}
+  sel.replaceChildren();
+  if(!voices.length){const o=node('option','No Swedish voice found');o.value='';sel.append(o)}
+  else voices.forEach(v=>{const o=node('option',v.name+(vscore(v)>=40?' ★':''));o.value=v.voiceURI;sel.append(o)});
+  if(voices.some(v=>v.voiceURI===want))sel.value=want;
+  voiceNote();
+}
+function curVoice(){return voices.find(v=>v.voiceURI===$('voice').value)||voices[0]}
+function voiceNote(){$('voicenote').textContent=!synth?'This browser cannot play speech.':!voices.length?'No Swedish voice found. Install one in your device settings (Accessibility → Spoken Content → Voices → Swedish), then reload.':'Using '+curVoice().name+'.'}
+function rate(){return Number($('rate').value)||0.9}
+function speakable(t){return String(t).replace(/^[^:\n]{1,24}:\s/gm,'').replace(/_{3,}/g,' … ').replace(/[–—]/g,', ')}
+function utter(text,r){const v=curVoice(),u=new SpeechSynthesisUtterance(speakable(text));u.voice=v;u.lang=v.lang;u.rate=r||rate();return u}
+function say(text,r){
+  if(!synth||!voices.length){toast('No Swedish voice on this device. See “Voice for 🔊” in the Coach desk.');return}
+  synth.cancel();const u=utter(text,r);
+  setTimeout(()=>{try{synth.resume()}catch(e){}synth.speak(u)},120);
+}
+function sayAll(list){
+  if(!synth||!voices.length){toast('No Swedish voice on this device.');return}
+  synth.cancel();setTimeout(()=>{try{synth.resume()}catch(e){}list.forEach(t=>synth.speak(utter(t)))},120);
+}
+function sayBtn(text,label){const b=button(label||'🔊',e=>{e.stopPropagation();say(text)},'say');b.setAttribute('aria-label','Listen: '+text);return b}
+const SV_WORDS=new Set('jag du han hon vi ni de är och det en ett har inte kan vill ska på i till med för som var vad hur heter bor tack hej min mitt mina din ditt den här där finns ligger går kommer får gillar tycker också men eller om att nu idag sedan har ser ja nej'.split(' '));
+const EN_WORDS=new Set('the is are a an of to and which who what choose find point owns room you your this that with for it in on'.split(' '));
+function isSwedish(t){const w=String(t).toLowerCase().match(/[a-zåäöé]+/g)||[];let s=0,e=0;w.forEach(x=>{if(SV_WORDS.has(x))s++;if(EN_WORDS.has(x))e++});if(/[åäö]/i.test(t))s+=2;return s>e}
+if(synth){loadVoices();if('onvoiceschanged' in synth)synth.onvoiceschanged=loadVoices;[300,1000,2500].forEach(ms=>setTimeout(loadVoices,ms))}else voiceNote();
+$('voice').onchange=()=>{try{localStorage.setItem(VKEY,$('voice').value)}catch(e){}voiceNote()};
+try{const r=localStorage.getItem(RKEY);if(r)$('rate').value=r}catch(e){}
+$('rate').onchange=()=>{try{localStorage.setItem(RKEY,$('rate').value)}catch(e){}};
+$('voicetest').onclick=()=>say('Hej! Jag heter Leo. Vad heter du?');
+let unlocked=false;document.addEventListener('pointerdown',()=>{if(unlocked||!synth)return;unlocked=true;const u=new SpeechSynthesisUtterance(' ');u.volume=0;synth.speak(u)},{capture:true});
 
-  /* ---------- Progress ---------- */
-  function key(){return current+'-'+step}
-  function solvedCount(i){return missions[i].tasks.filter((t,j)=>state.solved.includes(i+'-'+j)).length}
-  function complete(i){return solvedCount(i)===missions[i].tasks.length&&state.boss.includes(i)}
-  function update(){
-    const valid=new Set(state.solved.filter(k=>{const[a,b]=k.split('-').map(Number);return missions[a]&&missions[a].tasks[b]}));
-    $('solved').textContent=valid.size;$('stamps').textContent=missions.filter((m,i)=>complete(i)).length;$('stamptotal').textContent=missions.length;
-    $('passport').replaceChildren();$('missionlist').replaceChildren();
-    missions.forEach((m,i)=>{
-      $('passport').append(node('div',(complete(i)?'✓ ':'')+m.place,'stamp'+(complete(i)?' earned':'')));
-      let b=button('',()=>openMission(i),'mission');b.append(node('span',String(m.unit||i+1).padStart(2,'0'),'num'));
-      let txt=node('span');const sub=node('small');sub.append(sv('i',m.sv||''),document.createTextNode(' · '+m.rule+' · '+solvedCount(i)+'/'+m.tasks.length+' solved'));
-      txt.append(node('strong',m.title),sub);b.append(txt);$('missionlist').append(b);
-    });
-  }
-  function openMission(i){current=i;const first=missions[i].tasks.findIndex((t,j)=>!state.solved.includes(i+'-'+j));step=first<0?0:first;view=solvedCount(i)===0?'words':first<0?'boss':'tasks';$('game').hidden=false;draw();$('game').scrollIntoView({behavior:'auto',block:'start'})}
+/* ---------- Progress ---------- */
+function key(){return current+'-'+step}
+function solvedCount(i){return missions[i].tasks.filter((t,j)=>state.solved.includes(i+'-'+j)).length}
+function complete(i){return solvedCount(i)===missions[i].tasks.length&&state.boss.includes(i)}
+function update(){
+  const valid=new Set(state.solved.filter(k=>{const[a,b]=k.split('-').map(Number);return missions[a]&&missions[a].tasks[b]}));
+  $('solved').textContent=valid.size;$('stamps').textContent=missions.filter((m,i)=>complete(i)).length;$('stamptotal').textContent=missions.length;
+  $('passport').replaceChildren();$('missionlist').replaceChildren();
+  missions.forEach((m,i)=>{
+    $('passport').append(node('div',(complete(i)?'✓ ':'')+m.place,'stamp'+(complete(i)?' earned':'')));
+    let b=button('',()=>openMission(i),'mission');b.append(node('span',String(m.unit||i+1).padStart(2,'0'),'num'));
+    let txt=node('span');const sub=node('small');sub.append(sv('i',m.sv||''),document.createTextNode(' · '+m.rule+' · '+solvedCount(i)+'/'+m.tasks.length+' solved'));
+    txt.append(node('strong',m.title),sub);b.append(txt);$('missionlist').append(b);
+  });
+}
+function openMission(i){current=i;const first=missions[i].tasks.findIndex((t,j)=>!state.solved.includes(i+'-'+j));step=first<0?0:first;view=solvedCount(i)===0?'words':first<0?'boss':'tasks';$('game').hidden=false;draw();$('game').scrollIntoView({behavior:'auto',block:'start'})}
 
-  /* ---------- Mission view ---------- */
-  function draw(){
-    if(synth)synth.cancel();
-    $('studioholder').append($('designer'));
-    const m=missions[current],g=$('game');g.replaceChildren();
-    let head=node('div',undefined,'gamehead');head.append(node('span','UNIT '+(m.unit||current+1)+' / '+m.place,'label'),button('Close',()=>{g.hidden=true;if(synth)synth.cancel()}));
-    const h=node('h2',m.title+' ');h.append(sv('span',m.sv,'svtitle'));g.append(head,h);
-    let p=node('progress');p.max=m.tasks.length+1;p.value=solvedCount(current)+(state.boss.includes(current)?1:0);g.append(p);
-    const tabs=node('div',undefined,'tabs');tabs.setAttribute('role','tablist');
-    [['words','1 · Ord','Words'],['story','2 · Berättelse','Story'],['tasks','3 · Utmaningar','Challenges'],['boss','4 · Tala','Speak']].forEach(([k,s,e])=>{
-      const b=button('',()=>{view=k;draw()},view===k?'selected':'');b.setAttribute('role','tab');b.setAttribute('aria-selected',view===k);b.append(sv('b',s),node('small',e));tabs.append(b)});
-    g.append(tabs);
-    if(view==='words')drawWords(g,m);else if(view==='story')drawStory(g,m);else if(view==='boss')drawBoss(g,m);else drawTask(g,m);
+/* ---------- Mission view ---------- */
+function draw(){
+  if(synth)synth.cancel();
+  $('studioholder').append($('designer'));
+  const m=missions[current],g=$('game');g.replaceChildren();
+  let head=node('div',undefined,'gamehead');head.append(node('span','UNIT '+(m.unit||current+1)+' / '+m.place,'label'),button('Close',()=>{g.hidden=true;if(synth)synth.cancel()}));
+  const h=node('h2',m.title+' ');h.append(sv('span',m.sv,'svtitle'));g.append(head,h);
+  let p=node('progress');p.max=m.tasks.length+1;p.value=solvedCount(current)+(state.boss.includes(current)?1:0);g.append(p);
+  const tabs=node('div',undefined,'tabs');tabs.setAttribute('role','tablist');
+  [['words','1 · Ord','Words'],['story','2 · Berättelse','Story'],['tasks','3 · Utmaningar','Challenges'],['boss','4 · Tala','Speak']].forEach(([k,s,e])=>{
+    const b=button('',()=>{view=k;draw()},view===k?'selected':'');b.setAttribute('role','tab');b.setAttribute('aria-selected',view===k);b.append(sv('b',s),node('small',e));tabs.append(b)});
+  g.append(tabs);
+  if(view==='words')drawWords(g,m);else if(view==='story')drawStory(g,m);else if(view==='boss')drawBoss(g,m);else drawTask(g,m);
+}
+function drawWords(g,m){
+  g.append(node('p',m.intro,'muted'),node('h3','Words for this mission'));
+  const row=node('div',undefined,'row');
+  const lab=node('label');const cb=node('input');cb.type='checkbox';cb.checked=hideEn;cb.onchange=()=>{hideEn=cb.checked;grid.classList.toggle('hide-en',hideEn);grid.querySelectorAll('.word').forEach(w=>w.classList.remove('show'))};
+  lab.append(cb,document.createTextNode(' Hide English — test yourself'));
+  row.append(button('▶ Hear all words',()=>sayAll(m.words.map(w=>w[0]))),lab);g.append(row);
+  const grid=node('div',undefined,'wordgrid'+(hideEn?' hide-en':''));
+  m.words.forEach(([s,e])=>{const w=node('div',undefined,'word');w.append(sayBtn(s),sv('b',s),node('span',e,'en'));w.onclick=()=>{if(hideEn)w.classList.toggle('show')};grid.append(w)});
+  g.append(grid,node('p','Tap 🔊 and say each word out loud. With English hidden, tap a word to check its meaning.','muted'));
+  g.append(button('Next: read the story →',()=>{view='story';draw()},'primary'));
+}
+function drawStory(g,m){
+  const st=m.story;g.append(sv('h3',st.title));
+  const row=node('div',undefined,'row');
+  const lab=node('label');const cb=node('input');cb.type='checkbox';cb.checked=showStoryEn;cb.onchange=()=>{showStoryEn=cb.checked;box.classList.toggle('show-en',showStoryEn)};
+  lab.append(cb,document.createTextNode(' Show English'));
+  row.append(button('▶ Read the whole story',()=>sayAll(st.lines.map(l=>l[0])),'primary'),button('Stop',()=>{if(synth)synth.cancel()}),lab);g.append(row);
+  const box=node('div',undefined,'story'+(showStoryEn?' show-en':''));
+  st.lines.forEach(([s,e])=>{const l=node('div',undefined,'storyline');const t=node('div');t.append(sv('p',s),node('p',e,'en muted'));l.append(sayBtn(s),t);l.onclick=()=>l.classList.toggle('show');box.append(l)});
+  g.append(box,node('p','Read each line aloud after the voice. Tap a line to see it in English.','muted'));
+  g.append(button('Next: challenges →',()=>{view='tasks';draw()},'primary'));
+}
+function drawBoss(g,m){
+  if(m.unit===6){g.append(node('p','Build your room below. Every object gets a Swedish description — say it out loud, then describe the whole room without reading.','muted'),$('designer'));renderRoom()}
+  g.append(node('h3','Final mission: say it for real.'),node('p',m.boss),node('p','Ask your partner to check: Was the meaning clear? Could you repair one mistake?','muted'));
+  if(solvedCount(current)<m.tasks.length)g.append(node('p','Tip: finish the challenges first — '+solvedCount(current)+' of '+m.tasks.length+' solved.','muted'));
+  g.append(button(state.boss.includes(current)?'Mission done — replay':'We did the speaking mission',()=>{if(!state.boss.includes(current))state.boss.push(current);save();update();draw()},'primary'));
+  if(complete(current)){g.append(node('p','Passport stamped! You can still replay everything.','feedback'));const nx=missions.findIndex((x,i)=>!complete(i));if(nx>=0)g.append(button('Next mission: '+missions[nx].title+' →',()=>openMission(nx)))}
+  g.append(button('Replay challenges',()=>{view='tasks';step=0;draw()}));
+}
+function choicesBox(t){const choices=node('div',undefined,'choices');t.choices.forEach((c,i)=>{let b=button(c,()=>{if(passed)return;choice=i;Array.from(choices.children).forEach((x,j)=>{x.classList.toggle('selected',i===j);x.setAttribute('aria-pressed',i===j)})});b.setAttribute('aria-pressed','false');if(isSwedish(c))b.lang='sv';choices.append(b)});return choices}
+function solvedSentence(t){
+  if(t.type==='tiles')return t.answer.join(' ');
+  if(t.type==='listen')return t.say;
+  if(t.type==='type'){let a=t.answers[0];if(/^\s*___/.test(t.scene))a=a.charAt(0).toLocaleUpperCase('sv')+a.slice(1);return t.scene.replace('___',a)}
+  if(isSwedish(t.scene)&&!/\n/.test(t.scene)){const c=t.choices[t.correct];return t.scene.includes('___')?(isSwedish(c)||/^(en|ett|den|det|de)$/i.test(c)?t.scene.replace('___',c):''):t.scene}
+  return '';
+}
+function drawTask(g,m){
+  if(step>=m.tasks.length)step=0;
+  const t=m.tasks[step];order=[];choice=null;passed=false;tries=0;
+  g.append(node('p',step===0?m.intro:'Challenge '+(step+1)+' of '+m.tasks.length+(state.solved.includes(key())?' · solved before':''),'muted'),node('h3',t.prompt));
+  if(t.type==='tiles'){
+    g.append(node('p','Tap the tiles to build. Tap a placed tile to return it.','muted'));
+    const rail=node('div',undefined,'rail');rail.id='rail';const tiles=node('div',undefined,'tiles');tiles.id='tiles';tiles.lang='sv';g.append(rail,tiles);
+    let shuffled=t.answer.map((text,i)=>({text,i}));for(let i=shuffled.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]]}
+    if(shuffled.every((x,i)=>x.i===i))shuffled.push(shuffled.shift());t._pool=shuffled;renderTiles(t);
+  }else if(t.type==='type'){
+    const sc=sv('div',undefined,'scene');const at=t.scene.indexOf('___');
+    const inp=node('input');inp.type='text';inp.id='typed';inp.className='gap';inp.lang='sv';inp.autocomplete='off';inp.setAttribute('autocapitalize','off');inp.setAttribute('autocorrect','off');inp.spellcheck=false;inp.setAttribute('aria-label','Missing word');
+    inp.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();check(t)}};
+    sc.append(document.createTextNode(t.scene.slice(0,at)),inp,document.createTextNode(t.scene.slice(at+3)));g.append(sc);
+    const letters=node('div',undefined,'row letters');['å','ä','ö'].forEach(ch=>letters.append(button(ch,()=>{if(passed)return;const s=inp.selectionStart??inp.value.length,e=inp.selectionEnd??s;inp.value=inp.value.slice(0,s)+ch+inp.value.slice(e);inp.focus();inp.setSelectionRange(s+1,s+1)})));
+    g.append(letters);
+  }else if(t.type==='listen'){
+    const row=node('div',undefined,'row');row.append(button('🔊 Listen',()=>say(t.say),'primary'),button('🐢 Slowly',()=>say(t.say,0.65)));g.append(row,choicesBox(t));
+  }else{
+    const sc=node('div',undefined,'scene');const sw=isSwedish(t.scene);if(sw)sc.lang='sv';sc.append(document.createTextNode(t.scene));if(sw)sc.append(' ',sayBtn(t.scene));g.append(sc,choicesBox(t));
   }
-  function drawWords(g,m){
-    g.append(node('p',m.intro,'muted'),node('h3','Words for this mission'));
-    const row=node('div',undefined,'row');
-    const lab=node('label');const cb=node('input');cb.type='checkbox';cb.checked=hideEn;cb.onchange=()=>{hideEn=cb.checked;grid.classList.toggle('hide-en',hideEn);grid.querySelectorAll('.word').forEach(w=>w.classList.remove('show'))};
-    lab.append(cb,document.createTextNode(' Hide English — test yourself'));
-    row.append(button('▶ Hear all words',()=>sayAll(m.words.map(w=>w[0]))),lab);g.append(row);
-    const grid=node('div',undefined,'wordgrid'+(hideEn?' hide-en':''));
-    m.words.forEach(([s,e])=>{const w=node('div',undefined,'word');w.append(sayBtn(s),sv('b',s),node('span',e,'en'));w.onclick=()=>{if(hideEn)w.classList.toggle('show')};grid.append(w)});
-    g.append(grid,node('p','Tap 🔊 and say each word out loud. With English hidden, tap a word to check its meaning.','muted'));
-    g.append(button('Next: read the story →',()=>{view='story';draw()},'primary'));
+  let actions=node('div',undefined,'row');actions.append(button('Check',()=>check(t),'primary'),button('Give me a clue',()=>{$('hint').hidden=false}),button('Try again',()=>draw()));g.append(actions);
+  let hint=node('p',t.hint,'hint');hint.id='hint';hint.hidden=true;g.append(hint);
+  let feed=node('p','','feedback');feed.id='feedback';feed.setAttribute('role','status');g.append(feed);
+  let sl=node('div',undefined,'solvedline');sl.id='solvedline';sl.hidden=true;g.append(sl);
+  let nav=node('div',undefined,'row');
+  let next=button('Next challenge',()=>{if(step>=m.tasks.length-1)view='boss';else step++;draw()},'primary');next.id='next';next.hidden=true;
+  nav.append(next);if(step>0)nav.append(button('← Back',()=>{step--;draw()}));if(step<m.tasks.length-1)nav.append(button('Skip →',()=>{step++;draw()}));g.append(nav);
+  let rule=node('details');rule.append(node('summary','Why does this work?'),node('p',m.reference));g.append(rule);
+}
+function renderTiles(t){$('rail').replaceChildren();$('tiles').replaceChildren();order.forEach((idx,pos)=>{$('rail').append(button(t.answer[idx],()=>{if(passed)return;order.splice(pos,1);renderTiles(t)}))});if(!order.length)$('rail').append(node('span','Your sentence goes here.','muted'));t._pool.forEach(x=>{let b=button(x.text,()=>{if(passed)return;order.push(x.i);renderTiles(t)});b.disabled=order.includes(x.i);$('tiles').append(b)})}
+function norm(s){return String(s).normalize('NFC').toLocaleLowerCase('sv').trim().replace(/[.!?,;:]+$/,'').replace(/\s+/g,' ')}
+function check(t){
+  if(passed)return;let ok,msg='';
+  if(t.type==='tiles'){if(order.length!==t.answer.length){$('feedback').textContent='Use every tile. '+t.hint;return}ok=order.every((v,i)=>v===i)}
+  else if(t.type==='type'){const v=norm($('typed').value);if(!v){$('feedback').textContent='Write an answer first. '+t.hint;return}ok=t.answers.some(a=>norm(a)===v)}
+  else{if(choice===null){$('feedback').textContent='Choose an answer first.';return}ok=choice===t.correct}
+  if(ok){
+    passed=true;if(!state.solved.includes(key()))state.solved.push(key());save();update();
+    $('feedback').textContent='Rätt! '+t.why;
+    const s=solvedSentence(t);if(s){const sl=$('solvedline');sl.replaceChildren(sayBtn(s),sv('span',s));sl.hidden=false;if(t.type==='tiles'||t.type==='type')say(s)}
+    if(t.type==='type')$('typed').disabled=true;
+    const m=missions[current];$('next').hidden=false;$('next').textContent=step>=m.tasks.length-1?'Try the speaking mission →':'Next challenge →';
+  }else{
+    tries++;
+    if(tries>=3&&(t.type==='tiles'||t.type==='type'))msg=' Answer: '+(t.type==='tiles'?t.answer.join(' '):t.answers[0])+' — build or type it to continue.';
+    $('feedback').textContent='Not quite — try again. '+t.hint+msg;
   }
-  function drawStory(g,m){
-    const st=m.story;g.append(sv('h3',st.title));
-    const row=node('div',undefined,'row');
-    const lab=node('label');const cb=node('input');cb.type='checkbox';cb.checked=showStoryEn;cb.onchange=()=>{showStoryEn=cb.checked;box.classList.toggle('show-en',showStoryEn)};
-    lab.append(cb,document.createTextNode(' Show English'));
-    row.append(button('▶ Read the whole story',()=>sayAll(st.lines.map(l=>l[0])),'primary'),button('Stop',()=>{if(synth)synth.cancel()}),lab);g.append(row);
-    const box=node('div',undefined,'story'+(showStoryEn?' show-en':''));
-    st.lines.forEach(([s,e])=>{const l=node('div',undefined,'storyline');const t=node('div');t.append(sv('p',s),node('p',e,'en muted'));l.append(sayBtn(s),t);l.onclick=()=>l.classList.toggle('show');box.append(l)});
-    g.append(box,node('p','Read each line aloud after the voice. Tap a line to see it in English.','muted'));
-    g.append(button('Next: challenges →',()=>{view='tasks';draw()},'primary'));
-  }
-  function drawBoss(g,m){
-    if(m.unit===6){g.append(node('p','Build your room below. Every object gets a Swedish description — say it out loud, then describe the whole room without reading.','muted'),$('designer'));renderRoom()}
-    g.append(node('h3','Final mission: say it for real.'),node('p',m.boss),node('p','Ask your partner to check: Was the meaning clear? Could you repair one mistake?','muted'));
-    if(solvedCount(current)<m.tasks.length)g.append(node('p','Tip: finish the challenges first — '+solvedCount(current)+' of '+m.tasks.length+' solved.','muted'));
-    g.append(button(state.boss.includes(current)?'Mission done — replay':'We did the speaking mission',()=>{if(!state.boss.includes(current))state.boss.push(current);save();update();draw()},'primary'));
-    if(complete(current)){g.append(node('p','Passport stamped! You can still replay everything.','feedback'));const nx=missions.findIndex((x,i)=>!complete(i));if(nx>=0)g.append(button('Next mission: '+missions[nx].title+' →',()=>openMission(nx)))}
-    g.append(button('Replay challenges',()=>{view='tasks';step=0;draw()}));
-  }
-  function choicesBox(t){const choices=node('div',undefined,'choices');t.choices.forEach((c,i)=>{let b=button(c,()=>{if(passed)return;choice=i;Array.from(choices.children).forEach((x,j)=>{x.classList.toggle('selected',i===j);x.setAttribute('aria-pressed',i===j)})});b.setAttribute('aria-pressed','false');if(isSwedish(c))b.lang='sv';choices.append(b)});return choices}
-  function solvedSentence(t){
-    if(t.type==='tiles')return t.answer.join(' ');
-    if(t.type==='listen')return t.say;
-    if(t.type==='type'){let a=t.answers[0];if(/^\s*___/.test(t.scene))a=a.charAt(0).toLocaleUpperCase('sv')+a.slice(1);return t.scene.replace('___',a)}
-    if(isSwedish(t.scene)&&!/\n/.test(t.scene)){const c=t.choices[t.correct];return t.scene.includes('___')?(isSwedish(c)||/^(en|ett|den|det|de)$/i.test(c)?t.scene.replace('___',c):''):t.scene}
-    return '';
-  }
-  function drawTask(g,m){
-    if(step>=m.tasks.length)step=0;
-    const t=m.tasks[step];order=[];choice=null;passed=false;tries=0;
-    g.append(node('p',step===0?m.intro:'Challenge '+(step+1)+' of '+m.tasks.length+(state.solved.includes(key())?' · solved before':''),'muted'),node('h3',t.prompt));
-    if(t.type==='tiles'){
-      g.append(node('p','Tap the tiles to build. Tap a placed tile to return it.','muted'));
-      const rail=node('div',undefined,'rail');rail.id='rail';const tiles=node('div',undefined,'tiles');tiles.id='tiles';tiles.lang='sv';g.append(rail,tiles);
-      let shuffled=t.answer.map((text,i)=>({text,i}));for(let i=shuffled.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]]}
-      if(shuffled.every((x,i)=>x.i===i))shuffled.push(shuffled.shift());t._pool=shuffled;renderTiles(t);
-    }else if(t.type==='type'){
-      const sc=sv('div',undefined,'scene');const at=t.scene.indexOf('___');
-      const inp=node('input');inp.type='text';inp.id='typed';inp.className='gap';inp.lang='sv';inp.autocomplete='off';inp.setAttribute('autocapitalize','off');inp.setAttribute('autocorrect','off');inp.spellcheck=false;inp.setAttribute('aria-label','Missing word');
-      inp.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();check(t)}};
-      sc.append(document.createTextNode(t.scene.slice(0,at)),inp,document.createTextNode(t.scene.slice(at+3)));g.append(sc);
-      const letters=node('div',undefined,'row letters');['å','ä','ö'].forEach(ch=>letters.append(button(ch,()=>{if(passed)return;const s=inp.selectionStart??inp.value.length,e=inp.selectionEnd??s;inp.value=inp.value.slice(0,s)+ch+inp.value.slice(e);inp.focus();inp.setSelectionRange(s+1,s+1)})));
-      g.append(letters);
-    }else if(t.type==='listen'){
-      const row=node('div',undefined,'row');row.append(button('🔊 Listen',()=>say(t.say),'primary'),button('🐢 Slowly',()=>say(t.say,0.65)));g.append(row,choicesBox(t));
-    }else{
-      const sc=node('div',undefined,'scene');const sw=isSwedish(t.scene);if(sw)sc.lang='sv';sc.append(document.createTextNode(t.scene));if(sw)sc.append(' ',sayBtn(t.scene));g.append(sc,choicesBox(t));
-    }
-    let actions=node('div',undefined,'row');actions.append(button('Check',()=>check(t),'primary'),button('Give me a clue',()=>{$('hint').hidden=false}),button('Try again',()=>draw()));g.append(actions);
-    let hint=node('p',t.hint,'hint');hint.id='hint';hint.hidden=true;g.append(hint);
-    let feed=node('p','','feedback');feed.id='feedback';feed.setAttribute('role','status');g.append(feed);
-    let sl=node('div',undefined,'solvedline');sl.id='solvedline';sl.hidden=true;g.append(sl);
-    let nav=node('div',undefined,'row');
-    let next=button('Next challenge',()=>{if(step>=m.tasks.length-1)view='boss';else step++;draw()},'primary');next.id='next';next.hidden=true;
-    nav.append(next);if(step>0)nav.append(button('← Back',()=>{step--;draw()}));if(step<m.tasks.length-1)nav.append(button('Skip →',()=>{step++;draw()}));g.append(nav);
-    let rule=node('details');rule.append(node('summary','Why does this work?'),node('p',m.reference));g.append(rule);
-  }
-  function renderTiles(t){$('rail').replaceChildren();$('tiles').replaceChildren();order.forEach((idx,pos)=>{$('rail').append(button(t.answer[idx],()=>{if(passed)return;order.splice(pos,1);renderTiles(t)}))});if(!order.length)$('rail').append(node('span','Your sentence goes here.','muted'));t._pool.forEach(x=>{let b=button(x.text,()=>{if(passed)return;order.push(x.i);renderTiles(t)});b.disabled=order.includes(x.i);$('tiles').append(b)})}
-  function norm(s){return String(s).normalize('NFC').toLocaleLowerCase('sv').trim().replace(/[.!?,;:]+$/,'').replace(/\s+/g,' ')}
-  function check(t){
-    if(passed)return;let ok,msg='';
-    if(t.type==='tiles'){if(order.length!==t.answer.length){$('feedback').textContent='Use every tile. '+t.hint;return}ok=order.every((v,i)=>v===i)}
-    else if(t.type==='type'){const v=norm($('typed').value);if(!v){$('feedback').textContent='Write an answer first. '+t.hint;return}ok=t.answers.some(a=>norm(a)===v)}
-    else{if(choice===null){$('feedback').textContent='Choose an answer first.';return}ok=choice===t.correct}
-    if(ok){
-      passed=true;if(!state.solved.includes(key()))state.solved.push(key());save();update();
-      $('feedback').textContent='Rätt! '+t.why;
-      const s=solvedSentence(t);if(s){const sl=$('solvedline');sl.replaceChildren(sayBtn(s),sv('span',s));sl.hidden=false;if(t.type==='tiles'||t.type==='type')say(s)}
-      if(t.type==='type')$('typed').disabled=true;
-      const m=missions[current];$('next').hidden=false;$('next').textContent=step>=m.tasks.length-1?'Try the speaking mission →':'Next challenge →';
-    }else{
-      tries++;
-      if(tries>=3&&(t.type==='tiles'||t.type==='type'))msg=' Answer: '+(t.type==='tiles'?t.answer.join(' '):t.answers[0])+' — build or type it to continue.';
-      $('feedback').textContent='Not quite — try again. '+t.hint+msg;
-    }
-  }
-  $('continue').onclick=()=>{const i=missions.findIndex((m,i)=>!complete(i));openMission(i<0?0:i)};
-  missions.forEach((m,i)=>{let d=node('details');d.append(node('summary',String(m.unit||i+1).padStart(2,'0')+' / '+m.rule),node('p',m.reference));$('references').append(d)});
-  if(!missions.length){$('missionlist').append(node('p','Lessons could not load. Make sure lessons.js is uploaded next to index.html.','feedback'))}
+}
+$('continue').onclick=()=>{const i=missions.findIndex((m,i)=>!complete(i));openMission(i<0?0:i)};
+missions.forEach((m,i)=>{let d=node('details');d.append(node('summary',String(m.unit||i+1).padStart(2,'0')+' / '+m.rule),node('p',m.reference));$('references').append(d)});
+if(!missions.length){$('missionlist').append(node('p','Lessons could not load. Make sure lessons.js is uploaded next to index.html.','feedback'))}
 
-  /* ---------- Room studio ---------- */
-  const kinds={chair:{word:'stol',def:'stolen',article:'en'},table:{word:'bord',def:'bordet',article:'ett'},lamp:{word:'lampa',def:'lampan',article:'en'},bed:{word:'säng',def:'sängen',article:'en'},sofa:{word:'soffa',def:'soffan',article:'en'},desk:{word:'skrivbord',def:'skrivbordet',article:'ett'},shelf:{word:'hylla',def:'hyllan',article:'en'},rug:{word:'matta',def:'mattan',article:'en'}};
-  const colours={red:['röd','rött','#eed1c5'],white:['vit','vitt','#fffdf7'],blue:['blå','blått','#d1e0e3'],green:['grön','grönt','#d4e6c9'],yellow:['gul','gult','#f3e3a6'],black:['svart','svart','#55605f']};
-  Object.entries(kinds).forEach(([k,v])=>$('furniture').append(button('+ '+v.article+' '+v.word,()=>{if(state.room.length>=8){$('roomstatus').textContent='Eight objects fit in this room. Remove one to add another.';return}const n=state.room.length;state.room.push({kind:k,colour:'red',size:'small',x:8+(n%4)*22,y:28+Math.floor(n/4)*32});selectedObject=state.room.length-1;save();renderRoom();$('roomstatus').textContent='Added '+v.article+' '+v.word+'.'})));
-  function phrase(o,definite=false){let k=kinds[o.kind],ett=k.article==='ett',col=colours[o.colour][ett?1:0],size=o.size==='large'?(ett?'stort':'stor'):(ett?'litet':'liten');return definite?(ett?'Det här ':'Den här ')+k.def+' är '+size+' och '+col+'.':k.article+' '+size+' '+col+' '+k.word}
-  function renderRoom(){let r=$('room');r.replaceChildren(node('label','Click an object to describe it.'));state.room.forEach((o,i)=>{let k=kinds[o.kind];if(!k)return;let b=button(k.word,()=>{selectedObject=i;renderRoom();say($('description').textContent)},'object'+(selectedObject===i?' active':''));b.style.left=o.x+'%';b.style.top=o.y+'%';b.style.background=colours[o.colour][2];if(o.colour==='black')b.style.color='white';b.style.fontSize=o.size==='large'?'18px':'13px';b.setAttribute('aria-label',phrase(o));r.append(b)});let o=state.room[selectedObject];$('objectcontrols').hidden=!o;if(o){$('colour').value=o.colour;$('size').value=o.size;$('description').textContent=phrase(o,true)}else $('description').textContent='Det här är ett rum.'}
-  ['colour','size'].forEach(k=>$(k).onchange=()=>{if(!state.room[selectedObject])return;state.room[selectedObject][k]=$(k).value;save();renderRoom();$('roomstatus').textContent='Description updated.'});$('remove').onclick=()=>{if(selectedObject===null)return;state.room.splice(selectedObject,1);selectedObject=null;save();renderRoom();$('roomstatus').textContent='Object removed.'};$('describe').onclick=()=>{$('description').textContent=state.room.length?'I rummet finns '+(l=>l.length>1?l.slice(0,-1).join(', ')+' och '+l[l.length-1]:l[0])(state.room.map(o=>phrase(o)))+'.':'Rummet är tomt.';say($('description').textContent)};$('saydesc').onclick=()=>say($('description').textContent);
+/* ---------- Room studio ---------- */
+const kinds={chair:{word:'stol',def:'stolen',article:'en'},table:{word:'bord',def:'bordet',article:'ett'},lamp:{word:'lampa',def:'lampan',article:'en'},bed:{word:'säng',def:'sängen',article:'en'},sofa:{word:'soffa',def:'soffan',article:'en'},desk:{word:'skrivbord',def:'skrivbordet',article:'ett'},shelf:{word:'hylla',def:'hyllan',article:'en'},rug:{word:'matta',def:'mattan',article:'en'}};
+const colours={red:['röd','rött','#eed1c5'],white:['vit','vitt','#fffdf7'],blue:['blå','blått','#d1e0e3'],green:['grön','grönt','#d4e6c9'],yellow:['gul','gult','#f3e3a6'],black:['svart','svart','#55605f']};
+Object.entries(kinds).forEach(([k,v])=>$('furniture').append(button('+ '+v.article+' '+v.word,()=>{if(state.room.length>=8){$('roomstatus').textContent='Eight objects fit in this room. Remove one to add another.';return}const n=state.room.length;state.room.push({kind:k,colour:'red',size:'small',x:8+(n%4)*22,y:28+Math.floor(n/4)*32});selectedObject=state.room.length-1;save();renderRoom();$('roomstatus').textContent='Added '+v.article+' '+v.word+'.'})));
+function phrase(o,definite=false){let k=kinds[o.kind],ett=k.article==='ett',col=colours[o.colour][ett?1:0],size=o.size==='large'?(ett?'stort':'stor'):(ett?'litet':'liten');return definite?(ett?'Det här ':'Den här ')+k.def+' är '+size+' och '+col+'.':k.article+' '+size+' '+col+' '+k.word}
+function renderRoom(){let r=$('room');r.replaceChildren(node('label','Click an object to describe it.'));state.room.forEach((o,i)=>{let k=kinds[o.kind];if(!k)return;let b=button(k.word,()=>{selectedObject=i;renderRoom();say($('description').textContent)},'object'+(selectedObject===i?' active':''));b.style.left=o.x+'%';b.style.top=o.y+'%';b.style.background=colours[o.colour][2];if(o.colour==='black')b.style.color='white';b.style.fontSize=o.size==='large'?'18px':'13px';b.setAttribute('aria-label',phrase(o));r.append(b)});let o=state.room[selectedObject];$('objectcontrols').hidden=!o;if(o){$('colour').value=o.colour;$('size').value=o.size;$('description').textContent=phrase(o,true)}else $('description').textContent='Det här är ett rum.'}
+['colour','size'].forEach(k=>$(k).onchange=()=>{if(!state.room[selectedObject])return;state.room[selectedObject][k]=$(k).value;save();renderRoom();$('roomstatus').textContent='Description updated.'});$('remove').onclick=()=>{if(selectedObject===null)return;state.room.splice(selectedObject,1);selectedObject=null;save();renderRoom();$('roomstatus').textContent='Object removed.'};$('describe').onclick=()=>{$('description').textContent=state.room.length?'I rummet finns '+(l=>l.length>1?l.slice(0,-1).join(', ')+' och '+l[l.length-1]:l[0])(state.room.map(o=>phrase(o)))+'.':'Rummet är tomt.';say($('description').textContent)};$('saydesc').onclick=()=>say($('description').textContent);
 
-  /* ---------- Backup ---------- */
-  $('export').onclick=()=>{const u=URL.createObjectURL(new Blob([JSON.stringify(state)],{type:'application/json'}));let a=node('a');a.href=u;a.download='swedish-missions-progress.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);$('datastatus').textContent='Backup download started.'};
-  $('import').onchange=async e=>{try{let f=e.target.files[0];if(!f)return;let s=JSON.parse(await f.text());if(!Array.isArray(s.solved)||!s.solved.every(x=>typeof x==='string'&&/^\d{1,2}-\d{1,2}$/.test(x))||!Array.isArray(s.boss)||!s.boss.every(x=>Number.isInteger(x)&&x>=0&&x<64)||!Array.isArray(s.room)||s.room.length>8||!s.room.every(o=>kinds[o.kind]&&colours[o.colour]&&['small','large'].includes(o.size)&&Number.isFinite(o.x)&&o.x>=0&&o.x<=85&&Number.isFinite(o.y)&&o.y>=0&&o.y<=85))throw Error();state={solved:[...new Set(s.solved)],boss:[...new Set(s.boss)],room:s.room};selectedObject=null;save();update();renderRoom();if(!$('game').hidden)draw();$('datastatus').textContent='Backup imported.'}catch(e){$('datastatus').textContent='That is not a valid mission-edition backup. Existing progress is unchanged.'}};
-  $('reset').onclick=()=>{if(!confirm('Reset this mission edition? Your original site will not be changed.'))return;state={solved:[],boss:[],room:[]};selectedObject=null;save();update();renderRoom();$('game').hidden=true;$('datastatus').textContent='Mission edition reset.'};
-  update();renderRoom();
-  </script></body></html>
+/* ---------- Backup ---------- */
+$('export').onclick=()=>{const u=URL.createObjectURL(new Blob([JSON.stringify(state)],{type:'application/json'}));let a=node('a');a.href=u;a.download='swedish-missions-progress.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);$('datastatus').textContent='Backup download started.'};
+$('import').onchange=async e=>{try{let f=e.target.files[0];if(!f)return;let s=JSON.parse(await f.text());if(!Array.isArray(s.solved)||!s.solved.every(x=>typeof x==='string'&&/^\d{1,2}-\d{1,2}$/.test(x))||!Array.isArray(s.boss)||!s.boss.every(x=>Number.isInteger(x)&&x>=0&&x<64)||!Array.isArray(s.room)||s.room.length>8||!s.room.every(o=>kinds[o.kind]&&colours[o.colour]&&['small','large'].includes(o.size)&&Number.isFinite(o.x)&&o.x>=0&&o.x<=85&&Number.isFinite(o.y)&&o.y>=0&&o.y<=85))throw Error();state={solved:[...new Set(s.solved)],boss:[...new Set(s.boss)],room:s.room};selectedObject=null;save();update();renderRoom();if(!$('game').hidden)draw();$('datastatus').textContent='Backup imported.'}catch(e){$('datastatus').textContent='That is not a valid mission-edition backup. Existing progress is unchanged.'}};
+$('reset').onclick=()=>{if(!confirm('Reset this mission edition? Your original site will not be changed.'))return;state={solved:[],boss:[],room:[]};selectedObject=null;save();update();renderRoom();$('game').hidden=true;$('datastatus').textContent='Mission edition reset.'};
+update();renderRoom();
+</script></body></html>
