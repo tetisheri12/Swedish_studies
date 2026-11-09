@@ -1,0 +1,447 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Swedish Studies · Kemi i mat och hem</title><style>
+:root{--bg:#f7f3e9;--ink:#203536;--muted:#526665;--accent:#a53e23;--line:#c8cec3;--wash:#e7eddf;--good:#2f6b45;--r:14px}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 'Trebuchet MS',Arial,sans-serif}button,input,select,textarea{font:inherit;color:inherit}button,a,input,select,label{touch-action:manipulation}button{border:1px solid var(--line);border-radius:var(--r);background:transparent;padding:10px 16px;cursor:pointer}button:hover{background:var(--wash)}button:disabled{opacity:.45;cursor:default}button.primary,button.selected{background:var(--accent);border-color:var(--accent);color:white}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}a{color:var(--accent)}
+header,main,footer{max-width:1060px;margin:auto;padding:24px}header{display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid var(--line);flex-wrap:wrap}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0}
+h1{font-size:clamp(40px,7vw,72px);line-height:1.04;letter-spacing:-.05em;margin:16px 0;text-wrap:balance}h2{font-size:30px;line-height:1.15;letter-spacing:-.025em;margin:6px 0 10px}h3{font-size:21px;margin:22px 0 8px}p{max-width:68ch;text-wrap:pretty}
+.label{font-size:12px;text-transform:uppercase;letter-spacing:.13em;font-weight:bold;color:var(--muted)}.muted{color:var(--muted)}[hidden]{display:none!important}
+.hero{padding:30px 0;display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center}.hero p{font-size:19px}.board{background:var(--wash);padding:22px;border-radius:var(--r)}.parts{display:grid;gap:8px;margin:12px 0}.parts a{display:flex;justify-content:space-between;gap:12px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line);padding:6px 0}.parts a b{color:var(--accent)}
+section{padding:28px 0;border-top:1px solid var(--line);scroll-margin-top:12px}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:14px 0}.tabs button{padding:9px 6px;line-height:1.2}.tabs small{display:block;font-size:12px;opacity:.85}
+.say{padding:6px 10px;font-size:16px;line-height:1;flex:none}
+.line{display:flex;gap:14px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);cursor:pointer}.line p{margin:0}.line p[lang]{font-size:20px}.en{display:none;color:var(--muted);font-size:15px}.show-en .en,.line.show .en,.card.show .en{display:block}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}.card{border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;background:#fffdf7;cursor:pointer}.card .term{display:flex;gap:10px;align-items:center}.card .term b{font-size:20px}.card p{margin:6px 0 0}.quiz-mode .card .exp{visibility:hidden}.quiz-mode .card.show .exp{visibility:visible}
+.q{padding:14px 0;border-bottom:1px solid var(--line)}.q .qt{display:flex;gap:10px;align-items:center;font-weight:bold;font-size:19px}.choices{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.choices button.right{background:var(--good);border-color:var(--good);color:white}.choices button.wrong{background:#f2d4c8;border-color:var(--accent)}.fb{min-height:24px;margin:4px 0;font-weight:bold}
+.test{border:2px solid var(--ink);border-radius:var(--r);padding:clamp(16px,4vw,32px);background:#fffdf7;margin:18px 0}.tq{padding:20px 0;border-bottom:1px solid var(--line)}.tq:last-of-type{border-bottom:0}.tq h3{margin-top:0}
+.tf{display:grid;grid-template-columns:1fr auto;gap:8px 14px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}.tf .pair{display:flex;gap:6px}.tf .pair button{min-width:64px}
+.grid{width:100%;border-collapse:collapse;margin:10px 0}.grid th,.grid td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:center}.grid th:first-child,.grid td:first-child{text-align:left}.grid input{width:24px;height:24px;accent-color:var(--accent)}.grid tr.ok td:first-child::after{content:' ✓';color:var(--good);font-weight:bold}.grid tr.no td:first-child::after{content:' ✗';color:var(--accent);font-weight:bold}
+textarea{width:100%;min-height:150px;background:white;border:2px solid var(--line);border-radius:var(--r);padding:12px;font-size:18px;line-height:1.5}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.chips button{padding:6px 12px;font-size:15px;border-radius:999px}.chips button.used{background:var(--good);border-color:var(--good);color:white}
+.steps button{display:block;width:100%;text-align:left;margin:6px 0}.order{min-height:60px;border:2px dashed var(--line);border-radius:var(--r);padding:8px;margin:8px 0}.order div{padding:8px 10px;margin:4px 0;background:var(--wash);border-radius:10px;display:flex;gap:10px}.order div b{color:var(--accent)}
+.answer{background:var(--wash);border-radius:var(--r);padding:14px 18px;margin:12px 0}.answer h4{margin:0 0 6px}.answer p{margin:6px 0}
+.self{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.check label{display:flex;gap:10px;align-items:flex-start;padding:6px 0}.check input{width:22px;height:22px;flex:none;margin-top:2px;accent-color:var(--accent)}
+.result{border:2px solid var(--good);border-radius:var(--r);padding:16px 20px;margin:16px 0;background:#eef5ef}.result li{margin:4px 0}
+#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:white;padding:12px 18px;border-radius:var(--r);max-width:min(92vw,520px);z-index:10;font-size:15px}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
+/* Main navigation */
+header nav{display:flex;flex-wrap:wrap;gap:8px 18px}header nav a{padding:6px 0;text-decoration:none;font-size:14px;font-weight:normal}header nav a[aria-current="page"]{color:var(--ink);font-weight:bold;border-bottom:2px solid var(--accent)}header nav a:hover{text-decoration:underline}
+.page-shortcuts{display:flex;align-items:center;flex-wrap:wrap;gap:8px 18px;padding:16px 0;font-size:14px}.page-shortcuts>span{color:var(--muted);font-size:11px;font-weight:bold;letter-spacing:.1em;text-transform:uppercase}.page-shortcuts a{color:var(--muted);text-underline-offset:4px}.page-shortcuts a:hover{color:var(--accent)}
+@media(max-width:700px){.hero,.cards{grid-template-columns:1fr}header,main,footer{padding:18px}header{align-items:flex-start}header nav{width:100%}.page-shortcuts>span{flex-basis:100%}.tf{grid-template-columns:1fr}.grid th,.grid td{padding:6px 2px;font-size:14px}}
+@media print{header,.page-shortcuts,#study,.noprint,footer{display:none!important}.test{border:0}}
+</style></head><body><header>
+  <strong>SWEDISH / STUDIES</strong>
+  <nav aria-label="Main navigation">
+    <a href="index.html">Missions</a>
+    <a href="school-books.html">School Books</a>
+    <a href="reading-coach.html">Reading Coach</a>
+    <a href="kemi.html" aria-current="page">Kemi</a>
+  </nav>
+</header><main><div class="hero"><div><div class="label">Kemi · Spektrum 4–6 · Kemi i mat och hem</div><h1>Kemi i mat och hem</h1><p>Study the chapter in five parts: read in simple Swedish, learn the key words (begrepp), and check yourself. Then take the practice test (övningsprov).</p><p class="muted">Tap 🔊 to hear Swedish. Tap a sentence or word card to see it in English.</p><a href="#prov"><button class="primary noprint">Go to the practice test</button></a></div><aside class="board"><div class="label">Din väg · your progress</div><div class="parts" id="partlist"></div><p class="muted" id="teststatus"></p></aside></div>
+<nav class="page-shortcuts" aria-label="On this page" id="shortcuts"><span>On this page</span></nav>
+<div id="study"></div>
+<section id="prov"><div class="label">Övningsprov · practice test</div><h2>Övningsprov: Kemi i mat och hem</h2><p>Six questions built like the chapter test. Write your answers, then press <b>Rätta provet</b> (mark the test). Questions 1, 2 and 4 are marked automatically. For questions 3, 5 and 6 you compare your answer with the model answers and decide together with a parent.</p><div class="row noprint"><label><input type="checkbox" id="testen"> Show English help in the test</label></div><div class="test" id="test"></div></section>
+<section id="settings" class="noprint"><details><summary>Voice for 🔊 buttons</summary><div class="row"><label>Voice <select id="voice"></select></label><label>Speed <select id="rate"><option value="1">Normal</option><option value="0.9" selected>A little slower</option><option value="0.75">Slow</option></select></label><button id="voicetest">🔊 Test</button></div><p id="voicenote" class="muted"></p></details></section>
+</main><div id="toast" role="status" hidden></div><footer>Swedish Studies · Study companion for the chapter “Kemi i mat och hem” (Spektrum Kemi 4–6, Liber). Texts, questions and model answers are written in our own words. Answers are saved only in this browser.</footer>
+<script>
+/* Kemi i mat och hem · study data. Written in simple Swedish, in our own words,
+   following the chapter "Kemi i mat och hem" (Spektrum Kemi 4–6). */
+const PARTS=[
+{id:'mat',title:'Kemin i maten vi äter',en:'The chemistry in the food we eat',
+text:[
+['Kroppen behöver näringsämnen för att växa, röra sig och fungera.','The body needs nutrients to grow, move and work.'],
+['De viktigaste näringsämnena är kolhydrater, proteiner, fetter, vitaminer och mineraler.','The most important nutrients are carbohydrates, proteins, fats, vitamins and minerals.'],
+['Kolhydrater ger kroppen energi.','Carbohydrates give the body energy.'],
+['Alla kolhydrater är byggda av sockerringar. En sockerring består av kol, syre och väte.','All carbohydrates are built from sugar rings. A sugar ring is made of carbon, oxygen and hydrogen.'],
+['Druvsocker och fruktsocker är små kolhydrater. De har bara en sockerring.','Glucose and fructose are small carbohydrates. They have only one sugar ring.'],
+['Stärkelse och cellulosa är stora kolhydrater med många sockerringar. Stärkelse finns till exempel i potatis.','Starch and cellulose are big carbohydrates with many sugar rings. Starch is found in potatoes, for example.'],
+['Proteiner är kroppens byggstenar. De bygger och reparerar till exempel muskler, hud och naglar.','Proteins are the body’s building blocks. They build and repair muscles, skin and nails, for example.'],
+['Ett protein är en lång kedja av aminosyror. Protein finns i kött, fisk, ägg, bönor och linser.','A protein is a long chain of amino acids. Protein is found in meat, fish, eggs, beans and lentils.'],
+['Fett ger energi och fungerar som ett energiförråd. Fettet under huden håller också kroppen varm.','Fat gives energy and works as an energy store. The fat under the skin also keeps the body warm.'],
+['En fettmolekyl består av glycerol och tre fettsyror. Fett finns i smör, margarin och olja.','A fat molecule is made of glycerol and three fatty acids. Fat is found in butter, margarine and oil.'],
+['Vitaminer och mineraler behövs i små mängder. A-vitamin hjälper synen och D-vitamin gör skelettet starkt.','Vitamins and minerals are needed in small amounts. Vitamin A helps eyesight and vitamin D makes the skeleton strong.'],
+['Kalcium gör skelettet hårt och finns i mjölk. Järn hjälper blodet att transportera syre.','Calcium makes the skeleton hard and is found in milk. Iron helps the blood transport oxygen.'],
+['Vatten är livsviktigt. Kroppen klarar sig bara några dagar utan vatten.','Water is vital. The body can only manage a few days without water.']
+],
+concepts:[
+['näringsämne','Ett ämne som kroppen behöver för att växa, röra sig och fungera.','nutrient','A substance the body needs to grow, move and work.'],
+['kolhydrat','Ett näringsämne som ger kroppen energi. Den är byggd av sockerringar.','carbohydrate','A nutrient that gives the body energy. It is built from sugar rings.'],
+['sockerring','En byggsten i kolhydrater. Den består av kol, syre och väte.','sugar ring','A building block of carbohydrates, made of carbon, oxygen and hydrogen.'],
+['stärkelse','En stor kolhydrat med många sockerringar. Finns i potatis, pasta och bröd.','starch','A big carbohydrate with many sugar rings. Found in potatoes, pasta and bread.'],
+['cellulosa','En stor kolhydrat med många sockerringar. Den finns i växter, till exempel i morötter. Cellulosa är en sorts fibrer.','cellulose','A big carbohydrate with many sugar rings. It is found in plants, for example in carrots. Cellulose is a kind of fibre.'],
+['druvsocker','En liten kolhydrat med en sockerring. Finns i frukt.','glucose (grape sugar)','A small carbohydrate with one sugar ring. Found in fruit.'],
+['fruktsocker','En liten kolhydrat med en sockerring. Finns i frukt.','fructose (fruit sugar)','A small carbohydrate with one sugar ring. Found in fruit.'],
+['protein','Ett näringsämne som bygger och reparerar kroppen.','protein','A nutrient that builds and repairs the body.'],
+['aminosyra','En liten byggsten. Många aminosyror i en lång kedja blir ett protein.','amino acid','A small building block. Many amino acids in a long chain make a protein.'],
+['fett','Ett näringsämne som ger energi, sparar energi och håller kroppen varm.','fat','A nutrient that gives energy, stores energy and keeps the body warm.'],
+['fettsyra','En del av en fettmolekyl. En fettmolekyl består av glycerol och tre fettsyror.','fatty acid','A part of a fat molecule. A fat molecule is made of glycerol and three fatty acids.'],
+['vitamin','Ett näringsämne som behövs i små mängder, till exempel för synen och skelettet.','vitamin','A nutrient needed in small amounts, for example for eyesight and the skeleton.'],
+['mineral','Ett näringsämne som behövs i små mängder. Exempel: kalcium och järn.','mineral','A nutrient needed in small amounts. Examples: calcium and iron.']
+],
+check:[
+['Vilket näringsämne bygger och reparerar kroppen?','Which nutrient builds and repairs the body?',['kolhydrat','protein','fett'],1,'Proteiner är kroppens byggstenar.','Proteins are the body’s building blocks.'],
+['Vad är alla kolhydrater byggda av?','What are all carbohydrates built from?',['sockerringar','aminosyror','fettsyror'],0,'Kolhydrater är byggda av sockerringar.','Carbohydrates are built from sugar rings.'],
+['Var finns det mycket stärkelse?','Where is there a lot of starch?',['i potatis','i smör','i ägg'],0,'Potatis innehåller mycket stärkelse.','Potatoes contain a lot of starch.'],
+['Vilket mineral gör skelettet hårt?','Which mineral makes the skeleton hard?',['järn','kalcium','druvsocker'],1,'Kalcium gör skelettet hårt. Det finns i mjölk.','Calcium makes the skeleton hard. It is found in milk.'],
+['Vad gör fettet i kroppen?','What does fat do in the body?',['ger energi och håller oss varma','bygger muskler','gör synen bättre'],0,'Fett ger energi, sparar energi och håller kroppen varm.','Fat gives energy, stores energy and keeps the body warm.']
+]},
+{id:'energi',title:'Energin i maten',en:'The energy in food',
+text:[
+['Energin i maten kommer från början från solen.','The energy in food originally comes from the sun.'],
+['Solljuset sätter igång en kemisk reaktion i växterna. Den kallas fotosyntes.','Sunlight starts a chemical reaction in plants. It is called photosynthesis.'],
+['En kemisk reaktion är när ämnen reagerar med varandra och bildar nya ämnen.','A chemical reaction is when substances react with each other and form new substances.'],
+['I fotosyntesen tar växten koldioxid från luften och vatten från marken.','In photosynthesis the plant takes carbon dioxide from the air and water from the ground.'],
+['Med hjälp av solenergin bildar växten druvsocker och syrgas.','With the help of solar energy the plant forms glucose and oxygen.'],
+['Energin sparas i druvsockret som kemisk energi, ungefär som i ett laddat batteri.','The energy is stored in the glucose as chemical energy, a bit like in a charged battery.'],
+['När vi äter växter, eller djur som har ätit växter, får vi i oss energin.','When we eat plants, or animals that have eaten plants, we take in the energy.'],
+['Maten innehåller stora molekyler. De måste brytas ned till mindre delar innan kroppen kan använda dem.','Food contains big molecules. They must be broken down into smaller parts before the body can use them.'],
+['I munnen börjar saliven bryta ned stärkelsen.','In the mouth, saliva starts to break down the starch.'],
+['I magsäcken delar magsaften sönder proteinerna.','In the stomach, gastric juice breaks down the proteins.'],
+['I tarmarna delas de sista stora molekylerna. Stärkelse blir sockerringar och proteiner blir aminosyror.','In the intestines, the last big molecules are split. Starch becomes sugar rings and proteins become amino acids.'],
+['Atomerna går inte sönder. Det är bara molekylerna som delas i mindre delar.','The atoms do not break. Only the molecules are split into smaller parts.'],
+['Blodet transporterar druvsockret till kroppens celler.','The blood transports the glucose to the body’s cells.'],
+['I cellerna blir druvsockret till koldioxid och vatten igen. Den kemiska reaktionen kallas cellandning.','In the cells, the glucose turns back into carbon dioxide and water. The chemical reaction is called cellular respiration.'],
+['I cellandningen frigörs energin. Kroppen använder den för att hålla värmen och för att röra sig.','In cellular respiration the energy is released. The body uses it to stay warm and to move.']
+],
+concepts:[
+['kemisk reaktion','När två eller flera ämnen reagerar med varandra och bildar nya ämnen.','chemical reaction','When two or more substances react with each other and form new substances.'],
+['fotosyntes','När växter med hjälp av solljus gör om koldioxid och vatten till druvsocker och syrgas.','photosynthesis','When plants use sunlight to turn carbon dioxide and water into glucose and oxygen.'],
+['solenergi','Energi från solen, till exempel solljus.','solar energy','Energy from the sun, for example sunlight.'],
+['kemisk energi','Energi som är lagrad i ämnen, till exempel i druvsocker.','chemical energy','Energy stored in substances, for example in glucose.'],
+['molekyl','Två eller flera atomer som sitter ihop.','molecule','Two or more atoms joined together.'],
+['atom','Den minsta byggstenen i alla ämnen.','atom','The smallest building block of all substances.'],
+['saliv','Vätska i munnen. Den börjar bryta ned kolhydrater.','saliva','Liquid in the mouth. It starts breaking down carbohydrates.'],
+['magsaft','Vätska i magsäcken. Den delar sönder proteiner.','gastric juice','Liquid in the stomach. It breaks down proteins.'],
+['matspjälkning','När maten bryts ned till små delar i kroppen.','digestion','When food is broken down into small parts in the body.'],
+['cellandning','Den kemiska reaktionen i cellerna när energin i druvsockret används.','cellular respiration','The chemical reaction in the cells when the energy in glucose is used.']
+],
+check:[
+['Varifrån kommer energin i maten från början?','Where does the energy in food originally come from?',['från solen','från magen','från vattnet'],0,'Solen ger energi till fotosyntesen i växterna.','The sun gives energy to photosynthesis in plants.'],
+['Vad bildar växten i fotosyntesen?','What does the plant form in photosynthesis?',['druvsocker och syrgas','koldioxid och vatten','protein och fett'],0,'Växten bildar druvsocker och syrgas.','The plant forms glucose and oxygen.'],
+['Var börjar stärkelsen brytas ned?','Where does starch start to be broken down?',['i munnen','i blodet','i cellerna'],0,'Saliven i munnen börjar bryta ned stärkelsen.','Saliva in the mouth starts breaking down starch.'],
+['Vad heter reaktionen när cellerna använder energin i druvsockret?','What is the reaction called when cells use the energy in glucose?',['fotosyntes','cellandning','saliv'],1,'Det heter cellandning.','It is called cellular respiration.'],
+['Vad händer med atomerna när maten bryts ned?','What happens to the atoms when food is broken down?',['de går sönder','de går inte sönder – bara molekylerna delas','de försvinner'],1,'Atomerna går inte sönder. Molekylerna delas i mindre delar.','The atoms don’t break. The molecules are split into smaller parts.']
+]},
+{id:'balans',title:'Äta balanserat',en:'Eating a balanced diet',
+text:[
+['Alla livsmedel är inte lika nyttiga.','Not all foods are equally healthy.'],
+['Det gröna nyckelhålet på en förpackning visar att maten är ett nyttigare val.','The green keyhole on a package shows that the food is a healthier choice.'],
+['Snabba kolhydrater ger snabb energi som tar slut fort. De finns till exempel i godis, sylt och läsk.','Fast carbohydrates give quick energy that runs out fast. They are found in sweets, jam and fizzy drinks, for example.'],
+['Långsamma kolhydrater ger energi som räcker länge. De finns till exempel i pasta och havregrynsgröt.','Slow carbohydrates give energy that lasts a long time. They are found in pasta and porridge, for example.'],
+['Fibrer ger ingen energi, men de gör oss mätta och hjälper magen och tarmarna.','Fibre gives no energy, but it makes us full and helps the stomach and intestines.'],
+['Fibrer finns till exempel i fullkornsbröd.','Fibre is found in wholegrain bread, for example.'],
+['Omättat fett kommer oftast från växter. Det finns till exempel i olivolja. Det anses nyttigare än mättat fett.','Unsaturated fat usually comes from plants. It is found in olive oil, for example. It is considered healthier than saturated fat.'],
+['Mättat fett kommer oftast från djur. Det finns till exempel i kött.','Saturated fat usually comes from animals. It is found in meat, for example.'],
+['Tallriksmodellen visar hur mycket vi ska äta av olika sorters mat.','The plate model shows how much of different kinds of food we should eat.'],
+['Ät mycket grönsaker och rotfrukter, en del potatis, pasta eller ris och lite mindre kött, fisk eller ägg.','Eat lots of vegetables and root vegetables, some potatoes, pasta or rice, and a bit less meat, fish or eggs.']
+],
+concepts:[
+['snabb kolhydrat','En kolhydrat som kroppen bryter ned snabbt. Energin kommer fort men tar slut fort.','fast carbohydrate','A carbohydrate the body breaks down quickly. The energy comes fast but runs out fast.'],
+['långsam kolhydrat','En kolhydrat som tar tid att bryta ned. Energin räcker längre.','slow carbohydrate','A carbohydrate that takes time to break down. The energy lasts longer.'],
+['fibrer','En sorts kolhydrat som inte ger energi men som hjälper magen och tarmarna.','fibre','A kind of carbohydrate that gives no energy but helps the stomach and intestines.'],
+['omättat fett','Fett som oftast kommer från växter. Det anses nyttigare.','unsaturated fat','Fat that usually comes from plants. It is considered healthier.'],
+['mättat fett','Fett som oftast kommer från djur. Det anses mindre nyttigt.','saturated fat','Fat that usually comes from animals. It is considered less healthy.'],
+['tallriksmodellen','En bild som visar hur mycket vi ska äta av olika sorters mat.','the plate model','A picture showing how much of different kinds of food we should eat.'],
+['nyckelhålet','En grön symbol på förpackningar. Den visar ett nyttigare val.','the keyhole','A green symbol on packages. It shows a healthier choice.']
+],
+check:[
+['Vilken mat har långsamma kolhydrater?','Which food has slow carbohydrates?',['pasta','godis','läsk'],0,'Pasta ger energi som räcker länge.','Pasta gives energy that lasts a long time.'],
+['Vad gör fibrer?','What does fibre do?',['ger mycket energi','gör oss mätta och hjälper magen','gör skelettet hårt'],1,'Fibrer ger ingen energi men hjälper magen och tarmarna.','Fibre gives no energy but helps the stomach and intestines.'],
+['Vilket fett anses nyttigare?','Which fat is considered healthier?',['omättat fett från växter','mättat fett från djur'],0,'Omättat fett från växter anses nyttigare.','Unsaturated fat from plants is considered healthier.'],
+['Vad visar tallriksmodellen?','What does the plate model show?',['hur mycket vi ska äta av olika mat','hur man diskar en tallrik','hur mycket energi solen ger'],0,'Den visar hur vi kan äta balanserat.','It shows how we can eat a balanced diet.'],
+['Varför blir man trött en stund efter att man har ätit godis?','Why do you get tired a while after eating sweets?',['snabba kolhydrater ger energi som tar slut fort','godis innehåller mycket fibrer','godis innehåller för mycket protein'],0,'Godis har snabba kolhydrater. Energin tar slut fort.','Sweets have fast carbohydrates. The energy runs out fast.']
+]},
+{id:'tillsats',title:'Tillsatser i maten',en:'Additives in food',
+text:[
+['Förr torkade, rökte eller saltade man maten så att den skulle hålla längre.','In the past, people dried, smoked or salted food so that it would keep longer.'],
+['Att göra så att maten håller längre kallas att konservera.','Making food keep longer is called preserving.'],
+['Nu för tiden tillsätter man ofta konserveringsmedel. De stoppar mögel och bakterier.','Nowadays preservatives are often added. They stop mould and bacteria.'],
+['Färgämnen ger maten mer färg. En del kommer från naturen, till exempel karoten från morötter.','Colourings give food more colour. Some come from nature, for example carotene from carrots.'],
+['Sötningsmedel gör maten sötare. Förtjockningsmedel gör maten tjockare.','Sweeteners make food sweeter. Thickeners make food thicker.'],
+['Ämnen som man tillsätter i maten kallas tillsatser.','Substances that are added to food are called additives.'],
+['Varje tillsats har ett eget E-nummer. E-numren står i innehållsförteckningen på förpackningen.','Every additive has its own E-number. The E-numbers are in the list of ingredients on the package.'],
+['Tillsatser med E-nummer har testats noga innan de får användas i Sverige. De anses ofarliga för oss.','Additives with E-numbers have been carefully tested before they may be used in Sweden. They are considered harmless to us.']
+],
+concepts:[
+['konservera','Att behandla maten så att den håller längre.','to preserve','To treat food so that it keeps longer.'],
+['konserveringsmedel','Ett ämne som gör att maten håller längre.','preservative','A substance that makes food keep longer.'],
+['färgämne','Ett ämne som ger maten mer färg.','colouring','A substance that gives food more colour.'],
+['sötningsmedel','Ett ämne som gör maten sötare.','sweetener','A substance that makes food sweeter.'],
+['förtjockningsmedel','Ett ämne som gör maten tjockare.','thickener','A substance that makes food thicker.'],
+['tillsats','Ett ämne som man lägger till i maten.','additive','A substance that is added to food.'],
+['E-nummer','Ett nummer som varje tillsats har. Då kan man ta reda på vilket ämne det är.','E-number','A number every additive has, so you can find out which substance it is.'],
+['innehållsförteckning','Listan på förpackningen som visar vad maten innehåller.','list of ingredients','The list on the package that shows what the food contains.']
+],
+check:[
+['Vad gör ett konserveringsmedel?','What does a preservative do?',['maten håller längre','maten blir sötare','maten blir gul'],0,'Konserveringsmedel hindrar mögel och bakterier.','Preservatives stop mould and bacteria.'],
+['Vad kallas ämnen som man tillsätter i maten?','What are substances added to food called?',['tillsatser','näringsämnen','fibrer'],0,'Det kallas tillsatser.','They are called additives.'],
+['Var hittar du E-numren?','Where do you find the E-numbers?',['i innehållsförteckningen på förpackningen','i tallriksmodellen','i receptet'],0,'De står i innehållsförteckningen.','They are in the list of ingredients.'],
+['Är alla tillsatser giftiga?','Are all additives poisonous?',['ja, alla','nej – en del kommer från naturen och de är undersökta'],1,'En del tillsatser kommer från naturen, och tillsatserna i Sverige är undersökta.','Some additives come from nature, and the additives in Sweden are tested.'],
+['Karoten är ett färgämne. Var kommer det ifrån?','Carotene is a colouring. Where does it come from?',['från morötter','från socker','från salt'],0,'Karoten kommer från morötter.','Carotene comes from carrots.']
+]},
+{id:'stad',title:'Kemikalier i städskåpet',en:'Chemicals in the cleaning cupboard',
+text:[
+['Ämnen som vi gör rent med kallas rengöringsmedel. De är kemikalier som tillverkas i fabriker.','Substances we clean with are called cleaning products. They are chemicals made in factories.'],
+['Olika sorters smuts behöver olika rengöringsmedel.','Different kinds of dirt need different cleaning products.'],
+['I köket blir det mycket fett från maten.','In the kitchen there is a lot of fat from the food.'],
+['I badrummet kan det bli fläckar av kalk från vattnet.','In the bathroom there can be limescale stains from the water.'],
+['Sura ämnen kallas syror. Citroner är till exempel sura.','Acidic substances are called acids. Lemons, for example, are acidic.'],
+['Sura rengöringsmedel löser upp kalk. Därför används de i badrummet.','Acidic cleaning products dissolve limescale. That is why they are used in the bathroom.'],
+['Motsatsen till surt är basiskt. Basiska ämnen kallas baser. Bakpulver är en ofarlig bas.','The opposite of acidic is basic. Basic substances are called bases. Baking powder is a harmless base.'],
+['Baser löser upp fett. Därför är rengöringsmedel för köket ofta basiska.','Bases dissolve fat. That is why kitchen cleaning products are often basic.'],
+['Starka syror och baser kan vara frätande. De kan skada huden och ögonen, så man ska använda handskar och skyddsglasögon.','Strong acids and bases can be corrosive. They can damage skin and eyes, so you should use gloves and safety glasses.'],
+['Aceton och lacknafta är lösningsmedel. De löser upp nagellack och målarfärg, och de är brandfarliga.','Acetone and white spirit are solvents. They dissolve nail polish and paint, and they are flammable.'],
+['Farosymboler på förpackningen visar om ett ämne är frätande, hälsofarligt, miljöfarligt eller brandfarligt.','Hazard symbols on the package show if a substance is corrosive, harmful to health, harmful to the environment or flammable.']
+],
+concepts:[
+['kemikalie','Ett ämne som har tillverkats i en fabrik.','chemical','A substance made in a factory.'],
+['rengöringsmedel','Ett ämne som man gör rent med.','cleaning product','A substance you clean with.'],
+['kalk','Ett ämne som finns i vattnet, mer på en del platser i Sverige. Det kan bli fläckar av kalk i badrummet.','limescale (lime)','A substance found in water, more in some places in Sweden. It can leave stains in the bathroom.'],
+['surt','En egenskap hos ämnen. Citroner är sura. Starka syror kan bränna huden.','acidic','A property of substances. Lemons are acidic. Strong acids can burn the skin.'],
+['syra','Ett ämne som är surt.','acid','A substance that is acidic.'],
+['basiskt','Motsatsen till surt. Bakpulver är basiskt.','basic (alkaline)','The opposite of acidic. Baking powder is basic.'],
+['bas','Ett ämne som är basiskt.','base','A substance that is basic.'],
+['frätande','Kan bränna och skada huden, ögonen eller kläderna.','corrosive','Can burn and damage the skin, eyes or clothes.'],
+['lösningsmedel','Ett ämne som löser upp andra ämnen, till exempel aceton.','solvent','A substance that dissolves other substances, for example acetone.'],
+['farosymbol','En symbol på förpackningen som varnar för att ämnet kan vara farligt.','hazard symbol','A symbol on the package that warns the substance can be dangerous.']
+],
+check:[
+['Vilket rengöringsmedel tar bort fett i köket?','Which cleaning product removes fat in the kitchen?',['ett basiskt','ett surt','bara kallt vatten'],0,'Baser löser upp fett.','Bases dissolve fat.'],
+['Vilket rengöringsmedel tar bort kalk i badrummet?','Which cleaning product removes limescale in the bathroom?',['ett basiskt','ett surt','ett lösningsmedel'],1,'Sura rengöringsmedel löser upp kalk.','Acidic cleaning products dissolve limescale.'],
+['Vad är motsatsen till surt?','What is the opposite of acidic?',['basiskt','sött','salt'],0,'Motsatsen till surt är basiskt.','The opposite of acidic is basic.'],
+['Vad betyder frätande?','What does corrosive mean?',['det kan skada huden','det luktar gott','det gör maten tjockare'],0,'Frätande ämnen kan bränna huden och ögonen.','Corrosive substances can burn skin and eyes.'],
+['Vad visar en farosymbol?','What does a hazard symbol show?',['att ämnet kan vara farligt','hur mycket det kostar','att maten är nyttig'],0,'Farosymboler varnar för farliga ämnen.','Hazard symbols warn about dangerous substances.']
+]}
+];
+
+/* Practice test, built like the chapter test (kapitelprov). Answers and grading follow the
+   answer key's criteria: "godtagbart" (acceptable) and "högre nivå" (higher level). */
+const TEST={
+tf:{q:['Rätt eller fel? Välj för varje mening.','Right or wrong? Choose for each sentence.'],
+items:[
+['Vi kan leva på bara kolhydrater, eftersom de ger oss energi.','We can live on carbohydrates alone, because they give us energy.',false,'Fel. Vi behöver också proteiner som bygger och reparerar kroppen, och vitaminer och mineraler.','Wrong. We also need proteins to build and repair the body, and vitamins and minerals.'],
+['När maten bryts ned i kroppen går atomerna sönder.','When food is broken down in the body, the atoms break.',false,'Fel. Molekylerna delas i mindre delar, men atomerna går inte sönder.','Wrong. The molecules are split into smaller parts, but the atoms do not break.'],
+['Tallriksmodellen hjälper oss att äta balanserat och nyttigt.','The plate model helps us eat in a balanced and healthy way.',true,'Rätt. Den visar hur mycket vi ska äta av olika sorters mat.','Right. It shows how much of different kinds of food we should eat.'],
+['Alla tillsatser i maten är farliga.','All additives in food are dangerous.',false,'Fel. En del tillsatser kommer från naturen, till exempel karoten från morötter. Tillsatserna i Sverige är noga undersökta.','Wrong. Some additives come from nature, for example carotene from carrots. The additives in Sweden are carefully tested.'],
+['Rengöringsmedel för köket är ofta basiska.','Kitchen cleaning products are often basic.',true,'Rätt. Det finns mycket fett i köket, och baser löser upp fett.','Right. There is a lot of fat in the kitchen, and bases dissolve fat.'],
+['Fibrer ger kroppen mycket energi.','Fibre gives the body a lot of energy.',false,'Fel. Fibrer ger ingen energi, men de gör oss mätta och hjälper magen.','Wrong. Fibre gives no energy, but it makes us full and helps the stomach.'],
+['I fotosyntesen bildar växterna druvsocker.','In photosynthesis, plants form glucose.',true,'Rätt. Växterna bildar druvsocker och syrgas.','Right. Plants form glucose and oxygen.']
+],
+pass:6,
+rubric:['Godtagbart: minst 6 av 7 rätt och en godtagbar motivering till varför en av meningarna är fel.','Acceptable: at least 6 of 7 right and an acceptable explanation of why one of the sentences is wrong.']},
+match:{q:['Vilka näringsämnen finns i maten? Kryssa i allt som passar. Samma livsmedel kan ha flera näringsämnen.','Which nutrients are in the food? Tick everything that fits. One food can have several nutrients.'],
+nutrients:[['kolhydrat','carbohydrate'],['protein','protein'],['fett','fat'],['vitaminer','vitamins']],
+foods:[
+['smör','butter',['fett'],['protein','vitaminer'],'Smör är nästan bara fett.'],
+['äpple','apple',['kolhydrat','vitaminer'],[],'Äpple har fruktsocker (en kolhydrat) och vitaminer.'],
+['ris','rice',['kolhydrat'],['protein','vitaminer'],'Ris har mycket stärkelse, alltså kolhydrater, och lite protein.'],
+['potatis','potato',['kolhydrat'],['vitaminer','protein'],'Potatis har mycket stärkelse.'],
+['kött','meat',['protein','fett'],['vitaminer'],'Kött har mycket protein och fett.'],
+['bönor','beans',['protein','kolhydrat'],['vitaminer'],'Bönor har både protein och kolhydrater.'],
+['mjölk','milk',['protein','fett','vitaminer'],['kolhydrat'],'Mjölk har lite av allt: protein, fett, mjölksocker (kolhydrat) och vitaminer.'],
+['sallad','lettuce',[],['kolhydrat','vitaminer'],'Sallad är mest vatten, men har vitaminer och fibrer (en sorts kolhydrat).']
+],
+pass:6,
+rubric:['Godtagbart: rätt näringsämnen till de flesta livsmedel (minst 6 av 8). Det gör inget om du har missat någon koppling.','Acceptable: the right nutrients for most foods (at least 6 of 8). It’s fine to miss a link or two.']},
+sun:{q:['Meningen ”Vi äter energi från solen” kan låta konstig. Förklara vad den betyder. Använd orden i ordbanken.','The sentence “We eat energy from the sun” can sound strange. Explain what it means. Use the words in the word bank.'],
+words:[['fotosyntes',['fotosyntes']],['solenergi',['solenergi','energi från solen','solens energi','solljus','solens ljus']],['kemisk energi',['kemisk energi','kemiska energi']],['druvsocker',['druvsock']],['cellandning',['cellandning']]],
+starters:['Växterna använder solljus för att','Det kallas','Då bildas','Energin sparas som','När vi äter växter','I cellerna'],
+basic:'Växterna använder solljuset för att göra sin egen mat. Det kallas fotosyntes. Då bildas druvsocker. När vi äter växterna får vi i oss druvsockret och energin i det. Kroppen använder energin i cellerna. Det kallas cellandning.',
+high:'Solljuset innehåller solenergi. Växterna fångar solenergin och använder den i en kemisk reaktion som heter fotosyntes. Där gör växten om koldioxid och vatten till druvsocker och syrgas. Energin från solen sparas i druvsockret som kemisk energi. När vi äter växter, eller kött från djur som har ätit växter, får vi i oss druvsockret. I våra celler sker cellandning: druvsockret blir koldioxid och vatten, och den kemiska energin frigörs. Så energin vi får från maten var från början solenergi.',
+rubric:['Godtagbart: du förklarar att växterna gör druvsocker med hjälp av solen (fotosyntes), att vi äter det och att kroppen använder energin (cellandning).','Acceptable: you explain that plants make glucose using the sun (photosynthesis), that we eat it, and that the body uses the energy (cellular respiration).',
+'Högre nivå: du använder alla begreppen rätt och beskriver hela vägen: solenergi → fotosyntes → kemisk energi i druvsocker → vi äter → cellandning.','Higher level: you use all the terms correctly and describe the whole path: solar energy → photosynthesis → chemical energy in glucose → we eat → cellular respiration.']},
+digest:{q:['Matspjälkningen: tryck på stegen i rätt ordning. Förklara sedan med egna ord vad som händer med maten.','Digestion: tap the steps in the right order. Then explain in your own words what happens to the food.'],
+steps:[
+['Saliven i munnen börjar bryta ned stärkelsen.','Saliva in the mouth starts breaking down the starch.'],
+['Magsaften i magsäcken delar sönder proteinerna.','Gastric juice in the stomach breaks down the proteins.'],
+['I tarmarna delas de sista stora molekylerna i små delar.','In the intestines, the last big molecules are split into small parts.'],
+['Blodet transporterar druvsockret till cellerna.','The blood transports the glucose to the cells.'],
+['I cellerna frigörs energin genom cellandning.','In the cells, the energy is released through cellular respiration.']
+],
+words:[['molekyl',['molekyl']],['mindre',['mindre','små']],['saliv',['saliv']],['magsäck',['magsäck']],['magsaft',['magsaft']],['tarm',['tarm']],['druvsocker / sockerring',['druvsock','sockerring']],['aminosyra',['aminosyr']]],
+starters:['Maten innehåller stora','I munnen','I magsäcken','I tarmarna','Till slut','Det behövs för att'],
+model:'Molekylerna i maten är för stora för att kroppen ska kunna använda dem. I munnen börjar saliven bryta ned stärkelsen. I magsäcken delar magsaften sönder proteinerna, så molekylerna blir ännu mindre. I tarmarna delas de sista stora molekylerna. Till slut finns bara små molekyler kvar, till exempel sockerringar och aminosyror. De följer med blodet ut i kroppen.',
+rubric:['Godtagbart: du beskriver att maten bryts ned till mindre molekyler och använder några kemibegrepp.','Acceptable: you describe that food is broken down into smaller molecules and use some chemistry terms.',
+'Högre nivå: du beskriver vad som händer i munnen, magsäcken och tarmarna och använder många begrepp rätt.','Higher level: you describe what happens in the mouth, stomach and intestines and use many terms correctly.']},
+plan:{q:['Du vill ta reda på vilket av två diskmedel, BlankDisk och FettBort, som tar bort fett bäst. Beskriv hur du planerar och gör undersökningen så vetenskapligt som möjligt.','You want to find out which of two washing-up liquids, BlankDisk and FettBort, removes fat best. Describe how you would plan and carry out the investigation as scientifically as possible.'],
+checklist:[
+['Jag använder två likadana saker, till exempel två likadana tallrikar.','I use two identical things, for example two identical plates.'],
+['Jag lägger lika mycket fett på båda.','I put the same amount of fat on both.'],
+['Jag använder lika mycket av varje diskmedel.','I use the same amount of each washing-up liquid.'],
+['Jag använder lika varmt vatten och diskar lika länge.','I use equally warm water and wash for the same time.'],
+['Jag ändrar bara en sak: vilket diskmedel jag använder.','I change only one thing: which washing-up liquid I use.'],
+['Jag skriver mått och tider, till exempel 1 matsked och 5 minuter.','I write measurements and times, for example 1 tablespoon and 5 minutes.'],
+['Jag jämför resultatet och skriver ned det.','I compare the result and write it down.']
+],
+starters:['Först tar jag','Sedan lägger jag','Jag använder lika mycket','Efter','Till sist jämför jag'],
+basic:'Jag stryker lite smör på en tallrik och diskar med det ena diskmedlet. Sedan stryker jag smör på tallriken igen och diskar med det andra. Jag tittar vilket diskmedel som gjorde tallriken renast.',
+high:'Jag tar två likadana tallrikar och stryker en matsked smör på varje. Jag fyller två baljor med lika varmt vatten, 2 liter i varje. I den ena häller jag en tesked BlankDisk och i den andra en tesked FettBort. Jag lägger en tallrik i varje balja i 10 minuter och torkar sedan lika många gånger med en disktrasa. Till sist jämför jag vilken tallrik som är renast och skriver ned resultatet.',
+rubric:['Godtagbart: din beskrivning går att förstå och följa.','Acceptable: your description is possible to understand and follow.',
+'Högre nivå: du beskriver noga, med mått och tider, och gör ett rättvist test där bara en sak ändras.','Higher level: you describe carefully, with measurements and times, and make a fair test where only one thing changes.']},
+letter:{q:['Skolans café har börjat sälja godis, choklad och läsk på lunchen. Många köper det i stället för att äta skollunch. Skriv ett brev till rektorn. Förklara med dina kemikunskaper varför caféet inte ska sälja godis och läsk förrän efter skolan.','The school café has started selling sweets, chocolate and fizzy drinks at lunch. Many buy that instead of eating school lunch. Write a letter to the head teacher. Use your chemistry knowledge to explain why the café should not sell sweets and fizzy drinks until after school.'],
+checklist:[
+['Godis och läsk har snabba kolhydrater, så energin tar slut fort.','Sweets and fizzy drinks have fast carbohydrates, so the energy runs out fast.'],
+['Skollunchen har långsamma kolhydrater, till exempel pasta och potatis, som ger energi länge.','School lunch has slow carbohydrates, for example pasta and potatoes, that give energy for a long time.'],
+['Kroppen behöver också proteiner, vitaminer och mineraler från riktig mat.','The body also needs proteins, vitamins and minerals from real food.'],
+['Tallriksmodellen visar hur vi kan äta balanserat.','The plate model shows how we can eat a balanced diet.'],
+['Utan energi orkar man inte skolarbetet på eftermiddagen.','Without energy you can’t manage schoolwork in the afternoon.']
+],
+starters:['Hej rektorn!','Jag tycker att','Godis och läsk innehåller','Skollunchen innehåller','Därför','Med vänliga hälsningar'],
+basic:'Hej rektorn! Godis och läsk är ingen bra lunch. De innehåller mest socker. Man känner sig mätt en kort stund, men snart är man hungrig igen. Då är det svårt att orka med lektionerna. Snälla, sälj inte godis på lunchen! Hälsningar Leo',
+high:'Hej rektorn! Jag tycker att caféet inte ska sälja godis och läsk på lunchen. En skoldag är lång, och vi behöver energi som håller ända till eftermiddagen. Sådan energi får vi från långsamma kolhydrater, till exempel pasta och potatis i skollunchen. Godis och läsk innehåller socker. Det är snabba kolhydrater, så energin tar slut fort och man blir trött. Skollunchen ger oss också proteiner, vitaminer och mineraler. Mitt förslag är att caféet säljer godis och läsk först efter klockan 15. Då orkar alla med hela skoldagen! Med vänliga hälsningar Leo',
+rubric:['Godtagbart: du skriver några argument som bygger på fakta från kapitlet.','Acceptable: you write some arguments based on facts from the chapter.',
+'Högre nivå: dina argument bygger på fakta, till exempel snabba och långsamma kolhydrater, och brevet är tydligt och lätt att följa.','Higher level: your arguments are based on facts, for example fast and slow carbohydrates, and the letter is clear and easy to follow.']}
+};
+
+'use strict';
+const $=id=>document.getElementById(id);
+const KEY='swedish-kemi-v1',VKEY='swedish-missions-voice-v1',RKEY='swedish-missions-rate-v1';
+let S={done:{},test:{}};try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&typeof s==='object'&&s.done&&s.test)S=s}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast('Browser storage unavailable — answers stay only while this page is open.')}}
+function node(t,x,c){const n=document.createElement(t);if(x!==undefined)n.textContent=x;if(c)n.className=c;return n}
+function sv(t,x,c){const n=node(t,x,c);n.lang='sv';return n}
+function button(x,f,c){const b=node('button',x,c);b.type='button';b.onclick=f;return b}
+let tt=null;function toast(m){const t=$('toast');t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,4000)}
+
+/* speech */
+const synth=window.speechSynthesis||null;let voices=[];
+function vscore(v){const n=(v.name+' '+v.voiceURI).toLowerCase();let s=0;if(n.includes('premium'))s+=50;if(n.includes('enhanced'))s+=40;if(n.includes('natural')||n.includes('neural'))s+=40;else if(n.includes('online'))s+=20;return s}
+function loadVoices(){if(!synth){note();return}const l=synth.getVoices().filter(v=>/^sv([-_]|$)/i.test(v.lang));if(!l.length&&voices.length)return;voices=l.sort((a,b)=>vscore(b)-vscore(a)||a.name.localeCompare(b.name));const sel=$('voice');let want=sel.value;if(!want){try{want=localStorage.getItem(VKEY)||''}catch(e){}}sel.replaceChildren();if(!voices.length){const o=node('option','No Swedish voice found');o.value='';sel.append(o)}else voices.forEach(v=>{const o=node('option',v.name+(vscore(v)>=40?' ★':''));o.value=v.voiceURI;sel.append(o)});if(voices.some(v=>v.voiceURI===want))sel.value=want;note()}
+function cur(){return voices.find(v=>v.voiceURI===$('voice').value)||voices[0]}
+function note(){$('voicenote').textContent=!synth?'This browser cannot play speech.':!voices.length?'No Swedish voice found. Install one in the device settings (Accessibility → Spoken Content → Voices → Swedish).':'Using '+cur().name+'.'}
+function utter(t){const v=cur(),u=new SpeechSynthesisUtterance(t);u.voice=v;u.lang=v.lang;u.rate=Number($('rate').value)||0.9;return u}
+function say(t){if(!synth||!voices.length){toast('No Swedish voice on this device. See “Voice for 🔊” at the bottom.');return}synth.cancel();setTimeout(()=>{try{synth.resume()}catch(e){}synth.speak(utter(t))},120)}
+function sayAll(l){if(!synth||!voices.length){toast('No Swedish voice on this device.');return}synth.cancel();setTimeout(()=>{try{synth.resume()}catch(e){}l.forEach(t=>synth.speak(utter(t)))},120)}
+function sayBtn(t){const b=button('🔊',e=>{e.stopPropagation();say(t)},'say');b.setAttribute('aria-label','Listen: '+t);return b}
+if(synth){loadVoices();if('onvoiceschanged' in synth)synth.onvoiceschanged=loadVoices;[300,1000,2500].forEach(ms=>setTimeout(loadVoices,ms))}else note();
+$('voice').onchange=()=>{try{localStorage.setItem(VKEY,$('voice').value)}catch(e){}note()};
+try{const r=localStorage.getItem(RKEY);if(r)$('rate').value=r}catch(e){}
+$('rate').onchange=()=>{try{localStorage.setItem(RKEY,$('rate').value)}catch(e){}};$('voicetest').onclick=()=>say('Kolhydrater ger kroppen energi.');
+let unlocked=false;document.addEventListener('pointerdown',()=>{if(unlocked||!synth)return;unlocked=true;const u=new SpeechSynthesisUtterance(' ');u.volume=0;synth.speak(u)},{capture:true});
+
+/* progress board */
+function board(){
+  const pl=$('partlist');pl.replaceChildren();
+  PARTS.forEach((p,i)=>{const a=node('a');a.href='#part-'+p.id;const l=sv('span',(i+1)+'. '+p.title);a.append(l,node('b',S.done[p.id]?'✓ klar':''));pl.append(a)});
+  const n=PARTS.filter(p=>S.done[p.id]).length;
+  $('teststatus').textContent=n+' of '+PARTS.length+' parts done'+(S.test.graded?' · practice test marked':'');
+}
+
+/* study parts */
+const view={};
+function drawPart(p,i){
+  const sec=$('part-'+p.id);sec.replaceChildren();
+  const h=node('h2');h.append(sv('span',(i+1)+'. '+p.title));sec.append(node('div','Del '+(i+1)+' · '+p.en,'label'),h);
+  const v=view[p.id]||'read';
+  const tabs=node('div',undefined,'tabs');
+  [['read','Läs','Read'],['words','Begrepp','Key words'],['check','Kolla','Check yourself']].forEach(([k,s,e])=>{const b=button('',()=>{view[p.id]=k;drawPart(p,i)},v===k?'selected':'');b.append(sv('b',s),node('small',e));tabs.append(b)});
+  sec.append(tabs);
+  if(v==='read'){
+    const box=node('div','',p._en?'show-en':'');
+    const row=node('div',undefined,'row');const lab=node('label');const cb=node('input');cb.type='checkbox';cb.checked=!!p._en;cb.onchange=()=>{p._en=cb.checked;box.classList.toggle('show-en',cb.checked)};lab.append(cb,document.createTextNode(' Show English'));
+    row.append(button('▶ Läs allt · read all',()=>sayAll(p.text.map(t=>t[0])),'primary'),button('Stop',()=>synth&&synth.cancel()),lab);sec.append(row);
+    p.text.forEach(([s,e])=>{const l=node('div',undefined,'line');const t=node('div');t.append(sv('p',s),node('p',e,'en'));l.append(sayBtn(s),t);l.onclick=()=>l.classList.toggle('show');box.append(l)});
+    sec.append(box,node('p','Read each sentence after the voice. Tap a sentence to see the English.','muted'),button('Next: Begrepp →',()=>{view[p.id]='words';drawPart(p,i)},'primary'));
+  }else if(v==='words'){
+    const row=node('div',undefined,'row');const lab=node('label');const cb=node('input');cb.type='checkbox';cb.checked=!!p._quiz;lab.append(cb,document.createTextNode(' Test yourself — hide the explanations'));
+    const grid=node('div',undefined,'cards'+(p._quiz?' quiz-mode':''));cb.onchange=()=>{p._quiz=cb.checked;grid.classList.toggle('quiz-mode',cb.checked);grid.querySelectorAll('.card').forEach(c=>c.classList.remove('show'))};
+    row.append(button('▶ Hör alla begrepp',()=>sayAll(p.concepts.map(c=>c[0]))),lab);sec.append(row);
+    p.concepts.forEach(([t,ex,et,ee])=>{const c=node('div',undefined,'card');const tr=node('div',undefined,'term');tr.append(sayBtn(t+'. '+ex),sv('b',t),node('span','· '+et,'muted'));const exp=node('div',undefined,'exp');exp.append(sv('p',ex),node('p',ee,'en'));c.append(tr,exp);c.onclick=()=>c.classList.toggle('show');grid.append(c)});
+    sec.append(grid,node('p','Tap a card to see the English. With explanations hidden: say what the word means, then tap to check.','muted'),button('Next: Kolla →',()=>{view[p.id]='check';drawPart(p,i)},'primary'));
+  }else{
+    const st=p._st||(p._st=p.check.map(()=>null));
+    p.check.forEach(([q,qe,ch,ok,w,we],qi)=>{
+      const d=node('div',undefined,'q');const qt=node('div',undefined,'qt');qt.append(sayBtn(q),sv('span',q));d.append(qt,node('p',qe,'muted'));
+      const cs=node('div',undefined,'choices');const fb=node('div','','fb');const exp=node('p',we,'muted');exp.hidden=st[qi]!==true;
+      ch.forEach((c,ci)=>{const b=sv('button',c);b.type='button';if(st[qi]===true&&ci===ok)b.className='right';b.onclick=()=>{if(st[qi]===true)return;if(ci===ok){st[qi]=true;b.className='right';fb.textContent='Rätt! '+w;fb.style.color='var(--good)';exp.hidden=false;partDone(p,i)}else{st[qi]=false;b.className='wrong';fb.textContent='Inte riktigt — try again.';fb.style.color='var(--accent)'}};cs.append(b)});
+      if(st[qi]===true){fb.textContent='Rätt! '+w;fb.style.color='var(--good)'}
+      d.append(cs,fb,exp);sec.append(d)});
+    const allOk=st.every(x=>x===true);
+    sec.append(node('p',allOk?'All correct — this part is done! ✓':'Answer all '+p.check.length+' questions correctly to finish this part.','fb'));
+    const nx=i<PARTS.length-1?button('Next part: '+PARTS[i+1].title+' →',()=>{$('part-'+PARTS[i+1].id).scrollIntoView()},'primary'):button('Go to the practice test →',()=>$('prov').scrollIntoView(),'primary');
+    sec.append(nx);
+  }
+}
+function partDone(p,i){if(p._st.every(x=>x===true)&&!S.done[p.id]){S.done[p.id]=true;save();board();drawPart(p,i);toast('Del '+(i+1)+' klar! ✓')}}
+PARTS.forEach((p,i)=>{const s=node('section');s.id='part-'+p.id;$('study').append(s);const a=node('a','Del '+(i+1));a.href='#part-'+p.id;$('shortcuts').append(a);drawPart(p,i)});
+{const a=node('a','Övningsprov');a.href='#prov';$('shortcuts').append(a)}
+
+/* practice test */
+const T=S.test;T.tf=T.tf||{};T.match=T.match||{};T.order=T.order||[];T.c5=T.c5||[];T.c6=T.c6||[];T.self=T.self||{};
+function en(t){const p=node('p',t,'en');p.classList.add('ten');return p}
+function qhead(num,q){const h=node('h3');h.append(sayBtn(q[0]),document.createTextNode(' '),sv('span',num+'. '+q[0]));return [h,en(q[1])]}
+function words(text,list){const t=String(text||'').toLowerCase();return list.map(([label,stems])=>[label,stems.some(s=>t.includes(s))])}
+function writer(key,data){
+  const box=node('div');const ta=node('textarea');ta.lang='sv';ta.value=T[key]||'';ta.setAttribute('aria-label','Your answer');ta.spellcheck=false;
+  const chips=node('div',undefined,'chips');
+  const ins=x=>{const s=ta.selectionStart??ta.value.length;const pre=ta.value.slice(0,s),post=ta.value.slice(ta.selectionEnd??s);const add=(pre&&!/\s$/.test(pre)?' ':'')+x+' ';ta.value=pre+add+post;ta.focus();ta.selectionStart=ta.selectionEnd=pre.length+add.length;ta.oninput()};
+  if(data.words){box.append(node('div','Ordbank · word bank (tap to add)','label'));data.words.forEach(([label])=>{const b=sv('button',label);b.type='button';b.onclick=()=>ins(label);chips.append(b)});box.append(chips)}
+  const st=node('div',undefined,'chips');data.starters.forEach(x=>{const b=sv('button',x+' …');b.type='button';b.onclick=()=>ins(x);st.append(b)});
+  box.append(node('div','Meningsstart · sentence starters','label'),st,ta);
+  const meter=node('p','','muted');
+  ta.oninput=()=>{T[key]=ta.value;save();if(data.words){const w=words(ta.value,data.words);Array.from(chips.children).forEach((b,i)=>b.classList.toggle('used',w[i][1]));meter.textContent='Begrepp du har använt: '+w.filter(x=>x[1]).length+' av '+w.length+' · key words used'}};
+  if(data.words)box.append(meter);ta.oninput();T[key]=ta.value;
+  return box;
+}
+function checklist(arr,key,title){const box=node('div',undefined,'check');box.append(node('div',title,'label'));arr.forEach(([s,e],i)=>{const l=node('label');const c=node('input');c.type='checkbox';c.checked=T[key].includes(i);c.onchange=()=>{T[key]=T[key].filter(x=>x!==i);if(c.checked)T[key].push(i);save()};const t=node('span');t.append(sv('span',s),en(e));l.append(c,t);box.append(l)});return box}
+function model(title,parts){const a=node('div',undefined,'answer graded');a.append(node('h4',title));parts.forEach(([lab,txt])=>{const p=node('p');p.append(node('b',lab+': '),sv('span',txt),' ',sayBtn(txt));a.append(p)});return a}
+function rubric(r){const a=node('div',undefined,'answer graded');a.append(node('h4','Bedömning · how it is marked'));for(let i=0;i<r.length;i+=2){a.append(sv('p',r[i]),en(r[i+1]))}return a}
+function selfRate(k){const d=node('div',undefined,'graded');d.append(node('div','Bedöm ditt svar tillsammans med en vuxen · rate your answer with a parent','label'));const row=node('div',undefined,'self');[['ej ännu','Not yet'],['godtagbart','Acceptable'],['högre nivå','Higher level']].forEach(([s,e])=>{const b=button('',()=>{T.self[k]=s;save();drawTest()},T.self[k]===s?'selected':'');b.append(sv('b',s),document.createTextNode(' · '+e));row.append(b)});d.append(row);return d}
+function drawTest(){
+  const box=$('test');box.replaceChildren();const G=!!T.graded;
+  /* 1 */
+  let q=node('div',undefined,'tq');q.append(...qhead(1,TEST.tf.q));
+  TEST.tf.items.forEach(([s,e,ans,ws,we],i)=>{const r=node('div',undefined,'tf');const t=node('div');t.append(sv('span',s),' ',sayBtn(s),en(e));const pair=node('div',undefined,'pair');
+    [['Rätt',true],['Fel',false]].forEach(([lab,val])=>{const b=sv('button',lab);b.type='button';if(T.tf[i]===val)b.className='selected';if(G&&T.tf[i]===val)b.className=val===ans?'right':'wrong';b.onclick=()=>{if(G)return;T.tf[i]=val;save();drawTest()};pair.append(b)});
+    r.append(t,pair);if(G){const f=node('div',undefined,'graded');f.style.gridColumn='1/-1';f.append(sv('p',(T.tf[i]===ans?'✓ ':'✗ ')+ws),en(we));f.firstChild.style.margin='0';f.firstChild.style.color=T.tf[i]===ans?'var(--good)':'var(--accent)';r.append(f)}q.append(r)});
+  q.append(node('div','Motivera: explain why at least one sentence is wrong','label'));
+  const mt=node('textarea');mt.lang='sv';mt.style.minHeight='90px';mt.value=T.motiv||'';mt.placeholder='Mening 1 är fel eftersom …';mt.oninput=()=>{T.motiv=mt.value;save()};q.append(mt);
+  if(G)q.append(rubric(TEST.tf.rubric));box.append(q);
+  /* 2 */
+  q=node('div',undefined,'tq');q.append(...qhead(2,TEST.match.q));
+  const tb=node('table',undefined,'grid');const hr=node('tr');hr.append(node('th',''));TEST.match.nutrients.forEach(([s,e])=>{const th=node('th');th.append(sv('span',s),node('div',e,'muted'));th.lastChild.style.fontSize='12px';hr.append(th)});tb.append(hr);
+  TEST.match.foods.forEach(([f,fe,need,ok,why],fi)=>{const tr=node('tr');const td=node('td');td.append(sv('b',f),node('span',' · '+fe,'muted'));tr.append(td);const sel=T.match[fi]||[];
+    TEST.match.nutrients.forEach(([n])=>{const c=node('td');const cb=node('input');cb.type='checkbox';cb.checked=sel.includes(n);cb.disabled=G;cb.setAttribute('aria-label',f+' – '+n);cb.onchange=()=>{let a=(T.match[fi]||[]).filter(x=>x!==n);if(cb.checked)a.push(n);T.match[fi]=a;save()};c.append(cb);tr.append(c)});
+    if(G){tr.className=matchOk(fi)?'ok':'no';const r2=node('tr');const c2=node('td');c2.colSpan=5;c2.style.textAlign='left';c2.append(sv('span',why+' '),node('span','('+need.concat(ok).join(', ')+')','muted'));c2.style.fontSize='15px';r2.append(c2);tb.append(tr,r2)}else tb.append(tr)});
+  q.append(tb);if(G)q.append(rubric(TEST.match.rubric));box.append(q);
+  /* 3 */
+  q=node('div',undefined,'tq');q.append(...qhead(3,TEST.sun.q),writer('sun',TEST.sun));
+  if(G)q.append(model('Exempelsvar · model answers',[['Godtagbart',TEST.sun.basic],['Högre nivå',TEST.sun.high]]),rubric(TEST.sun.rubric),selfRate('sun'));box.append(q);
+  /* 4 */
+  q=node('div',undefined,'tq');q.append(...qhead(4,TEST.digest.q));
+  const order=node('div',undefined,'order');const steps=node('div',undefined,'steps');
+  const shuffled=TEST.digest.steps.map((s,i)=>i);if(!T._shuf){T._shuf=shuffled.sort(()=>Math.random()-.5);if(T._shuf.every((x,i)=>x===i))T._shuf.reverse();save()}
+  if(!T.order.length)order.append(node('span','Tap the steps below in the right order.','muted'));
+  T.order.forEach((si,pos)=>{const d=node('div');const ok=G?si===pos:null;d.append(node('b',(pos+1)+'.'),sv('span',TEST.digest.steps[si][0]));if(G){d.append(node('span',ok?' ✓':' ✗'));d.style.background=ok?'#d6eadb':'#f2d4c8'}if(!G){d.style.cursor='pointer';d.onclick=()=>{T.order.splice(pos,1);save();drawTest()}}order.append(d)});
+  T._shuf.forEach(si=>{if(T.order.includes(si))return;const b=sv('button',TEST.digest.steps[si][0]);b.type='button';b.disabled=G;b.onclick=()=>{T.order.push(si);save();drawTest()};steps.append(b)});
+  q.append(order,steps);if(T.order.length&&!G)q.append(button('↺ Start the order again',()=>{T.order=[];save();drawTest()}));
+  q.append(node('div','Förklara · explain what happens to the food and why','label'),writer('digestTxt',TEST.digest));
+  if(G){q.append(model('Rätt ordning och exempelsvar · right order and model answer',TEST.digest.steps.map((s,i)=>[String(i+1),s[0]]).concat([['Exempelsvar',TEST.digest.model]])),rubric(TEST.digest.rubric),selfRate('digest'))}
+  box.append(q);
+  /* 5 */
+  q=node('div',undefined,'tq');q.append(...qhead(5,TEST.plan.q),writer('plan',TEST.plan));
+  if(G)q.append(checklist(TEST.plan.checklist,'c5','Kolla ditt svar: vad har du med? · tick what your answer includes'),model('Exempelsvar · model answers',[['Godtagbart',TEST.plan.basic],['Högre nivå',TEST.plan.high]]),rubric(TEST.plan.rubric),selfRate('plan'));box.append(q);
+  /* 6 */
+  q=node('div',undefined,'tq');q.append(...qhead(6,TEST.letter.q),writer('letter',TEST.letter));
+  if(G)q.append(checklist(TEST.letter.checklist,'c6','Kolla ditt brev: vilka argument har du med? · tick the arguments you used'),model('Exempelsvar · model answers',[['Godtagbart',TEST.letter.basic],['Högre nivå',TEST.letter.high]]),rubric(TEST.letter.rubric),selfRate('letter'));box.append(q);
+  /* actions + result */
+  const act=node('div',undefined,'row noprint');
+  if(!G)act.append(button('Rätta provet · mark the test',()=>{const miss=[];if(Object.keys(T.tf).length<TEST.tf.items.length)miss.push('1');if(T.order.length<TEST.digest.steps.length)miss.push('4');if(miss.length&&!confirm('Question '+miss.join(' and ')+' is not finished. Mark the test anyway?'))return;T.graded=true;save();board();drawTest();$('result').scrollIntoView({block:'center'})},'primary'));
+  else act.append(button('🖨 Print my answers',()=>window.print()),button('Gör om provet · take it again',()=>{if(!confirm('Clear all your test answers and start again?'))return;S.test={};save();location.reload()}));
+  box.append(act);
+  if(G)box.prepend(result());
+  document.querySelectorAll('.ten').forEach(e=>e.style.display=$('testen').checked?'block':'none');
+}
+function matchOk(fi){const[,,need,ok]=TEST.match.foods[fi];const sel=T.match[fi]||[];return sel.length>0&&need.every(n=>sel.includes(n))&&sel.every(n=>need.includes(n)||ok.includes(n))}
+function result(){
+  const tf=TEST.tf.items.filter((it,i)=>T.tf[i]===it[2]).length,m=TEST.match.foods.filter((f,i)=>matchOk(i)).length,ord=T.order.filter((s,i)=>s===i).length;
+  const r=node('div',undefined,'result');r.id='result';r.append(node('h3','Resultat · result'));const ul=node('ul');
+  const li=(t,pass)=>{const l=node('li');l.append(sv('span',t),node('b',pass===undefined?'':pass?'  ✓ godtagbart':'  — öva mer'));ul.append(l)};
+  li('1. Rätt eller fel: '+tf+' av '+TEST.tf.items.length+' rätt',tf>=TEST.tf.pass&&!!(T.motiv||'').trim());
+  li('2. Näringsämnen: '+m+' av '+TEST.match.foods.length+' rätt',m>=TEST.match.pass);
+  const rate=k=>T.self[k]||'bedöm själv nedan · rate it below';
+  li('3. Energi från solen: '+rate('sun'));
+  li('4. Matspjälkningen: ordning '+ord+' av '+TEST.digest.steps.length+' rätt · förklaring: '+rate('digest'));
+  li('5. Planera en undersökning: '+rate('plan'));
+  li('6. Brev till rektorn: '+rate('letter'));
+  r.append(ul,node('p','Marked automatically: 1, 2 and the order in 4. Open answers: read the model answers and rate them with a parent. Wrong answers show the explanation — read it, then try again later.','muted'));return r}
+$('testen').onchange=()=>drawTest();
+drawTest();board();
+</script></body></html>
