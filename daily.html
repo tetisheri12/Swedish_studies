@@ -1,0 +1,506 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Swedish Studies · Today</title><style>
+:root{--bg:#f7f3e9;--ink:#203536;--muted:#526665;--accent:#a53e23;--line:#c8cec3;--wash:#e7eddf;--good:#2f6b45;--r:14px}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 'Trebuchet MS',Arial,sans-serif}button,input,select,textarea{font:inherit;color:inherit}button,a,input,select,label{touch-action:manipulation}button{border:1px solid var(--line);border-radius:var(--r);background:transparent;padding:11px 18px;cursor:pointer}button:hover{background:var(--wash)}button:disabled{opacity:.45;cursor:default}button.primary,button.selected{background:var(--accent);border-color:var(--accent);color:white}button.good{background:var(--good);border-color:var(--good);color:white}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}a{color:var(--accent)}
+header,main,footer{max-width:960px;margin:auto;padding:24px}header{display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid var(--line);flex-wrap:wrap}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0}.center{justify-content:center;text-align:center}
+h1{font-size:clamp(40px,7vw,68px);line-height:1.04;letter-spacing:-.05em;margin:14px 0}h2{font-size:28px;line-height:1.15;letter-spacing:-.02em;margin:6px 0 10px}h3{font-size:21px;margin:18px 0 8px}p{max-width:68ch;text-wrap:pretty}
+.label{font-size:12px;text-transform:uppercase;letter-spacing:.13em;font-weight:bold;color:var(--muted)}.muted{color:var(--muted)}[hidden]{display:none!important}
+section{padding:26px 0;border-top:1px solid var(--line)}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;padding:20px 0}.board{background:var(--wash);border-radius:var(--r);padding:20px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stat b{display:block;font-size:30px;line-height:1.1;font-variant-numeric:tabular-nums}.stat span{font-size:13px;color:var(--muted)}
+.cal{display:flex;gap:5px;margin-top:14px}.cal i{width:18px;height:18px;border-radius:5px;background:white;border:1px solid var(--line);display:block}.cal i.part{background:#e8c9b9}.cal i.full{background:var(--good);border-color:var(--good)}.cal i.today{outline:2px solid var(--ink)}
+.big{font-size:20px;padding:16px 26px}
+.stage{border:2px solid var(--ink);border-radius:var(--r);background:#fffdf7;padding:clamp(16px,4vw,32px);margin:18px 0;min-height:420px}
+.steps{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}.steps span{flex:1;min-width:90px;text-align:center;font-size:13px;padding:6px;border-radius:999px;background:var(--wash);color:var(--muted)}.steps span.on{background:var(--accent);color:white;font-weight:bold}.steps span.ok{background:#d6eadb;color:var(--good)}
+.pic{font-size:96px;line-height:1.1;text-align:center;margin:8px 0}.word{font-size:42px;font-weight:bold;text-align:center;margin:6px 0;display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap}.tag{text-align:center;color:var(--accent);font-weight:bold}.clue{text-align:center;color:var(--muted)}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}.grid4 button{font-size:54px;padding:14px 4px;line-height:1.2}.grid4 button.right{background:#d6eadb;border-color:var(--good)}.grid4 button.wrong{background:#f2d4c8;border-color:var(--accent)}
+.opts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:14px 0}.opts button{font-size:60px;padding:10px 18px;line-height:1.2}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}.pair button{font-size:34px;padding:22px 8px;font-weight:bold}.pair button.right{background:#d6eadb;border-color:var(--good)}.pair button.wrong{background:#f2d4c8;border-color:var(--accent)}
+.say{padding:6px 12px;font-size:18px;line-height:1;flex:none}
+.cloze{font-size:28px;text-align:center;margin:20px 0;line-height:1.5}.cloze .gap{display:inline-block;min-width:3.5em;border-bottom:3px solid var(--accent)}.cloze mark{background:#f6e3a1;padding:0 4px;border-radius:4px}
+input.spell{font-size:28px;padding:10px 14px;border:2px solid var(--ink);border-radius:12px;width:min(100%,360px);text-align:center}
+.fb{min-height:28px;text-align:center;font-weight:bold;font-size:19px;margin:8px 0}.fb.ok{color:var(--good)}.fb.no{color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.chips button,.chips span{padding:6px 12px;font-size:14px;border-radius:999px;border:1px solid var(--line)}.chips .pass{background:#d6eadb;border-color:var(--good);color:var(--good)}.chips .cur{border-color:var(--accent);color:var(--accent);font-weight:bold}
+textarea{width:100%;min-height:120px;background:white;border:2px solid var(--line);border-radius:var(--r);padding:12px;font-size:19px;line-height:1.5}
+input[type=text]{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:white;min-width:240px}select{padding:9px;border:1px solid var(--line);border-radius:10px;background:white}
+.wl{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}.wl>div{border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;background:#fffdf7}.wl .p{font-size:36px}.wl .lv{color:var(--accent);letter-spacing:2px;font-size:13px}
+.inbox .item{padding:12px 0;border-bottom:1px solid var(--line)}.inbox .item p{margin:4px 0}
+.party{font-size:80px;text-align:center}
+#toast{position:fixed;left:50%;top:20px;transform:translateX(-50%);background:var(--ink);color:white;padding:12px 18px;border-radius:var(--r);max-width:min(92vw,520px);z-index:30;font-size:15px}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
+/* Main navigation */
+header nav{display:flex;flex-wrap:wrap;gap:8px 18px}header nav a{padding:6px 0;text-decoration:none;font-size:14px;font-weight:normal}header nav a[aria-current="page"]{color:var(--ink);font-weight:bold;border-bottom:2px solid var(--accent)}header nav a:hover{text-decoration:underline}
+@media(max-width:700px){header,main,footer{padding:18px}header{align-items:flex-start}header nav{width:100%}.hero{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}.pic{font-size:80px}.word{font-size:34px}}
+</style></head><body><header>
+  <strong>SWEDISH / STUDIES</strong>
+  <nav aria-label="Main navigation">
+    <a href="daily.html" aria-current="page">Today</a>
+    <a href="index.html">Missions</a>
+    <a href="school-books.html">School Books</a>
+    <a href="reading-coach.html">Reading Coach</a>
+    <a href="kemi.html">Kemi</a>
+    <a href="reader.html">Reader</a>
+  </nav>
+</header><main>
+<div id="home"><div class="hero"><div><div class="label" id="datelabel"></div><h1>Dagens svenska</h1><p>About 25 minutes: train your ear, remember old words, learn new ones, do a mission and say one sentence. Everything you learn comes back just before you forget it.</p><div class="row"><button id="start" class="primary big">▶ Start</button></div><p class="muted" id="plan"></p></div>
+<aside class="board"><div class="label">Din svenska · your Swedish</div><div class="stats"><div class="stat"><b id="sWords">0</b><span>words started</span></div><div class="stat"><b id="sMature">0</b><span>cards you know well (3+ weeks)</span></div><div class="stat"><b id="sDue">0</b><span>cards to review today</span></div><div class="stat"><b id="sEar">0/0</b><span>sound pairs mastered</span></div></div><div class="cal" id="cal" aria-label="Last 14 days"></div><p class="muted" id="sRet" style="margin:8px 0 0;font-size:14px"></p></aside></div></div>
+<div id="session" hidden><div class="stage" id="stage"></div></div>
+
+<section id="mywords"><div class="label">Mina ord · my words</div><h2>Words you have started</h2><p class="muted">★ shows how well you know a word. Tap 🔊 to hear it.</p><div id="wl" class="wl"></div></section>
+
+<section id="parents"><div class="label">För föräldrar · for parents</div><h2>Parent corner</h2>
+<details open><summary><b>Sentences to correct</b> <span id="inboxcount" class="muted"></span></summary><p class="muted">Write the corrected Swedish. Put [square brackets] around one word to practise, e.g. <i>Jag [spelade] fotboll igår.</i> Then save it as a card. Without brackets it becomes a “listen and repeat” card.</p><div id="inbox" class="inbox"></div></details>
+<details><summary><b>Add your own card</b></summary><p class="muted">A sentence from school, homework or a book. Use [brackets] around the word to practise.</p><div class="row"><input type="text" id="qa" placeholder="Vi [tränar] fotboll på tisdagar." style="flex:1" lang="sv"><button id="qadd" class="primary">Add card</button></div></details>
+<details><summary><b>Settings</b></summary><div class="row"><label>New words per day <select id="setNew"><option>3</option><option>4</option><option selected>5</option><option>6</option><option>8</option><option>10</option></select></label><label>Max reviews per day <select id="setCap"><option>30</option><option>45</option><option selected>60</option><option>90</option></select></label></div>
+<div class="row"><label>Voice <select id="voice"></select></label><label>Speed <select id="rate"><option value="1">Normal</option><option value="0.9" selected>A little slower</option><option value="0.8">Slow</option></select></label><button id="voicetest">🔊 Test</button></div><p id="voicenote" class="muted"></p></details>
+<details><summary><b>Backup</b></summary><p class="muted">Progress is saved in this browser only. Download a backup now and then — you can restore it on another device.</p><div class="row"><button id="export">Download backup</button><label>Restore <input type="file" id="import" accept="application/json"></label><button id="reset">Start over</button></div></details>
+<details><summary><b>How this works</b></summary><p>Based on the Fluent Forever method: words come with pictures instead of English, he must try to remember before seeing the answer, and each card comes back after 1, 3, 9 and 21 days, 2 months and 6 months — just before it would be forgotten. A missed card starts again. The daily sound game trains the ear for Swedish sounds that English and Turkish don't have. Sentences from finished missions, words saved in the Reader and your corrected sentences become cards automatically.</p></details>
+</section>
+</main><div id="toast" role="status" hidden></div><footer>Swedish Studies · Today. Method inspired by Fluent Forever (Gabriel Wyner). Progress stays in this browser.</footer>
+<script src="lessons.js"></script>
+<script>
+/* Today · data. Core words in a kid-friendly Swedish adaptation of the "first words"
+   idea from Fluent Forever: picturable, frequent, always learned with en/ett, shown with
+   pictures (emoji), never with English. Lines: category | Swedish | picture options | clue (optional) */
+const LEXICON_RAW=`
+hej|hej|👋
+djur|en hund|🐕 🐶 🦮
+mat|ett äpple|🍎 🍏
+kropp|en hand|✋ 🖐️
+tal|ett|1️⃣
+verb|spela|🏓 🎳
+fotboll|en boll|⚽
+färg|röd|🟥 🔴
+hem|ett hus|🏠 🏡
+folk|en mamma|👩‍👧 👩
+natur|en sol|☀️ 🌞
+kläder|en sko|👟 👞
+adj|stor|🐘 🦒
+hej|tack|🙏
+djur|en katt|🐈 🐱
+mat|en banan|🍌
+kropp|ett öga|👁️
+tal|två|2️⃣
+verb|springa|🏃 🏃‍♀️
+fotboll|ett mål|🥅
+färg|blå|🟦 🔵
+hem|en säng|🛏️
+folk|en pappa|👨‍👦 👨
+natur|ett träd|🌳 🌲
+resa|en bil|🚗 🚙
+adj|liten|🤏 🐜
+spel|ett spel|🎲 🧩
+hej|ja|👍 ✔️
+djur|en fisk|🐟 🐠
+mat|en ost|🧀
+kropp|ett öra|👂
+tal|tre|3️⃣
+verb|äta|🍽️ 😋
+fotboll|en målvakt|🧤|står i målet
+färg|grön|🟩 🟢
+hem|en stol|🪑
+folk|ett barn|🧒 👧
+natur|en måne|🌙 🌛
+kläder|en jacka|🧥
+adj|glad|😀 😄
+hej|nej|👎 ❌
+djur|en fågel|🐦 🦜
+mat|ett bröd|🍞 🥖
+kropp|en näsa|👃
+tal|fyra|4️⃣
+verb|sova|😴 🛌
+fotboll|en match|🆚
+färg|gul|🟨 🟡
+hem|en dörr|🚪
+folk|en kompis|🧑‍🤝‍🧑 🤝
+natur|en stjärna|⭐ 🌟
+resa|en buss|🚌
+adj|ledsen|😞 🙁
+spel|en handkontroll|🎮
+djur|en häst|🐎 🐴
+mat|ett ägg|🥚 🍳
+kropp|en mun|👄
+tal|fem|5️⃣
+verb|dricka|🥤 🧃
+fotboll|ett lag|👕👕👕 👥
+färg|svart|⬛ ⚫
+hem|ett fönster|🪟
+folk|en lärare|🧑‍🏫
+natur|en blomma|🌸 🌷 🌻
+kläder|en keps|🧢
+adj|snabb|🐆 🚀
+djur|en ko|🐄 🐮
+mat|en pizza|🍕
+kropp|en tand|🦷
+tal|sex|6️⃣
+verb|läsa|📖 📚
+fotboll|en flagga|🇸🇪 🇹🇷
+färg|vit|⬜ ⚪
+hem|en spegel|🪞
+folk|en bebis|👶
+natur|ett moln|☁️
+resa|en cykel|🚲
+adj|långsam|🐢 🐌
+spel|en tv|📺
+djur|en gris|🐖 🐷
+mat|en korv|🌭
+kropp|en fot|🦶
+tal|sju|7️⃣
+verb|simma|🏊 🏊‍♀️
+fotboll|en pokal|🏆
+färg|brun|🟫 🟤
+hem|en penna|✏️ 🖊️
+folk|en polis|👮 👮‍♀️
+natur|ett berg|⛰️ 🏔️
+kläder|en strumpa|🧦
+adj|trött|🥱
+djur|en mus|🐭 🐁
+mat|en glass|🍦 🍨
+kropp|ett ben|🦵
+tal|åtta|8️⃣
+verb|skriva|✍️
+fotboll|en tränare|📋🧑
+färg|orange|🟧 🟠
+hem|en lampa|💡
+folk|en läkare|🧑‍⚕️
+natur|ett hav|🌊
+resa|ett tåg|🚆 🚂
+adj|arg|😠 😡
+spel|en dator|💻
+djur|en björn|🐻
+mat|en kaka|🍪
+kropp|en arm|💪
+tal|nio|9️⃣
+verb|sjunga|🎤 🎶
+fotboll|en domare|🧑‍⚖️|bestämmer i matchen
+färg|lila|🟪 🟣
+hem|en nyckel|🔑 🗝️
+folk|en mormor|👵|mammas mamma
+natur|en eld|🔥
+kläder|en klänning|👗
+adj|varm|🥵
+djur|ett lejon|🦁
+mat|en tomat|🍅
+kropp|ett hjärta|❤️ 💗
+tal|tio|🔟
+verb|cykla|🚴 🚴‍♀️
+fotboll|en arena|🏟️
+hem|en soffa|🛋️
+folk|en kock|🧑‍🍳
+natur|snö|❄️ ☃️
+resa|ett flygplan|✈️ 🛫
+adj|kall|🥶
+spel|en mobil|📱
+djur|en orm|🐍
+mat|en morot|🥕
+kropp|en tunga|👅
+verb|lyssna|🎧
+fotboll|en spelare|⛹️
+hem|en klocka|⏰ 🕰️
+folk|en morfar|👴|mammas pappa
+natur|regn|🌧️ ☔
+kläder|en ryggsäck|🎒
+adj|ny|✨🎁
+spel|en robot|🤖
+djur|en spindel|🕷️
+mat|en potatis|🥔
+verb|titta|👀 🔍
+fotboll|en supporter|📣|hejar på laget
+hem|en dusch|🚿
+folk|en kung|🤴 👑
+natur|en sjö|🏞️
+resa|en båt|⛵ 🚤
+adj|gammal|🏚️ 📜
+spel|ett monster|👾 👹
+mat|mjölk|🥛
+verb|vinna|🥇 🙌
+hem|en toalett|🚽
+kläder|en halsduk|🧣
+verb|skratta|😂 🤣
+spel|en poäng|💯
+mat|vatten|💧 🚰
+verb|dansa|💃 🕺
+resa|en väg|🛣️
+verb|gråta|😭
+spel|en superhjälte|🦸 🦸‍♀️
+`;
+const CAT_NAMES={hej:'Hälsningar',djur:'Djur',mat:'Mat',kropp:'Kroppen',tal:'Tal',verb:'Verb',fotboll:'Fotboll',färg:'Färger',hem:'Hemma',folk:'Folk',natur:'Natur',kläder:'Kläder',adj:'Adjektiv',resa:'Resa',spel:'Spel'};
+
+/* Ear training: Swedish sound contrasts that are hard for English and Turkish speakers.
+   Each pair differs in one sound. Word tones (accent 1/2) are left out: browser voices can't show them. */
+const EAR=[
+{id:'len',name:'Lång eller kort vokal',en:'Long or short vowel',tip:'Listen for length: the long vowel is stretched out (taak), the short one is quick (tack). In spelling, a long vowel usually has one consonant after it, a short vowel two.',pairs:[['tak','tack'],['vila','villa'],['ful','full'],['väg','vägg'],['glas','glass'],['mat','matt']]},
+{id:'yi',name:'y eller i',en:'y or i',tip:'For y, say i but round your lips, like Turkish ü.',pairs:[['fyra','fira'],['ny','ni'],['by','bi'],['byta','bita']]},
+{id:'yu',name:'y eller u',en:'y or u',tip:'For y, say i with lips rounded and pushed out, like Turkish ü. For Swedish u, pull the tongue back a little and squeeze the lips tight, with only a tiny hole. It is not English “oo”.',pairs:[['rysa','rusa'],['dyka','duka'],['ryta','ruta'],['myra','mura']]},
+{id:'ou',name:'o eller u',en:'o or u',tip:'Long Swedish o (bor) sounds like English “oo” or Turkish u, lips pushed forward. Long Swedish u (bur) is a different sound: tongue further forward, lips squeezed tight. English and Turkish don’t have it.',pairs:[['bor','bur'],['mos','mus'],['kol','kul'],['ros','rus']]},
+{id:'ao',name:'å eller o',en:'å or o',tip:'Long å is like Turkish o, held long with round lips. Long o is like Turkish u or English “oo”.',pairs:[['båt','bot'],['kål','kol'],['får','for'],['rå','ro']]},
+{id:'oe',name:'ö eller ä',en:'ö or ä',tip:'ö is like Turkish ö. ä is like the “e” in English “bed”. Before r, both open up (öra, ära), but ö keeps its round lips.',pairs:[['nöt','nät'],['höst','häst'],['öra','ära'],['rött','rätt'],['lös','läs']]},
+{id:'sj',name:'sj-ljud eller tj-ljud',en:'sj-sound or tj-sound',tip:'sj (skjuta) is a breathy “whoosh” made far back in the mouth, with round lips. tj (tjuta) is made at the front: smile and whisper a soft “sh”, with no t in it.',pairs:[['skära','tjära'],['skjuta','tjuta'],['skyla','kyla'],['skär','kär']]},
+{id:'rt',name:'r + t/d/n',en:'r + t, d or n',tip:'In Swedish, r melts into t, d and n: you don’t hear the r on its own. “bord” ends with one sound, made with the tongue tip curled back.',pairs:[['bord','bod'],['torn','ton'],['korn','kon'],['bort','bott']]}
+];
+
+/* One sentence a day: prompts with sentence starters. */
+const PROMPTS=[
+['Vad gjorde du idag?','What did you do today?',['Idag spelade jag','Idag var jag','Efter skolan gick jag till']],
+['Vilket lag gillar du? Varför?','Which team do you like? Why?',['Jag gillar','för att']],
+['Vilket spel spelar du mest?','Which game do you play most?',['Jag spelar mest','Det är kul för att']],
+['Vad åt du till lunch?','What did you eat for lunch?',['Till lunch åt jag','Det var gott']],
+['Beskriv ditt rum.','Describe your room.',['I mitt rum finns','Min säng är']],
+['Vem är din bästa kompis?','Who is your best friend?',['Min bästa kompis heter','Vi gillar att']],
+['Vad ska du göra i helgen?','What will you do at the weekend?',['I helgen ska jag','Jag vill']],
+['Vilket är ditt favoritdjur?','What is your favourite animal?',['Mitt favoritdjur är','Det är']],
+['Hur är vädret idag?','What is the weather like today?',['Idag är det','Det regnar','Solen skiner']],
+['Vilken spelare är bäst? Varför?','Which player is the best? Why?',['Den bästa spelaren är','Han är','Hon är']],
+['Vad gör du på morgonen?','What do you do in the morning?',['På morgonen äter jag','Sedan går jag']],
+['Vad tycker du om skolan?','What do you think about school?',['Jag tycker att','Det bästa är']]
+];
+
+'use strict';
+const $=id=>document.getElementById(id);
+const KEY='swedish-daily-v1',VKEY='swedish-missions-voice-v1',RKEY='swedish-missions-rate-v1';
+const INTERVALS=[0,1,3,9,21,60,180];
+function node(t,x,c){const n=document.createElement(t);if(x!==undefined&&x!==null)n.textContent=x;if(c)n.className=c;return n}
+function sv(t,x,c){const n=node(t,x,c);n.lang='sv';return n}
+function button(x,f,c){const b=node('button',x,c);b.type='button';b.onclick=f;return b}
+let tt=null;function toast(m){const t=$('toast');t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,3000)}
+function dayNum(d=new Date()){return Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5)}
+function dayStr(n){return new Date(n*864e5).toISOString().slice(0,10)}
+const T=dayNum();
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const norm=s=>String(s).normalize('NFC').toLocaleLowerCase('sv').replace(/[.!?,;:”"’']/g,'').replace(/\s+/g,' ').trim();
+
+/* ---------- state ---------- */
+function fresh(){return{v:1,cards:{},words:{},ear:{},days:{},out:[],extra:[],log:[],set:{newWords:5,cap:60},lastActive:null}}
+let S=fresh();try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.v===1&&s.cards&&s.words)S=Object.assign(fresh(),s)}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast('Browser storage is unavailable — progress will be lost when you close the page.')}}
+function readLS(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}
+
+/* ---------- lexicon ---------- */
+const LEX=LEXICON_RAW.trim().split('\n').map(l=>{const[cat,svw,pics,clue]=l.split('|');return{cat,sv:svw.trim(),pics:pics.trim().split(/\s+/),clue:(clue||'').trim()}});
+const LEXI=new Map(LEX.map(w=>[w.sv,w]));
+const bare=w=>w.replace(/^(en|ett)\s+/,'');
+function picOf(svw){return(S.words[svw]&&S.words[svw].pic)||LEXI.get(svw).pics[0]}
+
+/* ---------- speech ---------- */
+const synth=window.speechSynthesis||null;let voices=[];
+function vscore(v){const n=(v.name+' '+v.voiceURI).toLowerCase();let s=0;if(n.includes('premium'))s+=50;if(n.includes('enhanced'))s+=40;if(n.includes('natural')||n.includes('neural'))s+=40;else if(n.includes('online'))s+=20;return s}
+function loadVoices(){if(!synth){note();return}const l=synth.getVoices().filter(v=>/^sv([-_]|$)/i.test(v.lang));if(!l.length&&voices.length)return;voices=l.sort((a,b)=>vscore(b)-vscore(a)||a.name.localeCompare(b.name));const sel=$('voice');let want=sel.value;if(!want){try{want=localStorage.getItem(VKEY)||''}catch(e){}}sel.replaceChildren();if(!voices.length){const o=node('option','No Swedish voice found');o.value='';sel.append(o)}else voices.forEach(v=>{const o=node('option',v.name+(vscore(v)>=40?' ★':''));o.value=v.voiceURI;sel.append(o)});if(voices.some(v=>v.voiceURI===want))sel.value=want;note()}
+function cur(){return voices.find(v=>v.voiceURI===$('voice').value)||voices[0]}
+function note(){$('voicenote').textContent=!synth?'This browser cannot play speech.':!voices.length?'No Swedish voice found. On iPad: Settings → Accessibility → Spoken Content → Voices → Swedish.':'Using '+cur().name+'.'}
+function utter(t,r){const v=cur(),u=new SpeechSynthesisUtterance(t);u.voice=v;u.lang=v.lang;u.rate=r||Number($('rate').value)||0.9;return u}
+function say(t,r){if(!synth||!voices.length){toast('No Swedish voice on this device — see Settings in the parent corner.');return}synth.cancel();setTimeout(()=>{try{synth.resume()}catch(e){}synth.speak(utter(t,r))},120)}
+function sayBtn(t,lab){const b=button(lab||'🔊',e=>{e.stopPropagation();say(t)},'say');b.setAttribute('aria-label','Listen');return b}
+if(synth){loadVoices();if('onvoiceschanged' in synth)synth.onvoiceschanged=loadVoices;[300,1000,2500].forEach(ms=>setTimeout(loadVoices,ms))}else note();
+$('voice').onchange=()=>{try{localStorage.setItem(VKEY,$('voice').value)}catch(e){}note()};
+try{const r=localStorage.getItem(RKEY);if(r)$('rate').value=r}catch(e){}
+$('rate').onchange=()=>{try{localStorage.setItem(RKEY,$('rate').value)}catch(e){}};$('voicetest').onclick=()=>say('Hej! Idag spelar vi fotboll.');
+let unlocked=false;document.addEventListener('pointerdown',()=>{if(unlocked||!synth)return;unlocked=true;const u=new SpeechSynthesisUtterance(' ');u.volume=0;synth.speak(u)},{capture:true});
+
+/* ---------- SRS ---------- */
+function addCard(c){if(S.cards[c.id])return S.cards[c.id];S.cards[c.id]=Object.assign({box:0,due:T,lapses:0,reps:0,added:T},c);return S.cards[c.id]}
+function grade(c,ok){
+  c.reps++;
+  if(ok)c.box=Math.min(c.box+1,6);else{c.box=1;c.lapses++}
+  const d=INTERVALS[c.box];c.due=T+d+(d>3?Math.round(d*(Math.random()*.2-.1)):0);
+  S.log.push([T,ok?1:0]);if(S.log.length>3000)S.log=S.log.slice(-2000);
+  // a picture word you can say well also gets a spelling card
+  if(ok&&c.kind==='prod'&&c.box>=3&&!S.cards['w:'+c.w+':spell']){addCard({id:'w:'+c.w+':spell',kind:'spell',w:c.w,box:1,due:T+1})}
+  save();
+}
+function dueCards(){return Object.values(S.cards).filter(c=>c.box>0&&c.due<=T).sort((a,b)=>a.due-b.due||Math.random()-.5)}
+function missedDays(){return S.lastActive===null?0:Math.max(0,T-S.lastActive-1)}
+function quota(){const back=missedDays()>=3;return{newWords:back?1:Math.min(Number(S.set.newWords)||5,dueCards().length>Number(S.set.cap)?2:99),cap:back?20:Number(S.set.cap)||60,back}}
+
+/* ---------- sources for sentence cards ---------- */
+function harvest(){
+  const out=[];
+  S.extra.forEach(x=>{if(!S.cards[x.id])out.push(x)});
+  const L=Array.isArray(window.LESSONS)?window.LESSONS.filter(Boolean):[];
+  const ms=readLS('swedish-missions-v1');const solved=new Set(ms&&Array.isArray(ms.solved)?ms.solved:[]);
+  const STOP=new Set('jag du han hon vi ni de är en ett och i på det den att som till med för har var'.split(' '));
+  L.forEach((u,ui)=>u.tasks.forEach((t,ti)=>{
+    if(!solved.has(ui+'-'+ti))return;const id='m:'+ui+'-'+ti;if(S.cards[id])return;
+    if(t.type==='tiles'){const sent=t.answer.join(' ');const cand=t.answer.map(x=>x.replace(/[.!?,]/g,'')).filter(x=>!/\s/.test(x)&&!STOP.has(x.toLowerCase())&&x.length>=3).sort((a,b)=>b.length-a.length);if(!cand.length)return;const w=cand[0];out.push({id,kind:'cloze',full:sent,blank:w,src:'Uppdrag '+(u.unit||ui+1)})}
+    else if(t.type==='type'&&t.scene.includes('___')){let a=t.answers[0];if(/^\s*___/.test(t.scene))a=a.charAt(0).toLocaleUpperCase('sv')+a.slice(1);out.push({id,kind:'cloze',full:t.scene.replace('___',a),blank:a,src:'Uppdrag '+(u.unit||ui+1)})}
+  }));
+  const rd=readLS('swedish-reader-v1');
+  if(rd&&Array.isArray(rd.words))rd.words.forEach(w=>{if(!w.ctx||!w.form)return;const id='r:'+norm(w.form);if(S.cards[id])return;const i=w.ctx.toLocaleLowerCase('sv').indexOf(w.form.toLocaleLowerCase('sv'));if(i<0)return;out.push({id,kind:'cloze',full:w.ctx,blank:w.ctx.slice(i,i+w.form.length),src:'Läsning'})});
+  return out;
+}
+function fromBrackets(text,src,id){const m=text.match(/\[([^\]]+)\]/);const full=text.replace(/[\[\]]/g,'').trim();return m?{id,kind:'cloze',full,blank:m[1].trim(),src}:{id,kind:'echo',full,src}}
+
+/* ---------- day record ---------- */
+const STEPS=[['ear','Ljud','Sounds'],['review','Repetera','Review'],['new','Nytt','New'],['mission','Uppdrag','Mission'],['say','Säg','Say it']];
+function D(){return S.days[T]||(S.days[T]={})}
+function nextStep(){return STEPS.findIndex(s=>!D()[s[0]])}
+
+/* ---------- home ---------- */
+function renderHome(){
+  $('datelabel').textContent=new Date().toLocaleDateString('sv-SE',{weekday:'long',day:'numeric',month:'long'});
+  const started=Object.keys(S.words).length,mature=Object.values(S.cards).filter(c=>c.box>=4).length;
+  $('sWords').textContent=started+' / '+LEX.length;$('sMature').textContent=mature;$('sDue').textContent=dueCards().length;
+  $('sEar').textContent=EAR.filter(e=>earPassed(e.id)).length+'/'+EAR.length;
+  const recent=S.log.filter(l=>l[0]>T-30);$('sRet').textContent=recent.length>=20?'Remembered '+Math.round(100*recent.reduce((a,l)=>a+l[1],0)/recent.length)+'% of cards in the last 30 days.':'';
+  const cal=$('cal');cal.replaceChildren();for(let d=T-13;d<=T;d++){const r=S.days[d]||{};const n=STEPS.filter(s=>r[s[0]]).length;const i=node('i','',n===STEPS.length?'full':n?'part':'');if(d===T)i.classList.add('today');i.title=dayStr(d)+': '+n+'/'+STEPS.length;cal.append(i)}
+  const ns=nextStep(),q=quota();
+  $('start').textContent=ns<0?'✓ Done for today — practise more':ns===0?'▶ Start today':'▶ Continue: '+STEPS[ns][1];
+  $('plan').textContent=(q.back?'Welcome back! Today is a short comeback day. ':'')+'Today: '+Math.min(dueCards().length,q.cap)+' reviews · up to '+q.newWords+' new words.';
+  renderWordList();renderInbox();
+}
+function stars(svw){const c=S.cards['w:'+svw+':prod'];const b=c?c.box:0;return '★'.repeat(Math.min(b,5))+'☆'.repeat(Math.max(0,5-Math.min(b,5)))}
+function renderWordList(){const wl=$('wl');wl.replaceChildren();const ws=Object.keys(S.words);if(!ws.length){wl.append(node('p','No words yet — they start in today’s session.','muted'));return}ws.forEach(w=>{const d=node('div');d.append(node('div',picOf(w),'p'),sv('b',w),node('div',stars(w),'lv'));if(S.words[w].tag)d.append(node('div',S.words[w].tag,'muted'));d.append(sayBtn(w));wl.append(d)})}
+
+/* ---------- session shell ---------- */
+let stepIdx=0;
+function stage(){return $('stage')}
+function shell(title,sub){const s=stage();s.replaceChildren();const bar=node('div',undefined,'steps');STEPS.forEach((st,i)=>{const sp=node('span',(D()[st[0]]?'✓ ':'')+st[1],D()[st[0]]?'ok':'');if(i===stepIdx)sp.className='on';bar.append(sp)});s.append(bar);if(title){const h=node('h2');h.append(sv('span',title));s.append(h)}if(sub)s.append(node('p',sub,'muted'));return s}
+function openSession(){const ns=nextStep();$('home').hidden=true;$('session').hidden=false;window.scrollTo(0,0);if(ns<0){stepIdx=1;runReview(true);return}stepIdx=ns;runStep()}
+function finishStep(){D()[STEPS[stepIdx][0]]=true;S.lastActive=T;save();const ns=nextStep();if(ns<0){celebrate();return}stepIdx=ns;runStep()}
+function runStep(){({ear:runEar,review:runReview,new:runNew,mission:runMission,say:runSay})[STEPS[stepIdx][0]]()}
+function exitBtn(){return button('Pause — back to start',()=>{if(synth)synth.cancel();$('session').hidden=true;$('home').hidden=false;renderHome()})}
+function celebrate(){const s=shell();s.append(node('div','🏆','party'),node('h2','Bra jobbat! Klart för idag.'),node('p','Every word you practised today will come back at the right time. See you tomorrow!'),);
+  const r=node('div',undefined,'row center');r.append(button('Practise a few more cards',()=>{stepIdx=1;runReview(true)}),button('Back to start',()=>{$('session').hidden=true;$('home').hidden=false;renderHome()},'primary'));s.append(r)}
+
+/* ---------- step 1: ear ---------- */
+function earStats(id){return S.ear[id]||(S.ear[id]=[])}
+function earPassed(id){const a=(S.ear[id]||[]).slice(-20);return a.length>=20&&a.filter(Boolean).length>=18}
+function runEar(){
+  const focus=EAR.find(e=>!earPassed(e.id))||EAR[Math.floor(Math.random()*EAR.length)];
+  let n=0,ok=0;const TOTAL=20;
+  function trial(){
+    if(n>=TOTAL){const s=shell('Ljud: klart!','');s.append(node('p','You heard '+ok+' of '+TOTAL+' right.','fb ok'),chips(),node('p',earPassed(focus.id)?'You have mastered “'+focus.name+'”! Tomorrow: the next sound.':'Keep going tomorrow — mastered means 18 of your last 20 right.','muted'));const r=node('div',undefined,'row');r.append(button('Next step →',finishStep,'primary'),exitBtn());s.append(r);return}
+    const c=Math.random()<.75||!EAR.some(e=>e!==focus&&(S.ear[e.id]||[]).length)?focus:shuffle(EAR.filter(e=>e!==focus&&(S.ear[e.id]||[]).length))[0];
+    const pair=c.pairs[Math.floor(Math.random()*c.pairs.length)];const k=Math.random()<.5?0:1;const target=pair[k];
+    const s=shell('Vilket ord hör du?','Sound '+(n+1)+' of '+TOTAL+' · '+c.name+' ('+c.en+')');
+    s.append(node('p',c.tip,'muted'));
+    const play=button('🔊 Lyssna igen',()=>say(target),'');const r0=node('div',undefined,'row center');r0.append(play);s.append(r0);
+    const pr=node('div',undefined,'pair');const fb=node('div','','fb');let done=false;
+    pair.forEach((w,i)=>{const b=sv('button',w);b.type='button';b.onclick=()=>{if(done)return;done=true;const right=i===k;earStats(c.id).push(right?1:0);if(S.ear[c.id].length>40)S.ear[c.id]=S.ear[c.id].slice(-40);save();n++;if(right)ok++;b.className=right?'right':'wrong';pr.children[k].className='right';fb.textContent=right?'Rätt! ✓':'Det var “'+target+'”.';fb.className='fb '+(right?'ok':'no');
+      const cmp=node('div',undefined,'row center');cmp.append(node('span','Compare:','muted'),button('🔊 '+pair[0],()=>say(pair[0])),button('🔊 '+pair[1],()=>say(pair[1])));s.append(cmp);const nx=node('div',undefined,'row center');nx.append(button('Nästa →',trial,'primary'));s.append(nx)};pr.append(b)});
+    s.append(pr,fb);say(target);
+  }
+  trial();
+}
+function chips(){const c=node('div',undefined,'chips');const f=EAR.find(e=>!earPassed(e.id));EAR.forEach(e=>{const a=(S.ear[e.id]||[]).slice(-20);c.append(node('span',(earPassed(e.id)?'✓ ':'')+e.name+(a.length?' '+a.filter(Boolean).length+'/'+a.length:''),earPassed(e.id)?'pass':e===f?'cur':''))});return c}
+
+/* ---------- card renderers ---------- */
+function think(btn){btn.disabled=true;setTimeout(()=>btn.disabled=false,1800)}
+function showCard(c,done){
+  const s=stage();
+  if(c.kind==='comp')return compCard(s,c,done);if(c.kind==='prod')return prodCard(s,c,done);if(c.kind==='spell')return spellCard(s,c,done);if(c.kind==='cloze')return clozeCard(s,c,done);return echoCard(s,c,done);
+}
+function nextRow(done,ok){const r=node('div',undefined,'row center');const b=button('Nästa →',()=>done(ok),'primary');r.append(b);setTimeout(()=>b.focus(),50);return r}
+function compCard(s,c,done){
+  const w=c.w,right=picOf(w);s.append(node('p','Which picture is it?','label'));const h=node('div',undefined,'word');h.append(sv('span',w),sayBtn(w));s.append(h);
+  const pool=shuffle(Object.keys(S.words).filter(x=>x!==w).map(picOf).filter(p=>p!==right));
+  while(pool.length<3){const x=LEX[Math.floor(Math.random()*LEX.length)];if(x.sv!==w&&!pool.includes(x.pics[0])&&x.pics[0]!==right)pool.push(x.pics[0])}
+  const opts=shuffle([right].concat(pool.slice(0,3)));const g=node('div',undefined,'grid4');const fb=node('div','','fb');let ans=false;
+  opts.forEach(p=>{const b=button(p,()=>{if(ans)return;ans=true;const ok=p===right;b.className=ok?'right':'wrong';Array.from(g.children).forEach(x=>{if(x.textContent===right)x.className='right'});fb.textContent=ok?'Rätt! ✓':'Det här är '+w+'.';fb.className='fb '+(ok?'ok':'no');say(w);s.append(nextRow(done,ok))});g.append(b)});
+  s.append(g,fb);say(w);
+}
+function prodCard(s,c,done){
+  const w=c.w,lx=LEXI.get(w);s.append(node('p','Say the word out loud — with en or ett!','label'),node('div',picOf(w),'pic'));
+  if(S.words[w]&&S.words[w].tag)s.append(node('div',S.words[w].tag,'tag'));if(lx&&lx.clue)s.append(sv('div',lx.clue,'clue'));
+  const r=node('div',undefined,'row center');const show=button('Visa svaret',()=>{r.remove();const h=node('div',undefined,'word');h.append(sv('span',w),sayBtn(w));s.append(h);say(w);selfGrade(s,done)},'primary');think(show);r.append(show);s.append(r);
+}
+function selfGrade(s,done){const r=node('div',undefined,'row center');r.append(button('✗ Inte än',()=>done(false)),button('✓ Jag kunde det',()=>done(true),'good'));s.append(node('p','Did you remember it?','muted center'),r)}
+function spellCard(s,c,done){
+  const w=c.w;s.append(node('p','Listen and write the word','label'),node('div',picOf(w),'pic'));const r0=node('div',undefined,'row center');r0.append(button('🔊 Lyssna',()=>say(w)));s.append(r0);
+  const inp=node('input',undefined,'spell');inp.lang='sv';inp.autocomplete='off';inp.setAttribute('autocapitalize','off');inp.setAttribute('autocorrect','off');inp.spellcheck=false;inp.setAttribute('aria-label','Write the word');
+  const r=node('div',undefined,'row center');r.append(inp);s.append(r);const lt=node('div',undefined,'row center');['å','ä','ö'].forEach(ch=>lt.append(button(ch,()=>{inp.value+=ch;inp.focus()})));s.append(lt);
+  const fb=node('div','','fb');const go=button('Check',check,'primary');const r2=node('div',undefined,'row center');r2.append(go);s.append(r2,fb);
+  inp.onkeydown=e=>{if(e.key==='Enter')check()};let fin=false;
+  function check(){if(fin)return;const v=norm(inp.value);if(!v){fb.textContent='Write the word first.';return}fin=true;const ok=v===norm(w)||v===norm(bare(w));fb.textContent=ok?'Rätt! ✓ '+w:'It is written: '+w;fb.className='fb '+(ok?'ok':'no');say(w);go.remove();s.append(nextRow(done,ok))}
+  say(w);setTimeout(()=>inp.focus(),100);
+}
+function clozeHTML(full,blank,reveal){const p=sv('div',undefined,'cloze');const i=full.indexOf(blank);if(i<0){p.textContent=full;return p}p.append(document.createTextNode(full.slice(0,i)));if(reveal)p.append(node('mark',blank));else p.append(node('span',' ','gap'));p.append(document.createTextNode(full.slice(i+blank.length)));return p}
+function clozeCard(s,c,done){
+  s.append(node('p','Which word is missing? Say it, then check.'+(c.src?' · '+c.src:''),'label'));let p=clozeHTML(c.full,c.blank,false);s.append(p);
+  const r=node('div',undefined,'row center');r.append(button('💡 Hint: hear the sentence',()=>say(c.full)));const show=button('Visa svaret',()=>{r.remove();const q=clozeHTML(c.full,c.blank,true);p.replaceWith(q);p=q;say(c.full);selfGrade(s,done)},'primary');think(show);r.append(show);s.append(r);
+}
+function echoCard(s,c,done){
+  s.append(node('p','Listen, then say the sentence yourself.'+(c.src?' · '+c.src:''),'label'));const r=node('div',undefined,'row center');r.append(button('🔊 Lyssna',()=>say(c.full)),button('🐢 Långsamt',()=>say(c.full,.65)));s.append(r);
+  const r2=node('div',undefined,'row center');const show=button('Visa meningen',()=>{r2.remove();s.append(sv('div',c.full,'cloze'));selfGrade(s,done)},'primary');think(show);r2.append(show);s.append(r2);say(c.full);
+}
+
+/* ---------- step 2: review ---------- */
+function runReview(extra){
+  const q=quota();let queue=dueCards().slice(0,extra?20:q.cap);
+  if(extra&&!queue.length){queue=shuffle(Object.values(S.cards).filter(c=>c.box>0)).slice(0,15)}
+  const total=queue.length;let k=0,ok=0;
+  if(!total){const s=shell('Repetera','Nothing to review today.');s.append(node('p','No cards are due yet — new words start in the next step. Cards come back after 1 day, then 3, 9, 21 days…','muted'));const r=node('div',undefined,'row');r.append(button('Next step →',finishStep,'primary'),exitBtn());s.append(r);return}
+  const seen=new Set(),again=new Map();
+  function next(){
+    if(!queue.length){const s=shell('Repetera: klart!');s.append(node('p','You remembered '+ok+' of '+total+' cards on the first try.','fb ok'));const r=node('div',undefined,'row');r.append(extra?button('Back to start',()=>{$('session').hidden=true;$('home').hidden=false;renderHome()},'primary'):button('Next step →',finishStep,'primary'),extra?'':exitBtn());s.append(r);return}
+    const c=queue.shift();shell('Repetera',(total-queue.length)+' / '+total+(queue.length?'':' · last one!'));
+    showCard(c,res=>{if(!seen.has(c.id)){seen.add(c.id);if(res)ok++;grade(c,res)}if(!res&&(again.get(c.id)||0)<2){again.set(c.id,(again.get(c.id)||0)+1);queue.splice(Math.min(3,queue.length),0,c)}next()});
+  }
+  next();
+}
+
+/* ---------- step 3: new ---------- */
+function runNew(){
+  const q=quota();const introducedToday=Object.values(S.words).filter(w=>w.day===T).length;
+  const wordsLeft=Math.max(0,q.newWords-introducedToday);const fresh=LEX.filter(w=>!S.words[w.sv]).slice(0,wordsLeft);
+  const sents=harvest().slice(0,Math.max(0,3-Object.values(S.cards).filter(c=>c.added===T&&(c.kind==='cloze'||c.kind==='echo')).length));
+  const items=fresh.map(w=>({t:'word',w})).concat(sents.map(x=>({t:'sent',x})));
+  const total=items.length;let i=0;
+  if(!total){const s=shell('Nytt','No new cards today.');s.append(node('p',LEX.every(w=>S.words[w.sv])?'You have started every word in the list! New sentence cards come from missions, the Reader and the parent corner.':'You have reached today’s limit. More tomorrow!','muted'));const r=node('div',undefined,'row');r.append(button('Next step →',finishStep,'primary'),exitBtn());s.append(r);return}
+  const retry=[],tries=new Map();const push=c=>{const n=(tries.get(c.id)||0)+1;tries.set(c.id,n);if(n<=2)retry.push(c)};
+  function next(){
+    if(i>=items.length&&!retry.length){finishStep();return}
+    if(i>=items.length){const c=retry.shift();shell('Nytt: en gång till','Try this one again.');showCard(c,res=>{if(!res)push(c);next()});return}
+    const it=items[i++];
+    if(it.t==='word')introWord(it.w);else introSent(it.x);
+  }
+  function introWord(w){
+    const s=shell('Nytt ord',i+' / '+total);const h=node('div',undefined,'word');h.append(sv('span',w.sv),sayBtn(w.sv));s.append(h);if(w.clue)s.append(sv('div',w.clue,'clue'));
+    s.append(node('p',w.pics.length>1?'Which picture fits best for you? Tap it.':'Look at the picture and listen.','muted center'));
+    const o=node('div',undefined,'opts');let pick=w.pics.length===1?w.pics[0]:null;
+    w.pics.forEach(p=>{const b=button(p,()=>{pick=p;Array.from(o.children).forEach(x=>x.classList.toggle('selected',x===b));step2()});if(w.pics.length===1)b.classList.add('selected');o.append(b)});s.append(o);say(w.sv);
+    const tagRow=node('div',undefined,'row center');const tag=node('input');tag.type='text';tag.placeholder='Optional: who or what do you think of?';tag.setAttribute('aria-label','Personal note');tag.maxLength=40;tagRow.append(tag);
+    const go=button('Got it →',()=>{if(!pick){toast('Tap a picture first');return}S.words[w.sv]={pic:pick,tag:tag.value.trim(),day:T};save();
+      const comp=addCard({id:'w:'+w.sv+':comp',kind:'comp',w:w.sv}),prod=addCard({id:'w:'+w.sv+':prod',kind:'prod',w:w.sv});
+      // one immediate recall, then the cards wait until tomorrow
+      shell('Kommer du ihåg?',i+' / '+total);showCard(prod,res=>{prod.box=1;prod.due=T+1;comp.box=1;comp.due=T+1;S.log.push([T,res?1:0]);save();if(!res)push(prod);next()})},'primary');
+    function step2(){if(!tagRow.isConnected){s.append(tagRow);const r=node('div',undefined,'row center');r.append(go);s.append(r)}}
+    if(pick)step2();
+  }
+  function introSent(x){
+    const s=shell('Ny mening',i+' / '+total+(x.src?' · '+x.src:''));s.append(sv('div',x.full,'cloze'));const r=node('div',undefined,'row center');r.append(button('🔊 Lyssna',()=>say(x.full)),button('🐢 Långsamt',()=>say(x.full,.65)));s.append(r,node('p','Read it out loud after the voice. Then you will practise it.','muted center'));say(x.full);
+    const r2=node('div',undefined,'row center');r2.append(button('Practise it →',()=>{const c=addCard(x);shell('Kommer du ihåg?',i+' / '+total);showCard(c,res=>{c.box=1;c.due=T+1;S.log.push([T,res?1:0]);save();if(!res)push(c);next()})},'primary'));s.append(r2);
+  }
+  next();
+}
+
+/* ---------- step 4: mission ---------- */
+function missionInfo(){const L=Array.isArray(window.LESSONS)?window.LESSONS.filter(Boolean):[];const ms=readLS('swedish-missions-v1')||{solved:[],boss:[]};const solved=new Set(ms.solved||[]);const i=L.findIndex((u,ui)=>!(u.tasks.every((t,ti)=>solved.has(ui+'-'+ti))&&(ms.boss||[]).includes(ui)));return{L,i,count:solved.size}}
+function runMission(){
+  const mi=missionInfo();const s=shell('Uppdrag','Do one part of your mission (words, story or challenges) — about 5 minutes.');
+  if(mi.i>=0){const u=mi.L[mi.i];s.append(node('h3','Next: '+u.title+' · '+u.sv),node('p',u.intro))}
+  if(S.missionBase===undefined||S.missionDay!==T){S.missionBase=mi.count;S.missionDay=T;save()}
+  const r=node('div',undefined,'row');const a=node('a');a.href='index.html#missions';a.append(button('Open the mission →',()=>{},'primary'));r.append(a,button('✓ I did it',finishStep),button('Skip today',finishStep),exitBtn());s.append(r);
+  s.append(node('p','The challenges you solve become review cards here — so the sentences come back until you know them.','muted'));
+}
+window.addEventListener('pageshow',()=>{try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.v===1)S=Object.assign(fresh(),s)}catch(e){}if(!$('session').hidden&&STEPS[stepIdx][0]==='mission'&&missionInfo().count>(S.missionBase||0)){toast('Mission progress saved ✓');finishStep()}else if($('session').hidden)renderHome()});
+
+/* ---------- step 5: say ---------- */
+function runSay(){
+  const p=PROMPTS[T%PROMPTS.length];const s=shell(p[0]);s.firstChild.nextSibling.append(' ',sayBtn(p[0]));s.append(node('p',p[1],'muted'),node('p','Say your answer out loud first. Then write it. A parent will correct it, and the corrected sentence becomes a card.','muted'));
+  const ch=node('div',undefined,'chips');const ta=node('textarea');ta.lang='sv';ta.placeholder='Skriv här …';
+  p[2].forEach(x=>ch.append(button(x+' …',()=>{ta.value+=(ta.value&&!/\s$/.test(ta.value)?' ':'')+x+' ';ta.focus()})));
+  s.append(ch,ta);const r=node('div',undefined,'row');r.append(button('Save ✓',()=>{const t=ta.value.trim();if(t.length<3){toast('Write at least a few words.');return}S.out.push({d:T,q:p[0],text:t,corr:null});save();toast('Saved — a parent will check it');finishStep()},'primary'),button('Skip today',finishStep),exitBtn());s.append(r);
+}
+
+/* ---------- parent corner ---------- */
+function renderInbox(){const box=$('inbox');box.replaceChildren();const open=S.out.map((o,i)=>[o,i]).filter(([o])=>o.corr===null);$('inboxcount').textContent=open.length?'('+open.length+' waiting)':'';
+  if(!open.length){box.append(node('p','Nothing waiting.','muted'));return}
+  open.forEach(([o,i])=>{const d=node('div',undefined,'item');d.append(node('p',dayStr(o.d)+' · '+o.q,'muted'),sv('p',o.text));const inp=node('input');inp.type='text';inp.value=o.text;inp.lang='sv';inp.style.width='100%';inp.setAttribute('aria-label','Corrected sentence');
+    const r=node('div',undefined,'row');r.append(button('Save as card',()=>{const t=inp.value.trim();if(!t)return;o.corr=t;S.extra.push(fromBrackets(t,'Min mening','o:'+i+':'+Date.now()));save();renderInbox();toast('Card added — it will come in the next session')},'primary'),button('Dismiss',()=>{o.corr='';save();renderInbox()}));d.append(inp,r);box.append(d)})}
+$('qadd').onclick=()=>{const t=$('qa').value.trim();if(t.length<3)return;S.extra.push(fromBrackets(t,'Egen','q:'+Date.now()));save();$('qa').value='';toast('Card added — it will come in the next session')};
+$('setNew').value=String(S.set.newWords);$('setCap').value=String(S.set.cap);
+$('setNew').onchange=()=>{S.set.newWords=Number($('setNew').value);save();renderHome()};$('setCap').onchange=()=>{S.set.cap=Number($('setCap').value);save();renderHome()};
+$('export').onclick=()=>{const u=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'}));const a=node('a');a.href=u;a.download='swedish-today-backup-'+dayStr(T)+'.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1500)};
+$('import').onchange=async e=>{try{const f=e.target.files[0];if(!f)return;const s=JSON.parse(await f.text());if(!s||s.v!==1||typeof s.cards!=='object'||typeof s.words!=='object')throw Error();if(!confirm('Replace current progress with this backup?'))return;S=Object.assign(fresh(),s);save();renderHome();toast('Backup restored')}catch(err){toast('That is not a valid backup file.')}};
+$('reset').onclick=()=>{if(!confirm('Delete all progress on this page and start over?'))return;S=fresh();save();renderHome()};
+$('start').onclick=openSession;
+renderHome();
+</script></body></html>
