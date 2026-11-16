@@ -1,0 +1,320 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Swedish Studies · Reader</title><style>
+:root{--bg:#f7f3e9;--ink:#203536;--muted:#526665;--accent:#a53e23;--line:#c8cec3;--wash:#e7eddf;--good:#2f6b45;--key:#f6e3a1;--r:14px}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 'Trebuchet MS',Arial,sans-serif}button,input,select,textarea{font:inherit;color:inherit}button,a,input,select,label,.w,.s{touch-action:manipulation}button{border:1px solid var(--line);border-radius:var(--r);background:transparent;padding:10px 16px;cursor:pointer}button:hover{background:var(--wash)}button:disabled{opacity:.45;cursor:default}button.primary,button.selected{background:var(--accent);border-color:var(--accent);color:white}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}a{color:var(--accent)}
+header,main,footer{max-width:1000px;margin:auto;padding:24px}header{display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid var(--line);flex-wrap:wrap}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0}
+h1{font-size:clamp(40px,7vw,70px);line-height:1.04;letter-spacing:-.05em;margin:16px 0;text-wrap:balance}h2{font-size:29px;line-height:1.15;letter-spacing:-.025em;margin:6px 0 10px}h3{font-size:21px;margin:20px 0 8px}p{max-width:68ch;text-wrap:pretty}
+.label{font-size:12px;text-transform:uppercase;letter-spacing:.13em;font-weight:bold;color:var(--muted)}.muted{color:var(--muted)}[hidden]{display:none!important}
+section{padding:26px 0;border-top:1px solid var(--line);scroll-margin-top:12px}.band{background:var(--wash);border-radius:var(--r);padding:18px 20px}
+textarea{width:100%;min-height:200px;background:white;border:2px solid var(--line);border-radius:var(--r);padding:12px;font-size:17px;line-height:1.5}
+select{padding:9px;border:1px solid var(--line);border-radius:var(--r);background:white}
+.say{padding:6px 10px;font-size:16px;line-height:1;flex:none}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}.modes button{padding:10px;line-height:1.25}.modes small{display:block;font-size:13px;opacity:.9}
+.text{background:#fffdf7;border:1px solid var(--line);border-radius:var(--r);padding:clamp(16px,4vw,34px);font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:1.85}
+.text p{margin:0 0 .9em;max-width:none}.s{border-radius:6px;transition:background .15s}.keys .s{cursor:pointer}.keys .s:hover{background:var(--wash)}.s.key{background:var(--key);box-shadow:0 0 0 2px var(--key)}
+.w{cursor:pointer;border-radius:4px}.words .w:hover{background:var(--wash)}.w.g{text-decoration:underline dotted #8aa29a;text-underline-offset:5px}.w.saved{text-decoration:underline solid var(--accent) 2px;text-underline-offset:5px}.w.on{background:#cfe0d6}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:20;background:#fffdf7;border-top:2px solid var(--ink);box-shadow:0 -8px 24px rgba(0,0,0,.12);padding:16px 20px 22px;max-height:60vh;overflow:auto}.sheet .in{max-width:900px;margin:auto}.sheet .big{font-size:28px;font-weight:bold;display:flex;gap:12px;align-items:center;flex-wrap:wrap}.sheet .en{font-size:21px;margin:4px 0}.sheet .ctx{font-family:Georgia,serif;color:var(--muted)}.sheet input{padding:9px;border:1px solid var(--line);border-radius:10px;min-width:220px}
+.events{list-style:none;padding:0;margin:10px 0}.events li{padding:10px 0;border-bottom:1px solid var(--line);display:flex;gap:12px}.events b.ok{color:var(--good)}.events b.no{color:var(--accent)}
+.chosen{font-family:Georgia,serif;font-size:19px}.chosen li{margin:6px 0}
+.wl{display:grid;gap:0}.wl .it{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}.wl .it .t{flex:1}.wl .it b{font-size:19px}.wl .it .c{font-family:Georgia,serif;font-size:15px;color:var(--muted)}.hide-en .wl .en2{visibility:hidden}.hide-en .wl .it.show .en2{visibility:visible}
+.card{border:2px solid var(--ink);border-radius:var(--r);padding:28px;text-align:center;background:#fffdf7;min-height:190px;cursor:pointer}.card .sv{font-size:34px;font-weight:bold}.card .en{font-size:22px;color:var(--muted);margin-top:10px}
+.q{padding:14px 0;border-bottom:1px solid var(--line)}.q .qt{display:flex;gap:10px;align-items:center;font-weight:bold;font-size:19px}.q textarea{min-height:80px}.ans{background:var(--wash);border-radius:var(--r);padding:12px 16px;margin:8px 0}
+.gl{columns:2;column-gap:28px}.gl div{break-inside:avoid;padding:5px 0;border-bottom:1px solid var(--line);display:flex;gap:8px;align-items:center}.gl div span.e{color:var(--muted);margin-left:auto;text-align:right;font-size:15px}
+#toast{position:fixed;left:50%;top:20px;transform:translateX(-50%);background:var(--ink);color:white;padding:12px 18px;border-radius:var(--r);max-width:min(92vw,520px);z-index:30;font-size:15px}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-bottom:40vh}
+/* Main navigation */
+header nav{display:flex;flex-wrap:wrap;gap:8px 18px}header nav a{padding:6px 0;text-decoration:none;font-size:14px;font-weight:normal}header nav a[aria-current="page"]{color:var(--ink);font-weight:bold;border-bottom:2px solid var(--accent)}header nav a:hover{text-decoration:underline}
+.page-shortcuts{display:flex;align-items:center;flex-wrap:wrap;gap:8px 18px;padding:16px 0;font-size:14px}.page-shortcuts>span{color:var(--muted);font-size:11px;font-weight:bold;letter-spacing:.1em;text-transform:uppercase}.page-shortcuts a{color:var(--muted);text-underline-offset:4px}.page-shortcuts a:hover{color:var(--accent)}
+@media(max-width:700px){header,main,footer{padding:18px}header{align-items:flex-start}header nav{width:100%}.page-shortcuts>span{flex-basis:100%}.text{font-size:20px}.gl{columns:1}}
+</style></head><body><header>
+  <strong>SWEDISH / STUDIES</strong>
+  <nav aria-label="Main navigation">
+    <a href="index.html">Missions</a>
+    <a href="school-books.html">School Books</a>
+    <a href="reading-coach.html">Reading Coach</a>
+    <a href="kemi.html">Kemi</a>
+    <a href="reader.html" aria-current="page">Reader</a>
+  </nav>
+</header><main>
+<div class="label">Reader · read, understand, collect words</div>
+<div class="row"><label>Chapter <select id="chapter"></select></label></div>
+<h1 id="ctitle"></h1><p id="cintro"></p>
+<nav class="page-shortcuts" aria-label="On this page"><span>On this page</span><a href="#paste">Add the text</a><a href="#read">Read</a><a href="#summary">Key sentences</a><a href="#mywords">My words</a><a href="#questions">Questions</a><a href="#chapterwords">Chapter words</a></nav>
+
+<section id="paste"><div class="label">01 · Add the text</div><h2>Put the book text here.</h2>
+<details id="pastebox"><summary id="pastesum">Paste the pages</summary>
+<div class="band"><p><b>Quickest on iPad:</b> open a page screenshot in Photos → touch and hold the text → <b>Select All</b> → <b>Copy</b>. Paste it below. Do this page by page, in order.</p><p class="muted">The text is saved only in this browser on this device. It is never uploaded or published.</p></div>
+<textarea id="src" lang="sv" placeholder="Paste the chapter text here …" spellcheck="false"></textarea>
+<div class="row"><button id="clean">🧹 Clean up the text</button><button id="use" class="primary">Use this text →</button><button id="cleartext">Delete text</button></div>
+<p class="muted">Clean up joins words split across lines (mot-ståndarens → motståndarens) and removes page numbers. Check the result, then press “Use this text”.</p>
+</details><p id="pastestatus" class="muted"></p></section>
+
+<section id="read"><div class="label">02 · Read</div><h2>Read and tap.</h2>
+<div class="modes" role="group" aria-label="Reading mode"><button id="mWords"><b>📖 Ord</b><small>Tap a word → meaning</small></button><button id="mKeys"><b>⭐ Viktiga meningar</b><small>Tap sentences that tell the story</small></button></div>
+<div class="row"><button id="readall">▶ Read the text aloud</button><button id="stop">Stop</button><span class="muted" id="modehelp"></span></div>
+<div id="text" class="text words" lang="sv"><p class="muted" style="font-family:inherit;font-size:17px">Add the text in step 01 first.</p></div>
+<p class="muted">Dotted underline = word in the chapter list. Red underline = a word you saved.</p></section>
+
+<section id="summary"><div class="label">03 · Key sentences</div><h2>Which sentences tell the whole story?</h2>
+<p>In ⭐ mode, mark the sentences that together tell what happens in the text — about one sentence for each important event, 5–8 in total. Then check.</p>
+<div class="row"><button id="checkkeys" class="primary">Check my sentences</button><button id="clearkeys">Clear my marks</button></div>
+<div id="keyresult"></div></section>
+
+<section id="mywords"><div class="label">04 · My words</div><h2>Words I collected</h2>
+<div class="row"><button id="flash">🃏 Practise with flashcards</button><label><input type="checkbox" id="hideen"> Hide English — test yourself</label><button id="hearwords">▶ Hear all</button></div>
+<div id="flashbox" hidden></div>
+<div id="wordlist"></div>
+<div class="row"><button id="copywords">Copy list</button><button id="csv">Download (CSV)</button><button id="clearwords">Delete all</button></div></section>
+
+<section id="questions"><div class="label">05 · Questions</div><h2>Do you understand the text?</h2><p>Answer in Swedish if you can (English is OK too). Then compare with the model answer.</p><div id="qs"></div></section>
+
+<section id="chapterwords"><div class="label">06 · Chapter words</div><h2>All words for this chapter</h2><p class="muted">Good to go through before reading. Tap ＋ to add a word to My words.</p><div class="row"><button id="hearall">▶ Hear all</button></div><div id="gl" class="gl"></div></section>
+
+<details class="noprint"><summary>Voice for 🔊 buttons</summary><div class="row"><label>Voice <select id="voice"></select></label><label>Speed <select id="rate"><option value="1">Normal</option><option value="0.9" selected>A little slower</option><option value="0.75">Slow</option></select></label><button id="voicetest">🔊 Test</button></div><p id="voicenote" class="muted"></p></details>
+</main>
+<div id="sheet" class="sheet" hidden role="dialog" aria-label="Word"><div class="in" id="sheetin"></div></div>
+<div id="toast" role="status" hidden></div>
+<footer>Swedish Studies · Reader. The book text is not part of this site: you paste it in, and it stays in this browser. Word meanings, key events and questions are written for study use.</footer>
+<script>
+/* Study packs for the reader. The book text itself is NOT included: the learner
+   pastes it in on their own device. Packs hold word glosses, key events
+   (in our own words) and questions with model answers (in our own words). */
+const CHAPTERS=[{
+id:'gamer-7',book:'Gamer',title:'Kapitel 7 · Nattmatch',pages:'44–47',
+intro:'Lionel can’t stop thinking about Golden Goal. In the middle of the night he sneaks down to play — but will anyone notice?',
+/* [shown word, English, extra forms that appear in texts...] — matched case-insensitively.
+   Multi-word entries are matched as phrases before single words. */
+gloss:[
+['vilar','rests','vila'],['mot kudden','against the pillow','kudden','kudde'],['lyssnar efter','listens for','lyssnar'],['ljud','sound(s)'],
+['forsar','rushes, gushes'],['rören','the pipes','rör'],['badrummet','the bathroom'],['sen','then, later'],['steg','steps, footsteps'],['utanför','outside'],
+['kniper igen ögonen','squeezes his eyes shut','kniper igen','kniper'],['gnisslar till','gives a creak','gnisslar'],['öppnas','is opened'],['kisar','squints'],
+['anar','can just make out'],['dörröppningen','the doorway'],['kollar','checks'],['säkert','probably, surely'],['att han sover','that he is sleeping','sover'],
+['innan','before'],['morgondagens','tomorrow’s'],['Kungscupen','the King’s Cup (a football tournament)'],['försöker','tries'],
+['andas','breathe'],['jämnt och lugnt','evenly and calmly','jämnt','lugnt'],['täcket','the duvet','täcke'],['höjer sig','rises'],['i takt','in rhythm'],
+['stängs','is closed'],['igen','again / shut'],['Puh!','Phew!'],['stirrar','stares'],['mörkret','the darkness','mörker'],['bultande hjärta','pounding heart','bultande','hjärta'],
+['tänker på','thinks about','tänker'],['första gången','the first time'],['hade fått','had got (been given)'],['en sponsor','a sponsor','sponsor'],
+['kastade','threw'],['en kartong','a cardboard box','kartong','kartongen'],['ställde in','put away (in)'],['ett hörn','a corner','hörn'],['källaren','the basement','källare'],
+['hittade','found'],['av en slump','by chance'],['letade efter','was looking for','letade'],['skridskor','ice skates'],['hade hört talas om','had heard about','hört talas om'],
+['brydde sig inte ett smack om','didn’t care one bit about','brydde sig'],['tv-spel','video games'],['visste knappt','hardly knew','visste'],['ändå','still, anyway'],
+['blev fast','got hooked'],['höll','held'],['kontrollen','the controller'],['styra','control, steer'],['ett helt lag','a whole team'],['genom att','by (doing)'],
+['trycka','press'],['knappar','buttons'],['köpa spelare','buy players'],['tänka ut','think up, plan'],['taktik','tactics'],['göra finter','do tricks (feints)','finter'],
+['publiken','the crowd'],['skriker','shouts, screams'],['för full hals','at the top of their voices'],['titta på andra','watch others'],['chatta','chat'],
+['det enda','the only'],['i julas','last Christmas'],['önskade sig','wished for'],['istället','instead','i stället'],['träningskläder','training clothes'],
+['biljetter','tickets'],['allsvenska matcher','matches in the top Swedish league','allsvenska'],['paketen','the presents','paket'],['granen','the Christmas tree','gran'],
+['hörs','is heard, can be heard'],['röster','voices'],['sovrummet','the bedroom'],['längre','any longer'],['kvart över tolv','quarter past twelve'],['reser sig','gets up'],
+['plankorna','the floorboards'],['knarrar','creak'],['smyger','sneaks'],['golvet','the floor'],['så mörkt','so dark'],['knappt','hardly, barely'],
+['handen framför sig','his hand in front of him'],['sätter på','turns on'],['tv:n','the TV'],['lyser upp','lights up'],['vardagsrummet','the living room','vardagsrum'],
+['sänker volymen','turns the volume down','sänker'],['till noll','to zero'],['klickar fram','clicks up, brings up'],['allt som hörs','all you can hear'],['regnet','the rain'],
+['slår mot rutan','beats against the window','rutan'],['en åskknall','a clap of thunder','åskknall'],['i fjärran','in the distance'],['gäspar','yawns'],
+['så att det knakar','so that his jaw cracks','knakar'],['väljer','chooses'],['så länge han vill','as long as he wants'],['eller snarare','or rather','snarare'],['orkar','has the energy, can manage'],
+['spelare','players'],['väntar på','are waiting for'],['signalen','the signal (whistle)'],['vinden blåser','the wind blows','blåser'],['deras hår','their hair'],
+['Och så börjar det!','And off it goes!'],['matcher','matches'],['mitt i natten','in the middle of the night'],['amerikaner','Americans'],['inloggade','logged in'],
+['mål','goal (in football) / aim','målet'],['träna in','practise until you can do it'],['nya finter','new tricks'],['testa','test, try'],['sombrerofinten','the sombrero trick'],
+['chippar','chips (lifts) the ball'],['bollen','the ball'],['motståndarens huvud','the opponent’s head','motståndarens'],['visa upp','show off'],['får chansen','gets the chance'],['möta','meet, play against'],
+['svårt','hard, difficult'],['kastas in i','is thrown into, gets lost in'],['glömmer','forgets'],['står','stands'],['planen','the pitch'],['lyckas med','succeeds with'],
+['en rusande back','a defender rushing in','rusande','back'],['nu är han fri','now he is free (clear)'],['läktarna','the stands'],['har rest sig','have stood up'],
+['målvakten','the goalkeeper'],['rusar ut','rushes out'],['skruvar bollen','curls the ball','skruvar'],['runt hans ben','around his leg'],['Forza','Go! Come on! (Italian cheer)'],
+['höjer kontrollen','raises the controller'],['en segergest','a victory gesture','segergest'],['plötsligt','suddenly'],['tillbaka','back'],['Vad hände precis?','What just happened?','hände'],
+['skrek','shouted'],['släpande fotsteg','shuffling footsteps','släpande','fotsteg'],['trappan','the stairs'],['Hallå?','Hello?'],['trötta röst','tired voice','trötta'],
+['Är det nån där?','Is anyone there?','nån'],['Tusan också!','Darn it!'],['kvickt som en katt','quick as a cat','kvickt'],['stänger av','turns off'],
+['kastar sig ner','throws himself down'],['medan','while'],['öppnar dörren','opens the door'],['rullar in','rolls in'],['under','under'],['soffbordet','the coffee table'],
+['sin plats','his place','plats'],['fötter','feet'],['letar runt','looks around'],['Minuterna går','The minutes pass','minuterna'],['lunkar','trudges, walks slowly'],
+['köket','the kitchen'],['ett glas vatten','a glass of water'],['känner','feels'],['hur trött','how tired'],['så fort','as soon as'],['gått tillbaka','has gone back'],
+['lägga sig','lie down'],['sängen','the bed'],['då kommer ingen att märka','then nobody will notice','märka'],['varit uppe','been up'],['spelat','played'],
+['blundar','closes his eyes'],['slappnar av','relaxes'],['en mjuk matta','a soft rug','matta','mjuk'],['aldrig','never'],['tänkt på','thought about'],['skön','comfortable'],
+['lägger sig till rätta','settles down, gets comfortable'],['sjunker in i','sinks into'],['det mjuka','the soft (part)'],['bara vila lite','just rest a bit'],
+['sluta ögonen','close his eyes'],['en sekund','a second'],['eller kanske två','or maybe two','kanske'],
+['huvud','head','huvudet'],['dörren','the door','dörr'],['klockan','the clock / the time (Klockan är … = It is …)'],['hemma','at home'],['ingen','nobody, no one'],['inga','no (none)'],
+['själv','himself, by himself'],['låg','lay (was lying)'],['ur','out of'],['hör','hears'],['mammas','Mum’s'],['stänger','shuts (stänger av = turns off)'],
+['lyser','shines (lyser upp = lights up)'],['bordet','the table'],['lägger sig','lies down','lägger'],['genom','through'],['mörkt','dark'],['mest','mostly'],
+['Märta','a name (someone in Lionel’s family)'],['Mälleruda','a football team (made up for the book)'],['LionKings','Lionel’s team in the game'],['Playbox','a games console (made up for the book)']
+],
+/* Key events in our own words. The learner's chosen sentences "cover" an event
+   if they contain one of the keywords (lowercase substring match). */
+events:[
+['Lionel låtsas sova när pappa tittar in.','Lionel pretends to sleep when Dad looks in.',['kudden','andas','kollar','täcket','kniper','dörröppningen']],
+['Han minns hur han hittade spelet och fastnade för det.','He remembers how he found the game and got hooked.',['kartong','källaren','första gången','blev fast','sponsor','skridskor']],
+['Mitt i natten smyger han ner och startar Golden Goal utan ljud.','In the middle of the night he sneaks down and starts Golden Goal with no sound.',['kvart över tolv','smyger','knarrar','volymen','sätter på','klickar fram']],
+['Han tränar sombrerofinten och gör mål.','He practises the sombrero trick and scores.',['sombrerofint','chippar','skruvar','mål!','lyckas']],
+['Han skriker högt, och mamma vaknar och kommer ner.','He shouts out loud, and Mum wakes up and comes down.',['skriker','skrek','fotsteg','trappan','hallå','nån där']],
+['Han gömmer sig under soffbordet.','He hides under the coffee table.',['soffbordet','under bordet','rullar','kastar sig','stänger av']],
+['Han är så trött att han somnar under bordet.','He is so tired that he falls asleep under the table.',['blundar','slappnar','mjuk','sjunker','vila','sluta ögonen','trött han är']]
+],
+questions:[
+['Varför andas Lionel jämnt och lugnt när pappa öppnar dörren?','Why does Lionel breathe evenly and calmly when Dad opens the door?','Han vill att pappa ska tro att han sover.','He wants Dad to think he is asleep.'],
+['Hur hittade Lionel spelet?','How did Lionel find the game?','Pappa hade fått spelet av en sponsor och ställt det i källaren. Lionel hittade det när han letade efter något annat.','Dad had got the game from a sponsor and put it in the basement. Lionel found it while looking for something else.'],
+['Vad fick Lionel i julklapp i stället för spel?','What did Lionel get for Christmas instead of games?','Träningskläder och biljetter till fotbollsmatcher.','Training clothes and tickets to football matches.'],
+['Varför vill Lionel lära sig sombrerofinten?','Why does Lionel want to learn the sombrero trick?','Han vill visa upp den om han får spela mot Jordans_Hjältar igen.','He wants to show it off if he gets to play Jordans_Hjältar again.'],
+['Hur avslöjar Lionel sig själv?','How does Lionel give himself away?','Han gör mål och skriker högt. Då vaknar mamma.','He scores and shouts out loud. That wakes Mum.'],
+['Vad tror du händer på morgonen? Förklara varför.','What do you think happens in the morning? Explain why.','Eget svar. Till exempel: Någon hittar honom under bordet, och han är för trött för matchen i Kungscupen.','Your own answer. For example: someone finds him under the table, and he is too tired for the cup match.']
+]
+}];
+
+'use strict';
+const $=id=>document.getElementById(id);
+const KEY='swedish-reader-v1',VKEY='swedish-missions-voice-v1',RKEY='swedish-missions-rate-v1';
+let S={texts:{},keys:{},words:[],ans:{},ch:CHAPTERS[0].id};try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.texts&&s.keys&&Array.isArray(s.words)&&s.ans)S=Object.assign(S,s)}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast('Browser storage is unavailable — your work stays only while the page is open.')}}
+function node(t,x,c){const n=document.createElement(t);if(x!==undefined)n.textContent=x;if(c)n.className=c;return n}
+function sv(t,x,c){const n=node(t,x,c);n.lang='sv';return n}
+function button(x,f,c){const b=node('button',x,c);b.type='button';b.onclick=f;return b}
+let tt=null;function toast(m){const t=$('toast');t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,3000)}
+
+/* ---------- speech ---------- */
+const synth=window.speechSynthesis||null;let voices=[];
+function vscore(v){const n=(v.name+' '+v.voiceURI).toLowerCase();let s=0;if(n.includes('premium'))s+=50;if(n.includes('enhanced'))s+=40;if(n.includes('natural')||n.includes('neural'))s+=40;else if(n.includes('online'))s+=20;return s}
+function loadVoices(){if(!synth){note();return}const l=synth.getVoices().filter(v=>/^sv([-_]|$)/i.test(v.lang));if(!l.length&&voices.length)return;voices=l.sort((a,b)=>vscore(b)-vscore(a)||a.name.localeCompare(b.name));const sel=$('voice');let want=sel.value;if(!want){try{want=localStorage.getItem(VKEY)||''}catch(e){}}sel.replaceChildren();if(!voices.length){const o=node('option','No Swedish voice found');o.value='';sel.append(o)}else voices.forEach(v=>{const o=node('option',v.name+(vscore(v)>=40?' ★':''));o.value=v.voiceURI;sel.append(o)});if(voices.some(v=>v.voiceURI===want))sel.value=want;note()}
+function cur(){return voices.find(v=>v.voiceURI===$('voice').value)||voices[0]}
+function note(){$('voicenote').textContent=!synth?'This browser cannot play speech.':!voices.length?'No Swedish voice found. Install one in the device settings (Accessibility → Spoken Content → Voices → Swedish).':'Using '+cur().name+'.'}
+function utter(t,r){const v=cur(),u=new SpeechSynthesisUtterance(t);u.voice=v;u.lang=v.lang;u.rate=r||Number($('rate').value)||0.9;return u}
+function say(t,r){if(!synth||!voices.length){toast('No Swedish voice on this device — see “Voice for 🔊” at the bottom.');return}synth.cancel();setTimeout(()=>{try{synth.resume()}catch(e){}synth.speak(utter(t,r))},120)}
+function sayAll(l,each){if(!synth||!voices.length){toast('No Swedish voice on this device.');return}synth.cancel();setTimeout(()=>{try{synth.resume()}catch(e){}l.forEach((t,i)=>{const u=utter(t);if(each)u.onstart=()=>each(i);synth.speak(u)})},120)}
+function sayBtn(t,lab){const b=button(lab||'🔊',e=>{e.stopPropagation();say(t)},'say');b.setAttribute('aria-label','Listen: '+t);return b}
+if(synth){loadVoices();if('onvoiceschanged' in synth)synth.onvoiceschanged=loadVoices;[300,1000,2500].forEach(ms=>setTimeout(loadVoices,ms))}else note();
+$('voice').onchange=()=>{try{localStorage.setItem(VKEY,$('voice').value)}catch(e){}note()};
+try{const r=localStorage.getItem(RKEY);if(r)$('rate').value=r}catch(e){}
+$('rate').onchange=()=>{try{localStorage.setItem(RKEY,$('rate').value)}catch(e){}};$('voicetest').onclick=()=>say('Lionel smyger över golvet.');
+let unlocked=false;document.addEventListener('pointerdown',()=>{if(unlocked||!synth)return;unlocked=true;const u=new SpeechSynthesisUtterance(' ');u.volume=0;synth.speak(u)},{capture:true});
+
+/* ---------- chapter + glossary ---------- */
+let C=null,GL=new Map(),MAXP=1;
+const low=s=>s.normalize('NFC').toLocaleLowerCase('sv').replace(/[!?.,;:”"’']+$/,'').replace(/^[”"’']+/,'');
+function setChapter(id){
+  C=CHAPTERS.find(c=>c.id===id)||CHAPTERS[0];S.ch=C.id;save();GL=new Map();MAXP=1;
+  C.gloss.forEach(e=>{const ent={sv:e[0],en:e[1]};[e[0]].concat(e.slice(2)).forEach(f=>{const k=f.split(/\s+/).map(low).join(' ');if(!GL.has(k))GL.set(k,ent);MAXP=Math.max(MAXP,k.split(' ').length)})});
+  $('ctitle').textContent=C.book+' · '+C.title;$('cintro').textContent=C.intro+' (pages '+C.pages+')';
+  $('src').value=S.texts[C.id]||'';$('pastebox').open=!S.texts[C.id];
+  renderText();renderWords();renderQs();renderGloss();$('keyresult').replaceChildren();
+}
+CHAPTERS.forEach(c=>{const o=node('option',c.book+' · '+c.title);o.value=c.id;$('chapter').append(o)});$('chapter').value=S.ch;$('chapter').onchange=()=>setChapter($('chapter').value);
+
+/* ---------- paste + clean ---------- */
+function clean(t){
+  return t.replace(/\r\n?/g,'\n').replace(/[ \t]+\n/g,'\n')
+   .split('\n').filter(l=>!/^\s*\d{1,4}\s*$/.test(l)).join('\n')
+   .replace(/(\p{L})[-­]\n\s*(\p{Ll})/gu,'$1$2')
+   .replace(/\n{2,}/g,'\u0000').replace(/\n/g,' ').replace(/\u0000/g,'\n\n')
+   .replace(/[ \t]{2,}/g,' ').trim();
+}
+$('clean').onclick=()=>{$('src').value=clean($('src').value);toast('Cleaned. Check the text, then press “Use this text”.')};
+$('use').onclick=()=>{const t=$('src').value.trim();if(!t){toast('Paste the text first.');return}if(t.length>60000){toast('That is very long — paste one chapter at a time.');return}S.texts[C.id]=/\n(?!\n)/.test(t)?clean(t):t;$('src').value=S.texts[C.id];S.keys[C.id]=[];save();$('pastebox').open=false;renderText();$('read').scrollIntoView()};
+$('cleartext').onclick=()=>{if(!confirm('Delete the text for this chapter from this device?'))return;delete S.texts[C.id];S.keys[C.id]=[];save();$('src').value='';renderText()};
+
+/* ---------- render text ---------- */
+let mode='words',sentences=[];
+function sentencesOf(p){if(window.Intl&&Intl.Segmenter)return Array.from(new Intl.Segmenter('sv',{granularity:'sentence'}).segment(p),x=>x.segment).filter(x=>x.trim());return p.match(/[^.!?…]+(?:[.!?…]+[”"’]?\s*|$)/g)||[p]}
+function renderText(){
+  const box=$('text');box.replaceChildren();sentences=[];const txt=S.texts[C.id];
+  $('pastesum').textContent=txt?'Edit the text':'Paste the pages';
+  $('pastestatus').textContent=txt?'Text added: '+txt.split(/\s+/).length+' words. Tap “Edit the text” to change it.':'';
+  if(!txt){box.append(node('p','Add the text in step 01 first.','muted'));return}
+  const saved=new Set(S.words.map(w=>low(w.form)));const keys=new Set(S.keys[C.id]||[]);
+  txt.split(/\n{2,}/).forEach(par=>{const p=node('p');
+    sentencesOf(par).forEach(st=>{const si=sentences.length;sentences.push(st.trim());const span=node('span',undefined,'s'+(keys.has(si)?' key':''));span.dataset.i=si;
+      const parts=st.split(/([\p{L}\p{N}][\p{L}\p{N}_:'’-]*[\p{L}\p{N}]|[\p{L}\p{N}])/u);
+      const toks=[];for(let i=0;i<parts.length;i++){if(i%2===1)toks.push({w:parts[i]});else if(parts[i])toks.push({sep:parts[i]})}
+      const wi=toks.map((t,i)=>t.w!==undefined?i:-1).filter(i=>i>=0);
+      let k=0;
+      while(k<wi.length){
+        let len=Math.min(MAXP,wi.length-k),hit=null;
+        for(;len>=1;len--){const ws=wi.slice(k,k+len).map(i=>low(toks[i].w)).join(' ');if(GL.has(ws)){hit=GL.get(ws);break}if(len===1)break}
+        if(!hit)len=1;
+        const from=wi[k],to=wi[k+len-1];
+        // append separators before this word group
+        const prevEnd=k===0?-1:wi[k-1];for(let j=prevEnd+1;j<from;j++)span.append(toks[j].sep);
+        const text=toks.slice(from,to+1).map(t=>t.w!==undefined?t.w:t.sep).join('');
+        const w=node('span',text,'w'+(hit?' g':'')+(saved.has(low(text))?' saved':''));w.dataset.s=si;if(hit){w.dataset.g=hit.sv}
+        span.append(w);k+=len;
+      }
+      const last=wi.length?wi[wi.length-1]:-1;for(let j=last+1;j<toks.length;j++)span.append(toks[j].sep);
+      span.append(' ');p.append(span)});
+    box.append(p)});
+}
+function setMode(m){mode=m;$('text').className='text '+(m==='words'?'words':'keys');$('mWords').className=m==='words'?'selected':'';$('mKeys').className=m==='keys'?'selected':'';$('modehelp').textContent=m==='words'?'Tap any word to see what it means.':'Tap a sentence to mark it ⭐. Tap again to unmark.';closeSheet()}
+$('mWords').onclick=()=>setMode('words');$('mKeys').onclick=()=>setMode('keys');
+$('text').onclick=e=>{
+  if(mode==='keys'){const s=e.target.closest('.s');if(!s)return;const i=Number(s.dataset.i);const arr=S.keys[C.id]||(S.keys[C.id]=[]);const at=arr.indexOf(i);if(at>=0)arr.splice(at,1);else arr.push(i);s.classList.toggle('key',at<0);save();$('keyresult').replaceChildren();return}
+  const w=e.target.closest('.w');if(!w)return;openWord(w)};
+$('readall').onclick=()=>{if(!sentences.length){toast('Add the text first.');return}const els=document.querySelectorAll('#text .s');sayAll(sentences,i=>{els.forEach(x=>x.style.outline='');if(els[i]){els[i].style.outline='2px solid var(--accent)';els[i].scrollIntoView({block:'center',behavior:'smooth'})}})};
+$('stop').onclick=()=>{if(synth)synth.cancel();document.querySelectorAll('#text .s').forEach(x=>x.style.outline='')};
+
+/* ---------- word sheet ---------- */
+let onEl=null;
+function closeSheet(){$('sheet').hidden=true;if(onEl)onEl.classList.remove('on');onEl=null}
+function gt(t){return 'https://translate.google.com/?sl=sv&tl=en&op=translate&text='+encodeURIComponent(t)}
+function openWord(w){
+  if(onEl)onEl.classList.remove('on');onEl=w;w.classList.add('on');
+  const form=w.textContent,ctx=sentences[Number(w.dataset.s)]||'',ent=w.dataset.g?GL.get(w.dataset.g.split(/\s+/).map(low).join(' ')):GL.get(low(form));
+  const box=$('sheetin');box.replaceChildren();
+  const big=node('div',undefined,'big');big.append(sv('span',form),sayBtn(form));if(ent&&low(ent.sv)!==low(form))big.append(node('span','· '+ent.sv,'muted'));
+  box.append(big);
+  let enInput=null;
+  if(ent)box.append(node('div',ent.en,'en'));
+  else{box.append(node('p','This word is not in the chapter list. Guess from the sentence, or look it up — then write the meaning to save it.','muted'));const r=node('div',undefined,'row');enInput=node('input');enInput.placeholder='Meaning in English';enInput.setAttribute('aria-label','Meaning in English');const a=node('a','Look up ↗');a.href=gt(form);a.target='_blank';a.rel='noopener';r.append(enInput,a);box.append(r)}
+  const c=node('p',undefined,'ctx');c.lang='sv';c.append(document.createTextNode(ctx+' '),sayBtn(ctx));box.append(c);
+  const r2=node('div',undefined,'row');
+  const exists=S.words.some(x=>low(x.form)===low(form));
+  const sb=button(exists?'✓ In My words':'＋ Save word',()=>{if(S.words.some(x=>low(x.form)===low(form)))return;const en=ent?ent.en:(enInput.value.trim()||'?');S.words.push({form,base:ent?ent.sv:form,en,ctx,ch:C.id,t:Date.now()});save();document.querySelectorAll('#text .w').forEach(x=>{if(low(x.textContent)===low(form))x.classList.add('saved')});renderWords();sb.textContent='✓ Saved';sb.disabled=true;toast('Saved to My words')},'primary');
+  if(exists)sb.disabled=true;
+  const tl=node('a','Translate the whole sentence ↗');tl.href=gt(ctx);tl.target='_blank';tl.rel='noopener';
+  r2.append(sb,button('🐢 Slowly',()=>say(form,0.6)),tl,button('Close',closeSheet));box.append(r2);
+  $('sheet').hidden=false;
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
+
+/* ---------- key sentences check ---------- */
+$('checkkeys').onclick=()=>{
+  const out=$('keyresult');out.replaceChildren();if(!sentences.length){toast('Add the text first.');return}
+  const chosen=(S.keys[C.id]||[]).slice().sort((a,b)=>a-b).filter(i=>i<sentences.length);
+  if(!chosen.length){out.append(node('p','You have not marked any sentences yet. Switch to ⭐ mode and tap sentences in the text.','muted'));return}
+  const ch=chosen.map(i=>sentences[i].toLocaleLowerCase('sv'));
+  const cov=C.events.map(([,, kw])=>ch.findIndex(s=>kw.some(k=>s.includes(k))));
+  const n=cov.filter(x=>x>=0).length;
+  const h=node('h3','Your sentences cover '+n+' of '+C.events.length+' events');out.append(h);
+  let tip=n===C.events.length?'Great — your sentences tell the whole story!':'Some events are missing. Find a sentence for each ✗ event and mark it.';
+  if(chosen.length>10)tip+=' You marked '+chosen.length+' sentences — a summary should be short. Remove the ones that only add details.';
+  if(chosen.length<C.events.length&&n<C.events.length)tip+=' Tip: you need about one sentence per event.';
+  out.append(node('p',tip,'fb'));
+  const ul=node('ul',undefined,'events');
+  C.events.forEach(([s,e],i)=>{const li=node('li');li.append(node('b',cov[i]>=0?'✓':'✗',cov[i]>=0?'ok':'no'));const d=node('div');d.append(sv('div',s),node('div',e,'muted'));li.append(d);ul.append(li)});
+  out.append(node('div','The story in '+C.events.length+' events','label'),ul);
+  const ol=node('ol',undefined,'chosen');chosen.forEach(i=>{const li=node('li');li.lang='sv';li.append(document.createTextNode(sentences[i]+' '),sayBtn(sentences[i]));ol.append(li)});
+  out.append(node('div','Your sentences, in order — read them aloud: do they tell the story?','label'),ol,button('▶ Read my sentences aloud',()=>sayAll(chosen.map(i=>sentences[i]))));
+  out.append(node('p','The ✓/✗ check looks for key words, so it is a helper, not a grade. Read your sentences together and decide if they tell the story.','muted'));
+};
+$('clearkeys').onclick=()=>{if(!(S.keys[C.id]||[]).length)return;if(!confirm('Remove all ⭐ marks for this chapter?'))return;S.keys[C.id]=[];save();renderText();$('keyresult').replaceChildren()};
+
+/* ---------- my words ---------- */
+function renderWords(){
+  const box=$('wordlist');box.replaceChildren();const list=node('div',undefined,'wl');
+  if(!S.words.length){box.append(node('p','No words yet. In 📖 mode, tap a word in the text and press ＋ Save word.','muted'));return}
+  S.words.slice().reverse().forEach(w=>{const it=node('div',undefined,'it');const t=node('div',undefined,'t');const top=node('div');top.append(sv('b',w.form),w.base&&low(w.base)!==low(w.form)?node('span',' · '+w.base,'muted'):'');t.append(top,node('div',w.en,'en2'),sv('div',w.ctx,'c'));
+    it.append(sayBtn(w.form),t,button('✕',()=>{S.words=S.words.filter(x=>x!==w);save();renderWords();renderText()}));it.lastChild.setAttribute('aria-label','Delete '+w.form);it.onclick=e=>{if(e.target.tagName!=='BUTTON')it.classList.toggle('show')};list.append(it)});
+  box.append(list);
+}
+$('hideen').onchange=()=>$('mywords').classList.toggle('hide-en',$('hideen').checked);
+$('hearwords').onclick=()=>sayAll(S.words.map(w=>w.form));
+let fq=[],fi=0,frev=false;
+function drawFlash(){const b=$('flashbox');b.replaceChildren();if(!fq.length){b.hidden=true;return}
+  if(fi>=fq.length){b.append(node('h3','Klart! All cards done.'),button('Again',()=>{startFlash()},'primary'),button('Close',()=>{fq=[];drawFlash()}));return}
+  const w=fq[fi];const c=node('div',undefined,'card');c.append(node('div',(fi+1)+' / '+fq.length,'label'),sv('div',w.form,'sv'));if(frev){c.append(node('div',w.en,'en'),sv('div',w.ctx,'muted'))}else c.append(node('div','What does it mean? Tap to check.','muted'));
+  c.onclick=()=>{frev=true;say(w.form);drawFlash()};b.append(c);
+  const r=node('div',undefined,'row');if(frev){r.append(button('✗ Again later',()=>{fq.push(w);fi++;frev=false;drawFlash()}),button('✓ I knew it',()=>{fi++;frev=false;drawFlash()},'primary'))}r.append(button('Stop',()=>{fq=[];drawFlash()}));b.append(r)}
+function startFlash(){if(!S.words.length){toast('Save some words first.');return}fq=S.words.slice().sort(()=>Math.random()-.5);fi=0;frev=false;$('flashbox').hidden=false;drawFlash();$('flashbox').scrollIntoView({block:'center'})}
+$('flash').onclick=startFlash;
+function wordsText(sep){return S.words.map(w=>[w.form,w.en,w.ctx].map(x=>sep===','?'"'+String(x).replace(/"/g,'""')+'"':x).join(sep)).join('\n')}
+$('copywords').onclick=async()=>{try{await navigator.clipboard.writeText(wordsText('\t'));toast('Copied '+S.words.length+' words')}catch(e){toast('Copy is not allowed here — use Download instead.')}};
+$('csv').onclick=()=>{const u=URL.createObjectURL(new Blob(['﻿Swedish,English,Sentence\n'+wordsText(',')],{type:'text/csv;charset=utf-8'}));const a=node('a');a.href=u;a.download='my-swedish-words.csv';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1500)};
+$('clearwords').onclick=()=>{if(!S.words.length)return;if(!confirm('Delete all '+S.words.length+' saved words?'))return;S.words=[];save();renderWords();renderText()};
+
+/* ---------- questions ---------- */
+function renderQs(){const box=$('qs');box.replaceChildren();const A=S.ans[C.id]||(S.ans[C.id]={});
+  C.questions.forEach(([q,qe,a,ae],i)=>{const d=node('div',undefined,'q');const qt=node('div',undefined,'qt');qt.append(sayBtn(q),sv('span',(i+1)+'. '+q));
+    const ta=node('textarea');ta.lang='sv';ta.value=A[i]||'';ta.placeholder='Mitt svar …';ta.oninput=()=>{A[i]=ta.value;save()};
+    const ans=node('div',undefined,'ans');ans.hidden=true;const p=node('p');p.append(node('b','Exempelsvar: '),sv('span',a),' ',sayBtn(a));ans.append(p,node('p',ae,'muted'));
+    d.append(qt,node('p',qe,'muted'),ta,button('Show the answer',e=>{ans.hidden=!ans.hidden;e.target.textContent=ans.hidden?'Show the answer':'Hide the answer'}),ans);box.append(d)})}
+
+/* ---------- chapter words ---------- */
+function renderGloss(){const box=$('gl');box.replaceChildren();C.gloss.forEach(([s,e])=>{const d=node('div');d.append(sayBtn(s),sv('b',s),node('span',e,'e'),button('＋',()=>{if(S.words.some(x=>low(x.form)===low(s))){toast('Already in My words');return}S.words.push({form:s,base:s,en:e,ctx:'',ch:C.id,t:Date.now()});save();renderWords();renderText();toast('Saved to My words')}));box.append(d)})}
+$('hearall').onclick=()=>sayAll(C.gloss.map(g=>g[0]));
+
+setChapter(S.ch);setMode('words');
+</script></body></html>
