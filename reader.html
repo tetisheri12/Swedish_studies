@@ -27,9 +27,8 @@ header nav{display:flex;flex-wrap:wrap;gap:8px 18px}header nav a{padding:6px 0;t
 </style></head><body><header>
   <strong>SWEDISH / STUDIES</strong>
   <nav aria-label="Main navigation">
+    <a href="daily.html">Today</a>
     <a href="index.html">Missions</a>
-    <a href="school-books.html">School Books</a>
-    <a href="reading-coach.html">Reading Coach</a>
     <a href="kemi.html">Kemi</a>
     <a href="reader.html" aria-current="page">Reader</a>
   </nav>
@@ -73,81 +72,8 @@ header nav{display:flex;flex-wrap:wrap;gap:8px 18px}header nav a{padding:6px 0;t
 <div id="sheet" class="sheet" hidden role="dialog" aria-label="Word"><div class="in" id="sheetin"></div></div>
 <div id="toast" role="status" hidden></div>
 <footer>Swedish Studies · Reader. The book text is not part of this site: you paste it in, and it stays in this browser. Word meanings, key events and questions are written for study use.</footer>
+<script src="reader-data.js"></script>
 <script>
-/* Study packs for the reader. The book text itself is NOT included: the learner
-   pastes it in on their own device. Packs hold word glosses, key events
-   (in our own words) and questions with model answers (in our own words). */
-const CHAPTERS=[{
-id:'gamer-7',book:'Gamer',title:'Kapitel 7 · Nattmatch',pages:'44–47',
-intro:'Lionel can’t stop thinking about Golden Goal. In the middle of the night he sneaks down to play — but will anyone notice?',
-/* [shown word, English, extra forms that appear in texts...] — matched case-insensitively.
-   Multi-word entries are matched as phrases before single words. */
-gloss:[
-['vilar','rests','vila'],['mot kudden','against the pillow','kudden','kudde'],['lyssnar efter','listens for','lyssnar'],['ljud','sound(s)'],
-['forsar','rushes, gushes'],['rören','the pipes','rör'],['badrummet','the bathroom'],['sen','then, later'],['steg','steps, footsteps'],['utanför','outside'],
-['kniper igen ögonen','squeezes his eyes shut','kniper igen','kniper'],['gnisslar till','gives a creak','gnisslar'],['öppnas','is opened'],['kisar','squints'],
-['anar','can just make out'],['dörröppningen','the doorway'],['kollar','checks'],['säkert','probably, surely'],['att han sover','that he is sleeping','sover'],
-['innan','before'],['morgondagens','tomorrow’s'],['Kungscupen','the King’s Cup (a football tournament)'],['försöker','tries'],
-['andas','breathe'],['jämnt och lugnt','evenly and calmly','jämnt','lugnt'],['täcket','the duvet','täcke'],['höjer sig','rises'],['i takt','in rhythm'],
-['stängs','is closed'],['igen','again / shut'],['Puh!','Phew!'],['stirrar','stares'],['mörkret','the darkness','mörker'],['bultande hjärta','pounding heart','bultande','hjärta'],
-['tänker på','thinks about','tänker'],['första gången','the first time'],['hade fått','had got (been given)'],['en sponsor','a sponsor','sponsor'],
-['kastade','threw'],['en kartong','a cardboard box','kartong','kartongen'],['ställde in','put away (in)'],['ett hörn','a corner','hörn'],['källaren','the basement','källare'],
-['hittade','found'],['av en slump','by chance'],['letade efter','was looking for','letade'],['skridskor','ice skates'],['hade hört talas om','had heard about','hört talas om'],
-['brydde sig inte ett smack om','didn’t care one bit about','brydde sig'],['tv-spel','video games'],['visste knappt','hardly knew','visste'],['ändå','still, anyway'],
-['blev fast','got hooked'],['höll','held'],['kontrollen','the controller'],['styra','control, steer'],['ett helt lag','a whole team'],['genom att','by (doing)'],
-['trycka','press'],['knappar','buttons'],['köpa spelare','buy players'],['tänka ut','think up, plan'],['taktik','tactics'],['göra finter','do tricks (feints)','finter'],
-['publiken','the crowd'],['skriker','shouts, screams'],['för full hals','at the top of their voices'],['titta på andra','watch others'],['chatta','chat'],
-['det enda','the only'],['i julas','last Christmas'],['önskade sig','wished for'],['istället','instead','i stället'],['träningskläder','training clothes'],
-['biljetter','tickets'],['allsvenska matcher','matches in the top Swedish league','allsvenska'],['paketen','the presents','paket'],['granen','the Christmas tree','gran'],
-['hörs','is heard, can be heard'],['röster','voices'],['sovrummet','the bedroom'],['längre','any longer'],['kvart över tolv','quarter past twelve'],['reser sig','gets up'],
-['plankorna','the floorboards'],['knarrar','creak'],['smyger','sneaks'],['golvet','the floor'],['så mörkt','so dark'],['knappt','hardly, barely'],
-['handen framför sig','his hand in front of him'],['sätter på','turns on'],['tv:n','the TV'],['lyser upp','lights up'],['vardagsrummet','the living room','vardagsrum'],
-['sänker volymen','turns the volume down','sänker'],['till noll','to zero'],['klickar fram','clicks up, brings up'],['allt som hörs','all you can hear'],['regnet','the rain'],
-['slår mot rutan','beats against the window','rutan'],['en åskknall','a clap of thunder','åskknall'],['i fjärran','in the distance'],['gäspar','yawns'],
-['så att det knakar','so that his jaw cracks','knakar'],['väljer','chooses'],['så länge han vill','as long as he wants'],['eller snarare','or rather','snarare'],['orkar','has the energy, can manage'],
-['spelare','players'],['väntar på','are waiting for'],['signalen','the signal (whistle)'],['vinden blåser','the wind blows','blåser'],['deras hår','their hair'],
-['Och så börjar det!','And off it goes!'],['matcher','matches'],['mitt i natten','in the middle of the night'],['amerikaner','Americans'],['inloggade','logged in'],
-['mål','goal (in football) / aim','målet'],['träna in','practise until you can do it'],['nya finter','new tricks'],['testa','test, try'],['sombrerofinten','the sombrero trick'],
-['chippar','chips (lifts) the ball'],['bollen','the ball'],['motståndarens huvud','the opponent’s head','motståndarens'],['visa upp','show off'],['får chansen','gets the chance'],['möta','meet, play against'],
-['svårt','hard, difficult'],['kastas in i','is thrown into, gets lost in'],['glömmer','forgets'],['står','stands'],['planen','the pitch'],['lyckas med','succeeds with'],
-['en rusande back','a defender rushing in','rusande','back'],['nu är han fri','now he is free (clear)'],['läktarna','the stands'],['har rest sig','have stood up'],
-['målvakten','the goalkeeper'],['rusar ut','rushes out'],['skruvar bollen','curls the ball','skruvar'],['runt hans ben','around his leg'],['Forza','Go! Come on! (Italian cheer)'],
-['höjer kontrollen','raises the controller'],['en segergest','a victory gesture','segergest'],['plötsligt','suddenly'],['tillbaka','back'],['Vad hände precis?','What just happened?','hände'],
-['skrek','shouted'],['släpande fotsteg','shuffling footsteps','släpande','fotsteg'],['trappan','the stairs'],['Hallå?','Hello?'],['trötta röst','tired voice','trötta'],
-['Är det nån där?','Is anyone there?','nån'],['Tusan också!','Darn it!'],['kvickt som en katt','quick as a cat','kvickt'],['stänger av','turns off'],
-['kastar sig ner','throws himself down'],['medan','while'],['öppnar dörren','opens the door'],['rullar in','rolls in'],['under','under'],['soffbordet','the coffee table'],
-['sin plats','his place','plats'],['fötter','feet'],['letar runt','looks around'],['Minuterna går','The minutes pass','minuterna'],['lunkar','trudges, walks slowly'],
-['köket','the kitchen'],['ett glas vatten','a glass of water'],['känner','feels'],['hur trött','how tired'],['så fort','as soon as'],['gått tillbaka','has gone back'],
-['lägga sig','lie down'],['sängen','the bed'],['då kommer ingen att märka','then nobody will notice','märka'],['varit uppe','been up'],['spelat','played'],
-['blundar','closes his eyes'],['slappnar av','relaxes'],['en mjuk matta','a soft rug','matta','mjuk'],['aldrig','never'],['tänkt på','thought about'],['skön','comfortable'],
-['lägger sig till rätta','settles down, gets comfortable'],['sjunker in i','sinks into'],['det mjuka','the soft (part)'],['bara vila lite','just rest a bit'],
-['sluta ögonen','close his eyes'],['en sekund','a second'],['eller kanske två','or maybe two','kanske'],
-['huvud','head','huvudet'],['dörren','the door','dörr'],['klockan','the clock / the time (Klockan är … = It is …)'],['hemma','at home'],['ingen','nobody, no one'],['inga','no (none)'],
-['själv','himself, by himself'],['låg','lay (was lying)'],['ur','out of'],['hör','hears'],['mammas','Mum’s'],['stänger','shuts (stänger av = turns off)'],
-['lyser','shines (lyser upp = lights up)'],['bordet','the table'],['lägger sig','lies down','lägger'],['genom','through'],['mörkt','dark'],['mest','mostly'],
-['Märta','a name (someone in Lionel’s family)'],['Mälleruda','a football team (made up for the book)'],['LionKings','Lionel’s team in the game'],['Playbox','a games console (made up for the book)']
-],
-/* Key events in our own words. The learner's chosen sentences "cover" an event
-   if they contain one of the keywords (lowercase substring match). */
-events:[
-['Lionel låtsas sova när pappa tittar in.','Lionel pretends to sleep when Dad looks in.',['kudden','andas','kollar','täcket','kniper','dörröppningen']],
-['Han minns hur han hittade spelet och fastnade för det.','He remembers how he found the game and got hooked.',['kartong','källaren','första gången','blev fast','sponsor','skridskor']],
-['Mitt i natten smyger han ner och startar Golden Goal utan ljud.','In the middle of the night he sneaks down and starts Golden Goal with no sound.',['kvart över tolv','smyger','knarrar','volymen','sätter på','klickar fram']],
-['Han tränar sombrerofinten och gör mål.','He practises the sombrero trick and scores.',['sombrerofint','chippar','skruvar','mål!','lyckas']],
-['Han skriker högt, och mamma vaknar och kommer ner.','He shouts out loud, and Mum wakes up and comes down.',['skriker','skrek','fotsteg','trappan','hallå','nån där']],
-['Han gömmer sig under soffbordet.','He hides under the coffee table.',['soffbordet','under bordet','rullar','kastar sig','stänger av']],
-['Han är så trött att han somnar under bordet.','He is so tired that he falls asleep under the table.',['blundar','slappnar','mjuk','sjunker','vila','sluta ögonen','trött han är']]
-],
-questions:[
-['Varför andas Lionel jämnt och lugnt när pappa öppnar dörren?','Why does Lionel breathe evenly and calmly when Dad opens the door?','Han vill att pappa ska tro att han sover.','He wants Dad to think he is asleep.'],
-['Hur hittade Lionel spelet?','How did Lionel find the game?','Pappa hade fått spelet av en sponsor och ställt det i källaren. Lionel hittade det när han letade efter något annat.','Dad had got the game from a sponsor and put it in the basement. Lionel found it while looking for something else.'],
-['Vad fick Lionel i julklapp i stället för spel?','What did Lionel get for Christmas instead of games?','Träningskläder och biljetter till fotbollsmatcher.','Training clothes and tickets to football matches.'],
-['Varför vill Lionel lära sig sombrerofinten?','Why does Lionel want to learn the sombrero trick?','Han vill visa upp den om han får spela mot Jordans_Hjältar igen.','He wants to show it off if he gets to play Jordans_Hjältar again.'],
-['Hur avslöjar Lionel sig själv?','How does Lionel give himself away?','Han gör mål och skriker högt. Då vaknar mamma.','He scores and shouts out loud. That wakes Mum.'],
-['Vad tror du händer på morgonen? Förklara varför.','What do you think happens in the morning? Explain why.','Eget svar. Till exempel: Någon hittar honom under bordet, och han är för trött för matchen i Kungscupen.','Your own answer. For example: someone finds him under the table, and he is too tired for the cup match.']
-]
-}];
-
 'use strict';
 const $=id=>document.getElementById(id);
 const KEY='swedish-reader-v1',VKEY='swedish-missions-voice-v1',RKEY='swedish-missions-rate-v1';
@@ -254,7 +180,25 @@ $('stop').onclick=()=>{if(synth)synth.cancel();document.querySelectorAll('#text 
 
 /* ---------- word sheet ---------- */
 let onEl=null;
-function closeSheet(){$('sheet').hidden=true;if(onEl)onEl.classList.remove('on');onEl=null}
+/* ---------- record yourself (one sentence) ---------- */
+const rec={map:new Map(),mr:null,stream:null,player:new Audio()};
+function stopRec(){if(rec.mr&&rec.mr.state!=='inactive')rec.mr.stop()}
+function recRow(si,text){
+  const r=node('div',undefined,'row');const st=node('span','','muted');
+  const bRec=button(rec.map.has(si)?'🎙 Record again':'🎙 Record me',async()=>{
+    if(rec.mr){stopRec();return}
+    if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||!window.MediaRecorder){toast('Recording is not available in this browser.');return}
+    try{rec.stream=await navigator.mediaDevices.getUserMedia({audio:true})}catch(e){toast('Microphone not available or not allowed.');return}
+    if(synth)synth.cancel();rec.player.pause();const chunks=[];const mr=new MediaRecorder(rec.stream);rec.mr=mr;
+    mr.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
+    mr.onstop=()=>{rec.stream.getTracks().forEach(t=>t.stop());rec.mr=null;if(!chunks.length){st.textContent='Nothing recorded — try again.';bRec.textContent='🎙 Record me';return}const old=rec.map.get(si);if(old)URL.revokeObjectURL(old);rec.map.set(si,URL.createObjectURL(new Blob(chunks,{type:mr.mimeType||'audio/mp4'})));bRec.textContent='🎙 Record again';st.textContent='Now compare: what sounds different?';upd()};
+    mr.start();bRec.textContent='⏹ Stop';st.textContent='Recording… read the sentence out loud.'});
+  const play=(after)=>{const u=rec.map.get(si);if(!u)return;if(synth)synth.cancel();rec.player.onended=after||null;rec.player.src=u;rec.player.play().catch(()=>toast('Could not play the recording.'))};
+  const bMe=button('▶ Me',()=>play());const bBoth=button('▶ Me, then voice',()=>play(()=>{rec.player.onended=null;setTimeout(()=>say(text),300)}));
+  function upd(){bMe.disabled=bBoth.disabled=!rec.map.has(si)}upd();
+  r.append(bRec,bMe,bBoth,st);return r;
+}
+function closeSheet(){stopRec();$('sheet').hidden=true;if(onEl)onEl.classList.remove('on');onEl=null}
 function gt(t){return 'https://translate.google.com/?sl=sv&tl=en&op=translate&text='+encodeURIComponent(t)}
 function openWord(w){
   if(onEl)onEl.classList.remove('on');onEl=w;w.classList.add('on');
@@ -265,7 +209,7 @@ function openWord(w){
   let enInput=null;
   if(ent)box.append(node('div',ent.en,'en'));
   else{box.append(node('p','This word is not in the chapter list. Guess from the sentence, or look it up — then write the meaning to save it.','muted'));const r=node('div',undefined,'row');enInput=node('input');enInput.placeholder='Meaning in English';enInput.setAttribute('aria-label','Meaning in English');const a=node('a','Look up ↗');a.href=gt(form);a.target='_blank';a.rel='noopener';r.append(enInput,a);box.append(r)}
-  const c=node('p',undefined,'ctx');c.lang='sv';c.append(document.createTextNode(ctx+' '),sayBtn(ctx));box.append(c);
+  const c=node('p',undefined,'ctx');c.lang='sv';c.append(document.createTextNode(ctx+' '),sayBtn(ctx));box.append(c,recRow(Number(w.dataset.s),ctx));
   const r2=node('div',undefined,'row');
   const exists=S.words.some(x=>low(x.form)===low(form));
   const sb=button(exists?'✓ In My words':'＋ Save word',()=>{if(S.words.some(x=>low(x.form)===low(form)))return;const en=ent?ent.en:(enInput.value.trim()||'?');S.words.push({form,base:ent?ent.sv:form,en,ctx,ch:C.id,t:Date.now()});save();document.querySelectorAll('#text .w').forEach(x=>{if(low(x.textContent)===low(form))x.classList.add('saved')});renderWords();sb.textContent='✓ Saved';sb.disabled=true;toast('Saved to My words')},'primary');

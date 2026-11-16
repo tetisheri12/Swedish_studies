@@ -34,14 +34,12 @@ header nav{display:flex;flex-wrap:wrap;gap:8px 18px}header nav a{padding:6px 0;t
   <nav aria-label="Main navigation">
     <a href="daily.html" aria-current="page">Today</a>
     <a href="index.html">Missions</a>
-    <a href="school-books.html">School Books</a>
-    <a href="reading-coach.html">Reading Coach</a>
     <a href="kemi.html">Kemi</a>
     <a href="reader.html">Reader</a>
   </nav>
 </header><main>
-<div id="home"><div class="hero"><div><div class="label" id="datelabel"></div><h1>Dagens svenska</h1><p>About 25 minutes: train your ear, remember old words, learn new ones, do a mission and say one sentence. Everything you learn comes back just before you forget it.</p><div class="row"><button id="start" class="primary big">▶ Start</button></div><p class="muted" id="plan"></p></div>
-<aside class="board"><div class="label">Din svenska · your Swedish</div><div class="stats"><div class="stat"><b id="sWords">0</b><span>words started</span></div><div class="stat"><b id="sMature">0</b><span>cards you know well (3+ weeks)</span></div><div class="stat"><b id="sDue">0</b><span>cards to review today</span></div><div class="stat"><b id="sEar">0/0</b><span>sound pairs mastered</span></div></div><div class="cal" id="cal" aria-label="Last 14 days"></div><p class="muted" id="sRet" style="margin:8px 0 0;font-size:14px"></p></aside></div></div>
+<div id="home"><div class="hero"><div><div class="label" id="datelabel"></div><h1>Dagens svenska</h1><p>About 25 minutes: train your ear, remember old words, learn new ones, do a mission and say one sentence. Everything you learn comes back just before you forget it.</p><div class="row"><button id="start" class="primary big">▶ Start</button><button id="placebtn">Word check</button></div><p class="muted" id="plan"></p></div>
+<aside class="board"><div class="label">Din svenska · your Swedish</div><div class="stats"><div class="stat"><b id="sWords">0</b><span>words and sentences learning</span></div><div class="stat"><b id="sMature">0</b><span>cards you know well (3+ weeks)</span></div><div class="stat"><b id="sDue">0</b><span>cards to review today</span></div><div class="stat"><b id="sEar">0/0</b><span>sound pairs mastered</span></div></div><div class="cal" id="cal" aria-label="Last 14 days"></div><p class="muted" id="sRet" style="margin:8px 0 0;font-size:14px"></p></aside></div></div>
 <div id="session" hidden><div class="stage" id="stage"></div></div>
 
 <section id="mywords"><div class="label">Mina ord · my words</div><h2>Words you have started</h2><p class="muted">★ shows how well you know a word. Tap 🔊 to hear it.</p><div id="wl" class="wl"></div></section>
@@ -49,13 +47,15 @@ header nav{display:flex;flex-wrap:wrap;gap:8px 18px}header nav a{padding:6px 0;t
 <section id="parents"><div class="label">För föräldrar · for parents</div><h2>Parent corner</h2>
 <details open><summary><b>Sentences to correct</b> <span id="inboxcount" class="muted"></span></summary><p class="muted">Write the corrected Swedish. Put [square brackets] around one word to practise, e.g. <i>Jag [spelade] fotboll igår.</i> Then save it as a card. Without brackets it becomes a “listen and repeat” card.</p><div id="inbox" class="inbox"></div></details>
 <details><summary><b>Add your own card</b></summary><p class="muted">A sentence from school, homework or a book. Use [brackets] around the word to practise.</p><div class="row"><input type="text" id="qa" placeholder="Vi [tränar] fotboll på tisdagar." style="flex:1" lang="sv"><button id="qadd" class="primary">Add card</button></div></details>
-<details><summary><b>Settings</b></summary><div class="row"><label>New words per day <select id="setNew"><option>3</option><option>4</option><option selected>5</option><option>6</option><option>8</option><option>10</option></select></label><label>Max reviews per day <select id="setCap"><option>30</option><option>45</option><option selected>60</option><option>90</option></select></label></div>
+<details><summary><b>Settings</b></summary><div class="row"><label>New cards per day <select id="setNew"><option>4</option><option>6</option><option selected>8</option><option>10</option><option>12</option></select></label><label>Max reviews per day <select id="setCap"><option>30</option><option>45</option><option selected>60</option><option>90</option></select></label></div>
 <div class="row"><label>Voice <select id="voice"></select></label><label>Speed <select id="rate"><option value="1">Normal</option><option value="0.9" selected>A little slower</option><option value="0.8">Slow</option></select></label><button id="voicetest">🔊 Test</button></div><p id="voicenote" class="muted"></p></details>
 <details><summary><b>Backup</b></summary><p class="muted">Progress is saved in this browser only. Download a backup now and then — you can restore it on another device.</p><div class="row"><button id="export">Download backup</button><label>Restore <input type="file" id="import" accept="application/json"></label><button id="reset">Start over</button></div></details>
 <details><summary><b>How this works</b></summary><p>Based on the Fluent Forever method: words come with pictures instead of English, he must try to remember before seeing the answer, and each card comes back after 1, 3, 9 and 21 days, 2 months and 6 months — just before it would be forgotten. A missed card starts again. The daily sound game trains the ear for Swedish sounds that English and Turkish don't have. Sentences from finished missions, words saved in the Reader and your corrected sentences become cards automatically.</p></details>
 </section>
 </main><div id="toast" role="status" hidden></div><footer>Swedish Studies · Today. Method inspired by Fluent Forever (Gabriel Wyner). Progress stays in this browser.</footer>
 <script src="lessons.js"></script>
+<script src="reader-data.js"></script>
+<script src="kemi-data.js"></script>
 <script>
 /* Today · data. Core words in a kid-friendly Swedish adaptation of the "first words"
    idea from Fluent Forever: picturable, frequent, always learned with en/ett, shown with
@@ -268,7 +268,7 @@ const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()
 const norm=s=>String(s).normalize('NFC').toLocaleLowerCase('sv').replace(/[.!?,;:”"’']/g,'').replace(/\s+/g,' ').trim();
 
 /* ---------- state ---------- */
-function fresh(){return{v:1,cards:{},words:{},ear:{},days:{},out:[],extra:[],log:[],set:{newWords:5,cap:60},lastActive:null}}
+function fresh(){return{v:1,cards:{},words:{},ear:{},days:{},out:[],extra:[],log:[],skip:{},unknown:[],placed:false,set:{newWords:8,cap:60},lastActive:null}}
 let S=fresh();try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.v===1&&s.cards&&s.words)S=Object.assign(fresh(),s)}catch(e){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast('Browser storage is unavailable — progress will be lost when you close the page.')}}
 function readLS(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}
@@ -307,7 +307,7 @@ function grade(c,ok){
 }
 function dueCards(){return Object.values(S.cards).filter(c=>c.box>0&&c.due<=T).sort((a,b)=>a.due-b.due||Math.random()-.5)}
 function missedDays(){return S.lastActive===null?0:Math.max(0,T-S.lastActive-1)}
-function quota(){const back=missedDays()>=3;return{newWords:back?1:Math.min(Number(S.set.newWords)||5,dueCards().length>Number(S.set.cap)?2:99),cap:back?20:Number(S.set.cap)||60,back}}
+function quota(){const back=missedDays()>=3;return{newWords:back?1:Math.min(Number(S.set.newWords)||8,dueCards().length>Number(S.set.cap)?2:99),cap:back?20:Number(S.set.cap)||60,back}}
 
 /* ---------- sources for sentence cards ---------- */
 function harvest(){
@@ -335,24 +335,24 @@ function nextStep(){return STEPS.findIndex(s=>!D()[s[0]])}
 /* ---------- home ---------- */
 function renderHome(){
   $('datelabel').textContent=new Date().toLocaleDateString('sv-SE',{weekday:'long',day:'numeric',month:'long'});
-  const started=Object.keys(S.words).length,mature=Object.values(S.cards).filter(c=>c.box>=4).length;
-  $('sWords').textContent=started+' / '+LEX.length;$('sMature').textContent=mature;$('sDue').textContent=dueCards().length;
+  const started=Object.values(S.words).filter(w=>!w.known).length+Object.values(S.cards).filter(c=>c.kind==='cloze'||c.kind==='def').length,mature=Object.values(S.cards).filter(c=>c.box>=4).length;
+  $('sWords').textContent=started;$('sMature').textContent=mature;$('sDue').textContent=dueCards().length;
   $('sEar').textContent=EAR.filter(e=>earPassed(e.id)).length+'/'+EAR.length;
   const recent=S.log.filter(l=>l[0]>T-30);$('sRet').textContent=recent.length>=20?'Remembered '+Math.round(100*recent.reduce((a,l)=>a+l[1],0)/recent.length)+'% of cards in the last 30 days.':'';
   const cal=$('cal');cal.replaceChildren();for(let d=T-13;d<=T;d++){const r=S.days[d]||{};const n=STEPS.filter(s=>r[s[0]]).length;const i=node('i','',n===STEPS.length?'full':n?'part':'');if(d===T)i.classList.add('today');i.title=dayStr(d)+': '+n+'/'+STEPS.length;cal.append(i)}
   const ns=nextStep(),q=quota();
   $('start').textContent=ns<0?'✓ Done for today — practise more':ns===0?'▶ Start today':'▶ Continue: '+STEPS[ns][1];
-  $('plan').textContent=(q.back?'Welcome back! Today is a short comeback day. ':'')+'Today: '+Math.min(dueCards().length,q.cap)+' reviews · up to '+q.newWords+' new words.';
+  $('plan').textContent=(S.placed?'':'First time: a quick word check (about 3 minutes). ')+(q.back?'Welcome back! Today is a short comeback day. ':'')+'Today: '+Math.min(dueCards().length,q.cap)+' reviews · up to '+q.newWords+' new cards.';
   renderWordList();renderInbox();
 }
 function stars(svw){const c=S.cards['w:'+svw+':prod'];const b=c?c.box:0;return '★'.repeat(Math.min(b,5))+'☆'.repeat(Math.max(0,5-Math.min(b,5)))}
-function renderWordList(){const wl=$('wl');wl.replaceChildren();const ws=Object.keys(S.words);if(!ws.length){wl.append(node('p','No words yet — they start in today’s session.','muted'));return}ws.forEach(w=>{const d=node('div');d.append(node('div',picOf(w),'p'),sv('b',w),node('div',stars(w),'lv'));if(S.words[w].tag)d.append(node('div',S.words[w].tag,'muted'));d.append(sayBtn(w));wl.append(d)})}
+function renderWordList(){const wl=$('wl');wl.replaceChildren();const ws=Object.keys(S.words).filter(w=>!S.words[w].known&&LEXI.has(w));if(!ws.length){wl.append(node('p','No words yet — they start in today’s session.','muted'));return}ws.forEach(w=>{const d=node('div');d.append(node('div',picOf(w),'p'),sv('b',w),node('div',stars(w),'lv'));if(S.words[w].tag)d.append(node('div',S.words[w].tag,'muted'));d.append(sayBtn(w));wl.append(d)})}
 
 /* ---------- session shell ---------- */
 let stepIdx=0;
 function stage(){return $('stage')}
 function shell(title,sub){const s=stage();s.replaceChildren();const bar=node('div',undefined,'steps');STEPS.forEach((st,i)=>{const sp=node('span',(D()[st[0]]?'✓ ':'')+st[1],D()[st[0]]?'ok':'');if(i===stepIdx)sp.className='on';bar.append(sp)});s.append(bar);if(title){const h=node('h2');h.append(sv('span',title));s.append(h)}if(sub)s.append(node('p',sub,'muted'));return s}
-function openSession(){const ns=nextStep();$('home').hidden=true;$('session').hidden=false;window.scrollTo(0,0);if(ns<0){stepIdx=1;runReview(true);return}stepIdx=ns;runStep()}
+function openSession(){const ns=nextStep();$('home').hidden=true;$('session').hidden=false;window.scrollTo(0,0);if(!S.placed){runPlacement(openSession);return}if(ns<0){stepIdx=1;runReview(true);return}stepIdx=ns;runStep()}
 function finishStep(){D()[STEPS[stepIdx][0]]=true;S.lastActive=T;save();const ns=nextStep();if(ns<0){celebrate();return}stepIdx=ns;runStep()}
 function runStep(){({ear:runEar,review:runReview,new:runNew,mission:runMission,say:runSay})[STEPS[stepIdx][0]]()}
 function exitBtn(){return button('Pause — back to start',()=>{if(synth)synth.cancel();$('session').hidden=true;$('home').hidden=false;renderHome()})}
@@ -385,6 +385,7 @@ function chips(){const c=node('div',undefined,'chips');const f=EAR.find(e=>!earP
 function think(btn){btn.disabled=true;setTimeout(()=>btn.disabled=false,1800)}
 function showCard(c,done){
   const s=stage();
+  if(c.kind==='def')return defCard(s,c,done);
   if(c.kind==='comp')return compCard(s,c,done);if(c.kind==='prod')return prodCard(s,c,done);if(c.kind==='spell')return spellCard(s,c,done);if(c.kind==='cloze')return clozeCard(s,c,done);return echoCard(s,c,done);
 }
 function nextRow(done,ok){const r=node('div',undefined,'row center');const b=button('Nästa →',()=>done(ok),'primary');r.append(b);setTimeout(()=>b.focus(),50);return r}
@@ -416,6 +417,10 @@ function clozeCard(s,c,done){
   s.append(node('p','Which word is missing? Say it, then check.'+(c.src?' · '+c.src:''),'label'));let p=clozeHTML(c.full,c.blank,false);s.append(p);
   const r=node('div',undefined,'row center');r.append(button('💡 Hint: hear the sentence',()=>say(c.full)));const show=button('Visa svaret',()=>{r.remove();const q=clozeHTML(c.full,c.blank,true);p.replaceWith(q);p=q;say(c.full);selfGrade(s,done)},'primary');think(show);r.append(show);s.append(r);
 }
+function defCard(s,c,done){
+  s.append(node('p','Which concept is it? Say it, then check.'+(c.src?' · '+c.src:''),'label'));const d=sv('div',c.def,'cloze');d.style.fontSize='24px';s.append(d);
+  const r=node('div',undefined,'row center');r.append(button('🔊 Lyssna',()=>say(c.def)));const show=button('Visa svaret',()=>{r.remove();const h=node('div',undefined,'word');h.append(sv('span',c.term),sayBtn(c.term));s.append(h);say(c.term);selfGrade(s,done)},'primary');think(show);r.append(show);s.append(r);
+}
 function echoCard(s,c,done){
   s.append(node('p','Listen, then say the sentence yourself.'+(c.src?' · '+c.src:''),'label'));const r=node('div',undefined,'row center');r.append(button('🔊 Lyssna',()=>say(c.full)),button('🐢 Långsamt',()=>say(c.full,.65)));s.append(r);
   const r2=node('div',undefined,'row center');const show=button('Visa meningen',()=>{r2.remove();s.append(sv('div',c.full,'cloze'));selfGrade(s,done)},'primary');think(show);r2.append(show);s.append(r2);say(c.full);
@@ -437,20 +442,37 @@ function runReview(extra){
 }
 
 /* ---------- step 3: new ---------- */
+/* New cards come from his real work first: the chapter he is reading, Kemi concepts,
+   saved Reader words, mission sentences and parent cards. Core picture words only if he
+   marked them unknown in the word check. */
+function chapterItems(){
+  const out=[];if(typeof CHAPTERS==='undefined')return out;const rd=readLS('swedish-reader-v1');if(!rd||!rd.texts)return out;
+  const saved=new Set((rd.words||[]).map(w=>norm(w.form)));
+  CHAPTERS.forEach(ch=>{const txt=rd.texts[ch.id];if(!txt)return;const sents=txt.replace(/\n+/g,' ').split(/(?<=[.!?…]”?)\s+/);
+    ch.gloss.forEach(g=>{const forms=[g[0]].concat(g.slice(2));const id='g:'+ch.id+':'+norm(g[0]);if(S.cards[id]||S.skip[id])return;
+      for(const f of forms){if(saved.has(norm(f)))return;const re=new RegExp('(^|[^\\p{L}])('+f.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')(?=$|[^\\p{L}])','iu');
+        const st=sents.find(x=>re.test(x));if(st){const m=st.match(re);out.push({id,kind:'cloze',full:st.trim(),blank:m[2],src:ch.book+' · '+ch.title,info:{w:g[0],en:g[1]}});return}}})});
+  return out;
+}
+function kemiItems(){if(typeof PARTS==='undefined')return[];const out=[];PARTS.forEach(p=>p.concepts.forEach(([t,ex,et])=>{const id='k:'+norm(t);if(S.cards[id]||S.skip[id])return;out.push({id,kind:'def',term:t,def:ex,src:'Kemi',info:{w:t,en:et}})}));return out}
+function newItems(limit){
+  const sentDone=Object.values(S.cards).filter(c=>c.added===T&&c.box>0).length;let room=Math.max(0,limit-sentDone);
+  const srcs=[chapterItems(),kemiItems(),harvest().map(x=>Object.assign({},x)),LEX.filter(w=>S.words[w.sv]===undefined&&S.unknown&&S.unknown.includes(w.sv)).map(w=>({core:w}))];
+  const caps=[4,2,3,99],take=[0,0,0,0],out=[];
+  while(room>0){let added=false;for(let k=0;k<srcs.length&&room>0;k++){if(take[k]<caps[k]&&srcs[k].length){out.push(srcs[k].shift());take[k]++;room--;added=true}}if(!added)break}
+  return out;
+}
 function runNew(){
-  const q=quota();const introducedToday=Object.values(S.words).filter(w=>w.day===T).length;
-  const wordsLeft=Math.max(0,q.newWords-introducedToday);const fresh=LEX.filter(w=>!S.words[w.sv]).slice(0,wordsLeft);
-  const sents=harvest().slice(0,Math.max(0,3-Object.values(S.cards).filter(c=>c.added===T&&(c.kind==='cloze'||c.kind==='echo')).length));
-  const items=fresh.map(w=>({t:'word',w})).concat(sents.map(x=>({t:'sent',x})));
-  const total=items.length;let i=0;
-  if(!total){const s=shell('Nytt','No new cards today.');s.append(node('p',LEX.every(w=>S.words[w.sv])?'You have started every word in the list! New sentence cards come from missions, the Reader and the parent corner.':'You have reached today’s limit. More tomorrow!','muted'));const r=node('div',undefined,'row');r.append(button('Next step →',finishStep,'primary'),exitBtn());s.append(r);return}
+  const q=quota();const items=newItems(q.newWords*(q.back?1:1));const total=items.length;let i=0;
+  if(!total){const s=shell('Nytt','No new cards today.');s.append(node('p','Nothing new right now. New cards come from the chapter you read in the Reader, Kemi, finished missions and the parent corner.','muted'));const r=node('div',undefined,'row');r.append(button('Next step →',finishStep,'primary'),exitBtn());s.append(r);return}
   const retry=[],tries=new Map();const push=c=>{const n=(tries.get(c.id)||0)+1;tries.set(c.id,n);if(n<=2)retry.push(c)};
   function next(){
     if(i>=items.length&&!retry.length){finishStep();return}
     if(i>=items.length){const c=retry.shift();shell('Nytt: en gång till','Try this one again.');showCard(c,res=>{if(!res)push(c);next()});return}
-    const it=items[i++];
-    if(it.t==='word')introWord(it.w);else introSent(it.x);
+    const it=items[i++];if(it.core)introWord(it.core);else introItem(it);
   }
+  function knownBtn(onKnown){return button('Jag kan det redan ✓',onKnown)}
+  function practise(c){shell('Kommer du ihåg?',i+' / '+total);showCard(c,res=>{c.box=1;c.due=T+1;S.log.push([T,res?1:0]);save();if(!res)push(c);next()})}
   function introWord(w){
     const s=shell('Nytt ord',i+' / '+total);const h=node('div',undefined,'word');h.append(sv('span',w.sv),sayBtn(w.sv));s.append(h);if(w.clue)s.append(sv('div',w.clue,'clue'));
     s.append(node('p',w.pics.length>1?'Which picture fits best for you? Tap it.':'Look at the picture and listen.','muted center'));
@@ -458,19 +480,37 @@ function runNew(){
     w.pics.forEach(p=>{const b=button(p,()=>{pick=p;Array.from(o.children).forEach(x=>x.classList.toggle('selected',x===b));step2()});if(w.pics.length===1)b.classList.add('selected');o.append(b)});s.append(o);say(w.sv);
     const tagRow=node('div',undefined,'row center');const tag=node('input');tag.type='text';tag.placeholder='Optional: who or what do you think of?';tag.setAttribute('aria-label','Personal note');tag.maxLength=40;tagRow.append(tag);
     const go=button('Got it →',()=>{if(!pick){toast('Tap a picture first');return}S.words[w.sv]={pic:pick,tag:tag.value.trim(),day:T};save();
-      const comp=addCard({id:'w:'+w.sv+':comp',kind:'comp',w:w.sv}),prod=addCard({id:'w:'+w.sv+':prod',kind:'prod',w:w.sv});
-      // one immediate recall, then the cards wait until tomorrow
-      shell('Kommer du ihåg?',i+' / '+total);showCard(prod,res=>{prod.box=1;prod.due=T+1;comp.box=1;comp.due=T+1;S.log.push([T,res?1:0]);save();if(!res)push(prod);next()})},'primary');
+      const comp=addCard({id:'w:'+w.sv+':comp',kind:'comp',w:w.sv}),prod=addCard({id:'w:'+w.sv+':prod',kind:'prod',w:w.sv});comp.box=1;comp.due=T+1;practise(prod)},'primary');
+    const kn=node('div',undefined,'row center');kn.append(knownBtn(()=>{S.words[w.sv]={pic:w.pics[0],known:true,day:T};save();next()}));s.append(kn);
     function step2(){if(!tagRow.isConnected){s.append(tagRow);const r=node('div',undefined,'row center');r.append(go);s.append(r)}}
     if(pick)step2();
   }
-  function introSent(x){
-    const s=shell('Ny mening',i+' / '+total+(x.src?' · '+x.src:''));s.append(sv('div',x.full,'cloze'));const r=node('div',undefined,'row center');r.append(button('🔊 Lyssna',()=>say(x.full)),button('🐢 Långsamt',()=>say(x.full,.65)));s.append(r,node('p','Read it out loud after the voice. Then you will practise it.','muted center'));say(x.full);
-    const r2=node('div',undefined,'row center');r2.append(button('Practise it →',()=>{const c=addCard(x);shell('Kommer du ihåg?',i+' / '+total);showCard(c,res=>{c.box=1;c.due=T+1;S.log.push([T,res?1:0]);save();if(!res)push(c);next()})},'primary'));s.append(r2);
+  function introItem(x){
+    const label=x.kind==='def'?'Nytt begrepp':x.info?'Nytt ord':'Ny mening';
+    const s=shell(label,i+' / '+total+(x.src?' · '+x.src:''));
+    if(x.info){const h=node('div',undefined,'word');h.append(sv('span',x.info.w),sayBtn(x.info.w));s.append(h,node('p',x.info.en,'center muted'))}
+    const body=x.kind==='def'?x.def:x.full;const t=sv('div',undefined,'cloze');if(x.kind==='cloze'){const i0=x.full.indexOf(x.blank);t.append(document.createTextNode(x.full.slice(0,i0)),node('mark',x.blank),document.createTextNode(x.full.slice(i0+x.blank.length)))}else t.textContent=body;s.append(t);
+    const r=node('div',undefined,'row center');r.append(button('🔊 Lyssna',()=>say(body)),button('🐢 Långsamt',()=>say(body,.65)));s.append(r);say(x.info?x.info.w:body);
+    s.append(node('p','Read it out loud after the voice. Then you will practise it.','muted center'));
+    const r2=node('div',undefined,'row center');r2.append(knownBtn(()=>{const c=addCard(x);c.box=3;c.due=T+9;save();next()}),button('Practise it →',()=>practise(addCard(x)),'primary'));s.append(r2);
   }
   next();
 }
 
+/* ---------- word check (placement) ---------- */
+function runPlacement(after){
+  const pending=LEX.filter(w=>S.words[w.sv]===undefined);const unknown=new Set(S.unknown||[]);let page=0;const PER=20;
+  function draw(){
+    const part=pending.slice(page*PER,(page+1)*PER);const s=stage();s.replaceChildren();
+    s.append(node('h2','Ordkoll · word check'),node('p','Tap only the words you DON’T know. Everything else counts as known and won’t come up. Page '+(page+1)+' of '+Math.ceil(pending.length/PER)+'.','muted'));
+    const g=node('div',undefined,'wl');part.forEach(w=>{const d=node('div');d.style.cursor='pointer';const mark=()=>{d.style.background=unknown.has(w.sv)?'#f2d4c8':'#fffdf7';d.style.borderColor=unknown.has(w.sv)?'var(--accent)':''};d.append(node('div',w.pics[0],'p'),sv('b',w.sv));d.onclick=()=>{if(unknown.has(w.sv))unknown.delete(w.sv);else unknown.add(w.sv);mark()};mark();g.append(d)});s.append(g);
+    const r=node('div',undefined,'row');
+    r.append(button((page+1)*PER>=pending.length?'Done ✓':'Next page →',()=>{part.forEach(w=>{if(!unknown.has(w.sv))S.words[w.sv]={pic:w.pics[0],known:true,day:T}});S.unknown=[...unknown];save();page++;if(page*PER>=pending.length){S.placed=true;save();toast(unknown.size+' words to learn');after()}else draw()},'primary'));
+    r.append(button('I know all of these — skip the rest',()=>{pending.slice(page*PER).forEach(w=>{if(!unknown.has(w.sv))S.words[w.sv]={pic:w.pics[0],known:true,day:T}});S.unknown=[...unknown];S.placed=true;save();after()}));
+    s.append(r);window.scrollTo(0,0);
+  }
+  if(!pending.length){S.placed=true;save();after();return}draw();
+}
 /* ---------- step 4: mission ---------- */
 function missionInfo(){const L=Array.isArray(window.LESSONS)?window.LESSONS.filter(Boolean):[];const ms=readLS('swedish-missions-v1')||{solved:[],boss:[]};const solved=new Set(ms.solved||[]);const i=L.findIndex((u,ui)=>!(u.tasks.every((t,ti)=>solved.has(ui+'-'+ti))&&(ms.boss||[]).includes(ui)));return{L,i,count:solved.size}}
 function runMission(){
@@ -501,6 +541,6 @@ $('setNew').onchange=()=>{S.set.newWords=Number($('setNew').value);save();render
 $('export').onclick=()=>{const u=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'}));const a=node('a');a.href=u;a.download='swedish-today-backup-'+dayStr(T)+'.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1500)};
 $('import').onchange=async e=>{try{const f=e.target.files[0];if(!f)return;const s=JSON.parse(await f.text());if(!s||s.v!==1||typeof s.cards!=='object'||typeof s.words!=='object')throw Error();if(!confirm('Replace current progress with this backup?'))return;S=Object.assign(fresh(),s);save();renderHome();toast('Backup restored')}catch(err){toast('That is not a valid backup file.')}};
 $('reset').onclick=()=>{if(!confirm('Delete all progress on this page and start over?'))return;S=fresh();save();renderHome()};
-$('start').onclick=openSession;
+$('start').onclick=openSession;$('placebtn').onclick=()=>{$('home').hidden=true;$('session').hidden=false;runPlacement(()=>{$('session').hidden=true;$('home').hidden=false;renderHome()})};
 renderHome();
 </script></body></html>
