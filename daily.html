@@ -1,34 +1,54 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Swedish Studies · Today</title><style>
-:root{--bg:#f7f3e9;--ink:#203536;--muted:#526665;--accent:#a53e23;--line:#c8cec3;--wash:#e7eddf;--good:#2f6b45;--r:14px}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 'Trebuchet MS',Arial,sans-serif}button,input,select,textarea{font:inherit;color:inherit}button,a,input,select,label{touch-action:manipulation}button{border:1px solid var(--line);border-radius:var(--r);background:transparent;padding:11px 18px;cursor:pointer}button:hover{background:var(--wash)}button:disabled{opacity:.45;cursor:default}button.primary,button.selected{background:var(--accent);border-color:var(--accent);color:white}button.good{background:var(--good);border-color:var(--good);color:white}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}a{color:var(--accent)}
-header,main,footer{max-width:960px;margin:auto;padding:24px}header{display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid var(--line);flex-wrap:wrap}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0}.center{justify-content:center;text-align:center}
-h1{font-size:clamp(40px,7vw,68px);line-height:1.04;letter-spacing:-.05em;margin:14px 0}h2{font-size:28px;line-height:1.15;letter-spacing:-.02em;margin:6px 0 10px}h3{font-size:21px;margin:18px 0 8px}p{max-width:68ch;text-wrap:pretty}
+:root{--bg:#f7f3e9;--ink:#203536;--muted:#526665;--accent:#a53e23;--line:#c8cec3;--wash:#e7eddf;--good:#2f6b45;--gold:#c99a1e;--sky:#3d6f8f;--r:14px}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 'Trebuchet MS',Arial,sans-serif}button,input,select,textarea{font:inherit;color:inherit}button,a,input,select,label{touch-action:manipulation}button{border:1px solid var(--line);border-radius:var(--r);background:transparent;padding:11px 18px;cursor:pointer}button:hover{background:var(--wash)}button:disabled{opacity:.45;cursor:default}button.primary,button.selected{background:var(--accent);border-color:var(--accent);color:white}button.good{background:var(--good);border-color:var(--good);color:white}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}a{color:var(--accent)}
+header,main,footer{max-width:980px;margin:auto;padding:24px}header{display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid var(--line);flex-wrap:wrap}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0}.center{justify-content:center;text-align:center}
+h1{font-size:clamp(38px,7vw,64px);line-height:1.04;letter-spacing:-.05em;margin:10px 0}h2{font-size:28px;line-height:1.15;letter-spacing:-.02em;margin:6px 0 10px}h3{font-size:21px;margin:18px 0 8px}p{max-width:68ch;text-wrap:pretty}
 .label{font-size:12px;text-transform:uppercase;letter-spacing:.13em;font-weight:bold;color:var(--muted)}.muted{color:var(--muted)}[hidden]{display:none!important}
 section{padding:26px 0;border-top:1px solid var(--line)}
-.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;padding:20px 0}.board{background:var(--wash);border-radius:var(--r);padding:20px}
+/* who */
+.who{display:flex;gap:10px;align-items:center}.chip{display:inline-flex;gap:8px;align-items:center;border:2px solid var(--ink);border-radius:999px;padding:6px 14px;background:#fffdf7;font-weight:bold}.chip .av{font-size:24px;line-height:1}
+.profiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin:16px 0}.prof{border:2px solid var(--ink);border-radius:var(--r);background:#fffdf7;padding:18px;text-align:center;cursor:pointer;transition:transform .15s}.prof:hover{transform:translateY(-3px)}.prof .av{font-size:56px;line-height:1.1}.prof b{display:block;font-size:22px}.prof small{color:var(--muted)}
+/* hero */
+.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:26px;align-items:start;padding:12px 0 6px}.board{background:var(--wash);border-radius:var(--r);padding:18px}
+.path{display:flex;gap:6px;margin:16px 0;flex-wrap:wrap}.path .st{flex:1;min-width:76px;text-align:center;border-radius:14px;padding:10px 4px;background:#fffdf7;border:2px solid var(--line);font-size:13px;position:relative}.path .st i{display:block;font-style:normal;font-size:28px;line-height:1.2}.path .st.ok{border-color:var(--good);background:#e2f0e5}.path .st.ok::after{content:'✓';position:absolute;top:-8px;right:-6px;background:var(--good);color:white;border-radius:50%;width:22px;height:22px;font-size:13px;line-height:22px}.path .st.next{border-color:var(--accent);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(165,62,35,.35)}50%{box-shadow:0 0 0 8px rgba(165,62,35,0)}}
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stat b{display:block;font-size:30px;line-height:1.1;font-variant-numeric:tabular-nums}.stat span{font-size:13px;color:var(--muted)}
+.flame{display:inline-block;animation:wiggle 2.2s ease-in-out infinite;transform-origin:50% 90%}@keyframes wiggle{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg) scale(1.08)}}
 .cal{display:flex;gap:5px;margin-top:14px}.cal i{width:18px;height:18px;border-radius:5px;background:white;border:1px solid var(--line);display:block}.cal i.part{background:#e8c9b9}.cal i.full{background:var(--good);border-color:var(--good)}.cal i.today{outline:2px solid var(--ink)}
 .big{font-size:20px;padding:16px 26px}
-.stage{border:2px solid var(--ink);border-radius:var(--r);background:#fffdf7;padding:clamp(16px,4vw,32px);margin:18px 0;min-height:420px}
-.steps{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}.steps span{flex:1;min-width:90px;text-align:center;font-size:13px;padding:6px;border-radius:999px;background:var(--wash);color:var(--muted)}.steps span.on{background:var(--accent);color:white;font-weight:bold}.steps span.ok{background:#d6eadb;color:var(--good)}
-.pic{font-size:96px;line-height:1.1;text-align:center;margin:8px 0}.word{font-size:42px;font-weight:bold;text-align:center;margin:6px 0;display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap}.tag{text-align:center;color:var(--accent);font-weight:bold}.clue{text-align:center;color:var(--muted)}
+/* journey map */
+.lvl{margin:18px 0 6px;display:flex;align-items:center;gap:10px}.lvl b{font-size:19px}.lvl .bar{flex:1;height:8px;background:var(--wash);border-radius:99px;overflow:hidden}.lvl .bar i{display:block;height:100%;background:var(--gold);transition:width .8s}
+.map{display:flex;flex-wrap:wrap;gap:10px 0;align-items:center;padding:6px 0}.stn{position:relative;display:flex;align-items:center}.stn button{width:52px;height:52px;border-radius:50%;padding:0;font-weight:bold;font-size:15px;border:3px solid var(--line);background:#fffdf7}.stn.done button{background:var(--good);border-color:var(--good);color:white}.stn.cur button{background:var(--accent);border-color:var(--accent);color:white;transform:scale(1.15);animation:pulse 1.6s ease-in-out infinite}.stn.locked button{opacity:.55}.stn .ln{width:16px;height:4px;background:var(--line)}.stn.done .ln{background:var(--good)}
+.unitcard{border:2px solid var(--ink);border-radius:var(--r);background:#fffdf7;padding:18px;margin:14px 0}.unitcard .meters{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.meter{background:var(--wash);border-radius:12px;padding:8px;text-align:center;font-size:13px}.meter b{display:block;font-size:20px}.meter.ok{background:#d6eadb;color:var(--good)}
+/* stage */
+.stage{border:2px solid var(--ink);border-radius:var(--r);background:#fffdf7;padding:clamp(16px,4vw,32px);margin:18px 0;min-height:420px;position:relative;overflow:hidden}
+.stage>*{animation:pop .35s ease both}.stage>*:nth-child(2){animation-delay:.04s}.stage>*:nth-child(3){animation-delay:.08s}.stage>*:nth-child(4){animation-delay:.12s}@keyframes pop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.steps{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}.steps span{flex:1;min-width:64px;text-align:center;font-size:13px;padding:6px;border-radius:999px;background:var(--wash);color:var(--muted)}.steps span.on{background:var(--accent);color:white;font-weight:bold}.steps span.ok{background:#d6eadb;color:var(--good)}
+.pic{font-size:96px;line-height:1.1;text-align:center;margin:8px 0}.word{font-size:42px;font-weight:bold;text-align:center;margin:6px 0;display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap}.tag{text-align:center;color:var(--accent);font-weight:bold}.clue{text-align:center;color:var(--muted)}.note{text-align:center;font-style:italic;color:var(--sky)}
 .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}.grid4 button{font-size:54px;padding:14px 4px;line-height:1.2}.grid4 button.right{background:#d6eadb;border-color:var(--good)}.grid4 button.wrong{background:#f2d4c8;border-color:var(--accent)}
 .opts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:14px 0}.opts button{font-size:60px;padding:10px 18px;line-height:1.2}
-.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}.pair button{font-size:34px;padding:22px 8px;font-weight:bold}.pair button.right{background:#d6eadb;border-color:var(--good)}.pair button.wrong{background:#f2d4c8;border-color:var(--accent)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}.pair button{font-size:34px;padding:22px 8px;font-weight:bold}.pair button.right{background:#d6eadb;border-color:var(--good);animation:bounce .4s}.pair button.wrong{background:#f2d4c8;border-color:var(--accent);animation:shake .35s}
+@keyframes bounce{40%{transform:scale(1.08)}}@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 .say{padding:6px 12px;font-size:18px;line-height:1;flex:none}
 .cloze{font-size:28px;text-align:center;margin:20px 0;line-height:1.5}.cloze .gap{display:inline-block;min-width:3.5em;border-bottom:3px solid var(--accent)}.cloze mark{background:#f6e3a1;padding:0 4px;border-radius:4px}
 input.spell{font-size:28px;padding:10px 14px;border:2px solid var(--ink);border-radius:12px;width:min(100%,360px);text-align:center}
-.fb{min-height:28px;text-align:center;font-weight:bold;font-size:19px;margin:8px 0}.fb.ok{color:var(--good)}.fb.no{color:var(--accent)}
+.fb{min-height:28px;text-align:center;font-weight:bold;font-size:19px;margin:8px 0}.fb.ok{color:var(--good);animation:bounce .4s}.fb.no{color:var(--accent)}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.chips button,.chips span{padding:6px 12px;font-size:14px;border-radius:999px;border:1px solid var(--line)}.chips .pass{background:#d6eadb;border-color:var(--good);color:var(--good)}.chips .cur{border-color:var(--accent);color:var(--accent);font-weight:bold}
-textarea{width:100%;min-height:120px;background:white;border:2px solid var(--line);border-radius:var(--r);padding:12px;font-size:19px;line-height:1.5}
-input[type=text]{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:white;min-width:240px}select{padding:9px;border:1px solid var(--line);border-radius:10px;background:white}
+textarea{width:100%;min-height:110px;background:white;border:2px solid var(--line);border-radius:var(--r);padding:12px;font-size:19px;line-height:1.5}
+input[type=text]{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:white;min-width:220px}select{padding:9px;border:1px solid var(--line);border-radius:10px;background:white}
 .wl{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}.wl>div{border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;background:#fffdf7}.wl .p{font-size:36px}.wl .lv{color:var(--accent);letter-spacing:2px;font-size:13px}
 .inbox .item{padding:12px 0;border-bottom:1px solid var(--line)}.inbox .item p{margin:4px 0}
-.party{font-size:80px;text-align:center}
+.party{font-size:84px;text-align:center;animation:spin 1s ease}@keyframes spin{from{transform:scale(.2) rotate(-200deg)}to{transform:none}}
+.vid{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#111;margin:12px 0}.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.arena{width:100%;height:680px;border:0;border-radius:12px;background:#fffdf7}
+.rec{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center;margin:10px 0}.rec .dot{width:12px;height:12px;border-radius:50%;background:var(--accent);animation:pulse 1s infinite}
+.confetti{position:absolute;top:-40px;font-size:28px;animation:fall 2.6s linear forwards;pointer-events:none;z-index:4}@keyframes fall{to{transform:translateY(620px) rotate(360deg);opacity:.2}}
+.xp{position:absolute;right:18px;top:14px;font-weight:bold;color:var(--gold);animation:float 1.2s ease forwards;pointer-events:none}@keyframes float{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-40px)}}
 #toast{position:fixed;left:50%;top:20px;transform:translateX(-50%);background:var(--ink);color:white;padding:12px 18px;border-radius:var(--r);max-width:min(92vw,520px);z-index:30;font-size:15px}
+dialog{border:2px solid var(--ink);border-radius:var(--r);max-width:min(92vw,640px);background:#fffdf7;color:var(--ink)}dialog::backdrop{background:rgba(32,53,54,.4)}
 footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
-/* Main navigation */
 header nav{display:flex;flex-wrap:wrap;gap:8px 18px}header nav a{padding:6px 0;text-decoration:none;font-size:14px;font-weight:normal}header nav a[aria-current="page"]{color:var(--ink);font-weight:bold;border-bottom:2px solid var(--accent)}header nav a:hover{text-decoration:underline}
-@media(max-width:700px){header,main,footer{padding:18px}header{align-items:flex-start}header nav{width:100%}.hero{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}.pic{font-size:80px}.word{font-size:34px}}
+@media(max-width:700px){header,main,footer{padding:18px}header{align-items:flex-start}header nav{width:100%}.hero{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}.pic{font-size:80px}.word{font-size:34px}.unitcard .meters{grid-template-columns:repeat(2,1fr)}.arena{height:620px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.confetti{display:none}}
 </style></head><body><header>
   <strong>SWEDISH / STUDIES</strong>
   <nav aria-label="Main navigation">
@@ -38,21 +58,34 @@ header nav{display:flex;flex-wrap:wrap;gap:8px 18px}header nav a{padding:6px 0;t
     <a href="reader.html">Reader</a>
   </nav>
 </header><main>
-<div id="home"><div class="hero"><div><div class="label" id="datelabel"></div><h1>Dagens svenska</h1><p>About 25 minutes: train your ear, remember old words, learn new ones, do a mission and say one sentence. Everything you learn comes back just before you forget it.</p><div class="row"><button id="start" class="primary big">▶ Start</button><button id="placebtn">Word check</button></div><p class="muted" id="plan"></p></div>
-<aside class="board"><div class="label">Din svenska · your Swedish</div><div class="stats"><div class="stat"><b id="sWords">0</b><span>words and sentences learning</span></div><div class="stat"><b id="sMature">0</b><span>cards you know well (3+ weeks)</span></div><div class="stat"><b id="sDue">0</b><span>cards to review today</span></div><div class="stat"><b id="sEar">0/0</b><span>sound pairs mastered</span></div></div><div class="cal" id="cal" aria-label="Last 14 days"></div><p class="muted" id="sRet" style="margin:8px 0 0;font-size:14px"></p></aside></div></div>
-<div id="session" hidden><div class="stage" id="stage"></div></div>
+<div id="pick" hidden><div class="label">Vem tränar idag? · who is practising?</div><h1>Hej! Vem är du?</h1><p class="muted">Everyone has their own level, words and streak. Tap your name.</p><div id="proflist" class="profiles"></div></div>
+
+<div id="home" hidden>
+<div class="row" style="justify-content:space-between;margin-top:0"><div class="label" id="datelabel"></div><button id="whoBtn" class="chip" aria-label="Switch person"></button></div>
+<div class="hero"><div><h1>Dagens svenska</h1><p id="intro">About 25 minutes. Six short steps — the words you learn come back just before you would forget them.</p>
+<div class="path" id="path"></div>
+<div class="row"><button id="start" class="primary big">▶ Start</button></div><p class="muted" id="plan"></p></div>
+<aside class="board"><div class="label">Din svenska · your Swedish</div><div class="stats"><div class="stat"><b id="sStreak">0</b><span>day streak <span class="flame">🔥</span></span></div><div class="stat"><b id="sXP">0</b><span>XP</span></div><div class="stat"><b id="sWords">0</b><span>words and sentences learning</span></div><div class="stat"><b id="sDue">0</b><span>cards to review today</span></div></div><div class="cal" id="cal" aria-label="Last 14 days"></div><p class="muted" id="sRet" style="margin:8px 0 0;font-size:14px"></p></aside></div>
+
+<section id="journey"><div class="label">Resan · the journey A2 → C1</div><h2>Din resa</h2><p class="muted">Each station is one chapter from your books: new words, a grammar game, a video and a speaking task. Finish all four to unlock the next station.</p>
+<div id="unitcard" class="unitcard"></div><div id="map"></div></section>
 
 <section id="mywords"><div class="label">Mina ord · my words</div><h2>Words you have started</h2><p class="muted">★ shows how well you know a word. Tap 🔊 to hear it.</p><div id="wl" class="wl"></div></section>
 
 <section id="parents"><div class="label">För föräldrar · for parents</div><h2>Parent corner</h2>
-<details open><summary><b>Sentences to correct</b> <span id="inboxcount" class="muted"></span></summary><p class="muted">Write the corrected Swedish. Put [square brackets] around one word to practise, e.g. <i>Jag [spelade] fotboll igår.</i> Then save it as a card. Without brackets it becomes a “listen and repeat” card.</p><div id="inbox" class="inbox"></div></details>
+<details open><summary><b>Sentences to correct</b> <span id="inboxcount" class="muted"></span></summary><p class="muted">Write the corrected Swedish. Put [square brackets] around one word to practise, e.g. <i>Jag [spelade] fotboll igår.</i> Without brackets it becomes a “listen and repeat” card.</p><div id="inbox" class="inbox"></div></details>
 <details><summary><b>Add your own card</b></summary><p class="muted">A sentence from school, homework or a book. Use [brackets] around the word to practise.</p><div class="row"><input type="text" id="qa" placeholder="Vi [tränar] fotboll på tisdagar." style="flex:1" lang="sv"><button id="qadd" class="primary">Add card</button></div></details>
-<details><summary><b>Settings</b></summary><div class="row"><label>New cards per day <select id="setNew"><option>4</option><option>6</option><option selected>8</option><option>10</option><option>12</option></select></label><label>Rivstart chapter <select id="setRiv"></select></label><label>Max reviews per day <select id="setCap"><option>30</option><option>45</option><option selected>60</option><option>90</option></select></label></div>
+<details><summary><b>Settings</b></summary><div class="row"><label>New words per day <select id="setNew"><option>4</option><option>6</option><option>8</option><option>10</option><option>12</option><option>15</option></select></label><label>Max reviews per day <select id="setCap"><option>30</option><option>45</option><option>60</option><option>90</option></select></label></div>
+<div class="row"><label>Station <select id="setUnit"></select></label><button id="editProf">Edit this person</button><button id="placebtn">Picture word check (A2)</button></div>
 <div class="row"><label>Voice <select id="voice"></select></label><label>Speed <select id="rate"><option value="1">Normal</option><option value="0.9" selected>A little slower</option><option value="0.8">Slow</option></select></label><button id="voicetest">🔊 Test</button></div><p id="voicenote" class="muted"></p></details>
-<details><summary><b>Backup</b></summary><p class="muted">Progress is saved in this browser only. Download a backup now and then — you can restore it on another device.</p><div class="row"><button id="export">Download backup</button><label>Restore <input type="file" id="import" accept="application/json"></label><button id="reset">Start over</button></div></details>
-<details><summary><b>How this works</b></summary><p>Based on the Fluent Forever method: words come with pictures instead of English, he must try to remember before seeing the answer, and each card comes back after 1, 3, 9 and 21 days, 2 months and 6 months — just before it would be forgotten. A missed card starts again. The daily sound game trains the ear for Swedish sounds that English and Turkish don't have. Sentences from finished missions, words saved in the Reader and your corrected sentences become cards automatically.</p></details>
+<details><summary><b>Backup</b></summary><p class="muted">Progress is saved in this browser only, separately for each person. Download a backup now and then — you can restore it on another device.</p><div class="row"><button id="export">Download backup</button><label>Restore <input type="file" id="import" accept="application/json"></label><button id="reset">Start over (this person)</button></div></details>
+<details><summary><b>How this works</b></summary><p>Built on the Fluent Forever method. <b>Sounds first</b>: a short ear game for Swedish sounds. <b>Spaced repetition</b>: every card comes back after 1, 3, 9 and 21 days, 2 months and 6 months — just before it would be forgotten. <b>Only what you don’t know</b>: each station starts with a quick check where you tap the words you don’t know. <b>Pictures and personal links</b>: for each new word, look at pictures (🔍) and write your own memory hook. <b>Grammar through sentences</b>: the grammar game drills the pattern with many short sentences. <b>Real Swedish</b>: a video per station. <b>Output</b>: say and write something every day; a parent corrects it and the corrected sentence becomes a card.</p><p>The stations follow Rivstart A1+A2 (chapters 3–20), Rivstart B1+B2 (1–18) and Rivstart B2+C1 (1–12). Word lists and glosses are written for this site; the books stay with you.</p></details>
 </section>
-</main><div id="toast" role="status" hidden></div><footer>Swedish Studies · Today. Method inspired by Fluent Forever (Gabriel Wyner). Progress stays in this browser.</footer>
+</div>
+<div id="session" hidden><div class="stage" id="stage"></div></div>
+</main>
+<dialog id="dlg"><div id="dlgbody"></div><div class="row" style="justify-content:flex-end"><button id="dlgclose" class="primary">OK</button></div></dialog>
+<div id="toast" role="status" hidden></div><footer>Swedish Studies · Today. Method inspired by Fluent Forever (Gabriel Wyner). Stations follow the Rivstart books (Natur &amp; Kultur); word lists, glosses and games written for this site. Videos are from YouTube channels named on each video. Progress stays in this browser.</footer>
 <script src="lessons.js"></script>
 <script>
 /* Rivstart A1/A2 vocabulary, chapters 3–20 (from the parent’s Anki deck). */
@@ -97,8 +130,6 @@ function expandForms(sv,notation){
 const VERB_OVR={"prata":["pratar","pratade","har pratat"],"spela":["spelar","spelade","har spelat"],"titta":["tittar","tittade","har tittat"],"lyssna":["lyssnar","lyssnade","har lyssnat"],"hoppa":["hoppar","hoppade","har hoppat"],"dansa":["dansar","dansade","har dansat"],"jobba":["jobbar","jobbade","har jobbat"],"laga":["lagar","lagade","har lagat"],"städa":["städar","städade","har städat"],"öppna":["öppnar","öppnade","har öppnat"],"stanna":["stannar","stannade","har stannat"],"vänta":["väntar","väntade","har väntat"],"svara":["svarar","svarade","har svarat"],"fråga":["frågar","frågade","har frågat"],"älska":["älskar","älskade","har älskat"],"kasta":["kastar","kastade","har kastat"],"träna":["tränar","tränade","har tränat"],"vakna":["vaknar","vaknade","har vaknat"],"duscha":["duschar","duschade","har duschat"],"cykla":["cyklar","cyklade","har cyklat"],"simma":["simmar","simmade","har simmat"],"handla":["handlar","handlade","har handlat"],"betala":["betalar","betalade","har betalat"],"plugga":["pluggar","pluggade","har pluggat"],"rita":["ritar","ritade","har ritat"],"måla":["målar","målade","har målat"],"baka":["bakar","bakade","har bakat"],"skratta":["skrattar","skrattade","har skrattat"],"sparka":["sparkar","sparkade","har sparkat"],"öva":["övar","övade","har övat"],"hämta":["hämtar","hämtade","har hämtat"],"hitta":["hittar","hittade","har hittat"],"visa":["visar","visade","har visat"],"fiska":["fiskar","fiskade","har fiskat"],"skicka":["skickar","skickade","har skickat"],"tappa":["tappar","tappade","har tappat"],"börja":["börjar","började","har börjat"],"sluta":["slutar","slutade","har slutat"],"stänga":["stänger","stängde","har stängt"],"ringa":["ringer","ringde","har ringt"],"höra":["hör","hörde","har hört"],"köra":["kör","körde","har kört"],"lära":["lär","lärde","har lärt"],"bygga":["bygger","byggde","har byggt"],"använda":["använder","använde","har använt"],"ställa":["ställer","ställde","har ställt"],"glömma":["glömmer","glömde","har glömt"],"gömma":["gömmer","gömde","har gömt"],"leva":["lever","levde","har levt"],"behöva":["behöver","behövde","har behövt"],"följa":["följer","följde","har följt"],"känna":["känner","kände","har känt"],"böja":["böjer","böjde","har böjt"],"köpa":["köper","köpte","har köpt"],"läsa":["läser","läste","har läst"],"tänka":["tänker","tänkte","har tänkt"],"åka":["åker","åkte","har åkt"],"leka":["leker","lekte","har lekt"],"hjälpa":["hjälper","hjälpte","har hjälpt"],"tycka":["tycker","tyckte","har tyckt"],"resa":["reser","reste","har rest"],"släcka":["släcker","släckte","har släckt"],"möta":["möter","mötte","har mött"],"byta":["byter","bytte","har bytt"],"söka":["söker","sökte","har sökt"],"väcka":["väcker","väckte","har väckt"],"bo":["bor","bodde","har bott"],"tro":["tror","trodde","har trott"],"sy":["syr","sydde","har sytt"],"må":["mår","mådde","har mått"],"nå":["når","nådde","har nått"],"äta":["äter","åt","har ätit"],"dricka":["dricker","drack","har druckit"],"springa":["springer","sprang","har sprungit"],"skriva":["skriver","skrev","har skrivit"],"sitta":["sitter","satt","har suttit"],"ligga":["ligger","låg","har legat"],"stå":["står","stod","har stått"],"gå":["går","gick","har gått"],"komma":["kommer","kom","har kommit"],"se":["ser","såg","har sett"],"ge":["ger","gav","har gett"],"ta":["tar","tog","har tagit"],"få":["får","fick","har fått"],"göra":["gör","gjorde","har gjort"],"säga":["säger","sa","har sagt"],"vara":["är","var","har varit"],"ha":["har","hade","har haft"],"veta":["vet","visste","har vetat"],"sova":["sover","sov","har sovit"],"flyga":["flyger","flög","har flugit"],"bjuda":["bjuder","bjöd","har bjudit"],"sjunga":["sjunger","sjöng","har sjungit"],"vinna":["vinner","vann","har vunnit"],"försvinna":["försvinner","försvann","har försvunnit"],"hålla":["håller","höll","har hållit"],"falla":["faller","föll","har fallit"],"slå":["slår","slog","har slagit"],"dra":["drar","drog","har dragit"],"bli":["blir","blev","har blivit"],"skjuta":["skjuter","sköt","har skjutit"],"bära":["bär","bar","har burit"],"välja":["väljer","valde","har valt"],"sälja":["säljer","sålde","har sålt"],"lägga":["lägger","la","har lagt"],"sätta":["sätter","satte","har satt"],"heta":["heter","hette","har hetat"],"gråta":["gråter","grät","har gråtit"],"låta":["låter","lät","har låtit"],"skära":["skär","skar","har skurit"],"stjäla":["stjäl","stal","har stulit"],"frysa":["fryser","frös","har frusit"],"bita":["biter","bet","har bitit"],"skrika":["skriker","skrek","har skrikit"],"kliva":["kliver","klev","har klivit"],"rida":["rider","red","har ridit"],"le":["ler","log","har lett"],"kunna":["kan","kunde","har kunnat"],"vilja":["vill","ville","har velat"],"måste":["måste","måste","har måst"]};
 
 </script>
-<script src="reader-data.js"></script>
-<script src="kemi-data.js"></script>
 <script>
 /* Today · data. Core words in a kid-friendly Swedish adaptation of the "first words"
    idea from Fluent Forever: picturable, frequent, always learned with en/ett, shown with
@@ -296,9 +327,435 @@ const PROMPTS=[
 ['Vad tycker du om skolan?','What do you think about school?',['Jag tycker att','Det bästa är']]
 ];
 
+/* The journey A2 → C1. One station = one book chapter. Written for this site. */
+const VIDEOS={
+'GRAyd0aeKgA':['Swedish Word Order Explained (V2)','Swedish By Hanna','en'],
+'9TIPeKgenBQ':['Negation with inte, ingen, inget','Coffee Break Languages','en'],
+'8s3G7vGreVM':['Swedish grammar: en and ett words','Swedish Made Easy','en'],
+'M6JhQov5qvc':['Plural forms of nouns','Svenskahavet','en'],
+'gpecA1j-ejQ':['Indefinite and definite nouns','Coffee Break Languages','en'],
+'TfRhnTDIul4':['Adjectives','Erik Edler','en'],
+'PyW2JSxKgvk':['Verbgrupp 1–4','Sandra Gustafsson','sv'],
+'EY-CAVCS_0U':['Comparative and superlative','Svenskahavet','en'],
+'j4IJK-g_49o':['De vanligaste tidsprepositionerna','Svenska för dig','sv'],
+'czfqShAQNQ8':['How to really pronounce SJ','Swedish Linguist','en'],
+'KtpbB5-kA_0':['The tj sound','Academia Cervena','en'],
+'6_ssFjqncBM':['Long and short vowels','Swedish Inside Out','en'],
+'SU3ZvV4q0Wk':['Bisatser och ordföljd','Peter SFI','sv'],
+'cNQn6RC4qts':['Sin? Sitt? Sina?','Teacher AlexAlex','sv'],
+'IQ8-8PxlFtk':['Tycka, tänka, tro','Fun Swedish','en'],
+'DdhLibwZEus':['Ska, skulle & konditionalis','Progressively Swedish','en'],
+'5anTDI4xfys':['Fredagsmys feat tacos','TheSwedishLad','en'],
+'HcmXX70VskE':['Så fungerar ett riksdagsval','Sveriges riksdag','sv'],
+'rnuQtr7Q7Ow':['Varför firar vi Lucia?','Teacher AlexAlex','sv'],
+'QN0uwxtkZzo':['S-passiv – en komplett introduktion','Teacher AlexAlex','sv'],
+'onMXj8QO2Wk':['Ställer, sätter, lägger','Fun Swedish','en'],
+'MxV0kXGMeIo':['Prata bättre svenska: partikelverb','Svenska språket','sv'],
+'46KuRwJJI4w':['Partikelverb, exempel och förklaring','Anita Pihl','sv'],
+'Xk4ETWLXJ3s':['Ju, väl och nog','Svenska för dig','sv'],
+'g_kQspTpwY4':['Relativa pronomen','Henrik Birkebo','sv'],
+'pYjpgAoxRL4':['Learn Swedish with History: The Vikings','MondoGo','sv'],
+'v5Pyy3k1kdI':['Sambandsord: argument','Sandra Gustafsson','sv'],
+'9KwLi1JQfek':['Sambandsord: konsekvens','Sandra Gustafsson','sv'],
+'ISFzOif2IoI':['Förstå svenska uttryck (idiom)','Svenska språket','sv'],
+'R37XCsjJ_vM':['Skriva en insändare','Svenska språket','sv'],
+'pMhWmoOxHzs':['Växthuseffekten','Aya Education','sv'],
+'_6szSQxK_Hc':['Så funkar allemansrätten','Hej Sverige','sv']
+};
+/* id|level|book|chapter|title|grammar game|videos (comma)|speaking question|hint|starters (;) */
+const UNITS_RAW=`
+a3|A2|riv|3|Siffror, tid och ålder|enett|8s3G7vGreVM|När fyller du år, och hur firar du?|When is your birthday?|Jag fyller år den;Jag blir;Vi brukar
+a4|A2|riv|4|Handla och äta ute|plural|M6JhQov5qvc|Vad köper du när du är hungrig efter skolan?|After school snacks|Jag köper;Det kostar;Jag gillar
+a5|A2|riv|5|Planer och fritid|verb|PyW2JSxKgvk|Vad ska du göra i helgen?|Your weekend plans|På lördag ska jag;Sedan ska vi;Jag vill
+a6|A2|riv|6|Familj och forskning|def|gpecA1j-ejQ|Berätta om någon i din familj.|Someone in your family|Min … heter;Hon/han jobbar som;Vi brukar
+a7|A2|riv|7|Shopping|adj|TfRhnTDIul4|Beskriv dina favoritkläder.|Your favourite clothes|Jag har en;Den är;Jag köpte den
+a8|A2|riv|8|Skansen och djur|v2|GRAyd0aeKgA|Vilket djur skulle du vilja ha?|An animal you would like|Jag skulle vilja ha;Den är;Den äter
+a9|A2|riv|9|Resa och transport|inte|9TIPeKgenBQ|Hur tar du dig till skolan?|How you get to school|Jag åker;Det tar;Ibland
+a10|A2|riv|10|Sveriges natur|grupp|czfqShAQNQ8|Vilken plats i Sverige gillar du mest?|A place in Sweden|Jag gillar;Där kan man;Förra sommaren
+a11|A2|riv|11|Semester och förslag|verb|KtpbB5-kA_0|Vad gjorde du på ditt senaste lov?|Your last school holiday|På lovet;Vi åkte;Det bästa var
+a12|A2|riv|12|Svensk mat|komp|EY-CAVCS_0U|Vilken mat är godast? Jämför!|Compare foods|… är godare än;Det bästa är;Jag tycker inte om
+a13|A2|riv|13|Yrken och drömmar|v2|6_ssFjqncBM|Vad vill du bli när du blir stor? Varför?|Dream job|Jag vill bli;eftersom;Man måste
+a14|A2|riv|14|Sommar på landet|adj|GRAyd0aeKgA|Beskriv en perfekt sommardag.|A perfect summer day|På morgonen;Sedan;Det är
+a15|A2|riv|15|Medelsvensson|plural|M6JhQov5qvc|Vad är typiskt svenskt, tycker du?|Typically Swedish|Jag tycker att;Svenskar brukar;I Turkiet
+a16|A2|riv|16|Skolan|inte|9TIPeKgenBQ|Vilket är ditt bästa ämne och varför?|Your best school subject|Mitt bästa ämne är;eftersom;Jag tycker inte om
+a17|A2|riv|17|Boende|def|gpecA1j-ejQ|Beskriv ditt rum.|Your room|I mitt rum finns;Sängen står;Jag skulle vilja ha
+a18|A2|riv|18|Hösten och förändringar|grupp|PyW2JSxKgvk|Vad har förändrats sedan förra året?|What changed this year|Förra året;Nu;Jag har börjat
+a19|A2|riv|19|Kroppen och hälsan|enett|8s3G7vGreVM|Hur håller du dig frisk?|How you stay healthy|Jag tränar;Jag äter;Man ska
+a20|A2|riv|20|Nyheter|verb|j4IJK-g_49o|Berätta om en nyhet du hörde nyligen.|A recent news story|Jag hörde att;Det hände;Jag tycker att
+b1|B1|b12|1|Fritid|prep|j4IJK-g_49o|Är du en soffpotatis eller en hurtbulle? Varför?|Couch potato or sporty?|Jag tränar;varje vecka;Ibland
+b2|B1|b12|2|Vänner|sin|cNQn6RC4qts|Vad är en bra vän, tycker du?|What makes a good friend|En bra vän är;Min bästa vän;Vi brukar
+b3|B1|b12|3|Livsstil och lycka|konj|SU3ZvV4q0Wk|Vad gör dig lycklig? Ge två skäl.|What makes you happy|Jag blir glad när;eftersom;Ju mer … desto
+b4|B1|b12|4|Djur|bisats|KtpbB5-kA_0|Vilket är världens bästa husdjur? Argumentera!|The best pet|Jag tycker att;eftersom;Däremot
+b5|B1|b12|5|Fritid, umgänge, vanor|hos|5anTDI4xfys|Hur ser fredagsmys ut hemma hos dig?|Friday night at your home|Hemma hos oss;Vi brukar;Fast
+b6|B1|b12|6|Statsskick och politik|kond|HcmXX70VskE,DdhLibwZEus|Om du var statsminister en dag, vad skulle du göra?|If you were prime minister|Om jag vore;skulle jag;Först
+b7|B1|b12|7|Smultronställen och regional mat|rel|g_kQspTpwY4|Berätta om ditt smultronställe.|Your favourite secret spot|Mitt smultronställe är;där;som
+b8|B1|b12|8|Sveriges och Nordens historia|komp|EY-CAVCS_0U|Vilken tid i historien skulle du vilja besöka?|A time in history|Jag skulle vilja;för … sedan;på 1800-talet
+b9|B1|b12|9|Sanning och lögn|tanka|IQ8-8PxlFtk|Är det någon gång okej att ljuga?|Is it ever OK to lie?|Jag tycker att;Jag tror att;Till exempel
+b10|B2|b12|10|Resande och turism|passiv|QN0uwxtkZzo|Skulle du vilja resa till rymden?|Space tourism?|Ja/nej, eftersom;Det sägs att;Det skulle vara
+b11|B2|b12|11|Brott och straff|part|czfqShAQNQ8|Skriv en kort nyhetsnotis om en stulen fotboll.|A news item: a stolen football|Igår stals;Bollen hittades;Polisen
+b12|B2|b12|12|Utmaningar och sociala medier|satsadv|Xk4ETWLXJ3s,R37XCsjJ_vM|Vad är bra och dåligt med sociala medier?|Social media pros and cons|Det är ju;Å ena sidan;Å andra sidan
+b13|B2|b12|13|Högtider och årstider|v2b|rnuQtr7Q7Ow|Vilken högtid gillar du mest? Varför?|Your favourite holiday|Min favorithögtid är;Då brukar vi;Vad roligt
+b14|B2|b12|14|Konsumentregler och klagomål|bisats|SU3ZvV4q0Wk|Du köpte en trasig mobil. Klaga i en kort dialog.|Complain about a broken phone|Jag skulle vilja;Den gick sönder;Kan jag få
+b15|B2|b12|15|Nätverka och söka arbete|konj|6_ssFjqncBM|Ditt första sommarjobb: varför ska de anställa dig?|Your first summer job|Jag är;Jag har erfarenhet av;Dessutom
+b16|B2|b12|16|Släkt och familj|lagga|onMXj8QO2Wk|Beskriv en person i din släkt.|Describe a relative|Hon/han är;Jag är stolt över;Vi brukar
+b17|B2|b12|17|Vikingar och tro|partikel|pYjpgAoxRL4|Hitta på en kort vikingasaga.|Invent a Viking saga|Det var en gång;Plötsligt;Till slut
+b18|B2|b12|18|Arbetsliv och svenska koder|samband|v5Pyy3k1kdI|Vilka oskrivna regler finns i din skola?|Unwritten rules at school|Man ska;Man får inte;Därför
+c1|B2|c|1|Språk|ordbild|ISFzOif2IoI|Hur lär man sig ett språk bäst?|How to learn a language|För det första;Dessutom;Enligt min erfarenhet
+c2|B2|c|2|Året runt|partikel|MxV0kXGMeIo|Ge tre råd till någon som är trött på vintermörkret.|Advice against winter darkness|Du borde;Försök att;Glöm inte att
+c3|C1|c|3|Kropp och själ|samband|v5Pyy3k1kdI,9KwLi1JQfek|Ska skolan ha mer idrott? Argumentera för och emot.|More PE at school?|Å ena sidan;Å andra sidan;Sammanfattningsvis
+c4|C1|c|4|Samhälle|register|HcmXX70VskE|Ska barn få rösta från 12 år? Vad tycker du?|Should 12-year-olds vote?|Jag anser att;Ett argument för är;Däremot
+c5|C1|c|5|Relationer|prepverb|46KuRwJJI4w|Beskriv steg för steg hur man blir sams efter ett bråk.|How to make up after a fight|Först;Därefter;Till slut
+c6|C1|c|6|Arbete|register|R37XCsjJ_vM|Skriv tre punkter i mötesanteckningar från klassrådet.|Class council meeting notes|Beslutades att;Eleverna önskar;Nästa möte
+c7|C1|c|7|Sverige och världen|rel|pYjpgAoxRL4|Vad har du lärt dig av att leva med två språk?|Living with two languages|Jag har insett att;För min del;Det som
+c8|C1|c|8|Teknik och utveckling|samband|9KwLi1JQfek|Hur mycket skärmtid är lagom? Ge skäl.|How much screen time is OK?|Jag håller med om att;Däremot;Därför
+c9|C1|c|9|Kommunikation|idiom|ISFzOif2IoI|Berätta om ett missförstånd som blev roligt.|A funny misunderstanding|Det var en gång;Jag trodde att;Det visade sig att
+c10|C1|c|10|Miljö|passiv|pMhWmoOxHzs|Vad kan en elva-åring göra för miljön?|What can a kid do for the climate?|Man kan;Det skulle;Dessutom
+c11|C1|c|11|Stad och land|prepverb|_6szSQxK_Hc|Beskriv en plats i naturen så att man ser den framför sig.|Describe a place in nature|Framför mig;Det luktar;Det enda som hörs
+c12|C1|c|12|Livet|idiom|DdhLibwZEus|Vilken bok eller film har påverkat dig mest?|A book or film that changed you|Berättelsen handlar om;Huvudpersonen;Det som påverkade mig
+`;
+const LEVELS=[['A2','Grund','🥉'],['B1','Mellan','🥈'],['B2','Avancerad','🥇'],['C1','Expert','🏆']];
+const BOOKS={riv:'Rivstart A1+A2',b12:'Rivstart B1+B2',c:'Rivstart B2+C1'};
+
+/* B1–C1 grammar games, written for this site.
+   Cloze items: sentence with ___ | answer | wrong options separated by ; | short note (optional) */
+const GRAMMAR_GAMES=[
+{id:'sin',e:'🪞',lvl:'B1',name:'Sin, sitt, sina',en:'His own or someone else’s?',desc:'Leo tar sin boll — or hans boll?',
+ sheet:`<p>When the owner is the <b>subject of the same clause</b>, use <b>sin / sitt / sina</b> (his/her/their <i>own</i>):</p><ul><li>Leo tar <b>sin</b> boll. (Leo’s own ball)</li><li>Leo tar <b>hans</b> boll. (someone else’s ball — another boy)</li></ul><table><tr><th>en-word</th><th>ett-word</th><th>plural</th></tr><tr><td>sin bok</td><td>sitt hus</td><td>sina skor</td></tr></table><p>Never use sin in the subject itself: <i><b>Hans</b> mamma är lärare</i> (not sin mamma).</p>`,
+ items:`Leo letar efter ___ mobil. Han hittar den inte.|sin|hans;sitt;sina|Leo’s own phone → sin
+Emma ringer ___ mamma varje dag.|sin|hennes;sitt;sina|Emma’s own mother → sin
+Barnen packar ___ väskor.|sina|deras;sin;sitt|their own bags (plural) → sina
+Pappa tvättar ___ bil på lördagar.|sin|hans;sitt;sina|his own car → sin
+Lisa gillar ___ nya rum.|sitt|sin;hennes;sina|rum is an ett-word → sitt
+___ syster heter Maja.|Hans|Sin;Sitt;Sina|the owner is not the subject → hans
+Ali och ___ bror spelar fotboll.|hans|sin;sitt;sina|part of the subject → hans
+Spelarna firade med ___ fans.|sina|deras;sin;sitt|their own fans → sina
+Han glömde ___ läxa hemma.|sin|hans;sitt;sina|his own homework → sin
+Sara lånade Johans cykel. Hon tyckte att ___ cykel var snabb.|hans|sin;hennes;sitt|Johan’s bike, and Johan is not the subject → hans
+Katten leker med ___ leksak.|sin|dess;sitt;sina|the cat’s own toy → sin
+Vi hälsade på Erik och ___ föräldrar.|hans|sina;sin;deras|Erik is not the subject → hans
+Oskar visar ___ nya spel för mig.|sitt|sin;hans;sina|spel is ett → sitt
+Läraren rättar ___ prov.|sina|hennes;sin;sitt|her own tests (plural) → sina
+Maja tycker att ___ bror är jobbig.|hennes|sin;sitt;sina|new clause: bror is in a clause where Maja is not the subject → hennes
+Tränaren pratar med ___ lag.|sitt|sin;hans;sina|lag is ett → sitt
+Mina kompisar älskar ___ hundar.|sina|deras;sin;sitt|their own dogs → sina
+Johan och ___ kusin åkte till Turkiet.|hans|sin;sitt;sina|part of the subject → hans
+Hon har tappat ___ nycklar.|sina|hennes;sin;sitt|her own keys → sina
+Laget vann ___ första match.|sin|dess;sitt;sina|the team’s own match → sin`},
+{id:'konj',e:'🔗',lvl:'B1',name:'Binda ihop',en:'Linking words',desc:'och, men, för, så, eftersom, när, om, fast …',
+ sheet:`<p><b>Konjunktioner</b> join two main clauses (normal word order after them): <b>och, men, eller, för, så</b>.</p><p><b>Subjunktioner</b> start a subordinate clause: <b>att, eftersom, när, om, fast, medan, innan, tills, därför att, om</b>.</p><ul><li><b>för</b> = because (main clause) · <b>eftersom</b> = because/since (bisats)</li><li><b>så</b> = so (result) · <b>om</b> = if</li><li><b>fast / fastän</b> = although · <b>medan</b> = while</li></ul>`,
+ items:`Jag stannade hemma ___ jag var sjuk.|eftersom|men;så;fast|reason → eftersom
+Det regnade, ___ vi spelade inomhus.|så|för;fast;när|result → så
+Jag gillar fotboll, ___ min syster gillar tennis.|men|för;så;eftersom|contrast → men
+Vi går ut ___ det slutar regna.|när|men;för;eller|time → när
+___ du är hungrig kan du ta en macka.|Om|För;Men;Så|condition → om
+Han sprang fort, ___ han kom ändå för sent.|men|så;eftersom;om|contrast → men
+Jag vet ___ du har rätt.|att|om;så;för|“that” → att
+Hon gick ut ___ det var kallt.|fast|så;för;och|although → fast
+Pappa lagade mat ___ vi dukade.|medan|men;för;så|at the same time → medan
+Borsta tänderna ___ du går och lägger dig.|innan|medan;fast;så|before → innan
+Vill du ha te ___ kaffe?|eller|men;så;för|choice → eller
+Jag är trött, ___ jag sov dåligt.|för|så;om;fast|because (main clause) → för
+Vi väntade ___ bussen kom.|tills|så;för;fast|until → tills
+Jag undrar ___ han kommer imorgon.|om|att;så;för|“whether” → om
+Han tränar varje dag ___ han vill bli proffs.|eftersom|men;fast;eller|reason → eftersom
+Ju mer du övar, ___ bättre blir du.|desto|så;och;än|ju … desto
+Jag kan både simma ___ cykla.|och|eller;men;så|både … och
+Hon vill varken äta fisk ___ kött.|eller|och;men;så|varken … eller
+Vi ses antingen på lördag ___ på söndag.|eller|och;men;så|antingen … eller
+Jag ringde, ___ ingen svarade.|men|för;så;eftersom|contrast → men`},
+{id:'bisats',e:'↘️',lvl:'B1',name:'Inte i bisatsen',en:'inte in a subordinate clause',desc:'… att han inte kommer. Where does inte go?',kind:'gap',
+ sheet:`<p>In a <b>bisats</b> (after att, eftersom, om, när, som …) words like <b>inte, aldrig, alltid, ofta</b> come <b>before the verb</b>:</p><ul><li>Han kommer <b>inte</b>. → Jag vet att han <b>inte</b> kommer.</li><li>Vi har <b>aldrig</b> varit där. → … eftersom vi <b>aldrig</b> har varit där.</li></ul><p>Main clause: verb → inte. Bisats: inte → verb.</p>`,
+ items:`Jag vet att|han|kommer|imorgon.|1
+Hon sa att|hon|gillar|fisk.|1
+Vi stannade hemma eftersom|vi|hade|tid.|1
+Det är synd att|du|kan|komma.|1
+Han är ledsen för att|laget|vann.|1
+Jag undrar om|hon|har|läst boken.|1
+Om|du|skyndar dig|missar du bussen.|1
+Jag blev glad när|det|regnade.|1
+Det är en film som|jag|har|sett.|1
+Mamma blev arg eftersom|jag|hade|städat.|1
+Leo säger att|han|vill|spela idag.|1
+Vi vet att|hon|bor|här längre.|1`},
+{id:'v2b',e:'🏗️',lvl:'B1',name:'Ordföljd 2',en:'Word order level 2',desc:'När jag kom hem, åt jag … Build longer sentences.',kind:'tiles',
+ sheet:`<p>A <b>bisats</b> at the start counts as place 1 — so the main verb comes right after it:</p><table><tr><th>1</th><th>2 (verb)</th><th>3</th><th>…</th></tr><tr><td>När jag kom hem</td><td>åt</td><td>jag</td><td>middag.</td></tr><tr><td>Om det regnar</td><td>stannar</td><td>vi</td><td>inne.</td></tr></table><p>The same goes for adverbs like <i>därför, sedan, kanske</i>: <i>Därför <b>kom</b> jag sent.</i> (but <i>kanske</i> can also stay: <i>Jag kanske kommer.</i>)</p>`,
+ items:`När jag kom hem|åt|jag|middag.
+Om det regnar|stannar|vi|inne.
+Eftersom han var sjuk|missade|han|matchen.
+Därför|kom|jag|för sent.
+Innan matchen börjar|värmer|spelarna|upp.
+Sedan|gick|vi|och badade.
+Medan mamma lagade mat|spelade|jag|FIFA.
+Om du vill|kan|du|följa med.
+När sommarlovet börjar|åker|vi|till Turkiet.
+Tyvärr|vann|det andra laget.
+I morse|glömde|jag|min gympapåse.
+Fast det var kallt|badade|vi|i sjön.`},
+{id:'prep',e:'⏰',lvl:'B1',name:'När? Tidsprepositioner',en:'Time prepositions',desc:'i, på, om, för … sedan, under, i två timmar',
+ sheet:`<ul><li><b>om</b> + time = in the future: <i>om en vecka</i> (in a week)</li><li><b>för … sedan</b> = ago: <i>för en vecka sedan</i></li><li><b>i</b> + time = how long: <i>i två timmar</i> · also <i>i sommar, i kväll, i år</i></li><li><b>på</b> + weekday/time of day: <i>på måndag, på morgonen, på helgen</i> · and <i>på</i> + time it takes: <i>på tio minuter</i></li><li><b>under</b> = during: <i>under matchen</i></li><li><b>i</b> + months/1900s: <i>i maj, i juli</i> · <b>på</b> + decade: <i>på 1990-talet</i></li></ul>`,
+ items:`Vi åker till Turkiet ___ två veckor.|om|för;i;på|in the future → om
+Jag började spela fotboll ___ fem år sedan.|för|om;i;på|ago → för … sedan
+Vi tränade ___ två timmar igår.|i|på;om;för|how long → i
+Matchen är ___ lördag.|på|i;om;under|weekday → på
+Jag sprang fem kilometer ___ 25 minuter.|på|i;om;för|time it took → på
+Han somnade ___ filmen.|under|på;om;för|during → under
+Vi ska bada mycket ___ sommar.|i|på;om;för|this summer → i sommar
+Min mormor föddes ___ 1960-talet.|på|i;om;under|decade → på
+Skolan börjar ___ augusti.|i|på;om;under|month → i
+___ morgonen äter jag gröt.|På|I;Om;Under|time of day → på morgonen
+Jag har bott här ___ tre år.|i|på;om;för|how long → i
+Vi ses ___ kväll!|i|på;om;för|tonight → i kväll
+Bussen går ___ fem minuter.|om|på;i;för|in five minutes → om
+Han kom hem ___ en timme sedan.|för|om;i;på|ago → för … sedan
+Vi har prov ___ fredag.|på|i;om;för|weekday → på
+Det snöade mycket ___ vintern.|på|i;om;för|on the (past) winter → på vintern
+Jag ska läsa boken ___ helgen.|i|på;om;för|this weekend → i helgen
+Hon pratade i telefon ___ hela lektionen.|under|på;om;för|during → under`},
+{id:'hos',e:'🏠',lvl:'B1',name:'Hem eller hemma?',en:'Where and where to',desc:'hem/hemma, dit/där, hos/till, ut/ute',
+ sheet:`<p>Swedish separates <b>movement</b> (to somewhere) from <b>position</b> (somewhere):</p><table><tr><th>movement →</th><th>position •</th></tr><tr><td>Jag går <b>hem</b>.</td><td>Jag är <b>hemma</b>.</td></tr><tr><td>Vi åker <b>dit</b>.</td><td>Vi bor <b>där</b>.</td></tr><tr><td>Hon går <b>ut</b>.</td><td>Hon är <b>ute</b>.</td></tr><tr><td>Kom <b>hit</b>!</td><td>Jag är <b>här</b>.</td></tr><tr><td>Jag går <b>till</b> Leo.</td><td>Jag är <b>hos</b> Leo.</td></tr><tr><td>Han går <b>upp / in</b>.</td><td>Han är <b>uppe / inne</b>.</td></tr></table>`,
+ items:`Efter skolan går jag ___.|hem|hemma;hos;där|movement → hem
+Är du ___ ikväll?|hemma|hem;dit;ut|position → hemma
+Jag sov ___ Ali i helgen.|hos|till;hem;på|at someone’s place → hos
+Kan du komma ___ en stund?|hit|här;där;hemma|movement → hit
+Vi var ___ hela dagen.|ute|ut;dit;hem|position → ute
+Barnen springer ___ på gården.|ut|ute;hemma;där|movement → ut
+Stockholm är fint. Vi åker ___ i sommar.|dit|där;hit;här|movement → dit
+Jag har aldrig varit ___.|där|dit;hit;hem|position → där
+Mamma går ___ tandläkaren.|till|hos;hem;på|movement to a person → till
+Han är ___ tandläkaren nu.|hos|till;hem;ut|position at a person → hos
+Katten vill komma ___.|in|inne;ut;hemma|movement → in
+Det är varmt ___ i huset.|inne|in;hit;dit|position → inne
+Jag är ___ på vinden.|uppe|upp;ut;hem|position → uppe
+Gå ___ och hämta din jacka!|upp|uppe;hemma;här|movement → upp
+Vi äter middag ___ mormor på söndag.|hos|till;hem;ut|at someone’s place → hos
+Var bor du? Jag bor ___ i Lödöse.|här|hit;dit;hem|position → här`},
+{id:'tanka',e:'💭',lvl:'B1',name:'Tycker, tänker, tror',en:'Three ways to think',desc:'Which “think” is it?',
+ sheet:`<ul><li><b>tycka</b> = have an opinion/taste: <i>Jag tycker att filmen är bra.</i> <i>Jag tycker om pizza.</i></li><li><b>tro</b> = believe, not sure: <i>Jag tror att det blir regn.</i></li><li><b>tänka</b> = think in your head, or plan: <i>Jag tänker på dig.</i> <i>Jag tänker åka hem.</i></li></ul>`,
+ items:`Jag ___ att pizza är godare än pasta.|tycker|tror;tänker|opinion → tycker
+Jag ___ att det blir sol imorgon, men jag vet inte.|tror|tycker;tänker|not sure → tror
+Vad ___ du på?|tänker|tycker;tror|in your head → tänker på
+Jag ___ om att spela fotboll.|tycker|tror;tänker|like → tycker om
+Var är Leo? Jag ___ att han är hemma.|tror|tycker;tänker|guess → tror
+Jag ___ köpa ett nytt spel i helgen.|tänker|tycker;tror|plan → tänker
+Vad ___ du om den nya läraren?|tycker|tror;tänker|opinion → tycker
+Han ___ på sin hund hela tiden.|tänker|tycker;tror|in his head → tänker på
+Jag ___ inte på spöken.|tror|tycker;tänker|believe in → tro på
+Hon ___ att matte är roligt.|tycker|tror;tänker|opinion → tycker
+Vi ___ flytta till Göteborg nästa år.|tänker|tycker;tror|plan → tänker
+Jag ___ att tåget går klockan sju, men kolla tidtabellen.|tror|tycker;tänker|not sure → tror
+___ du på vad jag säger?|Tror|Tycker;Tänker|believe → tro på
+Tyst! Jag ___!|tänker|tycker;tror|thinking → tänker`},
+{id:'komp',e:'🏅',lvl:'B1',name:'Bra, bättre, bäst',en:'Comparing',desc:'större, störst, den största …',
+ sheet:`<table><tr><th>positiv</th><th>komparativ</th><th>superlativ</th><th>bestämd</th></tr><tr><td>snabb</td><td>snabb<b>are</b></td><td>snabb<b>ast</b></td><td>den snabb<b>aste</b></td></tr><tr><td>stor</td><td>st<b>ö</b>rre</td><td>st<b>ö</b>rst</td><td>den största</td></tr><tr><td>bra</td><td>bättre</td><td>bäst</td><td>den bästa</td></tr><tr><td>dålig</td><td>sämre</td><td>sämst</td><td>den sämsta</td></tr><tr><td>gammal</td><td>äldre</td><td>äldst</td><td>den äldsta</td></tr><tr><td>liten</td><td>mindre</td><td>minst</td><td>den minsta</td></tr><tr><td>många</td><td>fler</td><td>flest</td><td></td></tr><tr><td>mycket</td><td>mer</td><td>mest</td><td></td></tr></table><p><b>än</b> = than: <i>Leo är längre än jag.</i></p>`,
+ items:`Messi är ___ än min lillebror på fotboll.|bättre|bra;bäst;bästa|comparative of bra
+Det här är den ___ filmen jag har sett.|bästa|bäst;bättre;bra|den + superlative -a
+Elefanten är ___ än hästen.|större|störst;stor;största|comparative of stor
+Vem är ___ i din klass?|längst|längre;långa;längsta|superlative
+Min morfar är ___ i familjen.|äldst|äldre;gammal;äldsta|superlative of gammal
+Den här tröjan är ___ än den röda.|billigare|billigast;billig;billigaste|comparative -are
+Han har ___ kompisar än jag.|fler|mer;flest;många|countable → fler
+Jag vill ha ___ glass!|mer|fler;mest;många|uncountable → mer
+Det var den ___ dagen i mitt liv.|sämsta|sämst;sämre;dålig|den + superlative
+Vilken är den ___ planeten?|största|störst;större;stora|den + superlative
+Musen är ___ av alla djuren.|minst|mindre;minsta;liten|superlative of liten
+Hon springer ___ än alla andra.|snabbare|snabbast;snabba;snabbaste|comparative
+Det blir allt ___ på hösten.|kallare|kallast;kalla;kallaste|allt + comparative
+Matte är ___ än svenska för mig.|lättare|lättast;lätt;lättaste|comparative
+Vilket lag har ___ poäng?|flest|mest;fler;flesta|countable superlative → flest`},
+{id:'kond',e:'🌈',lvl:'B1',name:'Om jag vore …',en:'If and would',desc:'skulle, hade, vore — dream sentences',
+ sheet:`<p><b>Konditionalis</b> = would:</p><ul><li>Now/future dream: <i>Om jag <b>hade</b> pengar, <b>skulle</b> jag köpa en PS5.</i> · <i>Om jag <b>vore</b> rik …</i> (vore = were)</li><li>Past (it didn’t happen): <i>Om jag <b>hade</b> tränat, <b>hade</b> vi vunnit.</i> (= skulle ha vunnit)</li><li>Polite: <i>Jag <b>skulle</b> vilja ha en glass.</i> · <i><b>Skulle</b> du kunna hjälpa mig?</i></li></ul>`,
+ items:`Om jag hade mycket pengar ___ jag köpa en hund.|skulle|ska;hade;kommer|would → skulle
+Om jag ___ rik, skulle jag resa jorden runt.|vore|är;blir;ska|if I were → vore
+Om vi hade tränat mer, ___ vi vunnit.|hade|skulle;har;ska|past: hade + supine
+Jag ___ vilja ha en kopp te, tack.|skulle|ska;hade;vill|polite → skulle vilja
+Om jag ___ vetat det, hade jag stannat hemma.|hade|har;skulle;var|past condition → hade
+___ du kunna hjälpa mig med läxan?|Skulle|Ska;Hade;Kan inte|polite request
+Vad ___ du göra om du vann en miljon?|skulle|ska;hade;kommer att|imagined future
+Om det inte ___ regnat, hade vi badat.|hade|har;skulle;var|past → hade regnat
+Om jag var du, ___ jag ringa henne.|skulle|ska;hade;vill|advice → skulle
+Det ___ vara roligt att åka till Japan.|skulle|ska;hade;kommer|would be
+Om jag hade sett bollen, ___ jag tagit den.|hade|skulle;har;ska|past → hade tagit
+Jag ___ gärna följa med, men jag är sjuk.|skulle|ska;hade;kommer|would like to`},
+{id:'passiv',e:'🔄',lvl:'B2',name:'S-passiv',en:'Passive with -s',desc:'Huset byggdes 1902. Who did it doesn’t matter.',
+ sheet:`<p>Add <b>-s</b> to make the passive (something is done):</p><table><tr><th></th><th>aktiv</th><th>passiv</th></tr><tr><td>presens</td><td>man säljer</td><td>det säljs</td></tr><tr><td>preteritum</td><td>man byggde</td><td>det byggdes</td></tr><tr><td>supinum</td><td>man har målat</td><td>det har målats</td></tr><tr><td>infinitiv</td><td>man ska stänga</td><td>det ska stängas</td></tr></table><p>Present: verbs ending in -er drop the e: <i>säljer → säljs, läser → läses</i>. Agent with <b>av</b>: <i>Boken skrevs av Astrid Lindgren.</i></p><p>Also: <b>bli + particip</b>: <i>Han blev gripen.</i></p>`,
+ items:`Huset ___ år 1902.|byggdes|byggde;byggs;bygga|past passive
+Boken ___ av Astrid Lindgren.|skrevs|skrev;skrivs;skrivit|past passive
+Här ___ glass hela sommaren.|säljs|säljer;såldes;säljas|present passive
+Matchen ___ på grund av regnet.|ställdes in|ställde in;ställs in;ställa in|past passive
+Dörren måste ___ på kvällen.|låsas|låses;låstes;låsa|after a modal → -as
+Pizzan har redan ___.|ätits|ätit;äts;åts|supine passive
+Mobiler får inte ___ under lektionen.|användas|används;användes;använda|infinitive passive
+Svenska ___ av ungefär tio miljoner människor.|talas|talar;talades;tala|present passive
+Bilen ___ igår natt.|stals|stal;stjäls;stulits|past passive
+Det ___ att det blir snö imorgon.|sägs|säger;sades;säga|“it is said”
+Tjuven blev ___ av polisen.|gripen|gripa;grep;gripits|bli + participle
+Läxan ska ___ in på fredag.|lämnas|lämna;lämnades;lämnar|infinitive passive
+Vinnaren ___ i kväll.|presenteras|presenterar;presenterade;presenterats|present passive
+Spelet ___ av en svensk firma.|gjordes|gjorde;görs;göras|past passive`},
+{id:'part',e:'🧪',lvl:'B2',name:'Particip',en:'Participles',desc:'stängd, stängt, stängda · en gråtande pojke',
+ sheet:`<p><b>Perfekt particip</b> works like an adjective:</p><table><tr><th>en</th><th>ett</th><th>plural/def</th></tr><tr><td>stängd</td><td>stängt</td><td>stängda</td></tr><tr><td>målad</td><td>målat</td><td>målade</td></tr><tr><td>köpt</td><td>köpt</td><td>köpta</td></tr><tr><td>skriven</td><td>skrivet</td><td>skrivna</td></tr></table><p><b>Presens particip</b> ends in <b>-ande / -ende</b>: <i>en skrattande tjej, ett spännande spel, gående</i>.</p>`,
+ items:`Affären är ___ på söndagar.|stängd|stängt;stängda;stänger|en-word → stängd
+Fönstret är ___.|stängt|stängd;stängda;stängde|ett-word → stängt
+Dörrarna är ___.|stängda|stängd;stängt;stängde|plural → stängda
+Huset är ___ i rött.|målat|målad;målade;målar|ett-word → målat
+Boken är ___ på engelska.|skriven|skrivet;skrivna;skrev|en-word → skriven
+Breven var ___ för hand.|skrivna|skriven;skrivet;skrev|plural → skrivna
+Min cykel är ___!|stulen|stulet;stulna;stal|en-word → stulen
+Det var en ___ match.|spännande|spänd;spänt;spänner|presens particip
+Barnet kom ___ in i rummet.|springande|sprungen;sprang;springer|presens particip
+En ___ hund biter inte.|skällande|skälld;skäller;skällt|presens particip
+Middagen är ___.|lagad|lagat;lagade;lagar|en-word → lagad
+Alla biljetter är ___.|sålda|såld;sålt;sålde|plural → sålda
+Ett ___ glas ligger på golvet.|krossat|krossad;krossade;krossar|ett-word → krossat`},
+{id:'rel',e:'🪝',lvl:'B2',name:'Som, vars, vilket, där',en:'Relative words',desc:'the boy who / whose / which / where',
+ sheet:`<ul><li><b>som</b> = who/which/that: <i>Pojken <b>som</b> spelar …</i></li><li><b>vars</b> = whose: <i>Tjejen, <b>vars</b> hund är sjuk, …</i></li><li><b>vilket</b> = which (about the whole sentence): <i>Han vann, <b>vilket</b> alla blev glada över.</i></li><li><b>där</b> = where: <i>Staden <b>där</b> jag bor …</i> · <b>dit</b> = to where: <i>Landet <b>dit</b> vi åker …</i></li><li><b>vad</b> = what: <i>Gör <b>vad</b> du vill.</i> · <b>det som</b>: <i>Det <b>som</b> hände var roligt.</i></li></ul>`,
+ items:`Pojken ___ står där är min bror.|som|vars;där;vilket|who → som
+Tjejen, ___ mamma är lärare, går i min klass.|vars|som;vilket;där|whose → vars
+Han glömde läxan, ___ läraren inte gillade.|vilket|som;vars;där|which (whole sentence) → vilket
+Det här är huset ___ jag föddes.|där|som;vars;dit|where → där
+Turkiet är landet ___ vi åker i sommar.|dit|där;som;vars|to where → dit
+Spelet ___ jag köpte var dyrt.|som|vars;där;vilket|which → som
+Laget, ___ tränare är ny, vann igen.|vars|som;där;vilket|whose → vars
+Det ___ hände igår var konstigt.|som|vilket;vars;där|det som
+Gör ___ du vill!|vad|som;vilket;vars|what → vad
+Hon fick högsta betyg, ___ gjorde mamma glad.|vilket|som;vars;där|which → vilket
+Kommer du ihåg stranden ___ vi badade?|där|dit;som;vars|where → där
+Jag har en kompis ___ kan prata fem språk.|som|vars;vilket;där|who → som
+Författaren, ___ böcker jag älskar, kommer till skolan.|vars|som;vilket;där|whose → vars
+Det var allt ___ jag ville säga.|som|vilket;vars;där|allt som`},
+{id:'satsadv',e:'🧂',lvl:'B2',name:'Nog, väl, ju',en:'Little mood words',desc:'Small words that change the feeling',
+ sheet:`<ul><li><b>ju</b> = as you know: <i>Vi har <b>ju</b> prov idag!</i></li><li><b>väl</b> = I hope/suppose (asking for agreement): <i>Du kommer <b>väl</b>?</i></li><li><b>nog</b> = probably: <i>Det blir <b>nog</b> regn.</i></li><li><b>ändå</b> = anyway, still: <i>Det regnade, men vi badade <b>ändå</b>.</i></li><li><b>faktiskt</b> = actually: <i>Jag vann <b>faktiskt</b>!</i></li><li><b>visst</b> = sure, apparently: <i>Han har <b>visst</b> flyttat.</i></li></ul><p>They sit where <i>inte</i> sits: right after the verb (or before the verb in a bisats).</p>`,
+ items:`Skynda dig! Vi har ___ prov idag, det vet du.|ju|nog;väl;ändå|as you know → ju
+Du kommer ___ på mitt kalas? Säg ja!|väl|ju;nog;faktiskt|hoping for yes → väl
+Det blir ___ regn imorgon, molnen är mörka.|nog|ju;väl;ändå|probably → nog
+Jag var trött, men jag tränade ___.|ändå|nog;väl;ju|anyway → ändå
+Jag trodde inte att jag skulle vinna, men jag vann ___!|faktiskt|nog;väl;ju|actually → faktiskt
+Han har ___ flyttat till Malmö, hörde jag.|visst|ju;ändå;faktiskt|apparently → visst
+Det är ___ inte så farligt? Eller?|väl|ju;nog;faktiskt|hoping → väl
+Hon kommer ___ sent, hon är alltid sen.|nog|väl;ändå;faktiskt|probably → nog
+Ät nu! Du sa ___ att du var hungrig.|ju|nog;väl;ändå|as you said → ju
+Matchen var tråkig, men det var kul ___.|ändå|ju;väl;nog|still → ändå`},
+{id:'lagga',e:'📦',lvl:'B2',name:'Ligger eller lägger?',en:'Position or action',desc:'står/ställer, ligger/lägger, sitter/sätter',
+ sheet:`<table><tr><th>it IS there (position)</th><th>you PUT it there (action)</th></tr><tr><td>står (stod, stått)</td><td>ställer (ställde, ställt)</td></tr><tr><td>ligger (låg, legat)</td><td>lägger (lade/la, lagt)</td></tr><tr><td>sitter (satt, suttit)</td><td>sätter (satte, satt)</td></tr></table><ul><li>Boken <b>ligger</b> på bordet. Jag <b>lägger</b> boken på bordet.</li><li>Glaset <b>står</b> på bordet. Jag <b>ställer</b> glaset på bordet.</li><li>Tavlan <b>sitter</b> på väggen. Jag <b>sätter</b> på mig mössan.</li></ul>`,
+ items:`Mobilen ___ på soffan.|ligger|lägger;ställer;sitter|position, lying → ligger
+Kan du ___ mjölken i kylskåpet?|ställa|stå;lägga;sitta|put standing → ställa
+Jag ___ mig tidigt ikväll.|lägger|ligger;ställer;sätter|lay myself → lägger mig
+Cykeln ___ utanför skolan.|står|ställer;ligger;sätter|position, standing → står
+___ på dig mössan, det är kallt!|Sätt|Sitt;Lägg;Ställ|put on → sätt på
+Tavlan ___ på väggen i köket.|sitter|sätter;står;lägger|fixed position → sitter
+Han ___ böckerna i bokhyllan igår.|ställde|stod;låg;satt|put standing (past) → ställde
+Katten ___ i solen hela dagen igår.|låg|lade;ställde;satte|lay (past) → låg
+Var ___ du nycklarna?|lade/la|låg;stod;satt|put (past) → lade
+Glaset har ___ där sedan i morse.|stått|ställt;lagt;satt|been standing → stått
+Hon ___ sig vid fönstret.|satte|satt;lade;stod|sat down → satte sig
+Vi ___ och väntade i en timme.|satt|satte;lade;ställde|were sitting → satt
+Jag har ___ väskan i hallen.|ställt|stått;legat;suttit|put standing → ställt
+Snön ___ kvar till april.|låg|lade;satte;ställde|stayed lying → låg`},
+{id:'partikel',e:'🧷',lvl:'B2',name:'Partikelverb',en:'Phrasal verbs',desc:'hålla med, ta upp, komma på, ge upp …',
+ sheet:`<p>A <b>particle</b> after the verb changes the meaning — and the particle is <b>stressed</b>:</p><ul><li><b>hålla med</b> = agree · <b>ge upp</b> = give up · <b>komma på</b> = come up with, remember</li><li><b>ta upp</b> = bring up · <b>se ut</b> = look (appearance) · <b>tycka om</b> = like</li><li><b>känna igen</b> = recognise · <b>stänga av</b> = turn off · <b>sätta på</b> = turn on</li><li><b>hitta på</b> = make up · <b>hålla på</b> = be busy doing · <b>gå ut</b> = go out</li></ul>`,
+ items:`Jag ___ med dig, du har helt rätt.|håller|tar;ger;kommer|agree → hålla med
+Ge inte ___! Du klarar det!|upp|bort;ut;på|give up → ge upp
+Jag ___ på en bra idé!|kom|tog;höll;gav|came up with → kom på
+Kan du stänga ___ teven?|av|på;upp;ut|turn off → stänga av
+Han ___ ut som sin pappa.|ser|tittar;kommer;går|looks like → se ut
+Jag kände inte ___ honom med skägg.|igen|på;upp;med|recognise → känna igen
+Sätt ___ musiken, vi ska dansa!|på|av;upp;in|turn on → sätta på
+Vad ___ du på med?|håller|tar;kommer;ser|busy doing → hålla på med
+Han ___ på en lång historia om en drake.|hittade|kom;höll;tog|made up → hitta på
+Läraren ___ upp mobbning på mötet.|tog|gav;kom;höll|brought up → ta upp
+Jag tycker ___ glass.|om|på;med;upp|like → tycka om
+Vi ska ___ ut och äta ikväll.|gå|ta;se;komma|go out → gå ut
+Kan du ta ___ skorna innan du går in?|av|på;upp;ut|take off → ta av
+Pengarna tog ___ på en vecka.|slut|av;upp;ut|run out → ta slut`},
+{id:'samband',e:'🌉',lvl:'C1',name:'Sambandsord',en:'Connectors for texts',desc:'därför, dessutom, däremot, trots att, alltså …',
+ sheet:`<p>Good texts use <b>sambandsord</b> to show how ideas connect:</p><table><tr><th>add</th><td>dessutom, även, också, för det första … för det andra</td></tr><tr><th>contrast</th><td>men, däremot, å ena sidan … å andra sidan, ändå, trots att, fast</td></tr><tr><th>cause</th><td>eftersom, därför att, på grund av, nämligen</td></tr><tr><th>result</th><td>därför, så, alltså, följaktligen</td></tr><tr><th>example</th><td>till exempel, bland annat, såsom</td></tr><tr><th>sum up</th><td>sammanfattningsvis, kort sagt, slutligen</td></tr></table><p>Adverbs like <i>därför, dessutom, däremot</i> at the start → verb next: <i>Därför <b>tycker</b> jag …</i></p>`,
+ items:`Skärmtid kan vara bra. ___ kan för mycket skärmtid störa sömnen.|Däremot|Därför;Dessutom;Alltså|contrast → däremot
+Det är billigt att cykla. ___ är det bra för miljön.|Dessutom|Däremot;Trots att;Därför att|add → dessutom
+Det regnade hela dagen. ___ ställdes matchen in.|Därför|Dessutom;Däremot;Trots att|result → därför
+Vi gick ut ___ det regnade.|trots att|därför;dessutom;alltså|despite → trots att
+Hon kom inte. Hon var ___ sjuk.|nämligen|därför;dessutom;däremot|explains why → nämligen
+Du har inte tränat på en månad. Du är ___ inte i form.|alltså|däremot;dessutom;trots att|conclusion → alltså
+Matchen ställdes in ___ snön.|på grund av|eftersom;därför;trots|+ noun → på grund av
+Matchen ställdes in ___ det snöade.|eftersom|på grund av;därför;trots|+ clause → eftersom
+Det finns många sporter, ___ fotboll, hockey och tennis.|till exempel|däremot;alltså;trots att|example
+___ kan man säga att läsning är viktigt.|Sammanfattningsvis|Däremot;Dessutom;Trots att|sum up
+Å ena sidan är det dyrt, å ___ sidan håller det länge.|andra|ena;annan;nästa|å ena sidan … å andra sidan
+Han tränade hårt, men vann ___ inte.|ändå|därför;dessutom;alltså|still → ändå
+Jag läser mycket, ___ deckare och fantasy.|bland annat|däremot;därför;trots att|among other things
+___ det första är det billigt. För det andra är det kul.|För|Till;På;Av|för det första`},
+{id:'prepverb',e:'🧲',lvl:'C1',name:'Verb + preposition',en:'Which preposition?',desc:'tänka på, bero på, längta efter, vänja sig vid …',
+ sheet:`<p>Many verbs and adjectives have a fixed preposition. Learn them as one unit:</p><ul><li>tänka <b>på</b>, lita <b>på</b>, bero <b>på</b>, svara <b>på</b>, vänta <b>på</b></li><li>längta <b>efter</b>, leta <b>efter</b>, fråga <b>efter</b></li><li>vänja sig <b>vid</b>, intresserad <b>av</b>, rädd <b>för</b>, arg <b>på</b>, kär <b>i</b></li><li>handla <b>om</b>, drömma <b>om</b>, be <b>om</b>, ta hand <b>om</b></li><li>tacka <b>för</b>, skämmas <b>för</b>, bry sig <b>om</b></li></ul>`,
+ items:`Det beror ___ vädret.|på|av;om;för|bero på
+Jag längtar ___ sommarlovet.|efter|på;till;om|längta efter
+Vad handlar boken ___?|om|på;av;för|handla om
+Han är rädd ___ hundar.|för|av;på;om|rädd för
+Hon är intresserad ___ rymden.|av|för;på;om|intresserad av
+Man vänjer sig ___ kylan.|vid|på;med;till|vänja sig vid
+Kan jag lita ___ dig?|på|till;om;i|lita på
+Jag drömmer ___ att bli pilot.|om|på;av;för|drömma om
+Tack ___ hjälpen!|för|på;om;av|tack för
+Mamma är arg ___ mig.|på|för;om;med|arg på
+Han är kär ___ Sara.|i|på;med;för|kär i
+Jag bryr mig inte ___ vad andra tycker.|om|på;för;av|bry sig om
+Vi väntade ___ bussen i en halvtimme.|på|för;efter;till|vänta på
+Kan du ta hand ___ katten i helgen?|om|på;för;med|ta hand om
+Hon skäms ___ sin gamla mobil.|för|på;av;till|skämmas för
+Jag är stolt ___ dig!|över|för;på;av|stolt över
+Det är svårt att koncentrera sig ___ läxan.|på|om;till;med|koncentrera sig på
+Han bad ___ ursäkt.|om|för;på;till|be om ursäkt`},
+{id:'idiom',e:'🦉',lvl:'C1',name:'Idiom',en:'Swedish idioms',desc:'Det är ingen ko på isen …',
+ sheet:`<p>Idioms make your Swedish sound natural. Some favourites:</p><ul><li><b>Det är ingen ko på isen</b> = no problem, no rush</li><li><b>Glida in på en räkmacka</b> = have it easy</li><li><b>Ta det med en nypa salt</b> = don’t take it too seriously</li><li><b>Skägget i brevlådan</b> = caught in an awkward spot</li><li><b>Ont krut förgås inte så lätt</b> = bad things last</li><li><b>Inte för allt smör i Småland</b> = not for anything</li><li><b>Kasta in handduken</b> = give up</li><li><b>Ha is i magen</b> = keep calm</li><li><b>Lägga rabarber på</b> = grab, claim</li><li><b>Smaka på karamellen</b> = enjoy the moment</li></ul>`,
+ items:`Vi har gott om tid. Det är ingen ko på ___.|isen|sjön;vägen;ängen|ingen ko på isen = no rush
+Han har haft det så lätt. Han gled in på en ___.|räkmacka|ostmacka;banan;kanelbulle|glida in på en räkmacka
+Straffen avgör! Nu gäller det att ha is i ___.|magen|huvudet;handen;hjärtat|ha is i magen = keep calm
+Jag skulle inte göra det för allt smör i ___.|Småland|Skåne;Norrland;Stockholm|inte för allt smör i Småland
+Efter tre förluster kastade de in ___.|handduken|bollen;tröjan;skorna|give up
+Han blev påkommen och satt med skägget i ___.|brevlådan|dörren;fönstret;soppan|caught in an awkward spot
+Ta det han säger med en nypa ___.|salt|socker;peppar;mjöl|don’t take it too seriously
+Vi vann guld! Nu ska vi smaka på ___.|karamellen|glassen;tårtan;segern|enjoy the moment
+Han la ___ på den sista biten pizza.|rabarber|tomat;smör;sylt|claim it
+Hon har många järn i ___.|elden|ugnen;handen;skåpet|many things going on
+Det var droppen som fick bägaren att ___.|rinna över|gå sönder;falla;spricka|the last straw
+Hon har tummen mitt i ___.|handen|näven;foten;ögat|clumsy with hands
+Gå som katten kring het ___.|gröt|soppa;mjölk;kaffe|beat around the bush`},
+{id:'register',e:'🎩',lvl:'C1',name:'Formellt eller vardagligt',en:'Formal or everyday?',desc:'Pick the more formal (skriftspråk) word',
+ sheet:`<p>Written, formal Swedish (in essays, letters, news) often uses different words than speech:</p><table><tr><th>vardagligt</th><th>formellt</th></tr><tr><td>kolla</td><td>kontrollera, undersöka</td></tr><tr><td>fixa</td><td>ordna, åtgärda</td></tr><tr><td>typ</td><td>ungefär, till exempel</td></tr><tr><td>jättebra</td><td>mycket bra, utmärkt</td></tr><tr><td>funka</td><td>fungera</td></tr><tr><td>sen</td><td>sedan</td></tr><tr><td>dom</td><td>de / dem</td></tr><tr><td>mej / dej</td><td>mig / dig</td></tr><tr><td>snacka</td><td>prata, samtala</td></tr><tr><td>grej</td><td>sak</td></tr></table>`,
+ items:`Formellt: Vi måste ___ att alla uppgifter stämmer. (kolla)|kontrollera|fixa;checka;snacka|kolla → kontrollera
+Formellt: Problemet har nu ___. (fixats)|åtgärdats|kollats;funkat;snackats|fixa → åtgärda
+Formellt: Systemet ___ inte som det ska. (funkar)|fungerar|kollar;fixar;snackar|funka → fungera
+Formellt: Det tog ___ tre timmar. (typ)|ungefär|typ;liksom;asså|typ → ungefär
+Formellt: Resultatet var ___. (jättebra)|utmärkt|asbra;jättebra;sjukt bra|jättebra → utmärkt
+Formellt: ___ gick vi vidare till nästa punkt. (Sen)|Sedan|Sen;Asså;Typ|sen → sedan
+Formellt: ___ har lovat att svara. (Dom)|De|Dom;Dem;Dom där|subject → de
+Formellt: Vi kontaktade ___ igår. (dom)|dem|de;dom;dera|object → dem
+Formellt: Kontakta ___ om du har frågor. (mej)|mig|mej;mä;min|mej → mig
+Formellt: Vi behöver ___ en lösning. (hitta på)|utarbeta|fixa;kolla;snacka|hitta på → utarbeta
+Formellt: Eleverna ___ om miljöfrågor. (snackade)|diskuterade|snackade;babblade;tjötade|snacka → diskutera
+Formellt: Det finns flera ___ att ta hänsyn till. (grejer)|aspekter|grejer;prylar;saker och ting|grejer → aspekter
+Formellt: Vi ___ att mötet flyttas. (vill)|önskar|vill;tänker;kör på|vill → önskar`},
+{id:'ordbild',e:'🧬',lvl:'C1',name:'Orduppbyggnad',en:'Building words',desc:'o-, -het, -ning, -bar, -lös …',
+ sheet:`<p>Learn the building blocks and you can understand thousands of words:</p><ul><li><b>o-</b> = not: ärlig → <b>o</b>ärlig, möjlig → <b>o</b>möjlig</li><li><b>-het</b> (en): adjective → noun: fri → frihet, säker → säkerhet</li><li><b>-ning</b> (en): verb → noun: tävla → tävling, öppna → öppning</li><li><b>-bar</b> = can be: läsa → läsbar, äta → ätbar</li><li><b>-lös</b> = without: hopp → hopplös, arbete → arbetslös</li><li><b>-skap</b> (ett/en): vän → vänskap, land → landskap</li><li><b>-are</b>: person who does: spela → spelare</li><li><b>-ig</b>: adjective: rolig, smutsig, solig</li></ul>`,
+ items:`Han ljuger ofta. Han är ___.|oärlig|missärlig;ärliglös;inärlig|o- = not
+Det går inte. Det är ___.|omöjligt|möjlöst;inmöjligt;avmöjligt|o- = not
+Alla människor vill ha ___ (fri).|frihet|friskap;friing;frilös|-het: adjective → noun
+Vi gick på en ___ i simning (tävla).|tävling|tävlighet;tävlare;tävlskap|-ning: verb → noun
+Svampen går att äta. Den är ___.|ätbar|ätlig;ätande;ätlös|-bar = can be
+Han har inget jobb. Han är ___.|arbetslös|arbetsfri;oarbetad;arbetsbar|-lös = without
+Vi har en fin ___ (vän).|vänskap|vänhet;vänning;vänlös|-skap
+Den som spelar är en ___.|spelare|spelning;spelhet;spelbar|-are = person
+Det är sol idag. Det är ___.|soligt|solbart;sollöst;solhet|-ig: adjective
+Trafiken är farlig. ___ är viktig (säker).|Säkerheten|Säkrandet;Säkerskapet;Säkringen|-het
+Den här texten är svår att läsa. Den är nästan ___.|oläslig|läsbar;läslös;olässkap|o- + läslig
+Det var ett ___ läge, vi kunde inte vinna (hopp).|hopplöst|hoppbart;ohoppigt;hoppfritt|-lös
+Hon fick ett pris för sin ___ (uppfinna).|uppfinning|uppfinnhet;uppfinnskap;uppfinnare|-ning
+Vatten är ___ (dricka) här.|drickbart|drickligt;dricklöst;drickat|-bar`}
+];
+
+const NEW_VOCAB="# Rivstart B1+B2 vocabulary (own selection and glosses). ch|sv|forms|en\n# 1 Fritid\nb1|en fritid|fritiden|free time\nb1|ett fritidsintresse|fritidsintresset · fritidsintressen · fritidsintressena|hobby\nb1|en soffpotatis|soffpotatisen · soffpotatisar · soffpotatisarna|couch potato\nb1|en hurtbulle|hurtbullen · hurtbullar · hurtbullarna|fitness fanatic, sporty type\nb1|en träning|träningen|training, exercise\nb1|ett träningspass|träningspasset · träningspass · träningspassen|workout\nb1|en tävling|tävlingen · tävlingar · tävlingarna|competition\nb1|ett lopp|loppet · lopp · loppen|race\nb1|en armhävning|armhävningen · armhävningar · armhävningarna|push-up\nb1|en kondition|konditionen|fitness, stamina\nb1|en muskel|muskeln · muskler · musklerna|muscle\nb1|en utrustning|utrustningen|equipment\nb1|en hjälm|hjälmen · hjälmar · hjälmarna|helmet\nb1|en bollkänsla|bollkänslan|ball control\nb1|en medlem|medlemmen · medlemmar · medlemmarna|member\nb1|ett uppehåll|uppehållet · uppehåll · uppehållen|break, pause\nb1|stretcha|stretchar · stretchade · har stretchat|stretch\nb1|delta|deltar · deltog · har deltagit|take part\nb1|svettas|svettas · svettades · har svettats|sweat\nb1|slappa|slappar · slappade · har slappat|chill, laze about\nb1|orka|orkar · orkade · har orkat|have the energy to\nb1|röra på sig|rör på sig · rörde på sig · har rört på sig|move about, exercise\nb1|nyttig|nyttigt · nyttiga|healthy, good for you\nb1|pigg|piggt · pigga|alert, full of energy\nb1|dödstrött|dödstrött · dödströtta|dead tired\nb1|lagom|—|just right, not too much\nb1|gradvis|—|gradually\nb1|ibland|—|sometimes\nb1|egentligen|—|actually, really\nb1|varje gång|—|every time\nb1|en gång i veckan|—|once a week\nb1|i början|—|at the beginning\nb1|gå upp i vikt|—|put on weight\nb1|testa sina gränser|—|test your limits\n# 2 Vänner\nb2|en vän|vännen · vänner · vännerna|friend\nb2|en vänskap|vänskapen|friendship\nb2|en flickvän|flickvännen · flickvänner · flickvännerna|girlfriend\nb2|en kompis|kompisen · kompisar · kompisarna|mate, buddy\nb2|en egenskap|egenskapen · egenskaper · egenskaperna|quality, trait\nb2|ett inlägg|inlägget · inlägg · inläggen|post (online)\nb2|ett förslag|förslaget · förslag · förslagen|suggestion\nb2|ett citat|citatet · citat · citaten|quote\nb2|ett ordspråk|ordspråket · ordspråk · ordspråken|proverb\nb2|ett sällskap|sällskapet · sällskap · sällskapen|company\nb2|en fiende|fienden · fiender · fienderna|enemy\nb2|ärlig|ärligt · ärliga|honest\nb2|oärlig|oärligt · oärliga|dishonest\nb2|pålitlig|pålitligt · pålitliga|reliable\nb2|bekväm|bekvämt · bekväma|comfortable\nb2|lojal|lojalt · lojala|loyal\nb2|avundsjuk|avundsjukt · avundsjuka|jealous\nb2|bestämma sig|bestämmer sig · bestämde sig · har bestämt sig|decide, make up your mind\nb2|koncentrera sig|koncentrerar sig · koncentrerade sig · har koncentrerat sig|concentrate\nb2|anmäla sig|anmäler sig · anmälde sig · har anmält sig|sign up\nb2|lita på|litar på · litade på · har litat på|trust\nb2|bråka|bråkar · bråkade · har bråkat|argue, fight\nb2|bli sams|blir sams · blev sams · har blivit sams|make up (after a fight)\nb2|hänga med|hänger med · hängde med · har hängt med|come along, keep up\nb2|träffas|träffas · träffades · har träffats|meet (each other)\nb2|umgås|umgås · umgicks · har umgåtts|hang out, spend time together\nb2|tillsammans|—|together\nb2|varandra|—|each other\nb2|istället|—|instead\nb2|ändå|—|anyway, still\nb2|innan|—|before\nb2|allting|—|everything\n# 3 Livsstil och lycka\nb3|en livsstil|livsstilen · livsstilar · livsstilarna|lifestyle\nb3|en lycka|lyckan|happiness, luck\nb3|en lön|lönen · löner · lönerna|salary\nb3|ett yrke|yrket · yrken · yrkena|profession, job\nb3|en rikedom|rikedomen · rikedomar · rikedomarna|wealth\nb3|en åsikt|åsikten · åsikter · åsikterna|opinion\nb3|ett misslyckande|misslyckandet · misslyckanden · misslyckandena|failure\nb3|en framgång|framgången · framgångar · framgångarna|success\nb3|en kärlek|kärleken|love\nb3|ett samtal|samtalet · samtal · samtalen|conversation\nb3|en dröm|drömmen · drömmar · drömmarna|dream\nb3|ett argument|argumentet · argument · argumenten|argument (reason)\nb3|drömma|drömmer · drömde · har drömt|dream\nb3|riskera|riskerar · riskerade · har riskerat|risk\nb3|lyckas|lyckas · lyckades · har lyckats|succeed, manage\nb3|misslyckas|misslyckas · misslyckades · har misslyckats|fail\nb3|motivera|motiverar · motiverade · har motiverat|motivate, justify\nb3|tacksam|tacksamt · tacksamma|grateful\nb3|oberoende|oberoende · oberoende|independent\nb3|ekonomisk|ekonomiskt · ekonomiska|financial\nb3|omöjlig|omöjligt · omöjliga|impossible\nb3|privat|privat · privata|private\nb3|galen|galet · galna|crazy\nb3|antingen … eller|—|either … or\nb3|varken … eller|—|neither … nor\nb3|både … och|—|both … and\nb3|ju … desto|—|the more … the more\nb3|delvis|—|partly\nb3|drygt|—|just over\nb3|pyttelite|—|a tiny bit\n# 4 Djur\nb4|ett djur|djuret · djur · djuren|animal\nb4|ett sällskapsdjur|sällskapsdjuret · sällskapsdjur · sällskapsdjuren|pet\nb4|en huggorm|huggormen · huggormar · huggormarna|adder (snake)\nb4|en geting|getingen · getingar · getingarna|wasp\nb4|ett stick|sticket · stick · sticken|sting\nb4|en fästing|fästingen · fästingar · fästingarna|tick\nb4|en älg|älgen · älgar · älgarna|moose, elk\nb4|ett rådjur|rådjuret · rådjur · rådjuren|roe deer\nb4|en valp|valpen · valpar · valparna|puppy\nb4|en sjukdom|sjukdomen · sjukdomar · sjukdomarna|disease\nb4|en allergi|allergin · allergier · allergierna|allergy\nb4|en fångenskap|fångenskapen|captivity\nb4|klappa|klappar · klappade · har klappat|pat, stroke\nb4|skaffa|skaffar · skaffade · har skaffat|get (e.g. a pet)\nb4|attackera|attackerar · attackerade · har attackerat|attack\nb4|stöta på|stöter på · stötte på · har stött på|come across, bump into\nb4|våga|vågar · vågade · har vågat|dare\nb4|trösta|tröstar · tröstade · har tröstat|comfort\nb4|tjata|tjatar · tjatade · har tjatat|nag\nb4|längta|längtar · längtade · har längtat|long for, look forward to\nb4|stirra|stirrar · stirrade · har stirrat|stare\nb4|övertala|övertalar · övertalade · har övertalat|persuade\nb4|farlig|farligt · farliga|dangerous\nb4|lydig|lydigt · lydiga|obedient\nb4|busig|busigt · busiga|naughty, mischievous\nb4|lekfull|lekfullt · lekfulla|playful\nb4|klumpig|klumpigt · klumpiga|clumsy\nb4|påhittig|påhittigt · påhittiga|inventive\nb4|trofast|trofast · trofasta|faithful\nb4|självständig|självständigt · självständiga|independent\nb4|ilsken|ilsket · ilskna|angry, fierce\nb4|plötsligt|—|suddenly\nb4|däremot|—|on the other hand\nb4|givetvis|—|of course\nb4|nämligen|—|you see, namely\n# 5 Fritid, umgänge, vanor\nb5|en vana|vanan · vanor · vanorna|habit\nb5|en ovana|ovanan · ovanor · ovanorna|bad habit\nb5|ett fredagsmys|fredagsmyset|cosy Friday night in\nb5|ett plockgodis|plockgodiset|pick-and-mix sweets\nb5|en sötsak|sötsaken · sötsaker · sötsakerna|sweet thing, treat\nb5|en karamell|karamellen · karameller · karamellerna|sweet, caramel\nb5|en polkagris|polkagrisen · polkagrisar · polkagrisarna|peppermint rock (candy)\nb5|en barnfamilj|barnfamiljen · barnfamiljer · barnfamiljerna|family with children\nb5|en tradition|traditionen · traditioner · traditionerna|tradition\nb5|en gemenskap|gemenskapen|togetherness, community\nb5|ett fenomen|fenomenet · fenomen · fenomenen|phenomenon\nb5|en övervikt|övervikten|overweight\nb5|mysa|myser · myste · har myst|be cosy, snuggle\nb5|tugga|tuggar · tuggade · har tuggat|chew\nb5|samlas|samlas · samlades · har samlats|gather\nb5|skapa|skapar · skapade · har skapat|create\nb5|markera|markerar · markerade · har markerat|mark\nb5|hemgjord|hemgjort · hemgjorda|homemade\nb5|lättlagad|lättlagat · lättlagade|easy to cook\nb5|hemma hos|—|at someone's home\nb5|hem till|—|to someone's home\nb5|hos|—|at (someone's place)\nb5|eftersom|—|because, since\nb5|fastän|—|although\nb5|ifall|—|in case, if\nb5|förrän|—|until, not … until\nb5|innan|—|before\nb5|medan|—|while\nb5|så småningom|—|eventually\nb5|framför allt|—|above all\nb5|även|—|also, even\nb5|vilket|—|which (refers to a whole clause)\n# 6 Statsskick och politik\nb6|ett statsskick|statsskicket|system of government\nb6|en riksdag|riksdagen|parliament (Swedish)\nb6|en regering|regeringen · regeringar · regeringarna|government\nb6|en statsminister|statsministern · statsministrar · statsministrarna|prime minister\nb6|en minister|ministern · ministrar · ministrarna|minister\nb6|ett parti|partiet · partier · partierna|political party\nb6|ett val|valet · val · valen|election, choice\nb6|en röst|rösten · röster · rösterna|vote, voice\nb6|en demokrati|demokratin · demokratier · demokratierna|democracy\nb6|en kung|kungen · kungar · kungarna|king\nb6|en republik|republiken · republiker · republikerna|republic\nb6|en kommun|kommunen · kommuner · kommunerna|municipality\nb6|en skatt|skatten · skatter · skatterna|tax; treasure\nb6|ett beslut|beslutet · beslut · besluten|decision\nb6|en lag|lagen · lagar · lagarna|law\nb6|en regel|regeln · regler · reglerna|rule\nb6|en myndighet|myndigheten · myndigheter · myndigheterna|authority, agency\nb6|en kampanj|kampanjen · kampanjer · kampanjerna|campaign\nb6|rösta|röstar · röstade · har röstat|vote\nb6|bestämma|bestämmer · bestämde · har bestämt|decide\nb6|besluta|beslutar · beslutade · har beslutat|decide (formally)\nb6|protestera|protesterar · protesterade · har protesterat|protest\nb6|styra|styr · styrde · har styrt|govern, steer\nb6|politisk|politiskt · politiska|political\nb6|allmän|allmänt · allmänna|general, public\nb6|lokal|lokalt · lokala|local\nb6|regional|regionalt · regionala|regional\nb6|skulle kunna|—|could\nb6|om jag vore|—|if I were\nb6|kommer att|—|will (future)\n# 7 Smultronställen, regioner och mat\nb7|ett smultronställe|smultronstället · smultronställen · smultronställena|favourite secret spot\nb7|ett smultron|smultronet · smultron · smultronen|wild strawberry\nb7|ett landskap|landskapet · landskap · landskapen|province; landscape\nb7|en region|regionen · regioner · regionerna|region\nb7|en fästning|fästningen · fästningar · fästningarna|fortress\nb7|en husmanskost|husmanskosten|traditional home cooking\nb7|en gäst|gästen · gäster · gästerna|guest\nb7|en deckare|deckaren · deckare · deckarna|crime novel\nb7|en tystnad|tystnaden|silence\nb7|en rörelse|rörelsen · rörelser · rörelserna|movement\nb7|ett nöjesliv|nöjeslivet|nightlife, entertainment\nb7|en skidåkning|skidåkningen|skiing\nb7|njuta|njuter · njöt · har njutit|enjoy\nb7|uttala|uttalar · uttalade · har uttalat|pronounce\nb7|referera|refererar · refererade · har refererat|refer\nb7|innehålla|innehåller · innehöll · har innehållit|contain\nb7|vilsam|vilsamt · vilsamma|restful\nb7|exotisk|exotiskt · exotiska|exotic\nb7|folklig|folkligt · folkliga|popular, of the people\nb7|elak|elakt · elaka|mean, nasty\nb7|tung|tungt · tunga|heavy\nb7|hemlagad|hemlagat · hemlagade|home-cooked\nb7|gjord|gjort · gjorda|made\nb7|stängd|stängt · stängda|closed\nb7|målad|målat · målade|painted\nb7|där|—|where (relative)\nb7|dit|—|to where\nb7|vars|—|whose\nb7|tycka om|—|like (particle verb)\nb7|hålla med om|—|agree with\n# 8 Sveriges och Nordens historia\nb8|en historia|historien · historier · historierna|history; story\nb8|ett årtionde|årtiondet · årtionden · årtiondena|decade\nb8|ett århundrade|århundradet · århundraden · århundradena|century\nb8|ett krig|kriget · krig · krigen|war\nb8|en union|unionen · unioner · unionerna|union\nb8|en drottning|drottningen · drottningar · drottningarna|queen\nb8|en makt|makten · makter · makterna|power\nb8|ett skepp|skeppet · skepp · skeppen|ship\nb8|en släkt|släkten · släkter · släkterna|family, relatives\nb8|ett språk|språket · språk · språken|language\nb8|en grund|grunden · grunder · grunderna|foundation, basis\nb8|ett förbud|förbudet · förbud · förbuden|ban\nb8|en rättighet|rättigheten · rättigheter · rättigheterna|right\nb8|regera|regerar · regerade · har regerat|reign, rule\nb8|abdikera|abdikerar · abdikerade · har abdikerat|abdicate\nb8|födas|föds · föddes · har fötts|be born\nb8|dö|dör · dog · har dött|die\nb8|erövra|erövrar · erövrade · har erövrat|conquer\nb8|förändras|förändras · förändrades · har förändrats|change\nb8|mäktig|mäktigt · mäktiga|powerful\nb8|kvinnlig|kvinnligt · kvinnliga|female\nb8|kulturell|kulturellt · kulturella|cultural\nb8|helig|heligt · heliga|holy\nb8|på 1800-talet|—|in the 19th century\nb8|under kriget|—|during the war\nb8|för … sedan|—|… ago\nb8|varje|—|every\nb8|varannan|—|every other\nb8|allt större|—|bigger and bigger\nb8|allt fler|—|more and more\n# 9 Sanning och lögn\nb9|en sanning|sanningen · sanningar · sanningarna|truth\nb9|en lögn|lögnen · lögner · lögnerna|lie\nb9|en lögnare|lögnaren · lögnare · lögnarna|liar\nb9|en skröna|skrönan · skrönor · skrönorna|tall tale\nb9|ett minne|minnet · minnen · minnena|memory\nb9|en belöning|belöningen · belöningar · belöningarna|reward\nb9|ett straff|straffet · straff · straffen|punishment\nb9|en skuld|skulden · skulder · skulderna|guilt; debt\nb9|en skam|skammen|shame\nb9|en erfarenhet|erfarenheten · erfarenheter · erfarenheterna|experience\nb9|en detalj|detaljen · detaljer · detaljerna|detail\nb9|ett aprilskämt|aprilskämtet · aprilskämt · aprilskämten|April Fool's joke\nb9|en missuppfattning|missuppfattningen · missuppfattningar · missuppfattningarna|misunderstanding\nb9|ljuga|ljuger · ljög · har ljugit|lie, tell a lie\nb9|avslöja|avslöjar · avslöjade · har avslöjat|reveal, expose\nb9|dölja|döljer · dolde · har dolt|hide, conceal\nb9|sprida|sprider · spred · har spridit|spread\nb9|upptäcka|upptäcker · upptäckte · har upptäckt|discover\nb9|minnas|minns · mindes · har mints|remember\nb9|slippa|slipper · slapp · har sluppit|not have to, avoid\nb9|svimma|svimmar · svimmade · har svimmat|faint\nb9|tycka|tycker · tyckte · har tyckt|think (opinion)\nb9|tänka|tänker · tänkte · har tänkt|think (reflect), plan\nb9|tro|tror · trodde · har trott|believe, think (not sure)\nb9|underhållande|underhållande · underhållande|entertaining\nb9|oskyldig|oskyldigt · oskyldiga|innocent\nb9|nödvändig|nödvändigt · nödvändiga|necessary\nb9|allvarlig|allvarligt · allvarliga|serious\nb9|konstig|konstigt · konstiga|strange\nb9|felaktig|felaktigt · felaktiga|incorrect\nb9|den största|—|the biggest\nb9|alldeles|—|completely, quite\nb9|förvånansvärt|—|surprisingly\nb9|för … skull|—|for the sake of …\n# 10 Resande och turism\nb10|en turism|turismen|tourism\nb10|en turist|turisten · turister · turisterna|tourist\nb10|en sevärdhet|sevärdheten · sevärdheter · sevärdheterna|sight, attraction\nb10|en guidebok|guideboken · guideböcker · guideböckerna|guidebook\nb10|en semla|semlan · semlor · semlorna|cream bun (Lent)\nb10|en fastlag|fastlagen|Shrovetide\nb10|en mandelmassa|mandelmassan|almond paste\nb10|ett lock|locket · lock · locken|lid\nb10|en rymd|rymden|space\nb10|en rymdfärja|rymdfärjan · rymdfärjor · rymdfärjorna|space shuttle\nb10|en jord|jorden|earth, soil\nb10|ett företag|företaget · företag · företagen|company\nb10|en ägare|ägaren · ägare · ägarna|owner\nb10|en kopia|kopian · kopior · kopiorna|copy\nb10|en mängd|mängden · mängder · mängderna|amount, lot\nb10|en berättelse|berättelsen · berättelser · berättelserna|story\nb10|ett sinne|sinnet · sinnen · sinnena|sense\nb10|tillbringa|tillbringar · tillbringade · har tillbringat|spend (time)\nb10|uppleva|upplever · upplevde · har upplevt|experience\nb10|besöka|besöker · besökte · har besökt|visit\nb10|förbjuda|förbjuder · förbjöd · har förbjudit|forbid, ban\nb10|startas|startas · startades · har startats|be started\nb10|byggas|byggs · byggdes · har byggts|be built\nb10|säljas|säljs · såldes · har sålts|be sold\nb10|konstgjord|konstgjort · konstgjorda|artificial\nb10|utländsk|utländskt · utländska|foreign\nb10|virtuell|virtuellt · virtuella|virtual\nb10|viktlös|viktlöst · viktlösa|weightless\nb10|ombord|—|on board\nb10|långt ifrån|—|far from\nb10|ytterligare|—|further, additional\n# 11 Brott och straff\nb11|ett brott|brottet · brott · brotten|crime\nb11|en tjuv|tjuven · tjuvar · tjuvarna|thief\nb11|en stöld|stölden · stölder · stölderna|theft\nb11|ett inbrott|inbrottet · inbrott · inbrotten|burglary, break-in\nb11|ett snatteri|snatteriet · snatterier · snatterierna|shoplifting\nb11|ett bedrägeri|bedrägeriet · bedrägerier · bedrägerierna|fraud\nb11|en fortkörning|fortkörningen · fortkörningar · fortkörningarna|speeding\nb11|en polis|polisen · poliser · poliserna|police officer\nb11|en misstänkt|den misstänkte · misstänkta · de misstänkta|suspect\nb11|ett vittne|vittnet · vittnen · vittnena|witness\nb11|en händelse|händelsen · händelser · händelserna|event, incident\nb11|ett äventyr|äventyret · äventyr · äventyren|adventure\nb11|ett gäng|gänget · gäng · gängen|gang\nb11|en värdesak|värdesaken · värdesaker · värdesakerna|valuable\nb11|en nyhetsnotis|nyhetsnotisen · nyhetsnotiser · nyhetsnotiserna|short news item\nb11|stjäla|stjäl · stal · har stulit|steal\nb11|gripa|griper · grep · har gripit|arrest, seize\nb11|smyga|smyger · smög · har smugit|sneak\nb11|lyckas|lyckas · lyckades · har lyckats|manage, succeed\nb11|konstatera|konstaterar · konstaterade · har konstaterat|state, note\nb11|stulen|stulet · stulna|stolen\nb11|gripen|gripet · gripna|arrested\nb11|klädd|klätt · klädda|dressed\nb11|skicklig|skickligt · skickliga|skilful\nb11|kriminell|kriminellt · kriminella|criminal\nb11|eventuellt|—|possibly\nb11|efteråt|—|afterwards\nb11|blev gripen|—|was arrested\nb11|är stulen|—|is stolen\nb11|om jag hade vetat|—|if I had known\n# 12 Utmaningar, konflikter och sociala medier\nb12|en utmaning|utmaningen · utmaningar · utmaningarna|challenge\nb12|en konflikt|konflikten · konflikter · konflikterna|conflict\nb12|en kulturchock|kulturchocken · kulturchocker · kulturchockerna|culture shock\nb12|en fas|fasen · faser · faserna|phase\nb12|en värdering|värderingen · värderingar · värderingarna|value (what you believe in)\nb12|en kommentar|kommentaren · kommentarer · kommentarerna|comment\nb12|en debatt|debatten · debatter · debatterna|debate\nb12|en insändare|insändaren · insändare · insändarna|letter to the editor\nb12|en kränkning|kränkningen · kränkningar · kränkningarna|violation, insult\nb12|ett näthat|näthatet|online hate\nb12|en anonymitet|anonymiteten|anonymity\nb12|ett gnäll|gnället|moaning, whining\nb12|våga|vågar · vågade · har vågat|dare\nb12|trivas|trivs · trivdes · har trivts|feel at home, enjoy\nb12|irritera|irriterar · irriterade · har irriterat|annoy\nb12|kritisera|kritiserar · kritiserade · har kritiserat|criticise\nb12|skylla på|skyller på · skyllde på · har skyllt på|blame\nb12|anpassa sig|anpassar sig · anpassade sig · har anpassat sig|adapt\nb12|anse|anser · ansåg · har ansett|consider, think\nb12|annorlunda|annorlunda · annorlunda|different\nb12|anonym|anonymt · anonyma|anonymous\nb12|ansvarig|ansvarigt · ansvariga|responsible\nb12|kränkande|kränkande · kränkande|offensive, hurtful\nb12|nog|—|probably\nb12|väl|—|surely, I suppose\nb12|ju|—|as you know, of course\nb12|vad som helst|—|anything (at all)\nb12|vem som helst|—|anyone\nb12|när som helst|—|any time\nb12|var som helst|—|anywhere\nb12|har … när|—|will have … by the time\n# 13 Högtider och årstider\nb13|en högtid|högtiden · högtider · högtiderna|holiday, festival\nb13|en årstid|årstiden · årstider · årstiderna|season\nb13|en lucia|lucian · lucior · luciorna|Lucia (13 December)\nb13|en lussekatt|lussekatten · lussekatter · lussekatterna|saffron bun\nb13|en julklapp|julklappen · julklappar · julklapparna|Christmas present\nb13|en julgran|julgranen · julgranar · julgranarna|Christmas tree\nb13|ett julbord|julbordet · julbord · julborden|Christmas buffet\nb13|en midsommarafton|midsommaraftonen|Midsummer Eve\nb13|en midsommarstång|midsommarstången · midsommarstänger · midsommarstängerna|maypole\nb13|ett påskägg|påskägget · påskägg · påskäggen|Easter egg\nb13|en påskkärring|påskkärringen · påskkärringar · påskkärringarna|Easter witch\nb13|en häxa|häxan · häxor · häxorna|witch\nb13|en kvast|kvasten · kvastar · kvastarna|broom\nb13|en advent|advent|Advent\nb13|ett firande|firandet · firanden · firandena|celebration\nb13|en slang|slangen|slang\nb13|fira|firar · firade · har firat|celebrate\nb13|klä ut sig|klär ut sig · klädde ut sig · har klätt ut sig|dress up\nb13|tända|tänder · tände · har tänt|light\nb13|religiös|religiöst · religiösa|religious\nb13|krånglig|krångligt · krångliga|complicated\nb13|vaken|vaket · vakna|awake\nb13|himla|—|really, so (informal)\nb13|typ|—|like, sort of (slang)\nb13|asså|—|I mean (spoken 'alltså')\nb13|vad gott!|—|how tasty!\nb13|vilken tur!|—|what luck!\nb13|så synd!|—|what a pity!\nb13|oj då!|—|oh dear!\nb13|grattis!|—|congratulations!\n# 14 Konsumentregler och klagomål\nb14|en konsument|konsumenten · konsumenter · konsumenterna|consumer\nb14|ett klagomål|klagomålet · klagomål · klagomålen|complaint\nb14|ett kvitto|kvittot · kvitton · kvittona|receipt\nb14|ett presentkort|presentkortet · presentkort · presentkorten|gift card\nb14|ett tillgodokvitto|tillgodokvittot · tillgodokvitton · tillgodokvittona|credit note\nb14|en garanti|garantin · garantier · garantierna|guarantee, warranty\nb14|en växel|växeln · växlar · växlarna|change (money)\nb14|en pessimist|pessimisten · pessimister · pessimisterna|pessimist\nb14|en optimist|optimisten · optimister · optimisterna|optimist\nb14|en dikt|dikten · dikter · dikterna|poem\nb14|ett referat|referatet · referat · referaten|summary\nb14|ett tjat|tjatet|nagging\nb14|klaga|klagar · klagade · har klagat|complain\nb14|reklamera|reklamerar · reklamerade · har reklamerat|return a faulty product\nb14|kräva|kräver · krävde · har krävt|demand\nb14|lämna tillbaka|lämnar tillbaka · lämnade tillbaka · har lämnat tillbaka|return, give back\nb14|gå sönder|går sönder · gick sönder · har gått sönder|break (by itself)\nb14|ha sönder|har sönder · hade sönder · har haft sönder|break (something)\nb14|krympa|krymper · krympte · har krympt|shrink\nb14|blekna|bleknar · bleknade · har bleknat|fade\nb14|grubbla|grubblar · grubblade · har grubblat|brood, ponder\nb14|älta|ältar · ältade · har ältat|go over again and again\nb14|sönder|—|broken\nb14|tydlig|tydligt · tydliga|clear\nb14|defensiv|defensivt · defensiva|defensive\nb14|förbannad|förbannat · förbannade|furious\nb14|det var jag som|—|it was me who\nb14|det är … som|—|it is … that (emphasis)\nb14|ständigt|—|constantly\nb14|någonting|—|something\n# 15 Att nätverka och söka arbete\nb15|ett arbete|arbetet · arbeten · arbetena|work, job\nb15|en ansökan|ansökan · ansökningar · ansökningarna|application\nb15|ett nätverk|nätverket · nätverk · nätverken|network\nb15|en arbetsgivare|arbetsgivaren · arbetsgivare · arbetsgivarna|employer\nb15|en anställd|den anställde · anställda · de anställda|employee\nb15|en kunskap|kunskapen · kunskaper · kunskaperna|knowledge, skill\nb15|en merit|meriten · meriter · meriterna|qualification\nb15|ett krav|kravet · krav · kraven|requirement\nb15|ett intryck|intrycket · intryck · intrycken|impression\nb15|en jobbannons|jobbannonsen · jobbannonser · jobbannonserna|job ad\nb15|en referens|referensen · referenser · referenserna|reference\nb15|en kurs|kursen · kurser · kurserna|course\nb15|en uppgift|uppgiften · uppgifter · uppgifterna|task\nb15|söka|söker · sökte · har sökt|apply for, search\nb15|anställa|anställer · anställde · har anställt|employ, hire\nb15|bidra|bidrar · bidrog · har bidragit|contribute\nb15|förmedla|förmedlar · förmedlade · har förmedlat|convey, pass on\nb15|undvika|undviker · undvek · har undvikit|avoid\nb15|ange|anger · angav · har angett|state, give\nb15|relevant|relevant · relevanta|relevant\nb15|nödvändig|nödvändigt · nödvändiga|necessary\nb15|nuvarande|nuvarande · nuvarande|current\nb15|grundläggande|grundläggande · grundläggande|basic\nb15|dold|dolt · dolda|hidden\nb15|den här|—|this (en-word)\nb15|det där|—|that (ett-word)\nb15|de här|—|these\nb15|samma|—|same\nb15|om jag fått|—|if I had got (without hade)\nb15|eftersom jag läst|—|since I have read (without har)\n# 16 Släkt och familj\nb16|ett syskon|syskonet · syskon · syskonen|sibling\nb16|ett småsyskon|småsyskonet · småsyskon · småsyskonen|younger sibling\nb16|ett storasyskon|storasyskonet · storasyskon · storasyskonen|older sibling\nb16|ett halvsyskon|halvsyskonet · halvsyskon · halvsyskonen|half-sibling\nb16|ett enda barn|—|only child\nb16|en bonusfamilj|bonusfamiljen · bonusfamiljer · bonusfamiljerna|stepfamily\nb16|en sambo|sambon · sambor · samborna|live-in partner\nb16|ett ansvar|ansvaret|responsibility\nb16|en uppmärksamhet|uppmärksamheten|attention\nb16|en skillnad|skillnaden · skillnader · skillnaderna|difference\nb16|en generation|generationen · generationer · generationerna|generation\nb16|en personlighet|personligheten · personligheter · personligheterna|personality\nb16|ett hushåll|hushållet · hushåll · hushållen|household\nb16|en kastrull|kastrullen · kastruller · kastrullerna|saucepan\nb16|stå|står · stod · har stått|stand\nb16|ställa|ställer · ställde · har ställt|put (standing)\nb16|ligga|ligger · låg · har legat|lie\nb16|lägga|lägger · lade · har lagt|put (lying), lay\nb16|sitta|sitter · satt · har suttit|sit\nb16|sätta|sätter · satte · har satt|put, place\nb16|påverka|påverkar · påverkade · har påverkat|influence\nb16|utvecklas|utvecklas · utvecklades · har utvecklats|develop\nb16|damma|dammar · dammade · har dammat|dust\nb16|vika|viker · vek · har vikit|fold\nb16|äldst|—|oldest\nb16|hela familjen|—|the whole family\nb16|alla barn|—|all children\nb16|arg på|—|angry with\nb16|kär i|—|in love with\nb16|rädd för|—|afraid of\nb16|stolt över|—|proud of\nb16|glad för|—|happy for\n# 17 Vikingar och tro\nb17|en viking|vikingen · vikingar · vikingarna|Viking\nb17|en vikingatid|vikingatiden|Viking Age\nb17|en gud|guden · gudar · gudarna|god\nb17|en tro|tron|faith, belief\nb17|en runsten|runstenen · runstenar · runstenarna|rune stone\nb17|ett svärd|svärdet · svärd · svärden|sword\nb17|en sköld|skölden · sköldar · sköldarna|shield\nb17|ett vapen|vapnet · vapen · vapnen|weapon\nb17|en träl|trälen · trälar · trälarna|slave, thrall\nb17|en handelsman|handelsmannen · handelsmän · handelsmännen|merchant\nb17|en drake|draken · drakar · drakarna|dragon\nb17|en skatt|skatten · skatter · skatterna|treasure\nb17|en jätte|jätten · jättar · jättarna|giant\nb17|en hammare|hammaren · hammare · hammarna|hammer\nb17|en förmåga|förmågan · förmågor · förmågorna|ability\nb17|ett skrock|skrocket|superstition\nb17|en anteckning|anteckningen · anteckningar · anteckningarna|note\nb17|offra|offrar · offrade · har offrat|sacrifice\nb17|försvara|försvarar · försvarade · har försvarat|defend\nb17|överraska|överraskar · överraskade · har överraskat|surprise\nb17|trolla|trollar · trollade · har trollat|do magic\nb17|ge någon något|—|give someone something\nb17|visa någon något|—|show someone something\nb17|låna ut något till någon|—|lend something to someone\nb17|stark|starkt · starka|strong\nb17|objuden|objudet · objudna|uninvited\nb17|västerut|—|westwards\nb17|österut|—|eastwards\nb17|därifrån|—|from there\nb17|härifrån|—|from here\n# 18 Arbetsliv och svenska koder\nb18|ett arbetsliv|arbetslivet|working life\nb18|en kod|koden · koder · koderna|code\nb18|en oskriven regel|den oskrivna regeln · oskrivna regler|unwritten rule\nb18|en fikarast|fikarasten · fikaraster · fikarasterna|coffee break\nb18|en hierarki|hierarkin · hierarkier · hierarkierna|hierarchy\nb18|en kollega|kollegan · kollegor · kollegorna|colleague\nb18|en medarbetare|medarbetaren · medarbetare · medarbetarna|co-worker\nb18|ett ledarskap|ledarskapet|leadership\nb18|ett kroppsspråk|kroppsspråket|body language\nb18|ett missförstånd|missförståndet · missförstånd · missförstånden|misunderstanding\nb18|en konsekvens|konsekvensen · konsekvenser · konsekvenserna|consequence\nb18|en orsak|orsaken · orsaker · orsakerna|cause, reason\nb18|en kompetens|kompetensen · kompetenser · kompetenserna|competence\nb18|en jämställdhet|jämställdheten|gender equality\nb18|ett beslut|beslutet · beslut · besluten|decision\nb18|förväntas|förväntas · förväntades · har förväntats|be expected\nb18|uppfatta|uppfattar · uppfattade · har uppfattat|perceive, understand\nb18|spekulera|spekulerar · spekulerade · har spekulerat|speculate\nb18|kommunicera|kommunicerar · kommunicerade · har kommunicerat|communicate\nb18|leda till|leder till · ledde till · har lett till|lead to\nb18|återgå|återgår · återgick · har återgått|return\nb18|jämställd|jämställt · jämställda|equal\nb18|hjälplös|hjälplöst · hjälplösa|helpless\nb18|subtil|subtilt · subtila|subtle\nb18|förhållandevis|—|relatively\nb18|trots att|—|despite, although\nb18|på grund av|—|because of\nb18|därför att|—|because\nb18|vilket ledde till|—|which led to\nb18|var vänlig och|—|please (polite instruction)\nb18|glöm inte att|—|don't forget to\n# Rivstart B2/C1 vocabulary (own selection and glosses). ch|sv|forms|en\n# 1 Språk\nc1|ett modersmål|modersmålet · modersmål · modersmålen|mother tongue\nc1|en språkinlärning|språkinlärningen|language learning\nc1|en polyglott|polyglotten · polyglotter · polyglotterna|person who speaks many languages\nc1|ett mönster|mönstret · mönster · mönstren|pattern\nc1|en betydelse|betydelsen · betydelser · betydelserna|meaning\nc1|en omgivning|omgivningen · omgivningar · omgivningarna|surroundings\nc1|en färdighet|färdigheten · färdigheter · färdigheterna|skill\nc1|en begåvning|begåvningen · begåvningar · begåvningarna|talent, gift\nc1|en kodväxling|kodväxlingen|code-switching\nc1|en föreställning|föreställningen · föreställningar · föreställningarna|idea, notion; show\nc1|en ansträngning|ansträngningen · ansträngningar · ansträngningarna|effort\nc1|en avsikt|avsikten · avsikter · avsikterna|intention\nc1|föredra|föredrar · föredrog · har föredragit|prefer\nc1|symbolisera|symboliserar · symboliserade · har symboliserat|symbolise\nc1|beteckna|betecknar · betecknade · har betecknat|denote, mean\nc1|signalera|signalerar · signalerade · har signalerat|signal\nc1|tillåta|tillåter · tillät · har tillåtit|allow\nc1|definiera|definierar · definierade · har definierat|define\nc1|fladdra|fladdrar · fladdrade · har fladdrat|flutter\nc1|plaska|plaskar · plaskade · har plaskat|splash\nc1|unik|unikt · unika|unique\nc1|flytande|flytande · flytande|fluent\nc1|nedsättande|nedsättande · nedsättande|derogatory\nc1|ljudhärmande|ljudhärmande · ljudhärmande|onomatopoeic\nc1|konkret|konkret · konkreta|concrete\nc1|äkta|äkta · äkta|genuine, real\nc1|medvetet|—|consciously, on purpose\nc1|tvärtom|—|on the contrary\nc1|oavsett|—|regardless\nc1|numera|—|nowadays\nc1|betydligt|—|considerably\n# 2 Året runt\nc2|en årstid|årstiden · årstider · årstiderna|season\nc2|ett vinterhalvår|vinterhalvåret · vinterhalvår · vinterhalvåren|winter half of the year\nc2|ett dagsljus|dagsljuset|daylight\nc2|en belysning|belysningen · belysningar · belysningarna|lighting\nc2|en trötthet|tröttheten|tiredness\nc2|en brist|bristen · brister · bristerna|lack, shortage\nc2|ett högtryck|högtrycket · högtryck · högtrycken|high pressure (weather)\nc2|ett lågtryck|lågtrycket · lågtryck · lågtrycken|low pressure (weather)\nc2|en nederbörd|nederbörden|precipitation\nc2|en störtskur|störtskuren · störtskurar · störtskurarna|downpour\nc2|en åska|åskan|thunder\nc2|en dimma|dimman · dimmor · dimmorna|fog\nc2|en vattenånga|vattenångan|water vapour\nc2|en fuktighet|fuktigheten|humidity\nc2|en kallfront|kallfronten · kallfronter · kallfronterna|cold front\nc2|en liknelse|liknelsen · liknelser · liknelserna|simile\nc2|en metafor|metaforen · metaforer · metaforerna|metaphor\nc2|ett bildspråk|bildspråket|imagery\nc2|ett råd|rådet · råd · råden|advice\nc2|tackla|tacklar · tacklade · har tacklat|tackle\nc2|underskatta|underskattar · underskattade · har underskattat|underestimate\nc2|dunsta|dunstar · dunstade · har dunstat|evaporate\nc2|glänsa|glänser · glänste · har glänst|shine, gleam\nc2|ägna sig åt|ägnar sig åt · ägnade sig åt · har ägnat sig åt|devote yourself to\nc2|mulen|mulet · mulna|cloudy, overcast\nc2|sval|svalt · svala|cool\nc2|behaglig|behagligt · behagliga|pleasant\nc2|färgsprakande|färgsprakande · färgsprakande|bursting with colour\nc2|rejält|—|properly, a lot\nc2|snarare|—|rather\nc2|särskilt|—|especially\n# 3 Kropp och själ\nc3|en själ|själen · själar · själarna|soul\nc3|en hjärna|hjärnan · hjärnor · hjärnorna|brain\nc3|en självkänsla|självkänslan|self-esteem\nc3|ett självförtroende|självförtroendet|self-confidence\nc3|en empati|empatin|empathy\nc3|ett inflytande|inflytandet|influence\nc3|ett samband|sambandet · samband · sambanden|connection, link\nc3|ett begrepp|begreppet · begrepp · begreppen|concept\nc3|en vetenskap|vetenskapen · vetenskaper · vetenskaperna|science\nc3|ett beteende|beteendet · beteenden · beteendena|behaviour\nc3|en världsbild|världsbilden · världsbilder · världsbilderna|world view\nc3|ett välmående|välmåendet|well-being\nc3|ett motargument|motargumentet · motargument · motargumenten|counter-argument\nc3|en eufemism|eufemismen · eufemismer · eufemismerna|euphemism\nc3|en floskel|floskeln · floskler · flosklerna|empty phrase, cliché\nc3|förverkliga|förverkligar · förverkligade · har förverkligat|realise (a dream)\nc3|förstärka|förstärker · förstärkte · har förstärkt|strengthen\nc3|utveckla|utvecklar · utvecklade · har utvecklat|develop\nc3|argumentera|argumenterar · argumenterade · har argumenterat|argue (a case)\nc3|hävda|hävdar · hävdade · har hävdat|claim\nc3|mekanisk|mekaniskt · mekaniska|mechanical\nc3|oförutsägbar|oförutsägbart · oförutsägbara|unpredictable\nc3|användbar|användbart · användbara|useful\nc3|visserligen|—|admittedly, it is true that\nc3|knappast|—|hardly\nc3|därefter|—|after that\nc3|huruvida|—|whether\nc3|för det första|—|firstly\nc3|å ena sidan|—|on the one hand\nc3|å andra sidan|—|on the other hand\n# 4 Samhälle\nc4|ett samhälle|samhället · samhällen · samhällena|society\nc4|en individ|individen · individer · individerna|individual\nc4|ett tilltal|tilltalet|form of address\nc4|ett niande|niandet|using formal 'ni'\nc4|en reform|reformen · reformer · reformerna|reform\nc4|ett genomslag|genomslaget|breakthrough, impact\nc4|en jämlikhet|jämlikheten|equality\nc4|en tolerans|toleransen|tolerance\nc4|en tillit|tilliten|trust\nc4|en tillvaro|tillvaron|existence, life\nc4|en uppfattning|uppfattningen · uppfattningar · uppfattningarna|view, opinion\nc4|en ensamhet|ensamheten|loneliness\nc4|ett referat|referatet · referat · referaten|summary\nc4|tilltala|tilltalar · tilltalade · har tilltalat|address (someone)\nc4|betona|betonar · betonade · har betonat|emphasise\nc4|betrakta|betraktar · betraktade · har betraktat|regard, view\nc4|citera|citerar · citerade · har citerat|quote\nc4|minska|minskar · minskade · har minskat|decrease\nc4|öka|ökar · ökade · har ökat|increase\nc4|sekulär|sekulärt · sekulära|secular\nc4|frihetlig|frihetligt · frihetliga|freedom-loving, liberal\nc4|enskild|enskilt · enskilda|individual, single\nc4|främmande|främmande · främmande|foreign, strange\nc4|upprörande|upprörande · upprörande|outrageous\nc4|ohövlig|ohövligt · ohövliga|impolite\nc4|enligt|—|according to\nc4|författaren menar att|—|the author thinks that\nc4|i artikeln framgår det att|—|the article shows that\nc4|dock|—|however\nc4|emellan|—|between, among\n# 5 Relationer\nc5|en relation|relationen · relationer · relationerna|relationship\nc5|en medmänniska|medmänniskan · medmänniskor · medmänniskorna|fellow human\nc5|en snällhet|snällheten|kindness\nc5|en handling|handlingen · handlingar · handlingarna|action, act; plot\nc5|ett budskap|budskapet · budskap · budskapen|message\nc5|en känsla|känslan · känslor · känslorna|feeling\nc5|en kontroll|kontrollen · kontroller · kontrollerna|control\nc5|en tröst|trösten|comfort\nc5|ett visdomsord|visdomsordet · visdomsord · visdomsorden|words of wisdom\nc5|en process|processen · processer · processerna|process\nc5|ett steg|steget · steg · stegen|step\nc5|förutse|förutser · förutsåg · har förutsett|foresee\nc5|resonera|resonerar · resonerade · har resonerat|reason, discuss\nc5|utföra|utför · utförde · har utfört|carry out\nc5|omsätta|omsätter · omsatte · har omsatt|put into practice\nc5|förhandla|förhandlar · förhandlade · har förhandlat|negotiate\nc5|undersöka|undersöker · undersökte · har undersökt|investigate\nc5|orimlig|orimligt · orimliga|unreasonable\nc5|digital|digitalt · digitala|digital\nc5|utbytbar|utbytbart · utbytbara|replaceable\nc5|knepig|knepigt · knepiga|tricky\nc5|först|—|first\nc5|därefter|—|then, after that\nc5|slutligen|—|finally\nc5|i första steget|—|in the first step\nc5|till slut|—|in the end\nc5|i godo|—|amicably\n# 6 Arbete\nc6|ett arbetsliv|arbetslivet|working life\nc6|en utmattning|utmattningen|exhaustion\nc6|en utbrändhet|utbrändheten|burnout\nc6|en belastning|belastningen · belastningar · belastningarna|strain, load\nc6|en förväntning|förväntningen · förväntningar · förväntningarna|expectation\nc6|ett syfte|syftet · syften · syftena|purpose\nc6|en presentation|presentationen · presentationer · presentationerna|presentation\nc6|ett möte|mötet · möten · mötena|meeting\nc6|en mötesanteckning|mötesanteckningen · mötesanteckningar · mötesanteckningarna|meeting note\nc6|en stavning|stavningen|spelling\nc6|en särskrivning|särskrivningen · särskrivningar · särskrivningarna|wrongly splitting a compound word\nc6|en sammansättning|sammansättningen · sammansättningar · sammansättningarna|compound word\nc6|ett lånord|lånordet · lånord · lånorden|loanword\nc6|ett privatliv|privatlivet|private life\nc6|ett humör|humöret|mood, temper\nc6|hantera|hanterar · hanterade · har hanterat|handle, manage\nc6|förbättra|förbättrar · förbättrade · har förbättrat|improve\nc6|inleda|inleder · inledde · har inlett|begin, introduce\nc6|stava|stavar · stavade · har stavat|spell\nc6|ersätta|ersätter · ersatte · har ersatt|replace\nc6|korrekt|korrekt · korrekta|correct\nc6|stabil|stabilt · stabila|stable\nc6|osäker|osäkert · osäkra|unsure\nc6|bristande|bristande · bristande|lacking, poor\nc6|kraftigt|—|sharply, strongly\nc6|på dagordningen|—|on the agenda\nc6|beslutades att|—|it was decided that\n# 7 Sverige och världen\nc7|ett skriftspråk|skriftspråket · skriftspråk · skriftspråken|written language\nc7|ett talspråk|talspråket · talspråk · talspråken|spoken language\nc7|en dialekt|dialekten · dialekter · dialekterna|dialect\nc7|ett ordförråd|ordförrådet · ordförråd · ordförråden|vocabulary\nc7|en invandrare|invandraren · invandrare · invandrarna|immigrant\nc7|en utvandrare|utvandraren · utvandrare · utvandrarna|emigrant\nc7|en hemlängtan|hemlängtan|homesickness\nc7|en medeltid|medeltiden|Middle Ages\nc7|en stormakt|stormakten · stormakter · stormakterna|great power\nc7|en förebild|förebilden · förebilder · förebilderna|role model\nc7|en läskunnighet|läskunnigheten|literacy\nc7|en reflektion|reflektionen · reflektioner · reflektionerna|reflection\nc7|översätta|översätter · översatte · har översatt|translate\nc7|trycka|trycker · tryckte · har tryckt|print; press\nc7|förbli|förblir · förblev · har förblivit|remain\nc7|inspireras|inspireras · inspirerades · har inspirerats|be inspired\nc7|nöja sig med|nöjer sig med · nöjde sig med · har nöjt sig med|settle for\nc7|ålderdomlig|ålderdomligt · ålderdomliga|old-fashioned, archaic\nc7|läskunnig|läskunnigt · läskunniga|literate\nc7|härhemma|—|here at home\nc7|därborta|—|over there\nc7|förutom|—|apart from, besides\nc7|hastigt|—|quickly, hastily\nc7|jag har insett att|—|I have realised that\nc7|för min del|—|for my part\n# 8 Teknik och utveckling\nc8|en teknik|tekniken · tekniker · teknikerna|technology, technique\nc8|en utveckling|utvecklingen|development\nc8|en uppfinning|uppfinningen · uppfinningar · uppfinningarna|invention\nc8|en skärmtid|skärmtiden|screen time\nc8|ett genombrott|genombrottet · genombrott · genombrotten|breakthrough\nc8|ett ideal|idealet · ideal · idealen|ideal\nc8|en frigörelse|frigörelsen|liberation\nc8|en tillbakablick|tillbakablicken · tillbakablickar · tillbakablickarna|flashback\nc8|ett obehag|obehaget|discomfort\nc8|en ångest|ångesten|anxiety\nc8|ett sekel|seklet · sekler · seklerna|century\nc8|ett upphov|upphovet|origin\nc8|begränsa|begränsar · begränsade · har begränsat|limit\nc8|skildra|skildrar · skildrade · har skildrat|depict, portray\nc8|utspela sig|utspelar sig · utspelade sig · har utspelat sig|take place (story)\nc8|ge upphov till|ger upphov till · gav upphov till · har gett upphov till|give rise to\nc8|vettig|vettigt · vettiga|sensible\nc8|tramsig|tramsigt · tramsiga|silly\nc8|livsfarlig|livsfarligt · livsfarliga|deadly dangerous\nc8|stel|stelt · stela|stiff\nc8|uppmärksam|uppmärksamt · uppmärksamma|attentive\nc8|betydligt|—|considerably\nc8|jag håller med om att|—|I agree that\nc8|texten tar upp|—|the text deals with\nc8|däremot|—|on the other hand\n# 9 Kommunikation\nc9|en kommunikation|kommunikationen|communication\nc9|en gest|gesten · gester · gesterna|gesture\nc9|en accent|accenten · accenter · accenterna|accent\nc9|en brytning|brytningen|(foreign) accent\nc9|ett nyord|nyordet · nyord · nyorden|new word\nc9|ett språkbruk|språkbruket|language use\nc9|ett resonemang|resonemanget · resonemang · resonemangen|reasoning\nc9|ett misstag|misstaget · misstag · misstagen|mistake\nc9|ett rykte|ryktet · rykten · ryktena|rumour; reputation\nc9|en översättning|översättningen · översättningar · översättningarna|translation\nc9|en markör|markören · markörer · markörerna|marker\nc9|ett ordval|ordvalet · ordval · ordvalen|choice of words\nc9|en infödd|den infödde · infödda · de infödda|native speaker\nc9|gestikulera|gestikulerar · gestikulerade · har gestikulerat|gesture, gesticulate\nc9|tillhöra|tillhör · tillhörde · har tillhört|belong to\nc9|orsaka|orsakar · orsakade · har orsakat|cause\nc9|missförstå|missförstår · missförstod · har missförstått|misunderstand\nc9|osynlig|osynligt · osynliga|invisible\nc9|felfri|felfritt · felfria|flawless\nc9|idiomatisk|idiomatiskt · idiomatiska|idiomatic\nc9|allmänt|—|generally\nc9|personligen|—|personally\nc9|man kan säga att|—|one could say that\nc9|enligt min erfarenhet|—|in my experience\n# 10 Miljö\nc10|en miljö|miljön · miljöer · miljöerna|environment\nc10|ett miljöproblem|miljöproblemet · miljöproblem · miljöproblemen|environmental problem\nc10|en växthuseffekt|växthuseffekten|greenhouse effect\nc10|en koldioxid|koldioxiden|carbon dioxide\nc10|ett utsläpp|utsläppet · utsläpp · utsläppen|emission\nc10|en atmosfär|atmosfären|atmosphere\nc10|en mångfald|mångfalden|diversity\nc10|en art|arten · arter · arterna|species\nc10|en insekt|insekten · insekter · insekterna|insect\nc10|en glaciär|glaciären · glaciärer · glaciärerna|glacier\nc10|ett jordbruk|jordbruket · jordbruk · jordbruken|agriculture, farm\nc10|en resurs|resursen · resurser · resurserna|resource\nc10|en lösning|lösningen · lösningar · lösningarna|solution\nc10|en efterfrågan|efterfrågan|demand\nc10|ett missförstånd|missförståndet · missförstånd · missförstånden|misunderstanding\nc10|släppa ut|släpper ut · släppte ut · har släppt ut|emit, let out\nc10|hindra|hindrar · hindrade · har hindrat|prevent\nc10|förespråka|förespråkar · förespråkade · har förespråkat|advocate\nc10|mäta|mäter · mätte · har mätt|measure\nc10|reda ut|reder ut · redde ut · har rett ut|sort out\nc10|invasiv|invasivt · invasiva|invasive\nc10|inhemsk|inhemskt · inhemska|native, domestic\nc10|global|globalt · globala|global\nc10|miljövänlig|miljövänligt · miljövänliga|eco-friendly\nc10|avgörande|avgörande · avgörande|decisive, crucial\nc10|omfattande|omfattande · omfattande|extensive\nc10|därmed|—|thereby\nc10|det var inte det jag menade|—|that's not what I meant\nc10|jag tror att du missförstod|—|I think you misunderstood\n# 11 Stad och land\nc11|en stad|staden · städer · städerna|city, town\nc11|en landsbygd|landsbygden|countryside\nc11|en glesbygd|glesbygden|sparsely populated area\nc11|en urbanisering|urbaniseringen|urbanisation\nc11|en lantis|lantisen · lantisar · lantisarna|country bumpkin (informal)\nc11|en allemansrätt|allemansrätten|right of public access to nature\nc11|ett friluftsliv|friluftslivet|outdoor life\nc11|en barrskog|barrskogen · barrskogar · barrskogarna|coniferous forest\nc11|en avkoppling|avkopplingen|relaxation\nc11|ett sinnesintryck|sinnesintrycket · sinnesintryck · sinnesintrycken|sensory impression\nc11|en miljöbeskrivning|miljöbeskrivningen · miljöbeskrivningar · miljöbeskrivningarna|description of a setting\nc11|ströva|strövar · strövade · har strövat|roam, wander\nc11|återhämta sig|återhämtar sig · återhämtade sig · har återhämtat sig|recover\nc11|skildra|skildrar · skildrade · har skildrat|portray\nc11|smälla|smäller · smällde · har smällt|bang, slam\nc11|trygg|tryggt · trygga|safe, secure\nc11|skrämmande|skrämmande · skrämmande|frightening\nc11|obehaglig|obehagligt · obehagliga|unpleasant\nc11|ljudlöst|—|silently\nc11|vischan|—|the sticks (informal)\nc11|ha koll på|—|keep track of, know about\nc11|intill|—|next to\n# 12 Livet\nc12|en ålder|åldern · åldrar · åldrarna|age\nc12|en ålderdom|ålderdomen|old age\nc12|en medelålder|medelåldern|middle age\nc12|en medellivslängd|medellivslängden|life expectancy\nc12|en insikt|insikten · insikter · insikterna|insight\nc12|en stolthet|stoltheten|pride\nc12|en kamp|kampen · kamper · kamperna|struggle\nc12|ett erkännande|erkännandet · erkännanden · erkännandena|recognition\nc12|en kritiker|kritikern · kritiker · kritikerna|critic\nc12|en skönlitteratur|skönlitteraturen|fiction, literature\nc12|ett verk|verket · verk · verken|work (of art)\nc12|en huvudperson|huvudpersonen · huvudpersoner · huvudpersonerna|main character\nc12|en kurva|kurvan · kurvor · kurvorna|curve\nc12|fånga|fångar · fångade · har fångat|capture\nc12|fastna|fastnar · fastnade · har fastnat|get stuck\nc12|åldras|åldras · åldrades · har åldrats|age, grow old\nc12|tolka|tolkar · tolkade · har tolkat|interpret\nc12|oviss|ovisst · ovissa|uncertain\nc12|psykisk|psykiskt · psykiska|mental\nc12|neutral|neutralt · neutrala|neutral\nc12|oavbrutet|—|continuously\nc12|någonsin|—|ever\nc12|i synnerhet|—|in particular\nc12|berättelsen handlar om|—|the story is about\nc12|författaren beskriver|—|the author describes\n";
+
 'use strict';
 const $=id=>document.getElementById(id);
-const KEY='swedish-daily-v1',VKEY='swedish-missions-voice-v1',RKEY='swedish-missions-rate-v1';
+const PKEY='swedish-profiles-v1',BASEKEY='swedish-daily-v1',VKEY='swedish-missions-voice-v1',RKEY='swedish-missions-rate-v1';
 const INTERVALS=[0,1,3,9,21,60,180];
 function node(t,x,c){const n=document.createElement(t);if(x!==undefined&&x!==null)n.textContent=x;if(c)n.className=c;return n}
 function sv(t,x,c){const n=node(t,x,c);n.lang='sv';return n}
@@ -308,19 +765,43 @@ function dayNum(d=new Date()){return Math.floor(Date.UTC(d.getFullYear(),d.getMo
 function dayStr(n){return new Date(n*864e5).toISOString().slice(0,10)}
 const T=dayNum();
 const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const pickOne=a=>a[Math.floor(Math.random()*a.length)];
 const norm=s=>String(s).normalize('NFC').toLocaleLowerCase('sv').replace(/[.!?,;:”"’']/g,'').replace(/\s+/g,' ').trim();
-
-/* ---------- state ---------- */
-function fresh(){return{v:1,cards:{},words:{},ear:{},days:{},out:[],extra:[],log:[],skip:{},unknown:[],placed:false,riv:{ch:3,checked:{},unknown:{}},set:{newWords:8,cap:60},lastActive:null}}
-let S=fresh();try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.v===1&&s.cards&&s.words)S=Object.assign(fresh(),s)}catch(e){}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast('Browser storage is unavailable — progress will be lost when you close the page.')}}
 function readLS(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}
+function writeLS(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}
 
-/* ---------- lexicon ---------- */
-const LEX=LEXICON_RAW.trim().split('\n').map(l=>{const[cat,svw,pics,clue]=l.split('|');return{cat,sv:svw.trim(),pics:pics.trim().split(/\s+/),clue:(clue||'').trim()}});
-const LEXI=new Map(LEX.map(w=>[w.sv,w]));
-const bare=w=>w.replace(/^(en|ett)\s+/,'');
-function picOf(svw){return(S.words[svw]&&S.words[svw].pic)||LEXI.get(svw).pics[0]}
+/* ---------- curriculum ---------- */
+const UNITS=UNITS_RAW.trim().split('\n').map(l=>{const[id,lvl,book,ch,title,game,vids,q,hint,st]=l.split('|');return{id,lvl,book,ch:Number(ch),title,game,videos:vids.split(',').filter(Boolean),q,hint,starters:st.split(';')}});
+const UIDX=new Map(UNITS.map((u,i)=>[u.id,i]));
+const GAME_NAMES={verb:['⚡','Verb-blixten'],grupp:['🧩','Verbgrupper'],enett:['⚖️','En eller ett?'],plural:['🎈','Plural-poppen'],def:['🎯','Bestämd form'],adj:['🎨','Adjektiv-matchen'],v2:['🧱','Ordföljd'],inte:['🚫','Var står inte?']};
+GRAMMAR_GAMES.forEach(g=>GAME_NAMES[g.id]=[g.e,g.name]);
+const RIV=RIV_RAW.split('\n').map(l=>{const[ch,svw,f,en]=l.split('|');let x=f?expandForms(svw,f):null;if(x&&x.pos==='verb'&&VERB_OVR[svw])x={pos:'verb',art:'',forms:VERB_OVR[svw]};return{id:'v:'+ch+':'+norm(svw)+':'+norm(en).slice(0,12),u:'a'+ch,sv:svw,en,raw:f,f:x?x.forms:null,pos:x?x.pos:'',art:x?x.art:''}});
+const NEWV=NEW_VOCAB.trim().split('\n').filter(l=>l&&l[0]!=='#').map(l=>{const[u,svw,f,en]=l.split('|');const forms=f&&f!=='—'?f.split(' · '):null;const pos=/^(en|ett) /.test(svw)?(forms?'noun':''):forms&&forms.some(x=>/^har /.test(x))?'verb':forms?'adj':'';return{id:'n:'+u+':'+norm(svw),u,sv:svw,en,raw:'',f:forms,pos,art:''}});
+const VOCAB=new Map();RIV.concat(NEWV).forEach(v=>{if(!VOCAB.has(v.u))VOCAB.set(v.u,[]);VOCAB.get(v.u).push(v)});
+const VBYID=new Map(RIV.concat(NEWV).map(v=>[v.id,v]));
+function unitWords(u){return VOCAB.get(u.id)||[]}
+
+/* ---------- profiles ---------- */
+const AVATARS=['⚽','🦁','🐉','🚀','🎮','🦊','🐼','👑','🦈','🐺','🌟','🏎️','📚','☕'];
+let P=readLS(PKEY);if(!P||!Array.isArray(P.list))P={list:[],cur:null};
+function profKey(p){return p.id==='p1'?BASEKEY:BASEKEY+':'+p.id}
+function curProf(){return P.list.find(p=>p.id===P.cur)||null}
+function saveP(){writeLS(PKEY,P)}
+
+/* ---------- state (per profile) ---------- */
+function fresh(){return{v:2,cards:{},words:{},ear:{},days:{},out:[],extra:[],log:[],skip:{},unknown:[],placed:true,unit:0,units:{},set:{newWords:8,cap:60},lastActive:null,xp:0}}
+let S=fresh();
+function load(){const p=curProf();S=fresh();if(!p)return;const s=readLS(profKey(p));if(s&&s.cards&&s.words){S=Object.assign(fresh(),s);migrate()}else{S.unit=p.start||0;S.set.newWords=p.lv==='pro'?12:8}}
+function migrate(){ // v1 (Rivstart chapter tracking) → v2 stations
+  if(S.v===2)return;S.v=2;const R=S.riv;if(R){Object.keys(R.checked||{}).forEach(ch=>{const id='a'+ch;if(!UIDX.has(id))return;const st=ust(UNITS[UIDX.get(id)]);st.checked=true;st.unknown=(R.unknown&&R.unknown[ch])||[]});const id='a'+Math.max(3,Math.min(20,R.ch||3));S.unit=UIDX.get(id)||0}
+  if(!S.set)S.set={newWords:8,cap:60};S.xp=S.xp||0;save()}
+function save(){const p=curProf();if(!p)return;if(!writeLS(profKey(p),S))toast('Browser storage is unavailable — progress will be lost when you close the page.')}
+function ust(u){return S.units[u.id]||(S.units[u.id]={checked:false,unknown:[],game:0,videos:[],said:false,done:false})}
+function curUnit(){return UNITS[Math.min(S.unit,UNITS.length-1)]}
+function wordsLeft(u){const st=ust(u);return st.unknown.filter(id=>!S.cards[id]).length}
+function unitParts(u){const st=ust(u);return{words:st.checked&&wordsLeft(u)===0,game:st.game>=8,video:u.videos.every(v=>st.videos.includes(v)),say:st.said}}
+function unitComplete(u){const p=unitParts(u);return p.words&&p.game&&p.video&&p.say}
+function addXP(n,el){S.xp=(S.xp||0)+n;if(el){const x=node('div','+'+n+' XP','xp');el.append(x);setTimeout(()=>x.remove(),1300)}}
 
 /* ---------- speech ---------- */
 const synth=window.speechSynthesis||null;let voices=[];
@@ -337,31 +818,35 @@ try{const r=localStorage.getItem(RKEY);if(r)$('rate').value=r}catch(e){}
 $('rate').onchange=()=>{try{localStorage.setItem(RKEY,$('rate').value)}catch(e){}};$('voicetest').onclick=()=>say('Hej! Idag spelar vi fotboll.');
 let unlocked=false;document.addEventListener('pointerdown',()=>{if(unlocked||!synth)return;unlocked=true;const u=new SpeechSynthesisUtterance(' ');u.volume=0;synth.speak(u)},{capture:true});
 
+/* ---------- lexicon (picture words, A2) ---------- */
+const LEX=LEXICON_RAW.trim().split('\n').map(l=>{const[cat,svw,pics,clue]=l.split('|');return{cat,sv:svw.trim(),pics:pics.trim().split(/\s+/),clue:(clue||'').trim()}});
+const LEXI=new Map(LEX.map(w=>[w.sv,w]));
+const bare=w=>w.replace(/^(en|ett)\s+/,'');
+function picOf(svw){return(S.words[svw]&&S.words[svw].pic)||(LEXI.get(svw)||{pics:['❓']}).pics[0]}
+
 /* ---------- SRS ---------- */
 function addCard(c){if(S.cards[c.id])return S.cards[c.id];S.cards[c.id]=Object.assign({box:0,due:T,lapses:0,reps:0,added:T},c);return S.cards[c.id]}
 function grade(c,ok){
-  c.reps++;
-  if(ok)c.box=Math.min(c.box+1,6);else{c.box=1;c.lapses++}
+  c.reps++;if(ok)c.box=Math.min(c.box+1,6);else{c.box=1;c.lapses++}
   const d=INTERVALS[c.box];c.due=T+d+(d>3?Math.round(d*(Math.random()*.2-.1)):0);
   S.log.push([T,ok?1:0]);if(S.log.length>3000)S.log=S.log.slice(-2000);
-  // a picture word you can say well also gets a spelling card
   if(ok&&c.kind==='prod'&&c.box>=3&&!S.cards['w:'+c.w+':spell']){addCard({id:'w:'+c.w+':spell',kind:'spell',w:c.w,box:1,due:T+1})}
-  save();
+  if(ok)S.xp=(S.xp||0)+1;save();
 }
 function dueCards(){return Object.values(S.cards).filter(c=>c.box>0&&c.due<=T).sort((a,b)=>a.due-b.due||Math.random()-.5)}
 function missedDays(){return S.lastActive===null?0:Math.max(0,T-S.lastActive-1)}
-function quota(){const back=missedDays()>=3;return{newWords:back?1:Math.min(Number(S.set.newWords)||8,dueCards().length>Number(S.set.cap)?2:99),cap:back?20:Number(S.set.cap)||60,back}}
+function quota(){const back=missedDays()>=3;return{newWords:back?2:Math.min(Number(S.set.newWords)||8,dueCards().length>Number(S.set.cap)?2:99),cap:back?20:Number(S.set.cap)||60,back}}
 
-/* ---------- sources for sentence cards ---------- */
+/* ---------- sentences from missions, Reader and parents ---------- */
 function harvest(){
-  const out=[];
-  S.extra.forEach(x=>{if(!S.cards[x.id])out.push(x)});
+  const out=[];S.extra.forEach(x=>{if(!S.cards[x.id])out.push(x)});
+  const p=curProf();if(!p||p.harvest===false)return out;
   const L=Array.isArray(window.LESSONS)?window.LESSONS.filter(Boolean):[];
   const ms=readLS('swedish-missions-v1');const solved=new Set(ms&&Array.isArray(ms.solved)?ms.solved:[]);
   const STOP=new Set('jag du han hon vi ni de är en ett och i på det den att som till med för har var'.split(' '));
   L.forEach((u,ui)=>u.tasks.forEach((t,ti)=>{
     if(!solved.has(ui+'-'+ti))return;const id='m:'+ui+'-'+ti;if(S.cards[id])return;
-    if(t.type==='tiles'){const sent=t.answer.join(' ');const cand=t.answer.map(x=>x.replace(/[.!?,]/g,'')).filter(x=>!/\s/.test(x)&&!STOP.has(x.toLowerCase())&&x.length>=3).sort((a,b)=>b.length-a.length);if(!cand.length)return;const w=cand[0];out.push({id,kind:'cloze',full:sent,blank:w,src:'Uppdrag '+(u.unit||ui+1)})}
+    if(t.type==='tiles'){const sent=t.answer.join(' ');const cand=t.answer.map(x=>x.replace(/[.!?,]/g,'')).filter(x=>!/\s/.test(x)&&!STOP.has(x.toLowerCase())&&x.length>=3).sort((a,b)=>b.length-a.length);if(!cand.length)return;out.push({id,kind:'cloze',full:sent,blank:cand[0],src:'Uppdrag '+(u.unit||ui+1)})}
     else if(t.type==='type'&&t.scene.includes('___')){let a=t.answers[0];if(/^\s*___/.test(t.scene))a=a.charAt(0).toLocaleUpperCase('sv')+a.slice(1);out.push({id,kind:'cloze',full:t.scene.replace('___',a),blank:a,src:'Uppdrag '+(u.unit||ui+1)})}
   }));
   const rd=readLS('swedish-reader-v1');
@@ -371,53 +856,94 @@ function harvest(){
 function fromBrackets(text,src,id){const m=text.match(/\[([^\]]+)\]/);const full=text.replace(/[\[\]]/g,'').trim();return m?{id,kind:'cloze',full,blank:m[1].trim(),src}:{id,kind:'echo',full,src}}
 
 /* ---------- day record ---------- */
-const STEPS=[['ear','Ljud','Sounds'],['review','Repetera','Review'],['new','Nytt','New'],['mission','Uppdrag','Mission'],['say','Säg','Say it']];
+const STEPS=[['ear','Ljud','👂','Sounds'],['review','Repetera','🔁','Review'],['new','Nya ord','🆕','New words'],['game','Grammatik','🎯','Grammar'],['watch','Titta','📺','Watch'],['say','Säg','🎙','Speak']];
 function D(){return S.days[T]||(S.days[T]={})}
 function nextStep(){return STEPS.findIndex(s=>!D()[s[0]])}
+function streak(){let n=0,d=T;if(!(S.days[d]&&STEPS.filter(s=>S.days[d][s[0]]).length>=4))d--;while(S.days[d]&&STEPS.filter(s=>S.days[d][s[0]]).length>=4){n++;d--}return n}
+
+/* ---------- profile picker ---------- */
+function showPick(){$('home').hidden=true;$('session').hidden=true;$('pick').hidden=false;const l=$('proflist');l.replaceChildren();
+  P.list.forEach(p=>{const d=node('div','','prof');d.tabIndex=0;d.setAttribute('role','button');const s=readLS(profKey(p))||{};const u=UNITS[Math.min(s.unit||p.start||0,UNITS.length-1)];
+    d.append(node('div',p.av,'av'),node('b',p.name),node('small',u.lvl+' · '+u.title));const go=()=>{P.cur=p.id;saveP();load();showHome()};d.onclick=go;d.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}};l.append(d)});
+  const add=node('div','','prof');add.tabIndex=0;add.setAttribute('role','button');add.append(node('div','＋','av'),node('b','Add person'),node('small','kid or grown-up'));add.onclick=()=>editProfile(null);l.append(add)}
+function editProfile(p){const isNew=!p;const old=readLS(BASEKEY);p=p||{id:P.list.some(x=>x.id==='p1')||!old?'p'+Date.now():'p1',name:'',av:AVATARS[P.list.length%AVATARS.length],lv:P.list.length?'pro':'junior',start:0,harvest:!P.list.length};
+  const b=$('dlgbody');b.replaceChildren(node('h2',isNew?'New person':'Edit '+p.name));
+  const inp=node('input');inp.type='text';inp.value=p.name;inp.placeholder='Name';inp.maxLength=16;inp.style.fontSize='22px';inp.setAttribute('aria-label','Name');b.append(inp);
+  const av=node('div','','row');AVATARS.forEach(a=>{const x=button(a,()=>{p.av=a;Array.from(av.children).forEach(c=>c.classList.toggle('selected',c===x))},a===p.av?'selected':'');x.style.fontSize='24px';x.style.padding='6px 9px';av.append(x)});b.append(av);
+  const lv=node('div','','row');[['junior','Junior — tap answers in games'],['pro','Pro — type answers in games']].forEach(([k,t])=>{const l=node('label');const r=node('input');r.type='radio';r.name='plv';r.checked=p.lv===k;r.onchange=()=>p.lv=k;l.append(r,' '+t);lv.append(l)});b.append(lv);
+  let startSel=null;if(isNew){const r=node('div','','row');const l=node('label','Start at ');startSel=node('select');[['a3','A2 · Rivstart A1+A2 kap 3 (school Swedish)'],['b1','B1 · Rivstart B1+B2 kap 1'],['b10','B2 · Rivstart B1+B2 kap 10'],['c1','B2/C1 · Rivstart B2+C1 kap 1']].forEach(([id,t])=>{const o=node('option',t);o.value=id;startSel.append(o)});if(p.id==='p1'&&old)startSel.disabled=true;l.append(startSel);r.append(l);b.append(r);if(p.id==='p1'&&old)b.append(node('p','This person keeps the progress already saved on this iPad.','muted'))}
+  const hv=node('label');const hc=node('input');hc.type='checkbox';hc.checked=p.harvest!==false;hc.onchange=()=>p.harvest=hc.checked;hv.append(hc,' Make cards from Missions and Reader words (use for one person only)');b.append(node('div','','row'));b.lastChild.append(hv);
+  if(!isNew&&p.id!=='p1')b.append(button('Delete this person',()=>{if(!confirm('Delete '+p.name+' and all their progress?'))return;try{localStorage.removeItem(profKey(p))}catch(e){}P.list=P.list.filter(x=>x!==p);if(P.cur===p.id)P.cur=null;saveP();$('dlg').close();showPick()}));
+  $('dlgclose').onclick=()=>{p.name=inp.value.trim()||('Person '+(P.list.length+1));if(isNew){p.start=startSel&&!startSel.disabled?UIDX.get(startSel.value):0;P.list.push(p);P.cur=p.id;saveP();$('dlg').close();load();showHome()}else{saveP();$('dlg').close();showHome()}};$('dlg').showModal();setTimeout(()=>inp.focus(),50)}
 
 /* ---------- home ---------- */
+function showHome(){$('pick').hidden=true;$('session').hidden=true;$('home').hidden=false;renderHome()}
 function renderHome(){
+  const p=curProf();$('whoBtn').replaceChildren(node('span',p.av,'av'),node('span',p.name+' ⇄'));
   $('datelabel').textContent=new Date().toLocaleDateString('sv-SE',{weekday:'long',day:'numeric',month:'long'});
-  const started=Object.values(S.words).filter(w=>!w.known).length+Object.values(S.cards).filter(c=>c.kind==='cloze'||c.kind==='def').length,mature=Object.values(S.cards).filter(c=>c.box>=4).length;
-  $('sWords').textContent=started;$('sMature').textContent=mature;$('sDue').textContent=dueCards().length;
-  $('sEar').textContent=EAR.filter(e=>earPassed(e.id)).length+'/'+EAR.length;
+  const started=Object.values(S.cards).filter(c=>c.kind!=='comp'&&c.kind!=='spell'&&c.kind!=='forms').length;
+  $('sWords').textContent=started;$('sDue').textContent=dueCards().length;$('sStreak').textContent=streak();$('sXP').textContent=S.xp||0;
   const recent=S.log.filter(l=>l[0]>T-30);$('sRet').textContent=recent.length>=20?'Remembered '+Math.round(100*recent.reduce((a,l)=>a+l[1],0)/recent.length)+'% of cards in the last 30 days.':'';
   const cal=$('cal');cal.replaceChildren();for(let d=T-13;d<=T;d++){const r=S.days[d]||{};const n=STEPS.filter(s=>r[s[0]]).length;const i=node('i','',n===STEPS.length?'full':n?'part':'');if(d===T)i.classList.add('today');i.title=dayStr(d)+': '+n+'/'+STEPS.length;cal.append(i)}
-  const ns=nextStep(),q=quota();
-  $('start').textContent=ns<0?'✓ Done for today — practise more':ns===0?'▶ Start today':'▶ Continue: '+STEPS[ns][1];
-  $('plan').textContent=(S.placed?'':'First time: a quick word check (about 3 minutes). ')+(q.back?'Welcome back! Today is a short comeback day. ':'')+'Today: '+Math.min(dueCards().length,q.cap)+' reviews · up to '+q.newWords+' new cards · Rivstart kapitel '+Math.min(S.riv.ch,20)+'.';
-  renderWordList();renderInbox();
+  const ns=nextStep(),q=quota();const pa=$('path');pa.replaceChildren();STEPS.forEach((s,i)=>{const d=node('div','','st'+(D()[s[0]]?' ok':i===ns?' next':''));d.append(node('i',s[2]),node('span',s[1]));pa.append(d)});
+  $('start').textContent=ns<0?'✓ Klart idag — practise more':ns===0?'▶ Starta dagens pass':'▶ Fortsätt: '+STEPS[ns][1];
+  const u=curUnit();$('plan').textContent=(q.back?'Welcome back! Today is a short comeback day. ':'')+'Today: '+Math.min(dueCards().length,q.cap)+' reviews · up to '+q.newWords+' new words · station '+(S.unit+1)+': '+u.title+'.';
+  renderUnit();renderMap();renderWordList();renderInbox();fillSettings();
 }
-function stars(svw){const c=S.cards['w:'+svw+':prod'];const b=c?c.box:0;return '★'.repeat(Math.min(b,5))+'☆'.repeat(Math.max(0,5-Math.min(b,5)))}
-function renderWordList(){const wl=$('wl');wl.replaceChildren();const ws=Object.keys(S.words).filter(w=>!S.words[w].known&&LEXI.has(w));if(!ws.length){wl.append(node('p','No words yet — they start in today’s session.','muted'));return}ws.forEach(w=>{const d=node('div');d.append(node('div',picOf(w),'p'),sv('b',w),node('div',stars(w),'lv'));if(S.words[w].tag)d.append(node('div',S.words[w].tag,'muted'));d.append(sayBtn(w));wl.append(d)})}
+function meter(lab,val,ok){const m=node('div','','meter'+(ok?' ok':''));m.append(node('b',ok?'✓':val),node('span',lab));return m}
+function renderUnit(){const u=curUnit(),st=ust(u),pt=unitParts(u);const c=$('unitcard');c.replaceChildren();
+  c.append(node('div',u.lvl+' · '+BOOKS[u.book]+' · kapitel '+u.ch,'label'));const h=node('h2');h.append(sv('span','Station '+(S.unit+1)+': '+u.title));c.append(h);
+  const g=GAME_NAMES[u.game]||['🎯',u.game];const m=node('div','','meters');
+  m.append(meter('words',st.checked?(st.unknown.length-wordsLeft(u))+'/'+st.unknown.length:'check first',pt.words),meter(g[0]+' '+g[1],st.game?st.game+'/10':'8/10 to pass',pt.game),meter('videos',st.videos.filter(v=>u.videos.includes(v)).length+'/'+u.videos.length,pt.video),meter('speak',st.said?'✓':'—',pt.say));c.append(m)}
+function renderMap(){const box=$('map');box.replaceChildren();
+  LEVELS.forEach(([L,name,icon])=>{const us=UNITS.filter(u=>u.lvl===L);const done=us.filter(u=>ust(u).done).length;
+    const h=node('div','','lvl');h.append(node('span',icon),node('b',L+' · '+name),node('span',done+'/'+us.length,'muted'));const bar=node('div','','bar');const i=node('i');i.style.width=Math.round(100*done/us.length)+'%';bar.append(i);h.append(bar);box.append(h);
+    const m=node('div','','map');us.forEach(u=>{const k=UIDX.get(u.id);const d=node('div','','stn'+(ust(u).done?' done':k===S.unit?' cur':k>S.unit?' locked':''));const b=button(ust(u).done?'✓':String(k+1),()=>stationInfo(u));b.title=u.title;b.setAttribute('aria-label','Station '+(k+1)+': '+u.title);d.append(b);if(u!==us[us.length-1])d.append(node('span','','ln'));m.append(d)});box.append(m)})}
+function stationInfo(u){const k=UIDX.get(u.id),st=ust(u);const b=$('dlgbody');b.replaceChildren(node('div',u.lvl+' · '+BOOKS[u.book]+' · kapitel '+u.ch,'label'),node('h2','Station '+(k+1)+': '+u.title));
+  const g=GAME_NAMES[u.game]||['🎯',u.game];b.append(node('p',unitWords(u).length+' words · grammar: '+g[0]+' '+g[1]+' · '+u.videos.length+' video'+(u.videos.length>1?'s':'')));b.append(sv('p','🎙 '+u.q,'muted'));
+  if(st.done)b.append(node('p','✓ Done! Its words keep coming back in your reviews.','fb ok'));
+  if(k!==S.unit)b.append(button(k>S.unit?'Jump to this station (parent)':'Go back to this station',()=>{if(k>S.unit&&!confirm('Jump ahead to station '+(k+1)+'? Earlier stations stay open.'))return;S.unit=k;save();$('dlg').close();renderHome()}));
+  $('dlgclose').onclick=()=>$('dlg').close();$('dlg').showModal()}
+function stars(c){const b=c?c.box:0;return '★'.repeat(Math.min(b,5))+'☆'.repeat(Math.max(0,5-Math.min(b,5)))}
+function renderWordList(){const wl=$('wl');wl.replaceChildren();const cs=Object.values(S.cards).filter(c=>c.kind==='vocab'||c.kind==='prod').sort((a,b)=>b.added-a.added).slice(0,60);
+  if(!cs.length){wl.append(node('p','No words yet — they start in today’s session.','muted'));return}
+  cs.forEach(c=>{const d=node('div');const w=c.kind==='prod'?c.w:c.w;if(c.kind==='prod')d.append(node('div',picOf(w),'p'));d.append(sv('b',w));if(c.kind==='vocab')d.append(node('div',c.en,'muted'));d.append(node('div',stars(c),'lv'),sayBtn(w));wl.append(d)})}
+function fillSettings(){$('setNew').value=String(S.set.newWords);$('setCap').value=String(S.set.cap);const su=$('setUnit');if(!su.options.length)UNITS.forEach((u,i)=>{const o=node('option',(i+1)+'. '+u.lvl+' · '+u.title);o.value=i;su.append(o)});su.value=String(S.unit)}
 
 /* ---------- session shell ---------- */
 let stepIdx=0;
 function stage(){return $('stage')}
-function shell(title,sub){const s=stage();s.replaceChildren();const bar=node('div',undefined,'steps');STEPS.forEach((st,i)=>{const sp=node('span',(D()[st[0]]?'✓ ':'')+st[1],D()[st[0]]?'ok':'');if(i===stepIdx)sp.className='on';bar.append(sp)});s.append(bar);if(title){const h=node('h2');h.append(sv('span',title));s.append(h)}if(sub)s.append(node('p',sub,'muted'));return s}
-function openSession(){const ns=nextStep();$('home').hidden=true;$('session').hidden=false;window.scrollTo(0,0);if(!S.placed){runPlacement(openSession);return}if(ns<0){stepIdx=1;runReview(true);return}stepIdx=ns;runStep()}
-function finishStep(){D()[STEPS[stepIdx][0]]=true;S.lastActive=T;save();const ns=nextStep();if(ns<0){celebrate();return}stepIdx=ns;runStep()}
-function runStep(){({ear:runEar,review:runReview,new:runNew,mission:runMission,say:runSay})[STEPS[stepIdx][0]]()}
-function exitBtn(){return button('Pause — back to start',()=>{if(synth)synth.cancel();$('session').hidden=true;$('home').hidden=false;renderHome()})}
-function celebrate(){const s=shell();s.append(node('div','🏆','party'),node('h2','Bra jobbat! Klart för idag.'),node('p','Every word you practised today will come back at the right time. See you tomorrow!'),);
-  const r=node('div',undefined,'row center');r.append(button('Practise a few more cards',()=>{stepIdx=1;runReview(true)}),button('Back to start',()=>{$('session').hidden=true;$('home').hidden=false;renderHome()},'primary'));s.append(r)}
+function shell(title,sub){const s=stage();s.replaceChildren();const bar=node('div',undefined,'steps');STEPS.forEach((st,i)=>{const sp=node('span',(D()[st[0]]?'✓ ':st[2]+' ')+st[1],D()[st[0]]?'ok':'');if(i===stepIdx)sp.className='on';bar.append(sp)});s.append(bar);if(title){const h=node('h2');h.append(sv('span',title));s.append(h)}if(sub)s.append(node('p',sub,'muted'));return s}
+function openSession(){const ns=nextStep();$('home').hidden=true;$('session').hidden=false;window.scrollTo(0,0);if(ns<0){stepIdx=1;runReview(true);return}stepIdx=ns;runStep()}
+function finishStep(){if(!D()[STEPS[stepIdx][0]]){D()[STEPS[stepIdx][0]]=true;S.xp=(S.xp||0)+10}S.lastActive=T;save();
+  const u=curUnit(),st=ust(u);if(!st.done&&unitComplete(u)){stationDone(u);return}
+  const ns=nextStep();if(ns<0){celebrate();return}stepIdx=ns;runStep()}
+function runStep(){({ear:runEar,review:runReview,new:runNew,game:runGame,watch:runWatch,say:runSay})[STEPS[stepIdx][0]]()}
+function backHome(){if(synth)synth.cancel();stopRec();$('session').hidden=true;$('home').hidden=false;renderHome();window.scrollTo(0,0)}
+function exitBtn(){return button('Pause — back to start',backHome)}
+function confetti(s,n){const em=['🎉','⭐','⚽','🏆','✨','🇸🇪'];for(let i=0;i<(n||26);i++){const c=node('span',pickOne(em),'confetti');c.style.left=Math.random()*95+'%';c.style.animationDelay=(Math.random()*.9)+'s';s.append(c);setTimeout(()=>c.remove(),3600)}}
+function celebrate(){const s=shell();s.append(node('div','🏆','party'),node('h2','Bra jobbat! Klart för idag.'),node('p','Streak: '+streak()+' 🔥 · '+(S.xp||0)+' XP. Every word you practised today will come back at the right time. Vi ses imorgon!'));
+  const r=node('div',undefined,'row center');r.append(button('Practise a few more cards',()=>{stepIdx=1;runReview(true)}),button('Back to start',backHome,'primary'));s.append(r);confetti(s)}
+function stationDone(u){const st=ust(u);st.done=true;S.xp=(S.xp||0)+50;const k=UIDX.get(u.id);if(S.unit===k&&k<UNITS.length-1)S.unit=k+1;save();
+  const s=shell();s.append(node('div','🎖️','party'),node('h2','Station klar: '+u.title+'!'),node('p','You learned the words, passed the grammar game, watched the video and spoke. +50 XP. Next station: '+curUnit().title+'.'));
+  const nl=curUnit();if(nl.lvl!==u.lvl)s.append(node('h3','🎉 Ny nivå: '+nl.lvl+'!'));
+  const r=node('div',undefined,'row center');r.append(button('Continue →',()=>{const ns=nextStep();if(ns<0){celebrate();return}stepIdx=ns;runStep()},'primary'));s.append(r);confetti(s,40)}
 
 /* ---------- step 1: ear ---------- */
 function earStats(id){return S.ear[id]||(S.ear[id]=[])}
 function earPassed(id){const a=(S.ear[id]||[]).slice(-20);return a.length>=20&&a.filter(Boolean).length>=18}
 function runEar(){
-  const focus=EAR.find(e=>!earPassed(e.id))||EAR[Math.floor(Math.random()*EAR.length)];
-  let n=0,ok=0;const TOTAL=20;
+  const all=EAR.every(e=>earPassed(e.id));const focus=EAR.find(e=>!earPassed(e.id))||pickOne(EAR);
+  let n=0,ok=0;const TOTAL=all?8:16;
   function trial(){
-    if(n>=TOTAL){const s=shell('Ljud: klart!','');s.append(node('p','You heard '+ok+' of '+TOTAL+' right.','fb ok'),chips(),node('p',earPassed(focus.id)?'You have mastered “'+focus.name+'”! Tomorrow: the next sound.':'Keep going tomorrow — mastered means 18 of your last 20 right.','muted'));const r=node('div',undefined,'row');r.append(button('Next step →',finishStep,'primary'),exitBtn());s.append(r);return}
-    const c=Math.random()<.75||!EAR.some(e=>e!==focus&&(S.ear[e.id]||[]).length)?focus:shuffle(EAR.filter(e=>e!==focus&&(S.ear[e.id]||[]).length))[0];
-    const pair=c.pairs[Math.floor(Math.random()*c.pairs.length)];const k=Math.random()<.5?0:1;const target=pair[k];
-    const s=shell('Vilket ord hör du?','Sound '+(n+1)+' of '+TOTAL+' · '+c.name+' ('+c.en+')');
-    s.append(node('p',c.tip,'muted'));
-    const play=button('🔊 Lyssna igen',()=>say(target),'');const r0=node('div',undefined,'row center');r0.append(play);s.append(r0);
+    if(n>=TOTAL){const s=shell('Ljud: klart!','');s.append(node('p','You heard '+ok+' of '+TOTAL+' right.','fb ok'),chips(),node('p',all?'All sounds mastered — this was a quick warm-up.':earPassed(focus.id)?'You have mastered “'+focus.name+'”! Tomorrow: the next sound.':'Mastered means 18 of your last 20 right.','muted'));const r=node('div',undefined,'row');r.append(button('Next step →',finishStep,'primary'),exitBtn());s.append(r);return}
+    const c=all?pickOne(EAR):(Math.random()<.75||!EAR.some(e=>e!==focus&&(S.ear[e.id]||[]).length)?focus:pickOne(EAR.filter(e=>e!==focus&&(S.ear[e.id]||[]).length)));
+    const pair=pickOne(c.pairs);const k=Math.random()<.5?0:1;const target=pair[k];window.__t=k;
+    const s=shell('Vilket ord hör du?','Sound '+(n+1)+' of '+TOTAL+' · '+c.name+' ('+c.en+')');s.append(node('p',c.tip,'muted'));
+    const r0=node('div',undefined,'row center');r0.append(button('🔊 Lyssna igen',()=>say(target)));s.append(r0);
     const pr=node('div',undefined,'pair');const fb=node('div','','fb');let done=false;
     pair.forEach((w,i)=>{const b=sv('button',w);b.type='button';b.onclick=()=>{if(done)return;done=true;const right=i===k;earStats(c.id).push(right?1:0);if(S.ear[c.id].length>40)S.ear[c.id]=S.ear[c.id].slice(-40);save();n++;if(right)ok++;b.className=right?'right':'wrong';pr.children[k].className='right';fb.textContent=right?'Rätt! ✓':'Det var “'+target+'”.';fb.className='fb '+(right?'ok':'no');
-      const cmp=node('div',undefined,'row center');cmp.append(node('span','Compare:','muted'),button('🔊 '+pair[0],()=>say(pair[0])),button('🔊 '+pair[1],()=>say(pair[1])));s.append(cmp);const nx=node('div',undefined,'row center');nx.append(button('Nästa →',trial,'primary'));s.append(nx)};pr.append(b)});
+      const cmp=node('div',undefined,'row center');cmp.append(node('span','Compare:','muted'),button('🔊 '+pair[0],()=>say(pair[0])),button('🔊 '+pair[1],()=>say(pair[1])));s.append(cmp);const nx=node('div',undefined,'row center');const nb=button('Nästa →',trial,'primary');nx.append(nb);s.append(nx);setTimeout(()=>nb.focus(),50)};pr.append(b)});
     s.append(pr,fb);say(target);
   }
   trial();
@@ -426,27 +952,21 @@ function chips(){const c=node('div',undefined,'chips');const f=EAR.find(e=>!earP
 
 /* ---------- card renderers ---------- */
 function think(btn){btn.disabled=true;setTimeout(()=>btn.disabled=false,1800)}
-function showCard(c,done){
-  const s=stage();
-  if(c.kind==='def')return defCard(s,c,done);
-  if(c.kind==='vocab')return vocabCard(s,c,done);
-  if(c.kind==='forms')return formsCard(s,c,done);
-  if(c.kind==='comp')return compCard(s,c,done);if(c.kind==='prod')return prodCard(s,c,done);if(c.kind==='spell')return spellCard(s,c,done);if(c.kind==='cloze')return clozeCard(s,c,done);return echoCard(s,c,done);
-}
+function showCard(c,done){const s=stage();
+  if(c.kind==='def')return defCard(s,c,done);if(c.kind==='vocab')return vocabCard(s,c,done);if(c.kind==='forms')return formsCard(s,c,done);
+  if(c.kind==='comp')return compCard(s,c,done);if(c.kind==='prod')return prodCard(s,c,done);if(c.kind==='spell')return spellCard(s,c,done);if(c.kind==='cloze')return clozeCard(s,c,done);return echoCard(s,c,done)}
 function nextRow(done,ok){const r=node('div',undefined,'row center');const b=button('Nästa →',()=>done(ok),'primary');r.append(b);setTimeout(()=>b.focus(),50);return r}
 function compCard(s,c,done){
   const w=c.w,right=picOf(w);s.append(node('p','Which picture is it?','label'));const h=node('div',undefined,'word');h.append(sv('span',w),sayBtn(w));s.append(h);
   const pool=shuffle(Object.keys(S.words).filter(x=>x!==w).map(picOf).filter(p=>p!==right));
-  while(pool.length<3){const x=LEX[Math.floor(Math.random()*LEX.length)];if(x.sv!==w&&!pool.includes(x.pics[0])&&x.pics[0]!==right)pool.push(x.pics[0])}
+  while(pool.length<3){const x=pickOne(LEX);if(x.sv!==w&&!pool.includes(x.pics[0])&&x.pics[0]!==right)pool.push(x.pics[0])}
   const opts=shuffle([right].concat(pool.slice(0,3)));const g=node('div',undefined,'grid4');const fb=node('div','','fb');let ans=false;
   opts.forEach(p=>{const b=button(p,()=>{if(ans)return;ans=true;const ok=p===right;b.className=ok?'right':'wrong';Array.from(g.children).forEach(x=>{if(x.textContent===right)x.className='right'});fb.textContent=ok?'Rätt! ✓':'Det här är '+w+'.';fb.className='fb '+(ok?'ok':'no');say(w);s.append(nextRow(done,ok))});g.append(b)});
-  s.append(g,fb);say(w);
-}
+  s.append(g,fb);say(w)}
 function prodCard(s,c,done){
   const w=c.w,lx=LEXI.get(w);s.append(node('p','Say the word out loud — with en or ett!','label'),node('div',picOf(w),'pic'));
   if(S.words[w]&&S.words[w].tag)s.append(node('div',S.words[w].tag,'tag'));if(lx&&lx.clue)s.append(sv('div',lx.clue,'clue'));
-  const r=node('div',undefined,'row center');const show=button('Visa svaret',()=>{r.remove();const h=node('div',undefined,'word');h.append(sv('span',w),sayBtn(w));s.append(h);say(w);selfGrade(s,done)},'primary');think(show);r.append(show);s.append(r);
-}
+  const r=node('div',undefined,'row center');const show=button('Visa svaret',()=>{r.remove();const h=node('div',undefined,'word');h.append(sv('span',w),sayBtn(w));s.append(h);say(w);selfGrade(s,done)},'primary');think(show);r.append(show);s.append(r)}
 function selfGrade(s,done){const r=node('div',undefined,'row center');r.append(button('✗ Inte än',()=>done(false)),button('✓ Jag kunde det',()=>done(true),'good'));s.append(node('p','Did you remember it?','muted center'),r)}
 function spellCard(s,c,done){
   const w=c.w;s.append(node('p','Listen and write the word','label'),node('div',picOf(w),'pic'));const r0=node('div',undefined,'row center');r0.append(button('🔊 Lyssna',()=>say(w)));s.append(r0);
@@ -455,84 +975,77 @@ function spellCard(s,c,done){
   const fb=node('div','','fb');const go=button('Check',check,'primary');const r2=node('div',undefined,'row center');r2.append(go);s.append(r2,fb);
   inp.onkeydown=e=>{if(e.key==='Enter')check()};let fin=false;
   function check(){if(fin)return;const v=norm(inp.value);if(!v){fb.textContent='Write the word first.';return}fin=true;const ok=v===norm(w)||v===norm(bare(w));fb.textContent=ok?'Rätt! ✓ '+w:'It is written: '+w;fb.className='fb '+(ok?'ok':'no');say(w);go.remove();s.append(nextRow(done,ok))}
-  say(w);setTimeout(()=>inp.focus(),100);
-}
-function clozeHTML(full,blank,reveal){const p=sv('div',undefined,'cloze');const i=full.indexOf(blank);if(i<0){p.textContent=full;return p}p.append(document.createTextNode(full.slice(0,i)));if(reveal)p.append(node('mark',blank));else p.append(node('span',' ','gap'));p.append(document.createTextNode(full.slice(i+blank.length)));return p}
+  say(w);setTimeout(()=>inp.focus(),100)}
+function clozeHTML(full,blank,reveal){const p=sv('div',undefined,'cloze');const i=full.indexOf(blank);if(i<0){p.textContent=full;return p}p.append(document.createTextNode(full.slice(0,i)));if(reveal)p.append(node('mark',blank));else p.append(node('span',' ','gap'));p.append(document.createTextNode(full.slice(i+blank.length)));return p}
 function clozeCard(s,c,done){
   s.append(node('p','Which word is missing? Say it, then check.'+(c.src?' · '+c.src:''),'label'));let p=clozeHTML(c.full,c.blank,false);s.append(p);
-  const r=node('div',undefined,'row center');r.append(button('💡 Hint: hear the sentence',()=>say(c.full)));const show=button('Visa svaret',()=>{r.remove();const q=clozeHTML(c.full,c.blank,true);p.replaceWith(q);p=q;say(c.full);selfGrade(s,done)},'primary');think(show);r.append(show);s.append(r);
-}
-function rivWord(v){return v.art&&!/^(en|ett) /.test(v.sv)?v.art+' '+v.sv:v.sv}
+  const r=node('div',undefined,'row center');r.append(button('💡 Hint: hear the sentence',()=>say(c.full)));const show=button('Visa svaret',()=>{r.remove();const q=clozeHTML(c.full,c.blank,true);p.replaceWith(q);p=q;say(c.full);selfGrade(s,done)},'primary');think(show);r.append(show);s.append(r)}
+function vWord(v){return v.art&&!/^(en|ett) /.test(v.sv)?v.art+' '+v.sv:v.sv}
+function imgBtn(w){const a=node('a','🔍 Bilder');a.href='https://www.google.com/search?tbm=isch&q='+encodeURIComponent(bare(w).replace(/ …/g,''))+'&hl=sv';a.target='_blank';a.rel='noopener';a.className='say';a.style.textDecoration='none';a.style.border='1px solid var(--line)';a.style.borderRadius='14px';return a}
 function vocabCard(s,c,done){
-  s.append(node('p','What does it mean? Say it, then check. · Rivstart '+c.ch,'label'));const h=node('div',undefined,'word');h.append(sv('span',c.w),sayBtn(c.w));s.append(h);
-  const r=node('div',undefined,'row center');const show=button('Visa svaret',()=>{r.remove();s.append(node('div',c.en,'word'));s.lastChild.style.fontSize='28px';s.lastChild.style.fontWeight='normal';if(c.f)s.append(sv('p',c.f.join(' · '),'center muted'));else if(c.raw)s.append(sv('p',c.raw,'center muted'));selfGrade(s,done)},'primary');think(show);r.append(show);s.append(r);say(c.w);
-}
+  s.append(node('p','What does it mean? Say it, then check.'+(c.src?' · '+c.src:''),'label'));const h=node('div',undefined,'word');h.append(sv('span',c.w),sayBtn(c.w));s.append(h);
+  if(c.note)s.append(node('div','💭 '+c.note,'note'));
+  const r=node('div',undefined,'row center');const show=button('Visa svaret',()=>{r.remove();const e=node('div',c.en,'word');e.style.fontSize='28px';e.style.fontWeight='normal';s.append(e);if(c.f)s.append(sv('p',c.f.join(' · '),'center muted'));else if(c.raw)s.append(sv('p',c.raw,'center muted'));selfGrade(s,done)},'primary');think(show);r.append(show);s.append(r);say(c.w)}
 function formsCard(s,c,done){
   const q={noun:'Say the forms: the …, many …, all the …',verb:'Say the forms: now, yesterday, has …',adj:'Say the forms: ett …, många …'}[c.pos]||'Say the forms';
-  s.append(node('p',q+' · Rivstart '+c.ch,'label'));const h=node('div',undefined,'word');h.append(sv('span',c.w),sayBtn(c.w));s.append(h,node('p',c.en,'center muted'));
-  const r=node('div',undefined,'row center');const show=button('Visa svaret',()=>{r.remove();const f=sv('div',c.f.join(' · '),'cloze');s.append(f);const r2=node('div',undefined,'row center');r2.append(sayBtn(c.f.join(', '),'🔊 Lyssna'));s.append(r2);say(c.f.join(', '));selfGrade(s,done)},'primary');think(show);r.append(show);s.append(r);
-}
+  s.append(node('p',q,'label'));const h=node('div',undefined,'word');h.append(sv('span',c.w),sayBtn(c.w));s.append(h,node('p',c.en,'center muted'));
+  const r=node('div',undefined,'row center');const show=button('Visa svaret',()=>{r.remove();s.append(sv('div',c.f.join(' · '),'cloze'));const r2=node('div',undefined,'row center');r2.append(sayBtn(c.f.join(', '),'🔊 Lyssna'));s.append(r2);say(c.f.join(', '));selfGrade(s,done)},'primary');think(show);r.append(show);s.append(r)}
 function defCard(s,c,done){
   s.append(node('p','Which concept is it? Say it, then check.'+(c.src?' · '+c.src:''),'label'));const d=sv('div',c.def,'cloze');d.style.fontSize='24px';s.append(d);
-  const r=node('div',undefined,'row center');r.append(button('🔊 Lyssna',()=>say(c.def)));const show=button('Visa svaret',()=>{r.remove();const h=node('div',undefined,'word');h.append(sv('span',c.term),sayBtn(c.term));s.append(h);say(c.term);selfGrade(s,done)},'primary');think(show);r.append(show);s.append(r);
-}
+  const r=node('div',undefined,'row center');r.append(button('🔊 Lyssna',()=>say(c.def)));const show=button('Visa svaret',()=>{r.remove();const h=node('div',undefined,'word');h.append(sv('span',c.term),sayBtn(c.term));s.append(h);say(c.term);selfGrade(s,done)},'primary');think(show);r.append(show);s.append(r)}
 function echoCard(s,c,done){
   s.append(node('p','Listen, then say the sentence yourself.'+(c.src?' · '+c.src:''),'label'));const r=node('div',undefined,'row center');r.append(button('🔊 Lyssna',()=>say(c.full)),button('🐢 Långsamt',()=>say(c.full,.65)));s.append(r);
-  const r2=node('div',undefined,'row center');const show=button('Visa meningen',()=>{r2.remove();s.append(sv('div',c.full,'cloze'));selfGrade(s,done)},'primary');think(show);r2.append(show);s.append(r2);say(c.full);
-}
+  const r2=node('div',undefined,'row center');const show=button('Visa meningen',()=>{r2.remove();s.append(sv('div',c.full,'cloze'));selfGrade(s,done)},'primary');think(show);r2.append(show);s.append(r2);say(c.full)}
 
 /* ---------- step 2: review ---------- */
 function runReview(extra){
   const q=quota();let queue=dueCards().slice(0,extra?20:q.cap);
   if(extra&&!queue.length){queue=shuffle(Object.values(S.cards).filter(c=>c.box>0)).slice(0,15)}
-  const total=queue.length;let k=0,ok=0;
+  const total=queue.length;let ok=0;
   if(!total){const s=shell('Repetera','Nothing to review today.');s.append(node('p','No cards are due yet — new words start in the next step. Cards come back after 1 day, then 3, 9, 21 days…','muted'));const r=node('div',undefined,'row');r.append(button('Next step →',finishStep,'primary'),exitBtn());s.append(r);return}
   const seen=new Set(),again=new Map();
   function next(){
-    if(!queue.length){const s=shell('Repetera: klart!');s.append(node('p','You remembered '+ok+' of '+total+' cards on the first try.','fb ok'));const r=node('div',undefined,'row');r.append(extra?button('Back to start',()=>{$('session').hidden=true;$('home').hidden=false;renderHome()},'primary'):button('Next step →',finishStep,'primary'),extra?'':exitBtn());s.append(r);return}
+    if(!queue.length){const s=shell('Repetera: klart!');s.append(node('p','You remembered '+ok+' of '+total+' cards on the first try.','fb ok'));if(ok>=total*.9&&total>=5)confetti(s,14);const r=node('div',undefined,'row');r.append(extra?button('Back to start',backHome,'primary'):button('Next step →',finishStep,'primary'),extra?'':exitBtn());s.append(r);return}
     const c=queue.shift();shell('Repetera',(total-queue.length)+' / '+total+(queue.length?'':' · last one!'));
     showCard(c,res=>{if(!seen.has(c.id)){seen.add(c.id);if(res)ok++;grade(c,res)}if(!res&&(again.get(c.id)||0)<2){again.set(c.id,(again.get(c.id)||0)+1);queue.splice(Math.min(3,queue.length),0,c)}next()});
   }
   next();
 }
 
+/* ---------- station word check ---------- */
+function runUnitCheck(u,after){
+  const words=unitWords(u);const st=ust(u);const unknown=new Set();let page=0;const PER=40;
+  if(!words.length){st.checked=true;save();after();return}
+  function draw(){
+    const part=words.slice(page*PER,(page+1)*PER);const s=shell('Ordkoll: '+u.title);
+    s.append(node('div','Station '+(UIDX.get(u.id)+1)+' · '+BOOKS[u.book]+' · kapitel '+u.ch,'label'),node('p','Tap every word you don’t know (or aren’t sure about). Only those become cards — no time wasted on words you already know. Page '+(page+1)+' of '+Math.ceil(words.length/PER)+'.','muted'));
+    const g=node('div',undefined,'chips');g.style.gap='8px';
+    part.forEach(v=>{const b=sv('button',vWord(v));b.type='button';b.style.fontSize='17px';b.style.padding='8px 14px';const mark=()=>{b.style.background=unknown.has(v.id)?'#f2d4c8':'';b.style.borderColor=unknown.has(v.id)?'var(--accent)':''};b.onclick=()=>{if(unknown.has(v.id))unknown.delete(v.id);else unknown.add(v.id);mark()};mark();g.append(b)});s.append(g);
+    const r=node('div',undefined,'row');
+    r.append(button('All on this page are new',()=>{part.forEach(v=>unknown.add(v.id));draw()}));
+    r.append(button((page+1)*PER>=words.length?'Done ✓':'Next page →',()=>{page++;if(page*PER>=words.length){st.unknown=words.filter(v=>unknown.has(v.id)).map(v=>v.id);st.checked=true;save();toast(unknown.size+' new words in this station');after()}else draw()},'primary'));
+    s.append(r,node('p','Tip: be honest — a word you only half know is better as a card.','muted'));window.scrollTo(0,0);
+  }
+  draw();
+}
+
 /* ---------- step 3: new ---------- */
-/* New cards come from his real work first: the chapter he is reading, Kemi concepts,
-   saved Reader words, mission sentences and parent cards. Core picture words only if he
-   marked them unknown in the word check. */
-function chapterItems(){
-  const out=[];if(typeof CHAPTERS==='undefined')return out;const rd=readLS('swedish-reader-v1');if(!rd||!rd.texts)return out;
-  const saved=new Set((rd.words||[]).map(w=>norm(w.form)));
-  CHAPTERS.forEach(ch=>{const txt=rd.texts[ch.id];if(!txt)return;const sents=txt.replace(/\n+/g,' ').split(/(?<=[.!?…]”?)\s+/);
-    ch.gloss.forEach(g=>{const forms=[g[0]].concat(g.slice(2));const id='g:'+ch.id+':'+norm(g[0]);if(S.cards[id]||S.skip[id])return;
-      for(const f of forms){if(saved.has(norm(f)))return;const re=new RegExp('(^|[^\\p{L}])('+f.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')(?=$|[^\\p{L}])','iu');
-        const st=sents.find(x=>re.test(x));if(st){const m=st.match(re);out.push({id,kind:'cloze',full:st.trim(),blank:m[2],src:ch.book+' · '+ch.title,info:{w:g[0],en:g[1]}});return}}})});
-  return out;
-}
-function kemiItems(){if(typeof PARTS==='undefined')return[];const out=[];PARTS.forEach(p=>p.concepts.forEach(([t,ex,et])=>{const id='k:'+norm(t);if(S.cards[id]||S.skip[id])return;out.push({id,kind:'def',term:t,def:ex,src:'Kemi',info:{w:t,en:et}})}));return out}
-const RIV=RIV_RAW.split('\n').map((l,i)=>{const[ch,svw,f,en]=l.split('|');let x=f?expandForms(svw,f):null;if(x&&x.pos==='verb'&&VERB_OVR[svw])x={pos:'verb',art:'',forms:VERB_OVR[svw]};return{id:'v:'+ch+':'+norm(svw)+':'+norm(en).slice(0,12),ch:Number(ch),sv:svw,en,raw:f,f:x?x.forms:null,pos:x?x.pos:'',art:x?x.art:''}});
-function rivChapter(ch){return RIV.filter(v=>v.ch===ch)}
-function rivItems(){
-  const R=S.riv;if(!R||R.ch>20||!R.checked[R.ch])return[];
-  const left=(R.unknown[R.ch]||[]).filter(id=>!S.cards[id]).map(id=>RIV.find(v=>v.id===id)).filter(Boolean);
-  return left.map(v=>({riv:v}));
-}
+function unitItems(){const u=curUnit(),st=ust(u);if(!st.checked)return[];return st.unknown.filter(id=>!S.cards[id]).map(id=>VBYID.get(id)).filter(Boolean).map(v=>({voc:v,u}))}
 function newItems(limit){
-  const sentDone=Object.values(S.cards).filter(c=>c.added===T&&c.box>0).length;let room=Math.max(0,limit-sentDone);
-  const srcs=[chapterItems(),rivItems(),kemiItems(),harvest().map(x=>Object.assign({},x)),LEX.filter(w=>S.words[w.sv]===undefined&&S.unknown&&S.unknown.includes(w.sv)).map(w=>({core:w}))];
-  const caps=[3,5,2,2,99],take=[0,0,0,0,0],out=[];
+  const room0=Math.max(0,limit-Object.values(S.cards).filter(c=>c.added===T&&c.box>0&&(c.kind==='vocab'||c.kind==='prod')).length);let room=room0;
+  const srcs=[unitItems(),harvest().map(x=>Object.assign({},x)),LEX.filter(w=>S.words[w.sv]===undefined&&S.unknown&&S.unknown.includes(w.sv)).map(w=>({core:w}))];
+  const caps=[99,2,3],take=[0,0,0],out=[];
   while(room>0){let added=false;for(let k=0;k<srcs.length&&room>0;k++){if(take[k]<caps[k]&&srcs[k].length){out.push(srcs[k].shift());take[k]++;room--;added=true}}if(!added)break}
-  return out;
-}
+  return out}
 function runNew(){
-  if(S.riv&&S.riv.ch<=20&&!S.riv.checked[S.riv.ch]){runRivCheck(S.riv.ch,runNew);return}
-  const q=quota();const items=newItems(q.newWords*(q.back?1:1));const total=items.length;let i=0;
-  if(!total){const s=shell('Nytt','No new cards today.');s.append(node('p','Nothing new right now. New cards come from the chapter you read in the Reader, Kemi, finished missions and the parent corner.','muted'));const r=node('div',undefined,'row');r.append(button('Next step →',finishStep,'primary'),exitBtn());s.append(r);return}
+  const u=curUnit();if(!ust(u).checked){runUnitCheck(u,runNew);return}
+  const q=quota();const items=newItems(q.newWords);const total=items.length;let i=0;
+  if(!total){const s=shell('Nya ord',wordsLeft(u)?'Daily limit reached.':'No new words right now.');s.append(node('p',wordsLeft(u)?'You have learned enough new words for today — the rest of this station comes tomorrow.':'All words in this station are started. Finish the grammar game, the video and the speaking task to unlock the next station!','muted'));const r=node('div',undefined,'row');r.append(button('Next step →',finishStep,'primary'),exitBtn());s.append(r);return}
   const retry=[],tries=new Map();const push=c=>{const n=(tries.get(c.id)||0)+1;tries.set(c.id,n);if(n<=2)retry.push(c)};
   function next(){
-    if(i>=items.length&&!retry.length){if(S.riv&&S.riv.checked[S.riv.ch]&&S.riv.ch<20&&!(S.riv.unknown[S.riv.ch]||[]).some(id=>!S.cards[id])){S.riv.ch++;save()}finishStep();return}
-    if(i>=items.length){const c=retry.shift();shell('Nytt: en gång till','Try this one again.');showCard(c,res=>{if(!res)push(c);next()});return}
-    const it=items[i++];if(it.core)introWord(it.core);else if(it.riv)introRiv(it.riv);else introItem(it);
+    if(i>=items.length&&!retry.length){finishStep();return}
+    if(i>=items.length){const c=retry.shift();shell('Nya ord: en gång till','Try this one again.');showCard(c,res=>{if(!res)push(c);next()});return}
+    const it=items[i++];if(it.core)introWord(it.core);else if(it.voc)introVoc(it.voc,it.u);else introItem(it);
   }
   function knownBtn(onKnown){return button('Jag kan det redan ✓',onKnown)}
   function practise(c){shell('Kommer du ihåg?',i+' / '+total);showCard(c,res=>{c.box=1;c.due=T+1;S.log.push([T,res?1:0]);save();if(!res)push(c);next()})}
@@ -546,78 +1059,86 @@ function runNew(){
       const comp=addCard({id:'w:'+w.sv+':comp',kind:'comp',w:w.sv}),prod=addCard({id:'w:'+w.sv+':prod',kind:'prod',w:w.sv});comp.box=1;comp.due=T+1;practise(prod)},'primary');
     const kn=node('div',undefined,'row center');kn.append(knownBtn(()=>{S.words[w.sv]={pic:w.pics[0],known:true,day:T};save();next()}));s.append(kn);
     function step2(){if(!tagRow.isConnected){s.append(tagRow);const r=node('div',undefined,'row center');r.append(go);s.append(r)}}
-    if(pick)step2();
-  }
-  function introRiv(v){
-    const w=rivWord(v);const s=shell('Nytt ord',i+' / '+total+' · Rivstart kapitel '+v.ch);
-    const h=node('div',undefined,'word');h.append(sv('span',w),sayBtn(w));s.append(h,node('p',v.en,'center'));s.lastChild.style.fontSize='22px';
+    if(pick)step2()}
+  function introVoc(v,u){
+    const w=vWord(v);const s=shell('Nytt ord',i+' / '+total+' · '+u.title);
+    const h=node('div',undefined,'word');h.append(sv('span',w),sayBtn(w),imgBtn(w));s.append(h);const en=node('p',v.en,'center');en.style.fontSize='22px';s.append(en);
     if(v.f){const f=sv('p',v.f.join(' · '),'center muted');f.append(' ',sayBtn(v.f.join(', ')));s.append(f)}else if(v.raw)s.append(sv('p',v.raw,'center muted'));
-    s.append(node('p','Say the word out loud'+(v.f?' and its forms':'')+'. Then practise it.','muted center'));say(w);
-    const card={id:v.id,kind:'vocab',w,en:v.en,f:v.f,raw:v.raw,ch:v.ch};
-    const addForms=()=>{if(v.f&&v.pos){const fc=addCard({id:v.id+':f',kind:'forms',w,en:v.en,f:v.f,pos:v.pos,ch:v.ch});fc.box=1;fc.due=T+1}};
-    const r2=node('div',undefined,'row center');r2.append(knownBtn(()=>{const c=addCard(card);c.box=3;c.due=T+9;save();next()}),button('Practise it →',()=>{addForms();practise(addCard(card))},'primary'));s.append(r2);
-  }
+    s.append(node('p','Say it out loud'+(v.f?' with its forms':'')+'. Look at 🔍 pictures, then write your own memory hook — a picture in your head, a person, a joke.','muted center'));say(w);
+    const nr=node('div',undefined,'row center');const ni=node('input');ni.type='text';ni.maxLength=60;ni.placeholder='💭 My memory hook (optional)';ni.setAttribute('aria-label','Memory hook');nr.append(ni);s.append(nr);
+    const card={id:v.id,kind:'vocab',w,en:v.en,f:v.f,raw:v.raw,src:u.title};
+    const addForms=()=>{if(v.f&&v.pos){const fc=addCard({id:v.id+':f',kind:'forms',w,en:v.en,f:v.f,pos:v.pos});fc.box=1;fc.due=T+2}};
+    const r2=node('div',undefined,'row center');r2.append(knownBtn(()=>{const c=addCard(card);c.box=3;c.due=T+9;save();next()}),button('Practise it →',()=>{const c=addCard(card);if(ni.value.trim())c.note=ni.value.trim();addForms();practise(c)},'primary'));s.append(r2)}
   function introItem(x){
-    const label=x.kind==='def'?'Nytt begrepp':x.info?'Nytt ord':'Ny mening';
-    const s=shell(label,i+' / '+total+(x.src?' · '+x.src:''));
-    if(x.info){const h=node('div',undefined,'word');h.append(sv('span',x.info.w),sayBtn(x.info.w));s.append(h,node('p',x.info.en,'center muted'))}
+    const label=x.kind==='def'?'Nytt begrepp':'Ny mening';const s=shell(label,i+' / '+total+(x.src?' · '+x.src:''));
     const body=x.kind==='def'?x.def:x.full;const t=sv('div',undefined,'cloze');if(x.kind==='cloze'){const i0=x.full.indexOf(x.blank);t.append(document.createTextNode(x.full.slice(0,i0)),node('mark',x.blank),document.createTextNode(x.full.slice(i0+x.blank.length)))}else t.textContent=body;s.append(t);
-    const r=node('div',undefined,'row center');r.append(button('🔊 Lyssna',()=>say(body)),button('🐢 Långsamt',()=>say(body,.65)));s.append(r);say(x.info?x.info.w:body);
+    const r=node('div',undefined,'row center');r.append(button('🔊 Lyssna',()=>say(body)),button('🐢 Långsamt',()=>say(body,.65)));s.append(r);say(body);
     s.append(node('p','Read it out loud after the voice. Then you will practise it.','muted center'));
-    const r2=node('div',undefined,'row center');r2.append(knownBtn(()=>{const c=addCard(x);c.box=3;c.due=T+9;save();next()}),button('Practise it →',()=>practise(addCard(x)),'primary'));s.append(r2);
-  }
+    const r2=node('div',undefined,'row center');r2.append(knownBtn(()=>{const c=addCard(x);c.box=3;c.due=T+9;save();next()}),button('Practise it →',()=>practise(addCard(x)),'primary'));s.append(r2)}
   next();
 }
 
-/* ---------- Rivstart chapter check ---------- */
-function runRivCheck(ch,after){
-  const words=rivChapter(ch);const unknown=new Set();let page=0;const PER=40;
-  if(!words.length){S.riv.checked[ch]=true;S.riv.ch++;save();after();return}
-  function draw(){
-    const part=words.slice(page*PER,(page+1)*PER);const s=stage();s.replaceChildren();
-    s.append(node('div','Rivstart · kapitel '+ch,'label'),node('h2','Which words don’t you know?'),node('p','Tap every word you don’t know (or aren’t sure about). Only those become cards. Page '+(page+1)+' of '+Math.ceil(words.length/PER)+'.','muted'));
-    const g=node('div',undefined,'chips');g.style.gap='8px';
-    part.forEach(v=>{const b=sv('button',rivWord(v));b.type='button';b.style.fontSize='17px';b.style.padding='8px 14px';const mark=()=>{b.style.background=unknown.has(v.id)?'#f2d4c8':'';b.style.borderColor=unknown.has(v.id)?'var(--accent)':''};b.onclick=()=>{if(unknown.has(v.id))unknown.delete(v.id);else unknown.add(v.id);mark()};mark();g.append(b)});s.append(g);
-    const r=node('div',undefined,'row');
-    r.append(button('All on this page are new',()=>{part.forEach(v=>unknown.add(v.id));draw()}));
-    r.append(button((page+1)*PER>=words.length?'Done ✓':'Next page →',()=>{page++;if(page*PER>=words.length){S.riv.unknown[ch]=words.filter(v=>unknown.has(v.id)).map(v=>v.id);S.riv.checked[ch]=true;if(!S.riv.unknown[ch].length&&ch<20)S.riv.ch++;save();toast(unknown.size+' new words from chapter '+ch);after()}else draw()},'primary'));
-    s.append(r,node('p','Tip: be honest — a word you only half know is better as a card.','muted'));window.scrollTo(0,0);
-  }
-  draw();
+/* ---------- step 4: grammar game (Arena inside Today) ---------- */
+let arenaMsg=null;
+function pickGame(){const u=curUnit(),st=ust(u);if(st.game<8)return{id:u.game,main:true};
+  const pool=[...new Set(UNITS.slice(0,S.unit+1).filter(x=>ust(x).game>=8).map(x=>x.game))];return{id:pickOne(pool.length?pool:[u.game]),main:false}}
+function runGame(){
+  const g=pickGame(),u=curUnit(),p=curProf();const nm=GAME_NAMES[g.id]||['🎯',g.id];
+  const s=shell(nm[0]+' '+nm[1],g.main?'This station’s grammar. Get 8 of 10 right to pass — you can play again as often as you like.':'This station’s game is passed ✓ — here is a review game from an earlier station.');
+  const f=node('iframe');f.className='arena';f.title='Grammar game';f.src='arena.html?embed=1&game='+encodeURIComponent(g.id)+'&lv='+(p.lv||'junior')+'&name='+encodeURIComponent(p.name)+'&av='+encodeURIComponent(p.av);s.append(f);
+  const r=node('div',undefined,'row');r.append(button('Skip today',finishStep),exitBtn());s.append(r);
+  arenaMsg=m=>{if(m.type==='arena-done'){if(m.game===u.game){const st=ust(u);const before=st.game;st.game=Math.max(st.game,m.right||0);save();if(before<8&&st.game>=8)toast('🎯 Grammar passed for this station!')}}
+    else if(m.type==='arena-close'){arenaMsg=null;if(m.right!==undefined)finishStep();else backHome()}}
+}
+window.addEventListener('message',e=>{const m=e.data;if(!m||m.src!=='arena'||!arenaMsg)return;arenaMsg(m)});
+
+/* ---------- step 5: watch ---------- */
+function runWatch(){
+  const u=curUnit(),st=ust(u);let vid=u.videos.find(v=>!st.videos.includes(v));const fresh=!!vid;
+  if(!vid){const seen=[...new Set(UNITS.slice(0,S.unit+1).flatMap(x=>ust(x).videos))];vid=seen.length?pickOne(seen):u.videos[0]}
+  const V=VIDEOS[vid]||['Video','',''];
+  const s=shell('📺 '+V[0],(fresh?'New video for this station':'Re-watch: catch more this time')+' · '+V[1]+' · '+(V[2]==='sv'?'på svenska':'explained in English'));
+  const learning=unitWords(u).filter(v=>S.cards[v.id]).slice(-6);const look=shuffle(learning).slice(0,3);
+  if(look.length&&V[2]==='sv'){const c=node('div','','chips');c.append(node('span','👂 Listen for:','muted'));look.forEach(v=>c.append(sv('span',vWord(v))));s.append(c)}
+  else s.append(node('p',V[2]==='sv'?'Tip: turn on Swedish subtitles (CC) and pause when you want.':'Watch the rule, then try to explain it in Swedish below.','muted'));
+  const w=node('div','','vid');const f=node('iframe');f.src='https://www.youtube-nocookie.com/embed/'+vid+'?rel=0&cc_load_policy=1&cc_lang_pref=sv&hl=sv&playsinline=1';f.title=V[0];f.allow='encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;f.loading='lazy';w.append(f);s.append(w);
+  const a=node('a','Open on YouTube ↗');a.href='https://www.youtube.com/watch?v='+vid;a.target='_blank';a.rel='noopener';const ar=node('div','','row');ar.append(a);s.append(ar);
+  s.append(node('h3','Efteråt · afterwards'),node('p','Write one sentence in Swedish: what did you learn or notice? A parent checks it, and it becomes a card.','muted'));
+  const ta=node('textarea');ta.lang='sv';ta.placeholder='Jag lärde mig att …';ta.style.minHeight='80px';s.append(ta);
+  const r=node('div',undefined,'row');r.append(button('✓ Klar',()=>{const t=ta.value.trim();if(t.length>=3)S.out.push({d:T,q:'📺 '+V[0],text:t,corr:null});if(!st.videos.includes(vid)&&u.videos.includes(vid))st.videos.push(vid);addXP(5,s);save();finishStep()},'primary'),button('Skip today',finishStep),exitBtn());s.append(r);
 }
 
-/* ---------- word check (placement) ---------- */
+/* ---------- step 6: speak (record + write) ---------- */
+let rec=null,recChunks=[],recUrl=null;
+function stopRec(){try{if(rec&&rec.state==='recording')rec.stop()}catch(e){}}
+function recorder(box){const b=button('🎙 Spela in',toggle,'primary');const st=node('span','','muted');box.append(b,st);
+  async function toggle(){if(rec&&rec.state==='recording'){rec.stop();return}
+    if(!navigator.mediaDevices||!window.MediaRecorder){toast('Recording is not supported in this browser.');return}
+    try{const ms=await navigator.mediaDevices.getUserMedia({audio:true});recChunks=[];rec=new MediaRecorder(ms);rec.ondataavailable=e=>{if(e.data.size)recChunks.push(e.data)};
+      rec.onstop=()=>{ms.getTracks().forEach(t=>t.stop());if(recUrl)URL.revokeObjectURL(recUrl);recUrl=URL.createObjectURL(new Blob(recChunks,{type:rec.mimeType||'audio/mp4'}));b.textContent='🎙 Spela in igen';st.replaceChildren();const au=node('audio');au.controls=true;au.src=recUrl;st.append(au)};
+      rec.start();b.textContent='⏹ Stoppa';st.replaceChildren(node('span','','dot'),document.createTextNode(' recording…'))}catch(e){toast('No microphone access — allow it in the browser settings.')}}}
+function runSay(){
+  const u=curUnit(),st=ust(u);const usePrompt=!st.said?[u.q,u.hint,u.starters]:PROMPTS[T%PROMPTS.length];
+  const s=shell(usePrompt[0]);s.children[1].append(' ',sayBtn(usePrompt[0]));s.append(node('p',usePrompt[1]+(st.said?' · daily question':' · station task'),'muted'));
+  s.append(node('p','1) Think, then say your answer out loud and record it. 2) Listen to yourself. 3) Write it — a parent corrects it and the corrected sentences become cards.','muted'));
+  const rb=node('div','','rec');recorder(rb);s.append(rb);
+  const ch=node('div',undefined,'chips');const ta=node('textarea');ta.lang='sv';ta.placeholder='Skriv här …';
+  usePrompt[2].forEach(x=>ch.append(button(x+' …',()=>{ta.value+=(ta.value&&!/\s$/.test(ta.value)?' ':'')+x+' ';ta.focus()})));
+  s.append(ch,ta);const r=node('div',undefined,'row');r.append(button('Save ✓',()=>{const t=ta.value.trim();if(t.length<3){toast('Write at least a few words.');return}stopRec();S.out.push({d:T,q:usePrompt[0],text:t,corr:null});if(!st.said&&usePrompt[0]===u.q)st.said=true;addXP(5,s);save();toast('Saved — a parent will check it');finishStep()},'primary'),button('Skip today',()=>{stopRec();finishStep()}),exitBtn());s.append(r);
+}
+
+/* ---------- picture word check (A2 core) ---------- */
 function runPlacement(after){
   const pending=LEX.filter(w=>S.words[w.sv]===undefined);const unknown=new Set(S.unknown||[]);let page=0;const PER=20;
   function draw(){
     const part=pending.slice(page*PER,(page+1)*PER);const s=stage();s.replaceChildren();
-    s.append(node('h2','Ordkoll · word check'),node('p','Tap only the words you DON’T know. Everything else counts as known and won’t come up. Page '+(page+1)+' of '+Math.ceil(pending.length/PER)+'.','muted'));
+    s.append(node('h2','Ordkoll · picture words'),node('p','Tap only the words you DON’T know. Page '+(page+1)+' of '+Math.ceil(pending.length/PER)+'.','muted'));
     const g=node('div',undefined,'wl');part.forEach(w=>{const d=node('div');d.style.cursor='pointer';const mark=()=>{d.style.background=unknown.has(w.sv)?'#f2d4c8':'#fffdf7';d.style.borderColor=unknown.has(w.sv)?'var(--accent)':''};d.append(node('div',w.pics[0],'p'),sv('b',w.sv));d.onclick=()=>{if(unknown.has(w.sv))unknown.delete(w.sv);else unknown.add(w.sv);mark()};mark();g.append(d)});s.append(g);
     const r=node('div',undefined,'row');
     r.append(button((page+1)*PER>=pending.length?'Done ✓':'Next page →',()=>{part.forEach(w=>{if(!unknown.has(w.sv))S.words[w.sv]={pic:w.pics[0],known:true,day:T}});S.unknown=[...unknown];save();page++;if(page*PER>=pending.length){S.placed=true;save();toast(unknown.size+' words to learn');after()}else draw()},'primary'));
     r.append(button('I know all of these — skip the rest',()=>{pending.slice(page*PER).forEach(w=>{if(!unknown.has(w.sv))S.words[w.sv]={pic:w.pics[0],known:true,day:T}});S.unknown=[...unknown];S.placed=true;save();after()}));
-    s.append(r);window.scrollTo(0,0);
-  }
-  if(!pending.length){S.placed=true;save();after();return}draw();
-}
-/* ---------- step 4: mission ---------- */
-function missionInfo(){const L=Array.isArray(window.LESSONS)?window.LESSONS.filter(Boolean):[];const ms=readLS('swedish-missions-v1')||{solved:[],boss:[]};const solved=new Set(ms.solved||[]);const i=L.findIndex((u,ui)=>!(u.tasks.every((t,ti)=>solved.has(ui+'-'+ti))&&(ms.boss||[]).includes(ui)));return{L,i,count:solved.size}}
-function runMission(){
-  const mi=missionInfo();const s=shell('Uppdrag','Do one part of your mission (words, story or challenges) — about 5 minutes.');
-  if(mi.i>=0){const u=mi.L[mi.i];s.append(node('h3','Next: '+u.title+' · '+u.sv),node('p',u.intro))}
-  if(S.missionBase===undefined||S.missionDay!==T){S.missionBase=mi.count;S.missionDay=T;save()}
-  const r=node('div',undefined,'row');const a=node('a');a.href='index.html#missions';a.append(button('Open the mission →',()=>{},'primary'));r.append(a,button('✓ I did it',finishStep),button('Skip today',finishStep),exitBtn());s.append(r);
-  s.append(node('p','The challenges you solve become review cards here — so the sentences come back until you know them.','muted'));
-}
-window.addEventListener('pageshow',()=>{try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.v===1)S=Object.assign(fresh(),s)}catch(e){}if(!$('session').hidden&&STEPS[stepIdx][0]==='mission'&&missionInfo().count>(S.missionBase||0)){toast('Mission progress saved ✓');finishStep()}else if($('session').hidden)renderHome()});
-
-/* ---------- step 5: say ---------- */
-function runSay(){
-  const p=PROMPTS[T%PROMPTS.length];const s=shell(p[0]);s.firstChild.nextSibling.append(' ',sayBtn(p[0]));s.append(node('p',p[1],'muted'),node('p','Say your answer out loud first. Then write it. A parent will correct it, and the corrected sentence becomes a card.','muted'));
-  const ch=node('div',undefined,'chips');const ta=node('textarea');ta.lang='sv';ta.placeholder='Skriv här …';
-  p[2].forEach(x=>ch.append(button(x+' …',()=>{ta.value+=(ta.value&&!/\s$/.test(ta.value)?' ':'')+x+' ';ta.focus()})));
-  s.append(ch,ta);const r=node('div',undefined,'row');r.append(button('Save ✓',()=>{const t=ta.value.trim();if(t.length<3){toast('Write at least a few words.');return}S.out.push({d:T,q:p[0],text:t,corr:null});save();toast('Saved — a parent will check it');finishStep()},'primary'),button('Skip today',finishStep),exitBtn());s.append(r);
-}
+    s.append(r);window.scrollTo(0,0)}
+  if(!pending.length){toast('All picture words are checked.');after();return}draw()}
 
 /* ---------- parent corner ---------- */
 function renderInbox(){const box=$('inbox');box.replaceChildren();const open=S.out.map((o,i)=>[o,i]).filter(([o])=>o.corr===null);$('inboxcount').textContent=open.length?'('+open.length+' waiting)':'';
@@ -625,12 +1146,16 @@ function renderInbox(){const box=$('inbox');box.replaceChildren();const open=S.o
   open.forEach(([o,i])=>{const d=node('div',undefined,'item');d.append(node('p',dayStr(o.d)+' · '+o.q,'muted'),sv('p',o.text));const inp=node('input');inp.type='text';inp.value=o.text;inp.lang='sv';inp.style.width='100%';inp.setAttribute('aria-label','Corrected sentence');
     const r=node('div',undefined,'row');r.append(button('Save as card',()=>{const t=inp.value.trim();if(!t)return;o.corr=t;S.extra.push(fromBrackets(t,'Min mening','o:'+i+':'+Date.now()));save();renderInbox();toast('Card added — it will come in the next session')},'primary'),button('Dismiss',()=>{o.corr='';save();renderInbox()}));d.append(inp,r);box.append(d)})}
 $('qadd').onclick=()=>{const t=$('qa').value.trim();if(t.length<3)return;S.extra.push(fromBrackets(t,'Egen','q:'+Date.now()));save();$('qa').value='';toast('Card added — it will come in the next session')};
-for(let c=3;c<=20;c++){const o=node('option','Kapitel '+c);o.value=c;$('setRiv').append(o)}$('setRiv').value=String(Math.min(S.riv.ch,20));$('setRiv').onchange=()=>{S.riv.ch=Number($('setRiv').value);save();renderHome()};
-$('setNew').value=String(S.set.newWords);$('setCap').value=String(S.set.cap);
 $('setNew').onchange=()=>{S.set.newWords=Number($('setNew').value);save();renderHome()};$('setCap').onchange=()=>{S.set.cap=Number($('setCap').value);save();renderHome()};
-$('export').onclick=()=>{const u=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'}));const a=node('a');a.href=u;a.download='swedish-today-backup-'+dayStr(T)+'.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1500)};
-$('import').onchange=async e=>{try{const f=e.target.files[0];if(!f)return;const s=JSON.parse(await f.text());if(!s||s.v!==1||typeof s.cards!=='object'||typeof s.words!=='object')throw Error();if(!confirm('Replace current progress with this backup?'))return;S=Object.assign(fresh(),s);save();renderHome();toast('Backup restored')}catch(err){toast('That is not a valid backup file.')}};
-$('reset').onclick=()=>{if(!confirm('Delete all progress on this page and start over?'))return;S=fresh();save();renderHome()};
-$('start').onclick=openSession;$('placebtn').onclick=()=>{$('home').hidden=true;$('session').hidden=false;runPlacement(()=>{$('session').hidden=true;$('home').hidden=false;renderHome()})};
-renderHome();
+$('setUnit').onchange=()=>{S.unit=Number($('setUnit').value);save();renderHome()};
+$('editProf').onclick=()=>editProfile(curProf());$('whoBtn').onclick=showPick;
+$('export').onclick=()=>{const p=curProf();const u=URL.createObjectURL(new Blob([JSON.stringify({profile:p,state:S})],{type:'application/json'}));const a=node('a');a.href=u;a.download='swedish-today-'+p.name+'-'+dayStr(T)+'.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1500)};
+$('import').onchange=async e=>{try{const f=e.target.files[0];if(!f)return;let s=JSON.parse(await f.text());if(s&&s.state)s=s.state;if(!s||typeof s.cards!=='object'||typeof s.words!=='object')throw Error();if(!confirm('Replace '+curProf().name+'’s progress with this backup?'))return;S=Object.assign(fresh(),s);migrate();save();renderHome();toast('Backup restored')}catch(err){toast('That is not a valid backup file.')}};
+$('reset').onclick=()=>{const p=curProf();if(!confirm('Delete all of '+p.name+'’s progress and start over?'))return;S=fresh();S.unit=p.start||0;save();renderHome()};
+$('start').onclick=openSession;$('placebtn').onclick=()=>{$('home').hidden=true;$('session').hidden=false;runPlacement(backHome)};
+window.addEventListener('pageshow',()=>{if(!$('home').hidden&&curProf()){load();renderHome()}});
+
+/* ---------- boot ---------- */
+if(!P.list.length&&readLS(BASEKEY)){P.list.push({id:'p1',name:'Spelare 1',av:'⚽',lv:'junior',start:0,harvest:true});P.cur='p1';saveP();load();showHome();setTimeout(()=>toast('Tip: tap your name (top right) to rename yourself or add a grown-up.'),600)}
+else if(curProf()){load();showHome()}else showPick();
 </script></body></html>
