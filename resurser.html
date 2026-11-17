@@ -73,7 +73,14 @@ window.catSVG=svg;
 window.catEl=function(kind,col,cls){var s=document.createElement('span');s.className='cat '+(cls||'');s.innerHTML=svg(kind,col);return s};
 document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('[data-cat]').forEach(function(e){e.innerHTML=svg(e.getAttribute('data-cat'),e.getAttribute('data-col'))})});
 })();
-</script></head><body><header><strong>SWEDISH / STUDIES</strong><nav aria-label="Main navigation"><a href="daily.html">Today</a><a href="index.html">Missions</a><a href="arena.html">Arena</a><a href="kemi.html">Kemi</a><a href="reader.html">Reader</a><a href="resurser.html" aria-current="page">Resurser</a></nav></header>
+</script></head><body><header><strong>SWEDISH / STUDIES</strong><nav aria-label="Main navigation">
+    <a href="daily.html">Idag</a>
+    <a href="index.html">Uppdrag</a>
+    <a href="arena.html">Arena</a>
+    <a href="kemi.html">Kemi</a>
+    <a href="reader.html">Läsa</a>
+    <a href="resurser.html" aria-current="page">Resurser</a>
+  </nav></header>
 <main><div class="hero"><div style="flex:1"><div class="label">Resurser · extra Swedish</div><h1>Lyssna och titta</h1><p class="muted">Podcasts and YouTube channels for extra listening — on the sofa, in the car, any day. Tap ▶ to open one inside the app.</p></div><span class="cat" data-cat="sleep" data-col="tabby"></span></div>
 <h2>🎧 Poddar</h2><div id="podList" class="media"></div>
 <h2>📺 YouTube-kanaler</h2><div id="chanList" class="media"></div></main>
@@ -100,4 +107,4 @@ function button(x,f,c){const b=node('button',x,c);b.type='button';b.onclick=f;re
 function mediaCard(title,sub,embed,link,extra){const d=node('div','','mcard');const h=node('div','','mhead');const t=node('div');t.append(node('b',title),node('div',sub,'muted'));const open=button('▶ Visa',()=>{const ex=d.querySelector('.mbody');if(ex){ex.remove();open.textContent='▶ Visa';return}const b=node('div','','mbody');const w=node('div','','vid'+(extra||''));const f=node('iframe');f.src=embed;f.title=title;f.allow='autoplay *; encrypted-media *; picture-in-picture; fullscreen; clipboard-write';f.allowFullscreen=true;f.loading='lazy';w.append(f);b.append(w);const a=node('a','Open ↗');a.href=link;a.target='_blank';a.rel='noopener';b.append(a);d.append(b);open.textContent='✕ Stäng'});h.append(t,open);d.append(h);return d}
 PODCASTS.forEach(x=>document.getElementById('podList').append(mediaCard(x[0],x[1]+' · from '+x[4],x[2],x[3],' pod')));
 CHANNELS.forEach(x=>document.getElementById('chanList').append(mediaCard(x[0],x[4]+(x[3]==='sv'?' · på svenska':' · in English'),'https://www.youtube-nocookie.com/embed/videoseries?list=UU'+x[2].slice(2)+'&hl=sv&cc_lang_pref=sv','https://www.youtube.com/@'+x[1])));
-</script><nav class="tabbar" aria-label="App"><a href="daily.html"><i>🏠</i>Idag</a><a href="arena.html"><i>🎯</i>Arena</a><a href="index.html"><i>🗺️</i>Uppdrag</a><a href="reader.html"><i>📖</i>Läsa</a><a href="kemi.html"><i>🧪</i>Kemi</a><a href="resurser.html" aria-current="page"><i>🎧</i>Resurser</a></nav></body></html>
+</script><nav class="tabbar" aria-label="App"><a href="daily.html"><i>🏠</i>Idag</a><a href="index.html"><i>🗺️</i>Uppdrag</a><a href="arena.html"><i>🎯</i>Arena</a><a href="kemi.html"><i>🧪</i>Kemi</a><a href="reader.html"><i>📖</i>Läsa</a><a href="resurser.html" aria-current="page"><i>🎧</i>Resurser</a></nav></body></html>

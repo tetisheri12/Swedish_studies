@@ -154,10 +154,12 @@ document.addEventListener('DOMContentLoaded',function(){document.querySelectorAl
 </script></head><body><header>
   <strong>SWEDISH / STUDIES</strong>
   <nav aria-label="Main navigation">
-    <a href="daily.html" aria-current="page">Today</a>
-    <a href="index.html">Missions</a><a href="arena.html">Arena</a>
+    <a href="daily.html" aria-current="page">Idag</a>
+    <a href="index.html">Uppdrag</a>
+    <a href="arena.html">Arena</a>
     <a href="kemi.html">Kemi</a>
-    <a href="reader.html">Reader</a>
+    <a href="reader.html">Läsa</a>
+    <a href="resurser.html">Resurser</a>
   </nav>
 </header><main>
 <div id="pick" hidden><div class="label">Vem tränar idag? · who is practising?</div><h1>Hej! Vem är du?</h1><p class="muted">Everyone has their own level, words and streak. Tap your name.</p><div id="proflist" class="profiles"></div></div>
@@ -1854,4 +1856,4 @@ window.addEventListener('pageshow',()=>{if(!$('home').hidden&&curProf()){load();
 /* ---------- boot ---------- */
 if(!P.list.length&&readLS(BASEKEY)){P.list.push({id:'p1',name:'Spelare 1',av:'⚽',lv:'junior',start:0,harvest:true});P.cur='p1';saveP();load();showHome();setTimeout(()=>toast('Tip: tap your name (top right) to rename yourself or add a grown-up.'),600)}
 else if(curProf()){load();showHome()}else showPick();
-</script><nav class="tabbar" aria-label="App"><a href="daily.html" aria-current="page"><i>🏠</i>Idag</a><a href="arena.html"><i>🎯</i>Arena</a><a href="index.html"><i>🗺️</i>Uppdrag</a><a href="reader.html"><i>📖</i>Läsa</a><a href="kemi.html"><i>🧪</i>Kemi</a><a href="resurser.html"><i>🎧</i>Resurser</a></nav></body></html>
+</script><nav class="tabbar" aria-label="App"><a href="daily.html" aria-current="page"><i>🏠</i>Idag</a><a href="index.html"><i>🗺️</i>Uppdrag</a><a href="arena.html"><i>🎯</i>Arena</a><a href="kemi.html"><i>🧪</i>Kemi</a><a href="reader.html"><i>📖</i>Läsa</a><a href="resurser.html"><i>🎧</i>Resurser</a></nav></body></html>

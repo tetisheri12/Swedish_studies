@@ -100,11 +100,11 @@ document.addEventListener('DOMContentLoaded',function(){document.querySelectorAl
 </script></head><body><header>
   <strong>SWEDISH / STUDIES</strong>
   <nav aria-label="Main navigation">
-    <a href="daily.html">Today</a>
-    <a href="index.html">Missions</a>
+    <a href="daily.html">Idag</a>
+    <a href="index.html">Uppdrag</a>
     <a href="arena.html" aria-current="page">Arena</a>
     <a href="kemi.html">Kemi</a>
-    <a href="reader.html">Reader</a>
+    <a href="reader.html">Läsa</a>
     <a href="resurser.html">Resurser</a>
   </nav>
 </header><main>
@@ -967,4 +967,4 @@ if(EMBED){
   picked=[p.id];window.pl=id=>id===p.id?p:S.players.find(x=>x.id===id);
   const gm=GAMES.find(g=>g.id===gid);if(!gm){post({type:'arena-close'})}else{$('home').hidden=true;$('play').hidden=false;const s=$('stage');s.replaceChildren();const h=node('h2',gm.e+' '+gm.name);h.lang='sv';s.append(node('div',(gm.lvl||'')+' · '+gm.en,'label'),h);const dp=demoPlayer(gm.id);if(dp)s.append(dp);const d=node('div','','sheet');d.innerHTML=gm.sheet;d.lang='sv';s.append(d);const r=node('div','','row center');const go=button('Start ▶  (10 questions)',()=>start([gid]),'primary');go.style.fontSize='20px';r.append(go);s.append(r)}
 }else renderHome();
-</script><nav class="tabbar" aria-label="App"><a href="daily.html"><i>🏠</i>Idag</a><a href="arena.html" aria-current="page"><i>🎯</i>Arena</a><a href="index.html"><i>🗺️</i>Uppdrag</a><a href="reader.html"><i>📖</i>Läsa</a><a href="kemi.html"><i>🧪</i>Kemi</a><a href="resurser.html"><i>🎧</i>Resurser</a></nav></body></html>
+</script><nav class="tabbar" aria-label="App"><a href="daily.html"><i>🏠</i>Idag</a><a href="index.html"><i>🗺️</i>Uppdrag</a><a href="arena.html" aria-current="page"><i>🎯</i>Arena</a><a href="kemi.html"><i>🧪</i>Kemi</a><a href="reader.html"><i>📖</i>Läsa</a><a href="resurser.html"><i>🎧</i>Resurser</a></nav></body></html>

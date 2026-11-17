@@ -151,10 +151,11 @@ document.addEventListener('DOMContentLoaded',function(){document.querySelectorAl
 </script></head><body><header>
   <strong>SWEDISH / STUDIES</strong>
   <nav aria-label="Main navigation">
-    <a href="daily.html">Today</a>
-    <a href="index.html" aria-current="page">Missions</a><a href="arena.html">Arena</a>
+    <a href="daily.html">Idag</a>
+    <a href="index.html" aria-current="page">Uppdrag</a>
+    <a href="arena.html">Arena</a>
     <a href="kemi.html">Kemi</a>
-    <a href="reader.html">Reader</a>
+    <a href="reader.html">Läsa</a>
     <a href="resurser.html">Resurser</a>
   </nav>
 </header><main><div class="hero"><div><div class="label">Mission edition · Units 1–12</div><h1>A little Swedish.<br>A real mission.</h1><p>Run a café. Catch a train. Plan a party. Learn the words, read the story, build the sentences — and hear every word in Swedish.</p><div class="row"><a href="daily.html"><button class="primary">▶ Start today’s session</button></a><button id="continue">Choose your next mission</button></div><p class="muted">No timer. No lost lives. Try, investigate, try again.</p></div><aside class="board"><div class="label">Your mission passport</div><h2>Twelve places to go.</h2><div id="passport" class="passport"></div><div class="stats"><span><b id="solved">0</b> challenges solved</span><span><b id="stamps">0</b> / <span id="stamptotal">12</span> stamps</span></div></aside></div>
@@ -358,4 +359,4 @@ $('export').onclick=()=>{const u=URL.createObjectURL(new Blob([JSON.stringify(st
 $('import').onchange=async e=>{try{let f=e.target.files[0];if(!f)return;let s=JSON.parse(await f.text());if(!Array.isArray(s.solved)||!s.solved.every(x=>typeof x==='string'&&/^\d{1,2}-\d{1,2}$/.test(x))||!Array.isArray(s.boss)||!s.boss.every(x=>Number.isInteger(x)&&x>=0&&x<64)||!Array.isArray(s.room)||s.room.length>8||!s.room.every(o=>kinds[o.kind]&&colours[o.colour]&&['small','large'].includes(o.size)&&Number.isFinite(o.x)&&o.x>=0&&o.x<=85&&Number.isFinite(o.y)&&o.y>=0&&o.y<=85))throw Error();state={solved:[...new Set(s.solved)],boss:[...new Set(s.boss)],room:s.room};selectedObject=null;save();update();renderRoom();if(!$('game').hidden)draw();$('datastatus').textContent='Backup imported.'}catch(e){$('datastatus').textContent='That is not a valid mission-edition backup. Existing progress is unchanged.'}};
 $('reset').onclick=()=>{if(!confirm('Reset this mission edition? Your original site will not be changed.'))return;state={solved:[],boss:[],room:[]};selectedObject=null;save();update();renderRoom();$('game').hidden=true;$('datastatus').textContent='Mission edition reset.'};
 update();renderRoom();
-</script><nav class="tabbar" aria-label="App"><a href="daily.html"><i>🏠</i>Idag</a><a href="arena.html"><i>🎯</i>Arena</a><a href="index.html" aria-current="page"><i>🗺️</i>Uppdrag</a><a href="reader.html"><i>📖</i>Läsa</a><a href="kemi.html"><i>🧪</i>Kemi</a><a href="resurser.html"><i>🎧</i>Resurser</a></nav></body></html>
+</script><nav class="tabbar" aria-label="App"><a href="daily.html"><i>🏠</i>Idag</a><a href="index.html" aria-current="page"><i>🗺️</i>Uppdrag</a><a href="arena.html"><i>🎯</i>Arena</a><a href="kemi.html"><i>🧪</i>Kemi</a><a href="reader.html"><i>📖</i>Läsa</a><a href="resurser.html"><i>🎧</i>Resurser</a></nav></body></html>
