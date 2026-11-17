@@ -33,7 +33,7 @@ header nav{display:flex;flex-wrap:wrap;gap:8px 18px}header nav a{padding:6px 0;t
   <strong>SWEDISH / STUDIES</strong>
   <nav aria-label="Main navigation">
     <a href="daily.html" aria-current="page">Today</a>
-    <a href="index.html">Missions</a>
+    <a href="index.html">Missions</a><a href="arena.html">Arena</a>
     <a href="kemi.html">Kemi</a>
     <a href="reader.html">Reader</a>
   </nav>
@@ -71,11 +71,17 @@ function expandForms(sv,notation){
   const add=f=>rest?f+' '+rest:f;
   const t0=toks[0];
   if(toks.length===1&&t0==='-a')return{pos:'adj',art:'',forms:[add(attach(base,'-a'))]};
-  if(toks.length===3&&toks.every(full)&&!/(n|t)$/.test(t0))return{pos:'verb',art:'',forms:[add(toks[0]),add(toks[1]),add('har '+toks[2])]};
-  if(toks.length===3&&/r$/.test(t0)&&!/(en|et|n|t)$/.test(t0.replace(/^-/,''))||toks.length===3&&/^-?(e?r|ar)$/.test(t0)){
+  const looksVerb=/[aeiouyåäö]$/.test(base)&&!toks.some(t=>t===base);
+  if(toks.length===3&&toks.every(full)&&!/(n|t)$/.test(t0)&&looksVerb)return{pos:'verb',art:'',forms:[add(toks[0]),add(toks[1]),add('har '+toks[2])]};
+  const SUF=/^-?(r|er|ar|de|te|dde|ade|t|tt|at|it)$/;
+  if(toks.length===3&&/a$/.test(base)&&/^-?r$/.test(t0)&&SUF.test(toks[1])&&SUF.test(toks[2])){
+    // first-group verb (-ar): normalise deck variants like -ade/-at/de and fix typos
+    const f=[base+'r',base+'de','har '+base+'t'];return{pos:'verb',art:'',forms:f.map((x,i)=>i===2?'har '+add(base+'t'):add(x))};
+  }
+  if(looksVerb&&(toks.length===3&&/r$/.test(t0)&&!/(en|et|n|t)$/.test(t0.replace(/^-/,''))||toks.length===3&&/^-?(e?r|ar)$/.test(t0))){
     // verb: present, past, supine
     let stem=base;if(t0.startsWith('-')&&V.test(t0.slice(1))&&/a$/.test(base))stem=base.slice(0,-1);
-    const at=t=>{if(full(t))return t;const s=t.slice(1);if(s.length>=base.length&&s.slice(0,3)===base.slice(0,3))return s;return stem+s};
+    const at=t=>{if(full(t))return t;const s=t.slice(1);if(!SUF.test(t)&&s.length>=3)return s;if(s.length>=base.length&&s.slice(0,3)===base.slice(0,3))return s;return stem+s};
     return{pos:'verb',art:'',forms:[add(at(toks[0])),add(at(toks[1])),add('har '+at(toks[2]))]};
   }
   const defTok=t0.replace(/^-/,'');
@@ -88,6 +94,7 @@ function expandForms(sv,notation){
   }
   return null;
 }
+const VERB_OVR={"prata":["pratar","pratade","har pratat"],"spela":["spelar","spelade","har spelat"],"titta":["tittar","tittade","har tittat"],"lyssna":["lyssnar","lyssnade","har lyssnat"],"hoppa":["hoppar","hoppade","har hoppat"],"dansa":["dansar","dansade","har dansat"],"jobba":["jobbar","jobbade","har jobbat"],"laga":["lagar","lagade","har lagat"],"städa":["städar","städade","har städat"],"öppna":["öppnar","öppnade","har öppnat"],"stanna":["stannar","stannade","har stannat"],"vänta":["väntar","väntade","har väntat"],"svara":["svarar","svarade","har svarat"],"fråga":["frågar","frågade","har frågat"],"älska":["älskar","älskade","har älskat"],"kasta":["kastar","kastade","har kastat"],"träna":["tränar","tränade","har tränat"],"vakna":["vaknar","vaknade","har vaknat"],"duscha":["duschar","duschade","har duschat"],"cykla":["cyklar","cyklade","har cyklat"],"simma":["simmar","simmade","har simmat"],"handla":["handlar","handlade","har handlat"],"betala":["betalar","betalade","har betalat"],"plugga":["pluggar","pluggade","har pluggat"],"rita":["ritar","ritade","har ritat"],"måla":["målar","målade","har målat"],"baka":["bakar","bakade","har bakat"],"skratta":["skrattar","skrattade","har skrattat"],"sparka":["sparkar","sparkade","har sparkat"],"öva":["övar","övade","har övat"],"hämta":["hämtar","hämtade","har hämtat"],"hitta":["hittar","hittade","har hittat"],"visa":["visar","visade","har visat"],"fiska":["fiskar","fiskade","har fiskat"],"skicka":["skickar","skickade","har skickat"],"tappa":["tappar","tappade","har tappat"],"börja":["börjar","började","har börjat"],"sluta":["slutar","slutade","har slutat"],"stänga":["stänger","stängde","har stängt"],"ringa":["ringer","ringde","har ringt"],"höra":["hör","hörde","har hört"],"köra":["kör","körde","har kört"],"lära":["lär","lärde","har lärt"],"bygga":["bygger","byggde","har byggt"],"använda":["använder","använde","har använt"],"ställa":["ställer","ställde","har ställt"],"glömma":["glömmer","glömde","har glömt"],"gömma":["gömmer","gömde","har gömt"],"leva":["lever","levde","har levt"],"behöva":["behöver","behövde","har behövt"],"följa":["följer","följde","har följt"],"känna":["känner","kände","har känt"],"böja":["böjer","böjde","har böjt"],"köpa":["köper","köpte","har köpt"],"läsa":["läser","läste","har läst"],"tänka":["tänker","tänkte","har tänkt"],"åka":["åker","åkte","har åkt"],"leka":["leker","lekte","har lekt"],"hjälpa":["hjälper","hjälpte","har hjälpt"],"tycka":["tycker","tyckte","har tyckt"],"resa":["reser","reste","har rest"],"släcka":["släcker","släckte","har släckt"],"möta":["möter","mötte","har mött"],"byta":["byter","bytte","har bytt"],"söka":["söker","sökte","har sökt"],"väcka":["väcker","väckte","har väckt"],"bo":["bor","bodde","har bott"],"tro":["tror","trodde","har trott"],"sy":["syr","sydde","har sytt"],"må":["mår","mådde","har mått"],"nå":["når","nådde","har nått"],"äta":["äter","åt","har ätit"],"dricka":["dricker","drack","har druckit"],"springa":["springer","sprang","har sprungit"],"skriva":["skriver","skrev","har skrivit"],"sitta":["sitter","satt","har suttit"],"ligga":["ligger","låg","har legat"],"stå":["står","stod","har stått"],"gå":["går","gick","har gått"],"komma":["kommer","kom","har kommit"],"se":["ser","såg","har sett"],"ge":["ger","gav","har gett"],"ta":["tar","tog","har tagit"],"få":["får","fick","har fått"],"göra":["gör","gjorde","har gjort"],"säga":["säger","sa","har sagt"],"vara":["är","var","har varit"],"ha":["har","hade","har haft"],"veta":["vet","visste","har vetat"],"sova":["sover","sov","har sovit"],"flyga":["flyger","flög","har flugit"],"bjuda":["bjuder","bjöd","har bjudit"],"sjunga":["sjunger","sjöng","har sjungit"],"vinna":["vinner","vann","har vunnit"],"försvinna":["försvinner","försvann","har försvunnit"],"hålla":["håller","höll","har hållit"],"falla":["faller","föll","har fallit"],"slå":["slår","slog","har slagit"],"dra":["drar","drog","har dragit"],"bli":["blir","blev","har blivit"],"skjuta":["skjuter","sköt","har skjutit"],"bära":["bär","bar","har burit"],"välja":["väljer","valde","har valt"],"sälja":["säljer","sålde","har sålt"],"lägga":["lägger","la","har lagt"],"sätta":["sätter","satte","har satt"],"heta":["heter","hette","har hetat"],"gråta":["gråter","grät","har gråtit"],"låta":["låter","lät","har låtit"],"skära":["skär","skar","har skurit"],"stjäla":["stjäl","stal","har stulit"],"frysa":["fryser","frös","har frusit"],"bita":["biter","bet","har bitit"],"skrika":["skriker","skrek","har skrikit"],"kliva":["kliver","klev","har klivit"],"rida":["rider","red","har ridit"],"le":["ler","log","har lett"],"kunna":["kan","kunde","har kunnat"],"vilja":["vill","ville","har velat"],"måste":["måste","måste","har måst"]};
 
 </script>
 <script src="reader-data.js"></script>
@@ -503,7 +510,7 @@ function chapterItems(){
   return out;
 }
 function kemiItems(){if(typeof PARTS==='undefined')return[];const out=[];PARTS.forEach(p=>p.concepts.forEach(([t,ex,et])=>{const id='k:'+norm(t);if(S.cards[id]||S.skip[id])return;out.push({id,kind:'def',term:t,def:ex,src:'Kemi',info:{w:t,en:et}})}));return out}
-const RIV=RIV_RAW.split('\n').map((l,i)=>{const[ch,svw,f,en]=l.split('|');const x=f?expandForms(svw,f):null;return{id:'v:'+ch+':'+norm(svw)+':'+norm(en).slice(0,12),ch:Number(ch),sv:svw,en,raw:f,f:x?x.forms:null,pos:x?x.pos:'',art:x?x.art:''}});
+const RIV=RIV_RAW.split('\n').map((l,i)=>{const[ch,svw,f,en]=l.split('|');let x=f?expandForms(svw,f):null;if(x&&x.pos==='verb'&&VERB_OVR[svw])x={pos:'verb',art:'',forms:VERB_OVR[svw]};return{id:'v:'+ch+':'+norm(svw)+':'+norm(en).slice(0,12),ch:Number(ch),sv:svw,en,raw:f,f:x?x.forms:null,pos:x?x.pos:'',art:x?x.art:''}});
 function rivChapter(ch){return RIV.filter(v=>v.ch===ch)}
 function rivItems(){
   const R=S.riv;if(!R||R.ch>20||!R.checked[R.ch])return[];
