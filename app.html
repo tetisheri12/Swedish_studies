@@ -9,7 +9,7 @@ html.app .tabbar{display:flex}html.app header nav{display:none}html.app body{pad
 <style>:root{--bg:#f6ead3;--ink:#161412;--muted:#5d5246;--accent:#ee4d1f;--line:#e6d4b4;--wash:#f4e2c2;--good:#3d8b52;--gold:#f2c230;--sky:#2f62a8;--card:#fffaf0;--r:18px}
 body{background-color:var(--bg);background-image:radial-gradient(rgba(238,77,31,.07) 1.1px,transparent 1.3px),radial-gradient(rgba(22,20,18,.035) 1px,transparent 1.2px);background-size:7px 7px,11px 11px;background-position:0 0,3px 5px;font-family:'Manrope','Trebuchet MS',Arial,sans-serif;color:var(--ink)}
 h1,h2,.mega,header strong{font-family:'Anton','Bebas Neue','Futura-CondensedExtraBold','Futura Condensed ExtraBold','AvenirNextCondensed-Heavy','Avenir Next Condensed','Arial Narrow','DejaVu Sans Condensed',Impact,sans-serif;font-weight:400;font-stretch:condensed;text-transform:uppercase;letter-spacing:.005em}
-h1{font-size:clamp(54px,10vw,96px);line-height:.9;margin:8px 0}h2{font-size:clamp(28px,4vw,36px);line-height:1;letter-spacing:.01em}h3{font-weight:800}
+h1,.mega{font-size:clamp(34px,6vw,48px)!important;line-height:.95;margin:8px 0}h2{font-size:clamp(28px,4vw,36px);line-height:1;letter-spacing:.01em}h3{font-weight:800}
 header{border-bottom:0}header strong{font-size:26px;letter-spacing:.02em}header strong::after{content:' ✱';color:var(--accent)}
 .label{color:var(--accent);letter-spacing:.14em}
 button{border-radius:999px;border:1.5px solid var(--line);background:var(--card);font-weight:700}button:hover{background:var(--wash)}
@@ -20,7 +20,7 @@ button.good{box-shadow:0 4px 0 #2a6239}
 .stage{border-width:2px}
 section{border-top:0}
 a{color:var(--accent)}
-.script{font-family:'Caveat Brush','Caveat','Marker Felt','Comic Sans MS',cursive;color:var(--accent);font-size:clamp(40px,7vw,64px);line-height:1;transform:rotate(-5deg);margin:-14px 0 8px 18px;display:inline-block;text-shadow:0 2px 0 rgba(255,255,255,.6)}
+.script{font-family:'Caveat Brush','Caveat','Marker Felt','Comic Sans MS',cursive;color:var(--accent);font-size:clamp(30px,5vw,40px);line-height:1;transform:rotate(-5deg);margin:-14px 0 8px 18px;display:inline-block;text-shadow:0 2px 0 rgba(255,255,255,.6)}
 .script::after{content:'';display:block;height:4px;margin:6px 0 0 30%;border-radius:4px;background:var(--ink);transform:rotate(-2deg);width:60%}
 .sticker{position:absolute;right:-6px;bottom:-62px;width:128px;height:128px;border-radius:50%;background:var(--gold);border:2px dashed rgba(22,20,18,.55);outline:5px solid var(--gold);display:grid;place-items:center;text-align:center;font-family:'Caveat Brush','Caveat',cursive;font-size:17px;line-height:1.05;transform:rotate(12deg);color:var(--ink);box-shadow:0 8px 18px -8px rgba(0,0,0,.4);z-index:2}
 .sticker b{font-family:'Anton',Impact,sans-serif;font-weight:400;font-size:16px;text-transform:uppercase}
@@ -31,7 +31,7 @@ a{color:var(--accent)}
 .peekcat{position:absolute;width:180px;height:180px;top:-116px;left:18px;z-index:1;pointer-events:none}
 .ragcat{width:96px;height:96px;flex:none;background:#fffaf0;border-radius:50%;padding:6px;box-shadow:0 0 0 4px #f2c230}.saga button{background:transparent;color:#fff;border-color:#7a6650;box-shadow:none}.saga button.primary{background:var(--accent);border-color:var(--accent);box-shadow:0 4px 0 #b8380f}.saga .rag{gap:6px}
 .bigcat{display:block;width:180px;height:180px;margin:0 auto;animation:spin 1s ease}.midcat{display:block;width:130px;height:130px;margin:6px auto}
-.arenahero{position:relative}.arenahero h1{padding-right:140px;font-size:clamp(46px,8.5vw,84px)}.herocat{position:absolute;right:-6px;bottom:-14px;width:150px;height:150px}
+.arenahero{position:relative}.arenahero h1{padding-right:120px}.herocat{position:absolute;right:-6px;bottom:-24px;width:110px;height:110px}
 .resultcat{display:block;width:150px;height:150px;margin:0 auto}
 @media(max-width:700px){.herocat{width:96px;height:96px}.arenahero h1{padding-right:84px}.peekcat{width:116px;height:116px;top:-76px}}
 </style><script>/* Original watercolour-and-ink cats drawn in SVG for Swedish Studies. */
