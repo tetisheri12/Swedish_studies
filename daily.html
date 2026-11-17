@@ -50,6 +50,11 @@ header nav{display:flex;flex-wrap:wrap;gap:8px 18px}header nav a{padding:6px 0;t
 .saga{background:linear-gradient(160deg,#203536,#2f4c4a);color:#fff;border-radius:16px;padding:22px;margin:10px 0;position:relative}.saga .rag{display:flex;gap:12px;align-items:center}.saga .rag span{font-size:54px;line-height:1}.saga .rag b{font-size:20px;display:block}.saga .rag small{color:#f6e3a1;letter-spacing:.1em;text-transform:uppercase;font-size:12px}.saga .txt{font-size:21px;line-height:1.6;margin:14px 0}.saga .en{color:#cfdcd6;font-size:16px;border-left:3px solid #f6e3a1;padding-left:12px}.saga button{color:#fff;border-color:#5b7271}.saga button:hover{background:#2c4747}.saga .big{font-size:64px;text-align:center;animation:spin .9s ease}
 .chest{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}.stone{border-radius:44% 44% 18% 18%/38% 38% 14% 14%;padding:14px 6px 10px;text-align:center;background:linear-gradient(170deg,#8a9490,#5f6a66);color:#fff;border:2px solid #4b5552;cursor:pointer;min-height:118px;transition:transform .2s}.stone:hover{transform:translateY(-3px) rotate(-1deg)}.stone .e{font-size:34px;line-height:1.1}.stone b{display:block;font-size:13px}.stone .r{font-size:13px;color:#f6e3a1;letter-spacing:1px;word-break:break-all}.stone.locked{background:linear-gradient(170deg,#d5d9d2,#bfc5bc);border-color:#b5bcb3;color:#7d8780;cursor:default}.stone.locked .e{filter:grayscale(1) opacity(.35)}
 .reveal{perspective:900px;display:flex;justify-content:center;margin:14px 0}.reveal .stone{width:190px;min-height:220px;padding-top:30px;animation:flip 1.4s cubic-bezier(.3,1.4,.5,1) both;box-shadow:0 0 0 0 rgba(201,154,30,.7);cursor:default}.reveal .stone .e{font-size:70px}.reveal .stone b{font-size:20px;margin-top:6px}.reveal .stone .r{font-size:20px;margin-top:6px}@keyframes flip{0%{transform:rotateY(180deg) scale(.3);opacity:0}60%{transform:rotateY(-15deg) scale(1.08);opacity:1}100%{transform:none;box-shadow:0 0 40px 8px rgba(201,154,30,.55)}}
+.tests{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}.tcard{border:2px solid var(--line);border-radius:var(--r);background:#fffdf7;padding:14px}.tcard.ready{border-color:var(--accent);animation:pulse 1.6s ease-in-out infinite}.tcard.pass{border-color:var(--good);background:#eef6ef}.tcard b{font-size:20px}.tcard p{margin:6px 0;font-size:14px}
+.qbar{height:8px;background:var(--wash);border-radius:99px;overflow:hidden;margin:6px 0 14px}.qbar i{display:block;height:100%;background:var(--accent);transition:width .4s}
+.topts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}.topts button{font-size:20px;padding:16px 10px;text-align:center}.topts button.right{background:#d6eadb;border-color:var(--good);color:var(--good);animation:bounce .4s}.topts button.wrong{background:#f2d4c8;border-color:var(--accent);animation:shake .35s}.topts.long{grid-template-columns:1fr}
+.ring{width:150px;height:150px;border-radius:50%;margin:10px auto;display:grid;place-items:center;font-size:38px;font-weight:bold;animation:spin .9s ease}.ring span{background:#fffdf7;width:116px;height:116px;border-radius:50%;display:grid;place-items:center}
+.skill{display:grid;grid-template-columns:minmax(120px,210px) 1fr 56px;gap:10px;align-items:center;margin:6px 0;font-size:15px}.skill .sb{height:12px;background:var(--wash);border-radius:99px;overflow:hidden}.skill .sb i{display:block;height:100%;transition:width 1s}.skill .ok i{background:var(--good)}.skill .weak i{background:var(--accent)}
 .origin{background:#f6efd9;border:1px solid #e3d29b;border-radius:12px;padding:8px 14px;margin:8px auto;max-width:560px;text-align:center;font-size:15px}
 @media(max-width:700px){header,main,footer{padding:18px}header{align-items:flex-start}header nav{width:100%}.hero{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}.pic{font-size:80px}.word{font-size:34px}.unitcard .meters{grid-template-columns:repeat(2,1fr)}.arena{height:620px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.confetti{display:none}}
@@ -74,6 +79,7 @@ header nav{display:flex;flex-wrap:wrap;gap:8px 18px}header nav a{padding:6px 0;t
 <section id="journey"><div class="label">Resan · the journey A2 → C1</div><h2>Din resa</h2><p class="muted">Each station is one chapter from your books: new words, a grammar game, a video and a speaking task. Finish all four to unlock the next station.</p>
 <div id="unitcard" class="unitcard"></div><div id="map"></div></section>
 
+<section id="testsec"><div class="label">Nivåprov · level tests</div><h2>Testa din nivå</h2><p class="muted">When you finish all stations of a level, take its test: words, grammar and listening. It shows your weak spots — and those come back in your daily practice until they are strong. You can also take a test any time as a check-up.</p><div id="tests" class="tests"></div></section>
 <section id="chestsec"><div class="label">Skattkistan · your rune stones</div><h2>Ragnars runstenar <span id="chestcount" class="muted" style="font-size:18px"></span></h2><p class="muted">Finish a station to win its rune stone. Tap a stone to hear Ragnar’s saga again — the story of where Swedish words come from.</p><div id="chest" class="chest"></div></section>
 <section id="mywords"><div class="label">Mina ord · my words</div><h2>Words you have started</h2><p class="muted">★ shows how well you know a word. Tap 🔊 to hear it.</p><div id="wl" class="wl"></div></section>
 
@@ -331,6 +337,208 @@ const PROMPTS=[
 ['Vad gör du på morgonen?','What do you do in the morning?',['På morgonen äter jag','Sedan går jag']],
 ['Vad tycker du om skolan?','What do you think about school?',['Jag tycker att','Det bästa är']]
 ];
+
+/* Arena data. Verb forms: infinitive|present|past|supine|imperative|English|group
+   group: 1 (-ar), 2a (-er, -de), 2b (-er, -te), 3 (short verbs, -r, -dde), 4 (strong/irregular), m (modal).
+   Imperative "-" = not normally used. */
+const VERBS_RAW=`
+prata|pratar|pratade|pratat|prata|talk|1
+spela|spelar|spelade|spelat|spela|play|1
+titta|tittar|tittade|tittat|titta|look|1
+lyssna|lyssnar|lyssnade|lyssnat|lyssna|listen|1
+hoppa|hoppar|hoppade|hoppat|hoppa|jump|1
+dansa|dansar|dansade|dansat|dansa|dance|1
+jobba|jobbar|jobbade|jobbat|jobba|work|1
+laga|lagar|lagade|lagat|laga|cook, fix|1
+städa|städar|städade|städat|städa|clean|1
+öppna|öppnar|öppnade|öppnat|öppna|open|1
+stanna|stannar|stannade|stannat|stanna|stop, stay|1
+vänta|väntar|väntade|väntat|vänta|wait|1
+svara|svarar|svarade|svarat|svara|answer|1
+fråga|frågar|frågade|frågat|fråga|ask|1
+älska|älskar|älskade|älskat|älska|love|1
+kasta|kastar|kastade|kastat|kasta|throw|1
+träna|tränar|tränade|tränat|träna|train|1
+vakna|vaknar|vaknade|vaknat|vakna|wake up|1
+duscha|duschar|duschade|duschat|duscha|shower|1
+cykla|cyklar|cyklade|cyklat|cykla|cycle|1
+simma|simmar|simmade|simmat|simma|swim|1
+handla|handlar|handlade|handlat|handla|shop|1
+betala|betalar|betalade|betalat|betala|pay|1
+plugga|pluggar|pluggade|pluggat|plugga|study|1
+rita|ritar|ritade|ritat|rita|draw|1
+måla|målar|målade|målat|måla|paint|1
+baka|bakar|bakade|bakat|baka|bake|1
+skratta|skrattar|skrattade|skrattat|skratta|laugh|1
+sparka|sparkar|sparkade|sparkat|sparka|kick|1
+öva|övar|övade|övat|öva|practise|1
+hämta|hämtar|hämtade|hämtat|hämta|fetch|1
+hitta|hittar|hittade|hittat|hitta|find|1
+visa|visar|visade|visat|visa|show|1
+fiska|fiskar|fiskade|fiskat|fiska|fish|1
+skicka|skickar|skickade|skickat|skicka|send|1
+tappa|tappar|tappade|tappat|tappa|drop, lose|1
+börja|börjar|började|börjat|börja|begin|1
+sluta|slutar|slutade|slutat|sluta|stop, end|1
+stänga|stänger|stängde|stängt|stäng|close|2a
+ringa|ringer|ringde|ringt|ring|call|2a
+höra|hör|hörde|hört|hör|hear|2a
+köra|kör|körde|kört|kör|drive|2a
+lära|lär|lärde|lärt|lär|teach (lära sig = learn)|2a
+bygga|bygger|byggde|byggt|bygg|build|2a
+använda|använder|använde|använt|använd|use|2a
+ställa|ställer|ställde|ställt|ställ|put (standing)|2a
+glömma|glömmer|glömde|glömt|glöm|forget|2a
+gömma|gömmer|gömde|gömt|göm|hide|2a
+leva|lever|levde|levt|lev|live|2a
+behöva|behöver|behövde|behövt|-|need|2a
+följa|följer|följde|följt|följ|follow|2a
+känna|känner|kände|känt|känn|feel, know|2a
+böja|böjer|böjde|böjt|böj|bend|2a
+köpa|köper|köpte|köpt|köp|buy|2b
+läsa|läser|läste|läst|läs|read|2b
+tänka|tänker|tänkte|tänkt|tänk|think|2b
+åka|åker|åkte|åkt|åk|go (by vehicle), ride|2b
+leka|leker|lekte|lekt|lek|play (like children)|2b
+hjälpa|hjälper|hjälpte|hjälpt|hjälp|help|2b
+tycka|tycker|tyckte|tyckt|-|think (opinion), like|2b
+resa|reser|reste|rest|res|travel|2b
+släcka|släcker|släckte|släckt|släck|switch off|2b
+möta|möter|mötte|mött|möt|meet|2b
+byta|byter|bytte|bytt|byt|change, swap|2b
+söka|söker|sökte|sökt|sök|search, look for|2b
+väcka|väcker|väckte|väckt|väck|wake (someone)|2b
+bo|bor|bodde|bott|bo|live (somewhere)|3
+tro|tror|trodde|trott|tro|believe|3
+sy|syr|sydde|sytt|sy|sew|3
+må|mår|mådde|mått|-|feel (health)|3
+nå|når|nådde|nått|nå|reach|3
+äta|äter|åt|ätit|ät|eat|4
+dricka|dricker|drack|druckit|drick|drink|4
+springa|springer|sprang|sprungit|spring|run|4
+skriva|skriver|skrev|skrivit|skriv|write|4
+sitta|sitter|satt|suttit|sitt|sit|4
+ligga|ligger|låg|legat|ligg|lie (be lying)|4
+stå|står|stod|stått|stå|stand|4
+gå|går|gick|gått|gå|go, walk|4
+komma|kommer|kom|kommit|kom|come|4
+se|ser|såg|sett|se|see|4
+ge|ger|gav|gett|ge|give|4
+ta|tar|tog|tagit|ta|take|4
+få|får|fick|fått|-|get, be allowed to|4
+göra|gör|gjorde|gjort|gör|do, make|4
+säga|säger|sa|sagt|säg|say|4
+vara|är|var|varit|var|be|4
+ha|har|hade|haft|ha|have|4
+veta|vet|visste|vetat|-|know (a fact)|4
+sova|sover|sov|sovit|sov|sleep|4
+flyga|flyger|flög|flugit|flyg|fly|4
+bjuda|bjuder|bjöd|bjudit|bjud|invite, treat|4
+sjunga|sjunger|sjöng|sjungit|sjung|sing|4
+vinna|vinner|vann|vunnit|vinn|win|4
+försvinna|försvinner|försvann|försvunnit|försvinn|disappear|4
+hålla|håller|höll|hållit|håll|hold|4
+falla|faller|föll|fallit|fall|fall|4
+slå|slår|slog|slagit|slå|hit|4
+dra|drar|drog|dragit|dra|pull|4
+bli|blir|blev|blivit|bli|become|4
+skjuta|skjuter|sköt|skjutit|skjut|shoot|4
+bära|bär|bar|burit|bär|carry|4
+välja|väljer|valde|valt|välj|choose|4
+sälja|säljer|sålde|sålt|sälj|sell|4
+lägga|lägger|la|lagt|lägg|put (lying), lay|4
+sätta|sätter|satte|satt|sätt|put, set|4
+heta|heter|hette|hetat|-|be called|4
+gråta|gråter|grät|gråtit|gråt|cry|4
+låta|låter|lät|låtit|låt|sound, let|4
+skära|skär|skar|skurit|skär|cut|4
+stjäla|stjäl|stal|stulit|stjäl|steal|4
+frysa|fryser|frös|frusit|frys|freeze, be cold|4
+bita|biter|bet|bitit|bit|bite|4
+skrika|skriker|skrek|skrikit|skrik|scream|4
+kliva|kliver|klev|klivit|kliv|step, climb|4
+rida|rider|red|ridit|rid|ride (a horse)|4
+le|ler|log|lett|le|smile|4
+kunna|kan|kunde|kunnat|-|can, be able to|m
+vilja|vill|ville|velat|-|want|m
+ska|ska|skulle|-|-|will, shall|m
+måste|måste|måste|måst|-|must|m
+`;
+/* Accepted alternatives a Pro player may type. */
+const VERB_ALT={'sa':['sade'],'la':['lade'],'gett':['givit'],'måst':['måstat'],'ska':['skall'],'frös':['fryste'],'frusit':['fryst']};
+
+/* Adjectives: en-form|ett-form|plural/definite form|English */
+const ADJ_RAW=`
+stor|stort|stora|big
+liten|litet|små|small
+ny|nytt|nya|new
+gammal|gammalt|gamla|old
+röd|rött|röda|red
+blå|blått|blå|blue
+grön|grönt|gröna|green
+gul|gult|gula|yellow
+vit|vitt|vita|white
+svart|svart|svarta|black
+glad|glatt|glada|happy
+snabb|snabbt|snabba|fast
+varm|varmt|varma|warm
+kall|kallt|kalla|cold
+rolig|roligt|roliga|fun
+tråkig|tråkigt|tråkiga|boring
+svår|svårt|svåra|difficult
+lätt|lätt|lätta|easy, light
+billig|billigt|billiga|cheap
+dyr|dyrt|dyra|expensive
+fin|fint|fina|nice
+lång|långt|långa|long, tall
+kort|kort|korta|short
+trött|trött|trötta|tired
+stark|starkt|starka|strong
+söt|sött|söta|sweet, cute
+hög|högt|höga|high, loud
+låg|lågt|låga|low
+ren|rent|rena|clean
+smutsig|smutsigt|smutsiga|dirty
+`;
+/* Nouns for adjective practice: article|noun|English */
+const ADJ_NOUNS=[['en','bil'],['en','katt'],['en','boll'],['en','tröja'],['en','hund'],['en','säng'],['en','väska'],['ett','hus'],['ett','rum'],['ett','äpple'],['ett','lag'],['ett','glas'],['ett','spel'],['ett','tåg']];
+const ADJ_PLURALS={bil:'bilar',katt:'katter',boll:'bollar',tröja:'tröjor',hund:'hundar',säng:'sängar',väska:'väskor',hus:'hus',rum:'rum',äpple:'äpplen',lag:'lag',glas:'glas',spel:'spel',tåg:'tåg'};
+
+/* Word order (V2): the first tile is the opening; the verb must be second. Answer = tiles in order. */
+const V2_RAW=`
+Idag|spelar|jag|fotboll.
+Efter skolan|går|vi|hem.
+På lördag|ska|Leo|träna.
+Igår|vann|vårt lag|matchen.
+Varje morgon|äter|hon|frukost.
+I Göteborg|regnar|det|ofta.
+Nu|börjar|filmen.
+Klockan sju|vaknar|jag.
+Ikväll|tittar|vi|på fotboll.
+Sedan|åkte|de|buss.
+I sommar|ska|vi|resa till Turkiet.
+På rasten|spelar|barnen|fotboll.
+Ibland|glömmer|jag|läxan.
+Den här boken|läser|jag|nu.
+Imorgon|har|vi|matte.
+Efter matchen|var|alla|trötta.
+`;
+/* Where does "inte" go? Sentence with | between slots; answer = index of the gap where inte belongs. */
+const INTE_RAW=`
+Jag|spelar|tennis.|1
+Hon|vill|äta fisk.|1
+Vi|har|sett filmen.|1
+Idag|regnar|det.|2
+Leo|kan|simma.|1
+Jag|tycker|om kaffe.|1
+Imorgon|ska|vi|träna.|2
+Han|kom|hem|igår.|1
+Därför|vann|vi|matchen.|2
+De|bor|i Malmö.|1
+Ella|gillar|spenat.|1
+På måndag|har|jag|tid.|2
+`;
+
 
 /* The journey A2 → C1. One station = one book chapter. Written for this site. */
 const VIDEOS={
@@ -964,7 +1172,7 @@ function renderHome(){
   const ns=nextStep(),q=quota();const pa=$('path');pa.replaceChildren();STEPS.forEach((s,i)=>{const d=node('div','','st'+(D()[s[0]]?' ok':i===ns?' next':''));d.append(node('i',s[2]),node('span',s[1]));pa.append(d)});
   $('start').textContent=ns<0?'✓ Klart idag — practise more':ns===0?'▶ Starta dagens pass':'▶ Fortsätt: '+STEPS[ns][1];
   const u=curUnit();$('plan').textContent=(q.back?'Welcome back! Today is a short comeback day. ':'')+'Today: '+Math.min(dueCards().length,q.cap)+' reviews · up to '+q.newWords+' new words · station '+(S.unit+1)+': '+u.title+'.';
-  renderUnit();renderMap();renderChest();renderWordList();renderInbox();fillSettings();
+  renderUnit();renderMap();renderTests();renderChest();renderWordList();renderInbox();fillSettings();
 }
 function meter(lab,val,ok){const m=node('div','','meter'+(ok?' ok':''));m.append(node('b',ok?'✓':val),node('span',lab));return m}
 function renderUnit(){const u=curUnit(),st=ust(u),pt=unitParts(u);const c=$('unitcard');c.replaceChildren();
@@ -1012,7 +1220,7 @@ function stationDone(u){const st=ust(u);st.done=true;S.xp=(S.xp||0)+50;const k=U
   const s=shell();const g=SAGA.get(u.id)||{e:'🎖️',badge:u.title};s.append(node('h2','Station klar: '+u.title+'!'));
   const rv=node('div','','reveal');const st2=node('div','','stone');st2.append(node('div',g.e,'e'),node('b',g.badge),node('div',toRunes(g.badge),'r'));rv.append(st2);s.append(rv);
   s.append(node('p','🧔 Ragnar: ”Bra jobbat! Här är din runsten: '+g.badge+'. Den ligger nu i din skattkista.” +50 XP. Next station: '+curUnit().title+'.','center'));try{say('Bra jobbat! Här är din runsten: '+g.badge)}catch(e){}
-  const nl=curUnit();if(nl.lvl!==u.lvl)s.append(node('h3','🎉 Ny nivå: '+nl.lvl+'!'));
+  const nl=curUnit();if(levelProgress(u.lvl).done===levelProgress(u.lvl).total){s.append(node('h3','🎉 You finished all '+u.lvl+' stations! Time for the Nivåprov '+u.lvl+'.'));const tb=button('▶ Take the '+u.lvl+' test now',()=>runTest(u.lvl),'good');const tr=node('div','','row center');tr.append(tb);s.append(tr)}
   const r=node('div',undefined,'row center');r.append(button('Continue →',()=>{const ns=nextStep();if(ns<0){celebrate();return}stepIdx=ns;runStep()},'primary'));s.append(r);confetti(s,40)}
 
 /* ---------- step 1: ear ---------- */
@@ -1168,13 +1376,15 @@ function runNew(){
 /* ---------- step 4: grammar game (Arena inside Today) ---------- */
 let arenaMsg=null;
 function pickGame(){const u=curUnit(),st=ust(u);if(st.game<8)return{id:u.game,main:true};
+  if(S.focus&&S.focus.length)return{id:S.focus[0],main:false,focus:true};
   const pool=[...new Set(UNITS.slice(0,S.unit+1).filter(x=>ust(x).game>=8).map(x=>x.game))];return{id:pickOne(pool.length?pool:[u.game]),main:false}}
 function runGame(){
   const g=pickGame(),u=curUnit(),p=curProf();const nm=GAME_NAMES[g.id]||['🎯',g.id];
-  const s=shell(nm[0]+' '+nm[1],g.main?'This station’s grammar. Get 8 of 10 right to pass — you can play again as often as you like.':'This station’s game is passed ✓ — here is a review game from an earlier station.');
+  const s=shell(nm[0]+' '+nm[1],g.main?'This station’s grammar. Get 8 of 10 right to pass — you can play again as often as you like.':g.focus?'⚠ A weak spot from your level test. Get 8 of 10 right and it is strong again!':'This station’s game is passed ✓ — here is a review game from an earlier station.');
   const f=node('iframe');f.className='arena';f.title='Grammar game';f.src='arena.html?embed=1&game='+encodeURIComponent(g.id)+'&lv='+(p.lv||'junior')+'&name='+encodeURIComponent(p.name)+'&av='+encodeURIComponent(p.av);s.append(f);
   const r=node('div',undefined,'row');r.append(button('Skip today',finishStep),exitBtn());s.append(r);
-  arenaMsg=m=>{if(m.type==='arena-done'){if(m.game===u.game){const st=ust(u);const before=st.game;st.game=Math.max(st.game,m.right||0);save();if(before<8&&st.game>=8)toast('🎯 Grammar passed for this station!')}}
+  arenaMsg=m=>{if(m.type==='arena-done'&&g.focus&&m.game===g.id&&(m.right||0)>=8){S.focus=S.focus.filter(x=>x!==g.id);save();toast('💪 Weak spot fixed: '+(GAME_NAMES[g.id]||['',g.id])[1])}
+    if(m.type==='arena-done'){if(m.game===u.game){const st=ust(u);const before=st.game;st.game=Math.max(st.game,m.right||0);save();if(before<8&&st.game>=8)toast('🎯 Grammar passed for this station!')}}
     else if(m.type==='arena-close'){arenaMsg=null;if(m.right!==undefined)finishStep();else backHome()}}
 }
 window.addEventListener('message',e=>{const m=e.data;if(!m||m.src!=='arena'||!arenaMsg)return;arenaMsg(m)});
@@ -1194,6 +1404,74 @@ function runWatch(){
   const ta=node('textarea');ta.lang='sv';ta.placeholder='Jag lärde mig att …';ta.style.minHeight='80px';s.append(ta);
   const r=node('div',undefined,'row');r.append(button('✓ Klar',()=>{const t=ta.value.trim();if(t.length>=3)S.out.push({d:T,q:'📺 '+V[0],text:t,corr:null});if(!st.videos.includes(vid)&&u.videos.includes(vid))st.videos.push(vid);addXP(5,s);save();finishStep()},'primary'),button('Skip today',finishStep),exitBtn());s.append(r);
 }
+
+/* ---------- level test (nivåprov) ---------- */
+const AVERBS=VERBS_RAW.trim().split('\n').map(l=>{const[inf,pres,past,sup,imp,en,g]=l.split('|');return{inf,pres,past,sup,en,g}});
+const AADJ=ADJ_RAW.trim().split('\n').map(l=>{const[en1,ett,pl,en]=l.split('|');return{en1,ett,pl,en}});
+const AV2=V2_RAW.trim().split('\n').map(l=>l.split('|'));const AINTE=INTE_RAW.trim().split('\n').map(l=>{const p=l.split('|');return{t:p.slice(0,-1),a:Number(p[p.length-1])}});
+const GGAMES=new Map(GRAMMAR_GAMES.map(g=>[g.id,{g,rows:g.items.trim().split('\n').map(l=>l.split('|'))}]));
+const LVLS=['A2','B1','B2','C1'];
+function joinS(a){return a.join(' ').replace(/\s+([.,!?])/g,'$1').replace(/\s+/g,' ').trim()}
+function capFirst(x){return x.charAt(0).toLocaleUpperCase('sv')+x.slice(1)}
+function withInte(tiles,at){const a=tiles.map(t=>t.replace(/[.!?]$/,''));const end=(tiles[tiles.length-1].match(/[.!?]$/)||['.'])[0];a.splice(at+1,0,'inte');return joinS(a)+end}
+function levelUnits(L){return UNITS.filter(u=>u.lvl===L)}
+function levelGames(L){const g=[...new Set(levelUnits(L).map(u=>u.game))];if(L==='A2')['verb','grupp','enett','plural','def','adj','v2','inte'].forEach(x=>{if(!g.includes(x))g.push(x)});return g}
+function nounsOf(L){return levelUnits(L).flatMap(unitWords).filter(v=>v.pos==='noun'&&v.f&&v.f.length>=2&&!/\s/.test(bare(v.sv))&&!/\s/.test(v.f[1]))}
+function gq(id){ // one grammar question for a game id → {skill,q,ans,opts,full}
+  const mk=(q,ans,wr,full)=>({skill:id,q,ans,opts:shuffle([...new Set([ans].concat(wr.filter(x=>x&&x!==ans)))]).slice(0,4),full:full||q.replace('___',ans)});
+  if(id==='verb'){const v=pickOne(AVERBS.filter(x=>x.g!=='m'));const past=Math.random()<.5;const ans=past?v.past:v.sup;return mk(past?'Igår ___ vi. ('+v.inf+')':'Vi har ___. ('+v.inf+')',ans,[v.pres,v.inf+'de',v.inf.replace(/a$/,'')+'ade',past?v.sup:v.past],past?'Igår '+v.past+' vi.':'Vi har '+v.sup+'.')}
+  if(id==='grupp'){const v=pickOne(AVERBS.filter(x=>x.g!=='m'));const map={'1':'-ade','2a':'-de','2b':'-te','3':'-dde','4':'irregular / vowel change'};return mk(v.inf+' → igår ___ ?',map[v.g],Object.values(map),v.inf+' → igår '+v.past)}
+  if(id==='adj'){const a=pickOne(AADJ);const k=pickOne(['en','ett','pl']);const n=k==='en'?['en','bil']:k==='ett'?['ett','hus']:['två','bilar'];const ans=k==='en'?a.en1:k==='ett'?a.ett:a.pl;return mk(n[0]+' ___ '+n[1]+' ('+a.en1+')',ans,[a.en1,a.ett,a.pl])}
+  if(id==='enett'||id==='plural'||id==='def'){const ns=nounsOf('A2').concat(nounsOf('B1'));const v=pickOne(ns);const art=v.art||(/^ett /.test(v.sv)?'ett':'en');const b=bare(v.sv);
+    if(id==='enett')return mk('___ '+b+'  ('+v.en+')',art,[art==='en'?'ett':'en'],art+' '+b);
+    const st=b.replace(/[ae]$/,'');if(id==='plural')return mk(art+' '+b+' → två ___',v.f[1],[st+'or',st+'ar',st+'er',b+'n',b].filter(x=>x!==v.f[1]),'två '+v.f[1]);
+    return mk(art+' '+b+' → the: ___',v.f[0],[b+'en',b+'et',b+'n',b+'t'].filter(x=>x!==v.f[0]),v.f[0])}
+  if(id==='v2'){const t=pickOne(AV2);const ok=joinS(t);const lo=t[0].charAt(0).toLocaleLowerCase('sv')+t[0].slice(1);const sub=/^(Jag|Vi|De|Hon|Han|Du)$/.test(t[2])?t[2].toLocaleLowerCase('sv'):t[2];const wr=t.length>=3?[joinS([t[0],t[2],t[1]].concat(t.slice(3))),joinS([capFirst(sub),lo,t[1]].concat(t.slice(3)))]:[];return Object.assign(mk('Which sentence is correct?',capFirst(ok),wr.map(capFirst),ok),{long:true})}
+  if(id==='inte'||id==='bisats'){const rows=id==='inte'?AINTE:GGAMES.get('bisats').rows.map(r=>({t:r.slice(0,-1),a:Number(r[r.length-1])}));const x=pickOne(rows);const ok=withInte(x.t,x.a);const wr=[];for(let i=0;i<x.t.length;i++)if(i!==x.a)wr.push(withInte(x.t,i));return Object.assign(mk('Where does inte go? Pick the correct sentence.',ok,shuffle(wr).slice(0,2),ok),{long:true})}
+  if(id==='v2b'){const t=pickOne(GGAMES.get('v2b').rows);const ok=joinS(t);const wr=[joinS([t[0],t[2],t[1]].concat(t.slice(3))),joinS([t[2],t[1],t[0]].concat(t.slice(3)))];return Object.assign(mk('Which sentence is correct?',ok,wr,ok),{long:true})}
+  const G=GGAMES.get(id);if(!G)return null;const r=pickOne(G.rows);const ans=r[1].split('/')[0];return Object.assign(mk(r[0],ans,(r[2]||'').split(';')),{long:ans.length>16})}
+function buildTest(L){const qs=[];
+  const words=shuffle(levelUnits(L).flatMap(unitWords).filter(v=>v.en&&v.en.length<40));const used=new Set();
+  for(const v of words){if(qs.length>=10)break;if(used.has(v.en))continue;used.add(v.en);const rev=(L==='B2'||L==='C1')&&qs.length%2===1;
+    const others=shuffle(words.filter(w=>w.en!==v.en&&w.pos===v.pos)).slice(0,3);if(others.length<3)continue;
+    qs.push(rev?{skill:'vocab',q:'Which Swedish word means “'+v.en+'”?',ans:vWord(v),opts:shuffle([vWord(v)].concat(others.map(vWord))),full:vWord(v),wid:v.id}:{skill:'vocab',q:'What does “'+vWord(v)+'” mean?',ans:v.en,opts:shuffle([v.en].concat(others.map(w=>w.en))),full:vWord(v),wid:v.id,sayQ:vWord(v)})}
+  const games=levelGames(L);const per=Math.max(2,Math.ceil(16/games.length));games.forEach(g=>{const seen=new Set();for(let i=0,n=0;i<per*4&&n<per;i++){const q=gq(g);if(q&&q.opts.length>=2&&!seen.has(q.q)){seen.add(q.q);qs.push(q);n++}}});
+  if(synth&&voices.length){const pool=games.map(g=>GGAMES.get(g)).filter(Boolean);const src=pool.length?pool:[GGAMES.get('sin')];for(let i=0;i<4;i++){const G=pickOne(src);const rows=shuffle(G.rows.slice()).slice(0,3);const fulls=rows.map(r=>r[0].replace('___',r[1].split('/')[0]));qs.push({skill:'listen',q:'🔊 Listen. Which sentence did you hear?',ans:fulls[0],opts:shuffle(fulls.slice()),full:fulls[0],sayQ:fulls[0],long:true,listen:true})}}
+  const v=qs.filter(q=>q.skill==='vocab'),rest=shuffle(qs.filter(q=>q.skill!=='vocab'));return v.concat(rest)}
+const SKILL_NAMES={vocab:['📚','Ordförråd · vocabulary'],listen:['👂','Hörförståelse · listening']};
+function skillName(k){return SKILL_NAMES[k]||GAME_NAMES[k]||['🎯',k]}
+function levelProgress(L){const us=levelUnits(L);return{done:us.filter(u=>ust(u).done).length,total:us.length}}
+function renderTests(){const box=$('tests');box.replaceChildren();S.tests=S.tests||{};
+  LVLS.forEach(L=>{const pr=levelProgress(L),t=S.tests[L],ready=pr.done===pr.total;const d=node('div','','tcard'+(t&&t.best>=75?' pass':ready?' ready':''));
+    const lv=LEVELS.find(x=>x[0]===L);d.append(node('b',lv[2]+' '+L+' · '+lv[1]));d.append(node('p',pr.done+'/'+pr.total+' stations done','muted'));
+    if(t)d.append(node('p',(t.best>=75?'✓ Passed · best ':'Best ')+t.best+'% · last '+t.last+'% ('+dayStr(t.day)+')'));
+    d.append(button(ready?(t?'Take it again':'▶ Take the test'):'Check-up test',()=>runTest(L),ready&&!t?'primary':''));box.append(d)})}
+function runTest(L){const qs=buildTest(L);$('home').hidden=true;$('session').hidden=false;window.scrollTo(0,0);let i=0;const res=[];
+  function draw(){if(i>=qs.length){results(L,qs,res);return}const q=qs[i];const s=stage();s.replaceChildren();
+    s.append(node('div','Nivåprov '+L+' · question '+(i+1)+' of '+qs.length,'label'));const bar=node('div','','qbar');const bi=node('i');bi.style.width=(100*i/qs.length)+'%';bar.append(bi);s.append(bar);
+    const nm=skillName(q.skill);s.append(node('p',nm[0]+' '+nm[1],'muted'));
+    if(q.listen){s.append(node('h2',q.q));const r=node('div','','row');r.append(button('🔊 Play again',()=>say(q.sayQ,.85)));s.append(r);setTimeout(()=>say(q.sayQ,.85),300)}
+    else{const h=sv('div','','cloze');const at=q.q.indexOf('___');if(at>=0){h.append(document.createTextNode(q.q.slice(0,at)),node('span',' ','gap'),document.createTextNode(q.q.slice(at+3)))}else h.textContent=q.q;s.append(h);if(q.sayQ){const r=node('div','','row center');r.append(sayBtn(q.sayQ));s.append(r)}}
+    const o=node('div','','topts'+(q.long?' long':''));o.lang='sv';const fb=node('div','','fb');let done=false;
+    q.opts.forEach(op=>{const b=button(op,()=>{if(done)return;done=true;const ok=op===q.ans;res.push(ok);b.classList.add(ok?'right':'wrong');Array.from(o.children).forEach(x=>{if(x.textContent===q.ans)x.classList.add('right')});fb.textContent=ok?'Rätt! ✓':'Rätt svar: '+q.ans;fb.className='fb '+(ok?'ok':'no');
+      const r=node('div','','row center');const nb=button(i+1>=qs.length?'See results 🏁':'Nästa →',()=>{i++;draw()},'primary');r.append(nb);s.append(r);setTimeout(()=>nb.focus(),50)});o.append(b)});
+    s.append(o,fb);const ex=node('div','','row');ex.append(button('Stop the test',()=>{if(confirm('Stop the test? Your answers will not be saved.'))backHome()}));s.append(ex)}
+  draw()}
+function results(L,qs,res){const by={};qs.forEach((q,k)=>{const b=by[q.skill]||(by[q.skill]={n:0,ok:0});b.n++;if(res[k])b.ok++});
+  const pct=Math.round(100*res.filter(Boolean).length/qs.length);S.tests=S.tests||{};const t=S.tests[L]||{best:0};const first=!t.day||t.best<75;t.last=pct;t.best=Math.max(t.best||0,pct);t.day=T;t.skills=Object.fromEntries(Object.entries(by).map(([k,v])=>[k,Math.round(100*v.ok/v.n)]));S.tests[L]=t;
+  const weak=Object.entries(t.skills).filter(([k,v])=>v<70).sort((a,b)=>a[1]-b[1]).map(([k])=>k);
+  const weakGames=weak.filter(k=>k!=='vocab'&&k!=='listen');S.focus=[...new Set(weakGames.concat(S.focus||[]))];
+  let rev=0;qs.forEach((q,k)=>{if(q.skill==='vocab'&&!res[k]&&q.wid){const v=VBYID.get(q.wid);const c=addCard({id:v.id,kind:'vocab',w:vWord(v),en:v.en,f:v.f,raw:v.raw,src:'Nivåprov '+L});c.box=1;c.due=T;rev++}});
+  S.xp=(S.xp||0)+pct;save();
+  const s=stage();s.replaceChildren();const pass=pct>=75;
+  s.append(node('div','Nivåprov '+L+' · results','label'));const ring=node('div','','ring');ring.style.background='conic-gradient('+(pass?'var(--good)':'var(--accent)')+' '+pct*3.6+'deg,var(--wash) 0)';ring.append(node('span',pct+'%'));s.append(ring);
+  s.append(node('h2',pass?(first?'🎓 Godkänt! You passed '+L+'!':'Godkänt igen — great repetition!'):'Bra försök! Here is what to work on.'));
+  s.append(node('p','🧔 Ragnar: '+(pass?'”En riktig ordsmed! Dina runor står starka.”':'”Även Tor missade ibland med hammaren. Vi tränar de svaga punkterna — sedan försöker du igen.”'),'muted'));
+  const sk=node('div');Object.entries(by).sort((a,b)=>a[1].ok/a[1].n-b[1].ok/b[1].n).forEach(([k,v])=>{const p=Math.round(100*v.ok/v.n);const nm=skillName(k);const r=node('div','','skill');r.append(node('span',nm[0]+' '+nm[1]));const sb=node('div','','sb '+(p>=70?'ok':'weak'));const i=node('i');i.style.width='0';sb.append(i);setTimeout(()=>i.style.width=p+'%',100);r.append(sb,node('b',(p>=70?'':'⚠ ')+p+'%'));sk.append(r)});s.append(sk);
+  const todo=[];if(weakGames.length)todo.push('⚠ Weak grammar ('+weakGames.map(k=>skillName(k)[1]).join(', ')+') now comes first in your daily Grammatik step until you get 8/10.');if(rev)todo.push('📚 '+rev+' word'+(rev>1?'s':'')+' you missed '+(rev>1?'are':'is')+' back in today’s reviews.');if(weak.includes('listen'))todo.push('👂 Listening: watch the station videos with Swedish subtitles and use 🐢 slow on cards.');if(!todo.length)todo.push('No weak spots — everything is 70% or more. 💪');
+  todo.forEach(x=>s.append(node('p',x)));
+  if(weakGames.length){const r=node('div','','row');const a=node('a','🎯 Extra practice in the Arena →');a.href='arena.html';r.append(a);s.append(r)}
+  const r=node('div','','row');r.append(button('Back to start',backHome,'primary'),button('Try again',()=>runTest(L)));s.append(r);if(pass)confetti(s,first?44:20)}
 
 /* ---------- step 6: speak (record + write) ---------- */
 let rec=null,recChunks=[],recUrl=null;
