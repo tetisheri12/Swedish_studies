@@ -30,12 +30,74 @@ header nav{display:flex;flex-wrap:wrap;gap:8px 18px}header nav a{padding:6px 0;t
 body.embed header,body.embed footer{display:none}body.embed main{padding:8px}body.embed .stage{margin:0;border:0;min-height:0}
 .demo{background:#203536;color:#fff;border-radius:14px;padding:16px 18px;margin:10px 0}.demo .who{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#f6e3a1;font-weight:bold}.demo .dts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;min-height:70px;margin:12px 0}.dt{background:#fffdf7;color:var(--ink);border-radius:10px;padding:8px 12px;font-size:24px;font-weight:bold;transition:transform .6s cubic-bezier(.3,1.3,.5,1),opacity .4s,background .4s;will-change:transform}.dt.star{background:#f6e3a1;box-shadow:0 0 0 3px var(--gold)}.dt .end{color:var(--accent);display:inline-block;animation:endpop .7s ease}.dt.in{opacity:0;transform:scale(.4)}@keyframes endpop{0%{transform:scale(2.2);opacity:0}100%{transform:none;opacity:1}}.demo .cap{text-align:center;font-size:18px;min-height:28px}.demo .ctl{display:flex;justify-content:center;gap:8px;margin-top:8px}.demo button{color:#fff;border-color:#5b7271;padding:6px 14px;font-size:15px}.demo button:hover{background:#2c4747}.demo .dots{display:flex;gap:5px;justify-content:center;margin-top:6px}.demo .dots i{width:8px;height:8px;border-radius:50%;background:#5b7271}.demo .dots i.on{background:#f6e3a1}
 @media(prefers-reduced-motion:reduce){.confetti{display:none}.dt{transition:none}}
-</style><link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Svenska"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#f7f3e9">
+</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat+Brush&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Svenska"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#f7f3e9">
 <style>.tabbar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(255,253,247,.97);border-top:1px solid #c8cec3;padding:6px 6px calc(6px + env(safe-area-inset-bottom));justify-content:space-around;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}.tabbar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;color:#526665;font-size:12px;font-weight:bold;padding:4px 0;border-radius:12px}.tabbar a i{font-style:normal;font-size:24px;line-height:1.1}.tabbar a[aria-current=page]{color:#a53e23;background:#f2e6dc}
 html.app .tabbar{display:flex}html.app header nav{display:none}html.app body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}html.app header{padding-top:calc(14px + env(safe-area-inset-top))}html.app footer{display:none}html.app body{-webkit-user-select:none;user-select:none}html.app input,html.app textarea{-webkit-user-select:text;user-select:text}
 @media (display-mode: standalone){.tabbar{display:flex}header nav{display:none}}body.embed .tabbar{display:none!important}html.app body.embed{padding-bottom:0}</style>
 <script>(function(){var s=window.navigator.standalone===true||(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||/[?&]app=1/.test(location.search);if(s)document.documentElement.classList.add('app');if('serviceWorker' in navigator&&location.protocol!=='file:')addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})})();</script>
-</head><body><header>
+<style>:root{--bg:#f6ead3;--ink:#161412;--muted:#5d5246;--accent:#ee4d1f;--line:#e6d4b4;--wash:#f4e2c2;--good:#3d8b52;--gold:#f2c230;--sky:#2f62a8;--card:#fffaf0;--r:18px}
+body{background-color:var(--bg);background-image:radial-gradient(rgba(238,77,31,.07) 1.1px,transparent 1.3px),radial-gradient(rgba(22,20,18,.035) 1px,transparent 1.2px);background-size:7px 7px,11px 11px;background-position:0 0,3px 5px;font-family:'Manrope','Trebuchet MS',Arial,sans-serif;color:var(--ink)}
+h1,h2,.mega,header strong{font-family:'Anton','Bebas Neue','Futura-CondensedExtraBold','Futura Condensed ExtraBold','AvenirNextCondensed-Heavy','Avenir Next Condensed','Arial Narrow','DejaVu Sans Condensed',Impact,sans-serif;font-weight:400;font-stretch:condensed;text-transform:uppercase;letter-spacing:.005em}
+h1{font-size:clamp(54px,10vw,96px);line-height:.9;margin:8px 0}h2{font-size:clamp(28px,4vw,36px);line-height:1;letter-spacing:.01em}h3{font-weight:800}
+header{border-bottom:0}header strong{font-size:26px;letter-spacing:.02em}header strong::after{content:' ✱';color:var(--accent)}
+.label{color:var(--accent);letter-spacing:.14em}
+button{border-radius:999px;border:1.5px solid var(--line);background:var(--card);font-weight:700}button:hover{background:var(--wash)}
+button.primary,button.selected{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 4px 0 #b8380f;transform:translateY(-1px)}button.primary:active{box-shadow:0 1px 0 #b8380f;transform:translateY(2px)}
+button.good{box-shadow:0 4px 0 #2a6239}
+.stage,.unitcard,.board,.tcard,.game,.pl,.prof,.course,.inbox .item,dialog,.demo,.sheet{border-radius:24px}
+.stage,.unitcard,.tcard,.game,.pl,.prof,dialog{background:var(--card);border:1.5px solid var(--line);box-shadow:0 10px 30px -18px rgba(90,60,20,.45)}
+.stage{border-width:2px}
+section{border-top:0}
+a{color:var(--accent)}
+.script{font-family:'Caveat Brush','Caveat','Marker Felt','Comic Sans MS',cursive;color:var(--accent);font-size:clamp(40px,7vw,64px);line-height:1;transform:rotate(-5deg);margin:-14px 0 8px 18px;display:inline-block;text-shadow:0 2px 0 rgba(255,255,255,.6)}
+.script::after{content:'';display:block;height:4px;margin:6px 0 0 30%;border-radius:4px;background:var(--ink);transform:rotate(-2deg);width:60%}
+.sticker{position:absolute;right:-6px;bottom:-62px;width:128px;height:128px;border-radius:50%;background:var(--gold);border:2px dashed rgba(22,20,18,.55);outline:5px solid var(--gold);display:grid;place-items:center;text-align:center;font-family:'Caveat Brush','Caveat',cursive;font-size:17px;line-height:1.05;transform:rotate(12deg);color:var(--ink);box-shadow:0 8px 18px -8px rgba(0,0,0,.4);z-index:2}
+.sticker b{font-family:'Anton',Impact,sans-serif;font-weight:400;font-size:16px;text-transform:uppercase}
+.herotxt{position:relative}.ast{color:var(--ink);font-size:.45em;vertical-align:top;margin-left:8px;display:inline-block;animation:spinx 9s linear infinite}@keyframes spinx{to{transform:rotate(360deg)}}
+.tabbar{background:rgba(255,250,240,.96);border-top:1.5px solid var(--line)}.tabbar a{color:#3a332c}.tabbar a[aria-current=page]{color:var(--accent);background:transparent}.tabbar a[aria-current=page] i{transform:translateY(-1px)}
+@media(prefers-reduced-motion:reduce){.ast{animation:none}}
+.cat{display:inline-block;line-height:0}.cat svg{width:100%;height:100%}
+.peekcat{position:absolute;width:180px;height:180px;top:-116px;left:18px;z-index:1;pointer-events:none}
+.ragcat{width:96px;height:96px;flex:none;background:#fffaf0;border-radius:50%;padding:6px;box-shadow:0 0 0 4px #f2c230}.saga button{background:transparent;color:#fff;border-color:#7a6650;box-shadow:none}.saga button.primary{background:var(--accent);border-color:var(--accent);box-shadow:0 4px 0 #b8380f}.saga .rag{gap:6px}
+.bigcat{display:block;width:180px;height:180px;margin:0 auto;animation:spin 1s ease}.midcat{display:block;width:130px;height:130px;margin:6px auto}
+.arenahero{position:relative}.arenahero h1{padding-right:140px;font-size:clamp(46px,8.5vw,84px)}.herocat{position:absolute;right:-6px;bottom:-14px;width:150px;height:150px}
+.resultcat{display:block;width:150px;height:150px;margin:0 auto}
+@media(max-width:700px){.herocat{width:96px;height:96px}.arenahero h1{padding-right:84px}.peekcat{width:116px;height:116px;top:-76px}}
+</style><script>/* Original watercolour-and-ink cats drawn in SVG for Swedish Studies. */
+(function(){
+var n=0;
+var PAL={orange:['#f2a24b','#e07f2c','#fffaf0'],grey:['#9aa0a6','#6f7479','#fffaf0'],tabby:['#b9ab98','#7d6f60','#f5efe6'],cream:['#f3d9b1','#d9a86a','#fffaf0']};
+function wc(id){return '<filter id="'+id+'" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" seed="'+(n%7+2)+'"/><feDisplacementMap in="SourceGraphic" scale="8"/><feGaussianBlur stdDeviation="1.6"/></filter>'}
+var INK='fill="none" stroke="#2a2522" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"';
+function eyes(open,y){y=y||78;return open?'<path d="M78 '+y+' q7 -6 14 0 q-7 5 -14 0z" fill="#b7c95a" stroke="#2a2522" stroke-width="1.6"/><path d="M85 '+(y-3)+' v6" stroke="#2a2522" stroke-width="2.2" stroke-linecap="round"/><path d="M108 '+y+' q7 -6 14 0 q-7 5 -14 0z" fill="#b7c95a" stroke="#2a2522" stroke-width="1.6"/><path d="M115 '+(y-3)+' v6" stroke="#2a2522" stroke-width="2.2" stroke-linecap="round"/>':'<path d="M78 '+y+' q7 5 14 0 M108 '+y+' q7 5 14 0" '+INK+'/>'}
+function face(open,y){y=y||78;return eyes(open,y)+'<path d="M97 '+(y+9)+' h6 l-3 4z" fill="#2a2522"/><path d="M100 '+(y+13)+' q-4 5 -8 1 M100 '+(y+13)+' q4 5 8 1" '+INK+' stroke-width="1.8"/>'}
+function stripes(c,list){return '<g stroke="'+c+'" stroke-width="6" stroke-linecap="round" opacity=".55">'+list.map(function(d){return '<path d="'+d+'"/>'}).join('')+'</g>'}
+var HELMET='<g><path d="M60 56 C64 26 136 26 140 56 Z" fill="#aab3b8" stroke="#2a2522" stroke-width="2.6" stroke-linejoin="round"/><path d="M58 56 h84" stroke="#8a6a3a" stroke-width="7" stroke-linecap="round"/><path d="M60 46 C40 44 30 26 34 12 C44 26 54 30 64 36" fill="#fffaf0" stroke="#2a2522" stroke-width="2.4" stroke-linejoin="round"/><path d="M140 46 C160 44 170 26 166 12 C156 26 146 30 136 36" fill="#fffaf0" stroke="#2a2522" stroke-width="2.4" stroke-linejoin="round"/><circle cx="100" cy="40" r="3" fill="#2a2522"/></g>';
+function svg(kind,col){var p=PAL[col]||PAL.orange,id='wc'+(++n),f='filter="url(#'+id+')"',b='';
+ if(kind==='sleep'){
+  b='<g '+f+' opacity=".9"><ellipse cx="100" cy="132" rx="72" ry="44" fill="'+p[0]+'"/><ellipse cx="78" cy="112" rx="38" ry="30" fill="'+p[0]+'"/></g>'+stripes(p[1],['M120 100 q6 14 0 28','M140 104 q6 14 0 26','M100 98 q6 14 0 24'])+'<ellipse cx="80" cy="128" rx="16" ry="9" fill="'+p[2]+'" opacity=".9" '+f+'/>'
+  +'<path d="M52 98 L58 70 L74 88 M88 86 L104 72 L104 100" '+INK+'/><path d="M30 140 C28 168 60 178 100 176 C150 176 176 164 172 136" '+INK+'/><path d="M172 136 C182 150 168 172 140 170" '+INK+'/><path d="M66 112 q6 4 12 0 M86 112 q6 4 12 0" '+INK+'/><path d="M79 120 h5 l-2.5 3z" fill="#2a2522"/><text x="128" y="70" font-family="Caveat Brush,cursive" font-size="22" fill="#2a2522">z z</text>';
+ } else if(kind==='peek'){
+  b='<g '+f+' opacity=".9"><ellipse cx="100" cy="92" rx="50" ry="40" fill="'+p[0]+'"/></g>'+stripes(p[1],['M100 56 v14','M86 58 v12','M114 58 v12'])+'<ellipse cx="100" cy="106" rx="16" ry="11" fill="'+p[2]+'" opacity=".9" '+f+'/>'
+  +'<path d="M58 80 L64 44 L84 62 M116 62 L136 44 L142 80" '+INK+'/><path d="M52 122 C52 104 54 96 60 88 M148 122 C148 104 146 96 140 88" '+INK+'/>'+face(true,86)
+  +'<path d="M66 124 q2 -14 14 -12 q10 2 8 14 M112 126 q-2 -14 10 -14 q12 0 12 12" fill="'+p[0]+'" stroke="#2a2522" stroke-width="2.6"/><path d="M74 118 v5 M80 118 v5 M120 118 v5 M126 118 v5" '+INK+' stroke-width="1.6"/><path d="M20 126 H180" stroke="#2a2522" stroke-width="3" stroke-linecap="round"/>';
+ } else {
+  b='<g '+f+' opacity=".9"><ellipse cx="100" cy="142" rx="50" ry="46" fill="'+p[0]+'"/><ellipse cx="100" cy="80" rx="44" ry="35" fill="'+p[0]+'"/></g>'
+  +stripes(p[1],['M70 132 q10 6 0 16','M130 132 q-10 6 0 16','M100 50 v12','M88 52 v10','M112 52 v10','M68 160 q10 4 2 14','M132 160 q-10 4 -2 14'])
+  +'<ellipse cx="100" cy="128" rx="20" ry="26" fill="'+p[2]+'" opacity=".95" '+f+'/>'
+  +'<path d="M62 70 L68 34 L88 52 M112 52 L132 34 L138 70" '+INK+'/><path d="M62 104 C48 132 52 168 68 186 M138 104 C152 132 148 168 132 186 M66 186 H134" '+INK+'/>'
+  +'<path d="M80 186 q5 -12 11 0 M109 186 q5 -12 11 0" '+INK+'/><path d="M134 178 C172 182 184 152 166 134" '+INK+'/>'+face(true,80);
+  if(kind==='wave')b+='<path d="M136 120 C150 104 156 86 152 72" '+INK+'/><path d="M144 76 q8 -14 18 -4 q4 10 -10 14" fill="'+p[0]+'" stroke="#2a2522" stroke-width="2.6"/>';
+  if(kind==='viking')b+=HELMET;
+  if(kind==='happy')b=b.replace(eyes(true,80),eyes(false,80));
+ }
+ return '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><defs>'+wc(id)+'</defs>'+b+'</svg>'}
+window.catSVG=svg;
+window.catEl=function(kind,col,cls){var s=document.createElement('span');s.className='cat '+(cls||'');s.innerHTML=svg(kind,col);return s};
+document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('[data-cat]').forEach(function(e){e.innerHTML=svg(e.getAttribute('data-cat'),e.getAttribute('data-col'))})});
+})();
+</script></head><body><header>
   <strong>SWEDISH / STUDIES</strong>
   <nav aria-label="Main navigation">
     <a href="daily.html">Today</a>
@@ -46,7 +108,7 @@ html.app .tabbar{display:flex}html.app header nav{display:none}html.app body{pad
   </nav>
 </header><main>
 <div id="home">
-<div class="label">Arena · grammar games for kids and grown-ups</div><h1>Verb- och grammatikarenan</h1>
+<div class="label">Arena · grammar games for kids and grown-ups</div><div class="arenahero"><h1>Verb- och grammatikarenan</h1><span class="cat herocat" data-cat="wave" data-col="grey"></span></div>
 <p>Short, fast rounds of Swedish grammar. Play alone to beat your record, or <b>duel</b> on the same iPad — each player at their own level. <b>Junior</b> taps the answer, <b>Pro</b> types it.</p>
 <section><div class="row" style="justify-content:space-between"><h2 style="margin:0">Spelare · players</h2><button id="addp">＋ Add player</button></div><p class="muted" id="pickhint">Tap one player for Solo, or two players for a Duel.</p><div id="players" class="players"></div></section>
 <section><div class="row" style="justify-content:space-between"><h2 style="margin:0">Spel · games</h2><span class="row" style="margin:0"><label class="muted" style="font-size:14px">Mix up to <select id="mixlvl"><option>A2</option><option selected>B1</option><option>B2</option><option>C1</option></select></label><button id="mix" class="primary">⚡ Dagens mix</button></span></div><p class="muted">10 questions per round. Fast answers and combos give extra points. “Dagens mix” mixes all games and gives double XP once a day.</p><div id="games" class="games"></div></section>
@@ -755,7 +817,7 @@ function editPlayer(p){const isNew=!p;p=p||{id:'p'+Date.now(),name:'',av:AVATARS
   $('dlgclose').onclick=()=>{p.name=inp.value.trim()||('Spelare '+(S.players.length+1));if(isNew){S.players.push(p);picked=[p.id]}save();$('dlg').close();renderHome()};$('dlg').showModal();setTimeout(()=>inp.focus(),50)}
 /* ---------- animated explainer ---------- */
 function demoPlayer(id){const frames=(typeof DEMOS!=='undefined'&&DEMOS[id])||null;if(!frames)return null;
-  const box=node('div','','demo');box.append(node('div','🧔 Ragnar visar · watch how it works','who'));const st=node('div','','dts');st.lang='sv';const cap=node('div','','cap');const dots=node('div','','dots');frames.forEach(()=>dots.append(node('i')));
+  const box=node('div','','demo');box.append(node('div','🐱 Ragnar visar · watch how it works','who'));const st=node('div','','dts');st.lang='sv';const cap=node('div','','cap');const dots=node('div','','dots');frames.forEach(()=>dots.append(node('i')));
   const ctl=node('div','','ctl');let k=0,tm=null;const live=new Map();
   function parse(str){const seen={};return str.split(' ').filter(Boolean).map(tok=>{const star=tok[0]==='*';const t=tok.replace(/^\*/,'');const[base,end]=t.split('|');const txt=base.replace(/_/g,' ');const kk=txt.toLocaleLowerCase('sv').replace(/[.,!?]/g,'');seen[kk]=(seen[kk]||0)+1;return{key:kk+'#'+seen[kk],txt,end:end||'',star}})}
   function show(i){k=i;const f=frames[i];const toks=parse(f[0]);const first=new Map();live.forEach((el,key)=>first.set(key,el.getBoundingClientRect()));
@@ -841,7 +903,7 @@ function finish(){
   R.ps.forEach(p=>{const xp=(R.score[p.id]+R.right[p.id]*2)*mult;const before=rankOf(p.xp).name;p.xp+=xp;R.xp[p.id]=xp;p.best=p.best||{};const key=R.mix?'mix':R.games[0];if(!R.practise&&(!p.best[key]||R.score[p.id]>p.best[key]))p.best[key]=R.score[p.id];if(R.mix)S.mixDay[p.id]=today();R.up=R.up||[];if(rankOf(p.xp).name!==before)R.up.push(p)});
   save();
   const sorted=R.ps.slice().sort((a,b)=>R.score[b.id]-R.score[a.id]);const duel=R.ps.length>1;const tie=duel&&R.score[sorted[0].id]===R.score[sorted[1].id];
-  res.append(node('div',duel?(tie?'🤝':'🏆'):(R.right[R.ps[0].id]>=8?'🏆':R.right[R.ps[0].id]>=5?'⭐':'💪'),'big'),node('h2',duel?(tie?'Oavgjort! It’s a draw!':sorted[0].name+' vinner!'):(R.right[R.ps[0].id]+' av '+ROUND+' rätt!')));
+  res.append(window.catEl?catEl(R.right[R.ps[0].id]>=8||duel?'happy':R.right[R.ps[0].id]>=5?'sit':'sleep','orange','resultcat'):node('div','🏆','big'),node('h2',duel?(tie?'Oavgjort! It’s a draw!':sorted[0].name+' vinner!'):(R.right[R.ps[0].id]+' av '+ROUND+' rätt!')));
   const b=node('div','','board');sorted.forEach((p,i)=>{const d=node('div','',duel&&i===0&&!tie?'win':'');d.append(node('span',p.av+' '+p.name),node('span',R.score[p.id]+' p · '+R.right[p.id]+'/'+ROUND+' · +'+R.xp[p.id]+' XP'));b.append(d)});res.append(b);
   if(mult>1)res.append(node('p','⚡ Dagens mix: double XP!','combo'));
   (R.up||[]).forEach(p=>res.append(node('p','🎉 '+p.name+' is now '+rankOf(p.xp).icon+' '+rankOf(p.xp).name+'!','combo')));

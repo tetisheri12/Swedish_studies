@@ -62,12 +62,93 @@ header nav{display:flex;flex-wrap:wrap;gap:8px 18px}header nav a{padding:6px 0;t
 .origin{background:#f6efd9;border:1px solid #e3d29b;border-radius:12px;padding:8px 14px;margin:8px auto;max-width:560px;text-align:center;font-size:15px}
 @media(max-width:700px){header,main,footer{padding:18px}header{align-items:flex-start}header nav{width:100%}.hero{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}.pic{font-size:80px}.word{font-size:34px}.unitcard .meters{grid-template-columns:repeat(2,1fr)}.arena{height:620px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.confetti{display:none}}
-</style><link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Svenska"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#f7f3e9">
+</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat+Brush&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Svenska"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#f7f3e9">
 <style>.tabbar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(255,253,247,.97);border-top:1px solid #c8cec3;padding:6px 6px calc(6px + env(safe-area-inset-bottom));justify-content:space-around;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}.tabbar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;color:#526665;font-size:12px;font-weight:bold;padding:4px 0;border-radius:12px}.tabbar a i{font-style:normal;font-size:24px;line-height:1.1}.tabbar a[aria-current=page]{color:#a53e23;background:#f2e6dc}
 html.app .tabbar{display:flex}html.app header nav{display:none}html.app body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}html.app header{padding-top:calc(14px + env(safe-area-inset-top))}html.app footer{display:none}html.app body{-webkit-user-select:none;user-select:none}html.app input,html.app textarea{-webkit-user-select:text;user-select:text}
 @media (display-mode: standalone){.tabbar{display:flex}header nav{display:none}}body.embed .tabbar{display:none!important}html.app body.embed{padding-bottom:0}</style>
 <script>(function(){var s=window.navigator.standalone===true||(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||/[?&]app=1/.test(location.search);if(s)document.documentElement.classList.add('app');if('serviceWorker' in navigator&&location.protocol!=='file:')addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})})();</script>
-</head><body><header>
+<style>:root{--bg:#f6ead3;--ink:#161412;--muted:#5d5246;--accent:#ee4d1f;--line:#e6d4b4;--wash:#f4e2c2;--good:#3d8b52;--gold:#f2c230;--sky:#2f62a8;--card:#fffaf0;--r:18px}
+body{background-color:var(--bg);background-image:radial-gradient(rgba(238,77,31,.07) 1.1px,transparent 1.3px),radial-gradient(rgba(22,20,18,.035) 1px,transparent 1.2px);background-size:7px 7px,11px 11px;background-position:0 0,3px 5px;font-family:'Manrope','Trebuchet MS',Arial,sans-serif;color:var(--ink)}
+h1,h2,.mega,header strong{font-family:'Anton','Bebas Neue','Futura-CondensedExtraBold','Futura Condensed ExtraBold','AvenirNextCondensed-Heavy','Avenir Next Condensed','Arial Narrow','DejaVu Sans Condensed',Impact,sans-serif;font-weight:400;font-stretch:condensed;text-transform:uppercase;letter-spacing:.005em}
+h1{font-size:clamp(54px,10vw,96px);line-height:.9;margin:8px 0}h2{font-size:clamp(28px,4vw,36px);line-height:1;letter-spacing:.01em}h3{font-weight:800}
+header{border-bottom:0}header strong{font-size:26px;letter-spacing:.02em}header strong::after{content:' ✱';color:var(--accent)}
+.label{color:var(--accent);letter-spacing:.14em}
+button{border-radius:999px;border:1.5px solid var(--line);background:var(--card);font-weight:700}button:hover{background:var(--wash)}
+button.primary,button.selected{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 4px 0 #b8380f;transform:translateY(-1px)}button.primary:active{box-shadow:0 1px 0 #b8380f;transform:translateY(2px)}
+button.good{box-shadow:0 4px 0 #2a6239}
+.stage,.unitcard,.board,.tcard,.game,.pl,.prof,.course,.inbox .item,dialog,.demo,.sheet{border-radius:24px}
+.stage,.unitcard,.tcard,.game,.pl,.prof,dialog{background:var(--card);border:1.5px solid var(--line);box-shadow:0 10px 30px -18px rgba(90,60,20,.45)}
+.stage{border-width:2px}
+section{border-top:0}
+a{color:var(--accent)}
+.script{font-family:'Caveat Brush','Caveat','Marker Felt','Comic Sans MS',cursive;color:var(--accent);font-size:clamp(40px,7vw,64px);line-height:1;transform:rotate(-5deg);margin:-14px 0 8px 18px;display:inline-block;text-shadow:0 2px 0 rgba(255,255,255,.6)}
+.script::after{content:'';display:block;height:4px;margin:6px 0 0 30%;border-radius:4px;background:var(--ink);transform:rotate(-2deg);width:60%}
+.sticker{position:absolute;right:-6px;bottom:-62px;width:128px;height:128px;border-radius:50%;background:var(--gold);border:2px dashed rgba(22,20,18,.55);outline:5px solid var(--gold);display:grid;place-items:center;text-align:center;font-family:'Caveat Brush','Caveat',cursive;font-size:17px;line-height:1.05;transform:rotate(12deg);color:var(--ink);box-shadow:0 8px 18px -8px rgba(0,0,0,.4);z-index:2}
+.sticker b{font-family:'Anton',Impact,sans-serif;font-weight:400;font-size:16px;text-transform:uppercase}
+.herotxt{position:relative}.ast{color:var(--ink);font-size:.45em;vertical-align:top;margin-left:8px;display:inline-block;animation:spinx 9s linear infinite}@keyframes spinx{to{transform:rotate(360deg)}}
+.tabbar{background:rgba(255,250,240,.96);border-top:1.5px solid var(--line)}.tabbar a{color:#3a332c}.tabbar a[aria-current=page]{color:var(--accent);background:transparent}.tabbar a[aria-current=page] i{transform:translateY(-1px)}
+@media(prefers-reduced-motion:reduce){.ast{animation:none}}
+.cat{display:inline-block;line-height:0}.cat svg{width:100%;height:100%}
+.peekcat{position:absolute;width:180px;height:180px;top:-116px;left:18px;z-index:1;pointer-events:none}
+.ragcat{width:96px;height:96px;flex:none;background:#fffaf0;border-radius:50%;padding:6px;box-shadow:0 0 0 4px #f2c230}.saga button{background:transparent;color:#fff;border-color:#7a6650;box-shadow:none}.saga button.primary{background:var(--accent);border-color:var(--accent);box-shadow:0 4px 0 #b8380f}.saga .rag{gap:6px}
+.bigcat{display:block;width:180px;height:180px;margin:0 auto;animation:spin 1s ease}.midcat{display:block;width:130px;height:130px;margin:6px auto}
+.arenahero{position:relative}.arenahero h1{padding-right:140px;font-size:clamp(46px,8.5vw,84px)}.herocat{position:absolute;right:-6px;bottom:-14px;width:150px;height:150px}
+.resultcat{display:block;width:150px;height:150px;margin:0 auto}
+@media(max-width:700px){.herocat{width:96px;height:96px}.arenahero h1{padding-right:84px}.peekcat{width:116px;height:116px;top:-76px}}
+.hero{grid-template-columns:1.3fr 1fr}
+.path .st{border-radius:18px;background:var(--card);border:1.5px solid var(--line)}.path .st.ok{background:#e6f1e3;border-color:var(--good)}.path .st.next{border-color:var(--accent)}
+#start{font-size:21px;padding:17px 34px}#start::after{content:'  →'}
+.streakcard{background:var(--card);border:1.5px solid var(--line);border-radius:24px;padding:16px 18px;box-shadow:0 10px 30px -18px rgba(90,60,20,.45)}
+.srow{display:grid;grid-template-columns:44px 1fr auto auto;align-items:center;gap:10px;padding:9px 0;border-bottom:1.5px dashed var(--line)}.srow:last-of-type{border-bottom:0}
+.srow .ic{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:20px;color:#fff;font-weight:900}.ic.fire{background:var(--accent)}.ic.ok{background:#8cbf7e}.ic.star{background:var(--gold);color:var(--ink)}.ic.due{background:#7f9bd6}
+.srow .lbl{font-weight:700}.srow b{font-family:'Anton',Impact,sans-serif;font-weight:400;font-size:34px;line-height:1}.srow .unit{color:var(--accent);font-weight:800}
+.courses{display:grid;gap:10px;margin:6px 0 14px}.course{display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:center;background:var(--card);border:1.5px solid var(--line);padding:12px 16px}.course.cur{border-color:var(--accent);box-shadow:0 0 0 3px rgba(238,77,31,.15)}
+.cic{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-size:24px}.ctop{display:flex;justify-content:space-between;font-size:17px}.ctop .pc{color:var(--accent);font-weight:800}
+.cbar{height:9px;border-radius:99px;background:#f6dccd;margin-top:8px;overflow:hidden}.cbar i{display:block;height:100%;border-radius:99px;background:var(--accent);transition:width 1s}
+.unitcard{border:2px solid var(--ink)}.meter{background:var(--wash);border-radius:16px}.meter.ok{background:#e2efdc}
+.tabs{border-bottom:0;gap:8px}.tabs button{border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--muted)}.tabs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.lvl .bar i{background:var(--accent)}.stn.done button{background:var(--good)}.stn.cur button{background:var(--accent)}
+.saga{background:linear-gradient(160deg,#1c1a17,#3a2a1c)}.chest .stone{border-radius:44% 44% 18% 18%/38% 38% 14% 14%}
+.steps span{border-radius:999px}.steps span.on{background:var(--accent)}
+.party{filter:drop-shadow(0 6px 0 rgba(0,0,0,.08))}
+.ring span{background:var(--card)}
+@media(max-width:700px){.hero{grid-template-columns:1fr}.sticker{width:104px;height:104px;font-size:15px;top:-10px}.sticker b{font-size:13px}}
+.streakcard{position:relative;margin:86px 0 56px}
+</style><script>/* Original watercolour-and-ink cats drawn in SVG for Swedish Studies. */
+(function(){
+var n=0;
+var PAL={orange:['#f2a24b','#e07f2c','#fffaf0'],grey:['#9aa0a6','#6f7479','#fffaf0'],tabby:['#b9ab98','#7d6f60','#f5efe6'],cream:['#f3d9b1','#d9a86a','#fffaf0']};
+function wc(id){return '<filter id="'+id+'" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" seed="'+(n%7+2)+'"/><feDisplacementMap in="SourceGraphic" scale="8"/><feGaussianBlur stdDeviation="1.6"/></filter>'}
+var INK='fill="none" stroke="#2a2522" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"';
+function eyes(open,y){y=y||78;return open?'<path d="M78 '+y+' q7 -6 14 0 q-7 5 -14 0z" fill="#b7c95a" stroke="#2a2522" stroke-width="1.6"/><path d="M85 '+(y-3)+' v6" stroke="#2a2522" stroke-width="2.2" stroke-linecap="round"/><path d="M108 '+y+' q7 -6 14 0 q-7 5 -14 0z" fill="#b7c95a" stroke="#2a2522" stroke-width="1.6"/><path d="M115 '+(y-3)+' v6" stroke="#2a2522" stroke-width="2.2" stroke-linecap="round"/>':'<path d="M78 '+y+' q7 5 14 0 M108 '+y+' q7 5 14 0" '+INK+'/>'}
+function face(open,y){y=y||78;return eyes(open,y)+'<path d="M97 '+(y+9)+' h6 l-3 4z" fill="#2a2522"/><path d="M100 '+(y+13)+' q-4 5 -8 1 M100 '+(y+13)+' q4 5 8 1" '+INK+' stroke-width="1.8"/>'}
+function stripes(c,list){return '<g stroke="'+c+'" stroke-width="6" stroke-linecap="round" opacity=".55">'+list.map(function(d){return '<path d="'+d+'"/>'}).join('')+'</g>'}
+var HELMET='<g><path d="M60 56 C64 26 136 26 140 56 Z" fill="#aab3b8" stroke="#2a2522" stroke-width="2.6" stroke-linejoin="round"/><path d="M58 56 h84" stroke="#8a6a3a" stroke-width="7" stroke-linecap="round"/><path d="M60 46 C40 44 30 26 34 12 C44 26 54 30 64 36" fill="#fffaf0" stroke="#2a2522" stroke-width="2.4" stroke-linejoin="round"/><path d="M140 46 C160 44 170 26 166 12 C156 26 146 30 136 36" fill="#fffaf0" stroke="#2a2522" stroke-width="2.4" stroke-linejoin="round"/><circle cx="100" cy="40" r="3" fill="#2a2522"/></g>';
+function svg(kind,col){var p=PAL[col]||PAL.orange,id='wc'+(++n),f='filter="url(#'+id+')"',b='';
+ if(kind==='sleep'){
+  b='<g '+f+' opacity=".9"><ellipse cx="100" cy="132" rx="72" ry="44" fill="'+p[0]+'"/><ellipse cx="78" cy="112" rx="38" ry="30" fill="'+p[0]+'"/></g>'+stripes(p[1],['M120 100 q6 14 0 28','M140 104 q6 14 0 26','M100 98 q6 14 0 24'])+'<ellipse cx="80" cy="128" rx="16" ry="9" fill="'+p[2]+'" opacity=".9" '+f+'/>'
+  +'<path d="M52 98 L58 70 L74 88 M88 86 L104 72 L104 100" '+INK+'/><path d="M30 140 C28 168 60 178 100 176 C150 176 176 164 172 136" '+INK+'/><path d="M172 136 C182 150 168 172 140 170" '+INK+'/><path d="M66 112 q6 4 12 0 M86 112 q6 4 12 0" '+INK+'/><path d="M79 120 h5 l-2.5 3z" fill="#2a2522"/><text x="128" y="70" font-family="Caveat Brush,cursive" font-size="22" fill="#2a2522">z z</text>';
+ } else if(kind==='peek'){
+  b='<g '+f+' opacity=".9"><ellipse cx="100" cy="92" rx="50" ry="40" fill="'+p[0]+'"/></g>'+stripes(p[1],['M100 56 v14','M86 58 v12','M114 58 v12'])+'<ellipse cx="100" cy="106" rx="16" ry="11" fill="'+p[2]+'" opacity=".9" '+f+'/>'
+  +'<path d="M58 80 L64 44 L84 62 M116 62 L136 44 L142 80" '+INK+'/><path d="M52 122 C52 104 54 96 60 88 M148 122 C148 104 146 96 140 88" '+INK+'/>'+face(true,86)
+  +'<path d="M66 124 q2 -14 14 -12 q10 2 8 14 M112 126 q-2 -14 10 -14 q12 0 12 12" fill="'+p[0]+'" stroke="#2a2522" stroke-width="2.6"/><path d="M74 118 v5 M80 118 v5 M120 118 v5 M126 118 v5" '+INK+' stroke-width="1.6"/><path d="M20 126 H180" stroke="#2a2522" stroke-width="3" stroke-linecap="round"/>';
+ } else {
+  b='<g '+f+' opacity=".9"><ellipse cx="100" cy="142" rx="50" ry="46" fill="'+p[0]+'"/><ellipse cx="100" cy="80" rx="44" ry="35" fill="'+p[0]+'"/></g>'
+  +stripes(p[1],['M70 132 q10 6 0 16','M130 132 q-10 6 0 16','M100 50 v12','M88 52 v10','M112 52 v10','M68 160 q10 4 2 14','M132 160 q-10 4 -2 14'])
+  +'<ellipse cx="100" cy="128" rx="20" ry="26" fill="'+p[2]+'" opacity=".95" '+f+'/>'
+  +'<path d="M62 70 L68 34 L88 52 M112 52 L132 34 L138 70" '+INK+'/><path d="M62 104 C48 132 52 168 68 186 M138 104 C152 132 148 168 132 186 M66 186 H134" '+INK+'/>'
+  +'<path d="M80 186 q5 -12 11 0 M109 186 q5 -12 11 0" '+INK+'/><path d="M134 178 C172 182 184 152 166 134" '+INK+'/>'+face(true,80);
+  if(kind==='wave')b+='<path d="M136 120 C150 104 156 86 152 72" '+INK+'/><path d="M144 76 q8 -14 18 -4 q4 10 -10 14" fill="'+p[0]+'" stroke="#2a2522" stroke-width="2.6"/>';
+  if(kind==='viking')b+=HELMET;
+  if(kind==='happy')b=b.replace(eyes(true,80),eyes(false,80));
+ }
+ return '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><defs>'+wc(id)+'</defs>'+b+'</svg>'}
+window.catSVG=svg;
+window.catEl=function(kind,col,cls){var s=document.createElement('span');s.className='cat '+(cls||'');s.innerHTML=svg(kind,col);return s};
+document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('[data-cat]').forEach(function(e){e.innerHTML=svg(e.getAttribute('data-cat'),e.getAttribute('data-col'))})});
+})();
+</script></head><body><header>
   <strong>SWEDISH / STUDIES</strong>
   <nav aria-label="Main navigation">
     <a href="daily.html" aria-current="page">Today</a>
@@ -80,14 +161,14 @@ html.app .tabbar{display:flex}html.app header nav{display:none}html.app body{pad
 
 <div id="home" hidden>
 <div class="row" style="justify-content:space-between;margin-top:0"><div class="label" id="datelabel"></div><button id="whoBtn" class="chip" aria-label="Switch person"></button></div>
-<div class="hero"><div><h1>Dagens svenska</h1><p id="intro">About 25 minutes. Six short steps — the words you learn come back just before you would forget them.</p>
+<div class="hero"><div class="herotxt"><h1 class="mega">Dagens<br>svenska<span class="ast" aria-hidden="true">✱</span></h1><div class="script" aria-hidden="true">nu kör vi!</div><p id="intro">About 25 minutes. Six short steps — the words you learn come back just before you would forget them.</p>
 <div class="path" id="path"></div>
 <div class="row"><button id="start" class="primary big">▶ Start</button></div><p class="muted" id="plan"></p></div>
-<aside class="board"><div class="label">Din svenska · your Swedish</div><div class="stats"><div class="stat"><b id="sStreak">0</b><span>day streak <span class="flame">🔥</span></span></div><div class="stat"><b id="sXP">0</b><span>XP</span></div><div class="stat"><b id="sWords">0</b><span>words and sentences learning</span></div><div class="stat"><b id="sDue">0</b><span>cards to review today</span></div></div><div class="cal" id="cal" aria-label="Last 14 days"></div><p class="muted" id="sRet" style="margin:8px 0 0;font-size:14px"></p></aside></div>
+<aside class="board streakcard"><span class="cat peekcat" data-cat="peek" data-col="orange"></span><div class="sticker" aria-hidden="true">Medlem i<br><b>Viking&shy;klubben</b><br>sedan idag</div><div class="srow"><span class="ic fire">🔥</span><span class="lbl">Streak</span><b id="sStreak">0</b><span class="unit">dagar</span></div><div class="srow"><span class="ic ok">✓</span><span class="lbl">Ord & meningar</span><b id="sWords">0</b></div><div class="srow"><span class="ic star">★</span><span class="lbl">XP</span><b id="sXP">0</b></div><div class="srow"><span class="ic due">↻</span><span class="lbl">Att repetera idag</span><b id="sDue">0</b></div><div class="cal" id="cal" aria-label="Last 14 days"></div><p class="muted" id="sRet" style="margin:8px 0 0;font-size:14px"></p></aside></div>
 
 <div class="tabs" id="tabs" role="tablist"></div>
 <section id="journey" class="tabpane"><div class="label">Resan · the journey A2 → C1</div><h2>Din resa</h2><p class="muted">Each station is one chapter from your books: new words, a grammar game, a video and a speaking task. Finish all four to unlock the next station.</p>
-<div id="unitcard" class="unitcard"></div><div id="map"></div></section>
+<div id="courses" class="courses"></div><div id="unitcard" class="unitcard"></div><div id="map"></div></section>
 
 <section id="testsec" class="tabpane"><div class="label">Nivåprov · level tests</div><h2>Testa din nivå</h2><p class="muted">When you finish all stations of a level, take its test: words, grammar and listening. It shows your weak spots — and those come back in your daily practice until they are strong. You can also take a test any time as a check-up.</p><div id="tests" class="tests"></div></section>
 <section id="chestsec" class="tabpane"><div class="label">Skattkistan · your rune stones</div><h2>Ragnars runstenar <span id="chestcount" class="muted" style="font-size:18px"></span></h2><p class="muted">Finish a station to win its rune stone. Tap a stone to hear Ragnar’s saga again — the story of where Swedish words come from.</p><div id="chest" class="chest"></div></section>
@@ -977,10 +1058,10 @@ Vatten är ___ (dricka) här.|drickbart|drickligt;dricklöst;drickat|-bar`}
 /* Ragnar Ordsmed — a Viking word-smith from Birka who travels through time collecting words.
    One saga per station: id|emoji|badge|saga in Swedish|English. Facts written for this site. */
 const SAGAS_RAW=`
-a3|🎲|Tärningen|Hej! Jag heter Ragnar Ordsmed. Jag är en viking från Birka, och jag samlar ord. Vikingar räknade på fingrarna. Efter tio fingrar fanns det ”en kvar” – och därför heter det elva! Tolv betyder ”två kvar”. Engelskans eleven och twelve kommer från samma gamla ord.|Hi! I’m Ragnar Ordsmed (Wordsmith), a Viking from Birka, and I collect words. Vikings counted on their fingers. After ten fingers there was “one left” — that is where elva (eleven) comes from! Tolv (twelve) means “two left”. English eleven and twelve come from the same old words.
+a3|🎲|Tärningen|Hej! Jag heter Ragnar Ordsmed. Jag är en vikingakatt från Birka, och jag samlar ord. Vikingar räknade på fingrarna. Efter tio fingrar fanns det ”en kvar” – och därför heter det elva! Tolv betyder ”två kvar”. Engelskans eleven och twelve kommer från samma gamla ord.|Hi! I’m Ragnar Ordsmed (Wordsmith), a Viking cat from Birka, and I collect words. Vikings counted on their fingers. After ten fingers there was “one left” — that is where elva (eleven) comes from! Tolv (twelve) means “two left”. English eleven and twelve come from the same old words.
 a4|🪙|Silvermyntet|Vikingar handlade med silver. De vägde silvret på en liten våg. Ordet köpa är mycket gammalt – det kommer från latinets caupo, en handlare. Därför heter städer Linköping, Norrköping och Jönköping: en köping var en stad med marknad.|Vikings traded with silver, weighed on a little scale. The word köpa (buy) is very old — it comes from Latin caupo, a trader. That is why towns are called Linköping, Norrköping and Jönköping: a köping was a market town.
 a5|🔨|Torshammaren|Veckans dagar är fulla av vikinga-gudar! Tisdag är Tyrs dag. Onsdag är Odens dag. Torsdag är Tors dag – han med hammaren. Fredag är Friggs dag. Och lördag? Det var ”tvättdagen”, när man badade. Söndag och måndag är solens och månens dagar.|The days of the week are full of Viking gods! Tisdag is Tyr’s day, onsdag Odin’s day, torsdag Thor’s day — the one with the hammer. Fredag is Frigg’s day. And lördag? It was “washing day”, when people bathed. Söndag and måndag are the sun’s and the moon’s days.
-a6|🌳|Släktträdet|Min son heter Leif Ragnarsson. Det betyder ”Ragnars son”. Så fick vikingarna sina efternamn. Andersson betyder Anders son och Eriksson betyder Eriks son. Och farmor? Det är fars mor. Morfar är mors far. Svenska är logiskt!|My son is called Leif Ragnarsson — “Ragnar’s son”. That is how Vikings got their surnames. Andersson means Anders’ son, Eriksson means Erik’s son. And farmor? Father’s mother. Morfar is mother’s father. Swedish is logical!
+a6|🌳|Släktträdet|Min kattunge heter Leif Ragnarsson. Det betyder ”Ragnars son”. Så fick vikingarna sina efternamn. Andersson betyder Anders son och Eriksson betyder Eriks son. Och farmor? Det är fars mor. Morfar är mors far. Svenska är logiskt!|My kitten is called Leif Ragnarsson — “Ragnar’s son”. That is how Vikings got their surnames. Andersson means Anders’ son, Eriksson means Erik’s son. And farmor? Father’s mother. Morfar is mother’s father. Swedish is logical!
 a7|🧥|Pälsen|Vikingar sålde päls och köpte tyg. Vi hade ett ord, skyrta, för en lång tröja. Engelsmännen lånade det ordet och fick skirt. Men de hade redan ett eget släktord – shirt! Så skirt och shirt är kusiner. På svenska blev det skjorta.|Vikings sold furs and bought cloth. We had a word, skyrta, for a long tunic. The English borrowed it and got skirt — but they already had a related word of their own: shirt! So skirt and shirt are cousins. In Swedish it became skjorta.
 a8|🐻|Björnen|Förr vågade man inte säga björnens riktiga namn. Man trodde att den då skulle komma! Därför sa man ”den bruna” – björn. Ord kan vara hemliga!|Long ago people didn’t dare say the bear’s real name — they thought it would come! So they called it “the brown one”: björn. Words can be secret!
 a9|⛵|Långskeppet|Vikingarna reste långt med sina skepp. Ingen vet säkert vad ordet viking betyder. Kanske kommer det från vik – en liten bukt där skeppen låg. Ordet fara betydde ”resa”. Engelskans farewell betyder ungefär ”res väl”!|Vikings travelled far in their ships. No one knows for sure what the word viking means — maybe it comes from vik, a small bay where ships lay. The old word fara meant “travel”. English farewell means roughly “travel well”!
@@ -1238,12 +1319,15 @@ function renderHome(){
   const ns=nextStep(),q=quota();const pa=$('path');pa.replaceChildren();STEPS.forEach((s,i)=>{const d=node('div','','st'+(D()[s[0]]?' ok':i===ns?' next':''));d.append(node('i',s[2]),node('span',s[1]));pa.append(d)});
   $('start').textContent=ns<0?'✓ Klart idag — practise more':ns===0?'▶ Starta dagens pass':'▶ Fortsätt: '+STEPS[ns][1];
   const u=curUnit();$('plan').textContent=(q.back?'Welcome back! Today is a short comeback day. ':'')+'Today: '+Math.min(dueCards().length,q.cap)+' reviews · up to '+q.newWords+' new words · station '+(S.unit+1)+': '+u.title+'.';
-  renderTabs();renderUnit();renderMap();renderTests();renderChest();renderWordList();renderInbox();fillSettings();renderIslands();$('inboxcount2').textContent=$('inboxcount').textContent;
+  renderTabs();renderCourses();renderUnit();renderMap();renderTests();renderChest();renderWordList();renderInbox();fillSettings();renderIslands();$('inboxcount2').textContent=$('inboxcount').textContent;
 }
 const TABS=[['journey','🗺️ Resan'],['testsec','🎓 Prov'],['chestsec','💎 Skattkista'],['mywords','📚 Mina ord']];let curTab='journey';
 function renderTabs(){const t=$('tabs');t.replaceChildren();TABS.forEach(([id,lab])=>{const b=button(lab,()=>{curTab=id;renderTabs()},curTab===id?'on':'');b.setAttribute('role','tab');b.setAttribute('aria-selected',curTab===id);t.append(b);$(id).hidden=curTab!==id})}
 function renderIslands(){const b=$('islandStats');b.replaceChildren();Object.values(ISLANDS).forEach(I=>{const n=S.extra.filter(x=>x.src===I.e+' '+I.name).length;b.append(node('span',I.e+' '+I.name+': '+n+' sentence'+(n===1?'':'s')))})}
 function meter(lab,val,ok){const m=node('div','','meter'+(ok?' ok':''));m.append(node('b',ok?'✓':val),node('span',lab));return m}
+function renderCourses(){const box=$('courses');box.replaceChildren();const IC={A2:['🌱','#7fae6e'],B1:['⚡','#5b7fd6'],B2:['🛡️','#e8b52a'],C1:['🏆','#a77bd1']};
+  LEVELS.forEach(([L,name])=>{const us=UNITS.filter(u=>u.lvl===L);const done=us.filter(u=>ust(u).done).length;const pc=Math.round(100*done/us.length);const cur=curUnit().lvl===L;
+    const d=node('div','','course'+(cur?' cur':''));const ic=node('span',IC[L][0],'cic');ic.style.background=IC[L][1];const mid=node('div','','cmid');const t=node('div');t.append(node('b',L+' · '+name),node('span',pc+'%','pc'));t.className='ctop';const bar=node('div','','cbar');const i=node('i');i.style.width=Math.max(pc,2)+'%';bar.append(i);mid.append(t,bar);d.append(ic,mid);box.append(d)})}
 function renderUnit(){const u=curUnit(),st=ust(u),pt=unitParts(u);const c=$('unitcard');c.replaceChildren();
   c.append(node('div',u.lvl+' · '+BOOKS[u.book]+' · kapitel '+u.ch,'label'));const h=node('h2');h.append(sv('span','Station '+(S.unit+1)+': '+u.title));c.append(h);
   const g=GAME_NAMES[u.game]||['🎯',u.game];const m=node('div','','meters');
@@ -1260,7 +1344,7 @@ function stationInfo(u){const k=UIDX.get(u.id),st=ust(u);const b=$('dlgbody');b.
 function renderChest(){const box=$('chest');box.replaceChildren();let n=0;
   UNITS.forEach((u,k)=>{const g=SAGA.get(u.id);if(!g)return;const got=ust(u).done;if(got)n++;const d=node('div','','stone'+(got?'':' locked'));d.append(node('div',got?g.e:'ᚱ','e'),node('b',got?g.badge:'Station '+(k+1)),node('div',got?toRunes(g.badge):'?','r'));
     if(got){d.tabIndex=0;d.setAttribute('role','button');d.onclick=()=>sagaDialog(u)}box.append(d)});$('chestcount').textContent=n+' / '+UNITS.length}
-function sagaBox(u,onDone){const g=SAGA.get(u.id);const b=node('div','','saga');const r=node('div','','rag');const t=node('div');t.append(node('small','Ragnars saga · station '+(UIDX.get(u.id)+1)),node('b','Ragnar Ordsmed berättar'));r.append(node('span','🧔'),t);b.append(r);
+function sagaBox(u,onDone){const g=SAGA.get(u.id);const b=node('div','','saga');const r=node('div','','rag');const t=node('div');t.append(node('small','Ragnars saga · station '+(UIDX.get(u.id)+1)),node('b','Ragnar Ordsmed, vikingakatten, berättar'));r.append(window.catEl?catEl('viking','orange','ragcat'):node('span','🧔'),t);b.append(r);
   b.append(node('div',g.e,'big'));const tx=sv('div',g.sv,'txt');b.append(tx);const en=node('div',g.en,'en');en.hidden=true;b.append(en);
   const c=node('div','','row');c.append(button('🔊 Lyssna',()=>say(g.sv)),button('🐢 Långsamt',()=>say(g.sv,.7)),button('🇬🇧 English',()=>{en.hidden=!en.hidden}));if(onDone)c.append(button(onDone[0],onDone[1],'primary'));b.append(c);return b}
 function sagaDialog(u){const b=$('dlgbody');b.replaceChildren(sagaBox(u));$('dlgclose').onclick=()=>{$('dlg').close();if(synth)synth.cancel()};$('dlg').showModal()}
@@ -1283,12 +1367,12 @@ function runStep(){({ear:runEar,review:runReview,new:runNew,game:runGame,watch:r
 function backHome(){if(synth)synth.cancel();stopRec();$('session').hidden=true;$('home').hidden=false;renderHome();window.scrollTo(0,0)}
 function exitBtn(){return button('Pause — back to start',backHome)}
 function confetti(s,n){const em=['🎉','⭐','⚽','🏆','✨','🇸🇪'];for(let i=0;i<(n||26);i++){const c=node('span',pickOne(em),'confetti');c.style.left=Math.random()*95+'%';c.style.animationDelay=(Math.random()*.9)+'s';s.append(c);setTimeout(()=>c.remove(),3600)}}
-function celebrate(){const s=shell();s.append(node('div','🏆','party'),node('h2','Bra jobbat! Klart för idag.'),node('p','Streak: '+streak()+' 🔥 · '+(S.xp||0)+' XP. Every word you practised today will come back at the right time. Vi ses imorgon!'));
+function celebrate(){const s=shell();s.append(window.catEl?catEl('happy','orange','bigcat party'):node('div','🏆','party'),node('h2','Bra jobbat! Klart för idag.'),node('p','Streak: '+streak()+' 🔥 · '+(S.xp||0)+' XP. Every word you practised today will come back at the right time. Vi ses imorgon!'));
   const r=node('div',undefined,'row center');r.append(button('Practise a few more cards',()=>{stepIdx=1;runReview(true)}),button('Back to start',backHome,'primary'));s.append(r);confetti(s)}
 function stationDone(u){const st=ust(u);st.done=true;S.xp=(S.xp||0)+50;const k=UIDX.get(u.id);if(S.unit===k&&k<UNITS.length-1)S.unit=k+1;save();
   const s=shell();const g=SAGA.get(u.id)||{e:'🎖️',badge:u.title};s.append(node('h2','Station klar: '+u.title+'!'));
   const rv=node('div','','reveal');const st2=node('div','','stone');st2.append(node('div',g.e,'e'),node('b',g.badge),node('div',toRunes(g.badge),'r'));rv.append(st2);s.append(rv);
-  s.append(node('p','🧔 Ragnar: ”Bra jobbat! Här är din runsten: '+g.badge+'. Den ligger nu i din skattkista.” +50 XP. Next station: '+curUnit().title+'.','center'));try{say('Bra jobbat! Här är din runsten: '+g.badge)}catch(e){}
+  s.append(node('p','🐱 Ragnar: ”Bra jobbat! Här är din runsten: '+g.badge+'. Den ligger nu i din skattkista.” +50 XP. Next station: '+curUnit().title+'.','center'));try{say('Bra jobbat! Här är din runsten: '+g.badge)}catch(e){}
   const nl=curUnit();if(levelProgress(u.lvl).done===levelProgress(u.lvl).total){s.append(node('h3','🎉 You finished all '+u.lvl+' stations! Time for the Nivåprov '+u.lvl+'.'));const tb=button('▶ Take the '+u.lvl+' test now',()=>runTest(u.lvl),'good');const tr=node('div','','row center');tr.append(tb);s.append(tr)}
   const r=node('div',undefined,'row center');r.append(button('Continue →',()=>{const ns=nextStep();if(ns<0){celebrate();return}stepIdx=ns;runStep()},'primary'));s.append(r);confetti(s,40)}
 
@@ -1378,7 +1462,7 @@ function runReview(extra){
   const q=quota();let queue=dueCards().slice(0,extra?20:q.cap);
   if(extra&&!queue.length){queue=shuffle(Object.values(S.cards).filter(c=>c.box>0)).slice(0,15)}
   const total=queue.length;let ok=0;
-  if(!total){const s=shell('Repetera','Nothing to review today.');s.append(node('p','No cards are due yet — new words start in the next step. Cards come back after 1 day, then 3, 9, 21 days…','muted'));const r=node('div',undefined,'row');r.append(button('Next step →',finishStep,'primary'),exitBtn());s.append(r);return}
+  if(!total){const s=shell('Repetera','Nothing to review today.');if(window.catEl)s.append(catEl('sleep','orange','midcat'));s.append(node('p','No cards are due yet — new words start in the next step. Cards come back after 1 day, then 3, 9, 21 days…','muted'));const r=node('div',undefined,'row');r.append(button('Next step →',finishStep,'primary'),exitBtn());s.append(r);return}
   const seen=new Set(),again=new Map();
   function next(){
     if(!queue.length){const s=shell('Repetera: klart!');s.append(node('p','You remembered '+ok+' of '+total+' cards on the first try.','fb ok'));if(ok>=total*.9&&total>=5)confetti(s,14);const r=node('div',undefined,'row');r.append(extra?button('Back to start',backHome,'primary'):button('Next step →',finishStep,'primary'),extra?'':exitBtn());s.append(r);return}
@@ -1553,7 +1637,7 @@ function results(L,qs,res){const by={};qs.forEach((q,k)=>{const b=by[q.skill]||(
   const s=stage();s.replaceChildren();const pass=pct>=75;
   s.append(node('div','Nivåprov '+L+' · results','label'));const ring=node('div','','ring');ring.style.background='conic-gradient('+(pass?'var(--good)':'var(--accent)')+' '+pct*3.6+'deg,var(--wash) 0)';ring.append(node('span',pct+'%'));s.append(ring);
   s.append(node('h2',pass?(first?'🎓 Godkänt! You passed '+L+'!':'Godkänt igen — great repetition!'):'Bra försök! Here is what to work on.'));
-  s.append(node('p','🧔 Ragnar: '+(pass?'”En riktig ordsmed! Dina runor står starka.”':'”Även Tor missade ibland med hammaren. Vi tränar de svaga punkterna — sedan försöker du igen.”'),'muted'));
+  if(window.catEl)s.append(catEl(pass?'viking':'peek',pass?'orange':'grey','midcat'));s.append(node('p','🐱 Ragnar: '+(pass?'”En riktig ordsmed! Dina runor står starka.”':'”Även Tor missade ibland med hammaren. Vi tränar de svaga punkterna — sedan försöker du igen.”'),'muted'));
   const sk=node('div');Object.entries(by).sort((a,b)=>a[1].ok/a[1].n-b[1].ok/b[1].n).forEach(([k,v])=>{const p=Math.round(100*v.ok/v.n);const nm=skillName(k);const r=node('div','','skill');r.append(node('span',nm[0]+' '+nm[1]));const sb=node('div','','sb '+(p>=70?'ok':'weak'));const i=node('i');i.style.width='0';sb.append(i);setTimeout(()=>i.style.width=p+'%',100);r.append(sb,node('b',(p>=70?'':'⚠ ')+p+'%'));sk.append(r)});s.append(sk);
   const todo=[];if(weakGames.length)todo.push('⚠ Weak grammar ('+weakGames.map(k=>skillName(k)[1]).join(', ')+') now comes first in your daily Grammatik step until you get 8/10.');if(rev)todo.push('📚 '+rev+' word'+(rev>1?'s':'')+' you missed '+(rev>1?'are':'is')+' back in today’s reviews.');if(weak.includes('listen'))todo.push('👂 Listening: watch the station videos with Swedish subtitles and use 🐢 slow on cards.');if(!todo.length)todo.push('No weak spots — everything is 70% or more. 💪');
   todo.forEach(x=>s.append(node('p',x)));
