@@ -1589,7 +1589,7 @@ function harvest(){
   const am=readLS('swedish-arena-miss-v1');const mine=am&&am[String(p.name).toLowerCase()];
   if(Array.isArray(mine))mine.slice(-30).forEach(x=>{const id='g:'+norm(x.full).slice(0,60);if(S.cards[id]||!x.full||!x.blank||x.full.indexOf(x.blank)<0)return;out.push({id,kind:'cloze',full:x.full,blank:x.blank,src:'Grammatik · '+((GAME_NAMES[x.game]||['',''])[1])})});
   const rd=readLS(profKeyB('swedish-reader-v1',p));
-  if(rd&&Array.isArray(rd.words))rd.words.forEach(w=>{if(!w.ctx||!w.form)return;const id='r:'+norm(w.form);if(S.cards[id])return;const i=w.ctx.toLocaleLowerCase('sv').indexOf(w.form.toLocaleLowerCase('sv'));if(i<0)return;out.push({id,kind:'cloze',full:w.ctx,blank:w.ctx.slice(i,i+w.form.length),src:w.src||'📖 Läsning',en:w.en&&w.en!=='?'?w.en:undefined})});
+  if(rd&&Array.isArray(rd.words))rd.words.forEach(w=>{if(!w.ctx||!w.form)return;if(w.bid&&S.cards[w.bid])return;const id='r:'+norm(w.form);if(S.cards[id])return;const i=w.ctx.toLocaleLowerCase('sv').indexOf(w.form.toLocaleLowerCase('sv'));if(i<0)return;out.push({id,kind:'cloze',full:w.ctx,blank:w.ctx.slice(i,i+w.form.length),src:w.src||'📖 Läsning',en:w.en&&w.en!=='?'?w.en:undefined})});
   const rm=new Set(S.removed||[]);return out.filter(x=>!rm.has(x.id));
 }
 function fromBrackets(text,src,id){const m=text.match(/\[([^\]]+)\]/);const full=text.replace(/[\[\]]/g,'').trim();return m?{id,kind:'cloze',full,blank:m[1].trim(),src}:{id,kind:'echo',full,src}}
