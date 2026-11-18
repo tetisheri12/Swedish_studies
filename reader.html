@@ -10,7 +10,9 @@ select{padding:9px;border:1px solid var(--line);border-radius:var(--r);backgroun
 .modes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}.modes button{padding:10px;line-height:1.25}.modes small{display:block;font-size:13px;opacity:.9}
 .text{background:#fffdf7;border:1px solid var(--line);border-radius:var(--r);padding:clamp(16px,4vw,34px);font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:1.85}
 .text p{margin:0 0 1.2em;max-width:none}.text.lines .s{display:block;margin:0 0 .55em}.s{border-radius:6px;transition:background .15s}.keys .s{cursor:pointer}.keys .s:hover{background:var(--wash)}.s.key{background:var(--key);box-shadow:0 0 0 2px var(--key)}
-.w{cursor:pointer;border-radius:4px}.words .w:hover{background:var(--wash)}.w.bk-learn{background:#fbeeb8}.w.bk-new{text-decoration:underline dotted #b9b39a;text-underline-offset:5px}.bankstat{background:#fffdf7;border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;margin:10px 0;display:grid;gap:6px}.bankstat .chips{display:flex;flex-wrap:wrap;gap:6px}.bankstat .chip{border-radius:999px;padding:2px 10px;font-size:14px;background:var(--wash)}
+.w{cursor:pointer;border-radius:4px}.words .w:hover{background:var(--wash)}#summary,#questions,#chapterwords,#mKeys{display:none!important}
+.libgroup{margin:14px 0 4px;font-weight:bold;color:var(--muted);font-size:14px;text-transform:uppercase;letter-spacing:.08em}.libitem{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;background:#fffdf7;border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;margin:6px 0}.libitem.cur{border-color:var(--accent)}.libitem b{font-size:18px}.libitem .m{color:var(--muted);font-size:14px}.libitem .a{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.libitem .a button{padding:6px 12px;font-size:14px}.libempty{text-align:center;background:#fffdf7;border:1.5px dashed var(--line);border-radius:14px;padding:22px}.libempty .cat{width:110px;height:110px;display:inline-block}.readbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:8px 0}.readbar b{font-size:20px}#ttitle{width:100%;border:2px solid var(--line);border-radius:12px;padding:10px 12px;margin:8px 0;background:#fff}
+.w.bk-learn{background:#fbeeb8}.w.bk-new{text-decoration:underline dotted #b9b39a;text-underline-offset:5px}.bankstat{background:#fffdf7;border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;margin:10px 0;display:grid;gap:6px}.bankstat .chips{display:flex;flex-wrap:wrap;gap:6px}.bankstat .chip{border-radius:999px;padding:2px 10px;font-size:14px;background:var(--wash)}
 .w.g{text-decoration:underline dotted #8aa29a;text-underline-offset:5px}.w.saved{text-decoration:underline solid var(--accent) 2px;text-underline-offset:5px}.w.on{background:#cfe0d6}
 .sheet{position:fixed;left:0;right:0;bottom:0;z-index:60;padding-bottom:calc(22px + env(safe-area-inset-bottom,0px));background:#fffdf7;border-top:2px solid var(--ink);box-shadow:0 -8px 24px rgba(0,0,0,.12);padding:16px 20px 22px;max-height:60vh;overflow:auto}.sheet .in{max-width:900px;margin:auto}.sheet .big{font-size:28px;font-weight:bold;display:flex;gap:12px;align-items:center;flex-wrap:wrap}.sheet .en{font-size:21px;margin:4px 0}.sheet .ctx{font-family:Georgia,serif;color:var(--muted)}.sheet input{padding:9px;border:1px solid var(--line);border-radius:10px;min-width:220px}
 .events{list-style:none;padding:0;margin:10px 0}.events li{padding:10px 0;border-bottom:1px solid var(--line);display:flex;gap:12px}.events b.ok{color:var(--good)}.events b.no{color:var(--accent)}
@@ -257,34 +259,35 @@ window.catAvatar=function(av){var m=AVRE.exec(av||'');return m?avHTML(m[1]):null
   </nav>
 </header><main>
 <div class="label">Reader · read, understand, collect words</div>
-<div class="row"><label>Chapter <select id="chapter"></select></label></div>
-<h1 id="ctitle"></h1><p id="cintro"></p>
-<nav class="page-shortcuts" aria-label="On this page"><span>On this page</span><a href="#paste">Add the text</a><a href="#read">Read</a><a href="#summary">Key sentences</a><a href="#mywords">My words</a></nav>
+<h1>Reader</h1><p class="muted" id="textname">Your books and texts, with the words matched to your wordbank.</p>
+<div hidden><select id="chapter"></select><span id="ctitle"></span><span id="cintro"></span></div>
+<section id="lib"><div class="label">My texts</div><div id="liblist"></div></section>
+<div id="readbar" class="readbar" hidden><button id="backlib">← My texts</button><b id="readtitle"></b></div>
 
-<section id="paste"><div class="label">01 · Add the text</div><h2>Put the book text here.</h2>
-<details id="pastebox"><summary id="pastesum">Paste the pages or open an EPUB</summary>
+<section id="paste"><div class="label">Add to My texts</div><h2>＋ Add a text or a book</h2>
+<details id="pastebox"><summary id="pastesum">Paste text or open an EPUB</summary>
 <div class="band"><p><b>Quickest on iPad:</b> open a page screenshot in Photos → touch and hold the text → <b>Select All</b> → <b>Copy</b>. Paste it below. Do this page by page, in order.</p><p class="muted">The text is saved only in this browser on this device. It is never uploaded or published.</p></div>
 <div class="band epub"><p><b>📚 Have the book as an EPUB?</b> Open it here, pick the chapter, and its text goes into the box below.</p>
 <div class="row"><label class="btnlike" for="epubfile">Open EPUB file …</label><input id="epubfile" type="file" accept=".epub,application/epub+zip" hidden></div>
-<div id="epubpick" hidden><p id="epubtitle" class="muted"></p><div class="row"><select id="epubsec" aria-label="Section of the book"></select><button id="epubload" class="primary">Put this chapter in the box</button><button id="epubnext">+ Add the next section</button></div>
-<p class="muted">Some chapters are split into several sections. Use “Add the next section” to join them. The book is read on this device only and is never uploaded.</p></div></div>
-<textarea id="src" lang="sv" placeholder="Paste the chapter text here …" spellcheck="false"></textarea>
-<div class="row"><button id="clean">🧹 Clean up the text</button><button id="use" class="primary">Use this text →</button><button id="cleartext">Delete text</button></div>
-<p class="muted">Clean up joins words split across lines (mot-ståndarens → motståndarens) and removes page numbers. Check the result, then press “Use this text”.</p>
+<div id="epubpick" hidden><p id="epubtitle" class="muted"></p><div class="row"><select id="epubsec" aria-label="Section of the book"></select><button id="epubadd" class="primary">＋ Add chapter to My texts</button><button id="epubaddall">＋ Add every chapter</button><button id="epubload">Put in the box instead</button><button id="epubnext">+ Join next section</button></div>
+<p class="muted">Some chapters are split into several sections. Use “Join next section” to join them. The book is read on this device only and is never uploaded.</p></div></div>
+<input id="ttitle" placeholder="Name for this text (e.g. Katt på recept, ch. 3)" aria-label="Name for this text"><textarea id="src" lang="sv" placeholder="Paste the chapter text here …" spellcheck="false"></textarea>
+<div class="row"><button id="clean">🧹 Clean up the text</button><button id="use" class="primary">＋ Add to My texts and read</button><button id="cleartext">Clear the box</button></div>
+<p class="muted">Clean up joins words split across lines (mot-ståndarens → motståndarens) and removes page numbers. Check the result, then add it to My texts.</p>
 </details><p id="pastestatus" class="muted"></p></section>
 
-<section id="read"><div class="label">02 · Read</div><h2>Read and tap.</h2>
+<section id="read" hidden><div class="label">Read</div><h2>Tap a word to see what it means</h2>
 <div class="modes" role="group" aria-label="Reading mode"><button id="mWords"><b>📖 Ord</b><small>Tap a word → meaning</small></button><button id="mKeys"><b>⭐ Viktiga meningar</b><small>Tap sentences that tell the story</small></button></div>
 <div class="row"><button id="readall">▶ Read the text aloud</button><button id="stop">Stop</button><label><input type="checkbox" id="perline"> One sentence per line</label><span class="muted" id="modehelp"></span></div>
-<div id="text" class="text words" lang="sv"><p class="muted" style="font-family:inherit;font-size:17px">Add the text in step 01 first.</p></div>
-<p class="muted">Dotted underline = word in the chapter list. Red underline = a word you saved.</p></section>
+<div id="text" class="text words" lang="sv"><p class="muted" style="font-family:inherit;font-size:17px">Open a text from My texts first.</p></div>
+<p class="muted">Dotted underline = in your wordbank, not studied yet. Yellow = you are learning it. Red underline = a word you saved. No mark = you know it, or it is not in the wordbank.</p></section>
 
 <section id="summary"><div class="label">03 · Key sentences</div><h2>Which sentences tell the whole story?</h2>
 <p>In ⭐ mode, mark the sentences that together tell what happens in the text — about one sentence for each important event, 5–8 in total. Then check.</p>
 <div class="row"><button id="checkkeys" class="primary">Check my sentences</button><button id="clearkeys">Clear my marks</button></div>
 <div id="keyresult"></div></section>
 
-<section id="mywords"><div class="label">04 · My words</div><h2>Words I collected</h2>
+<section id="mywords"><div class="label">My words</div><h2>Words I collected</h2>
 <div class="row"><button id="flash">🃏 Practise with flashcards</button><label><input type="checkbox" id="hideen"> Hide English — test yourself</label><button id="hearwords">▶ Hear all</button></div>
 <div id="flashbox" hidden></div>
 <div id="wordlist"></div>
@@ -328,6 +331,23 @@ try{const r=localStorage.getItem(RKEY);if(r)$('rate').value=r}catch(e){}
 $('rate').onchange=()=>{try{localStorage.setItem(RKEY,$('rate').value)}catch(e){}};$('voicetest').onclick=()=>say('Lionel smyger över golvet.');
 let unlocked=false;document.addEventListener('pointerdown',()=>{if(unlocked||!synth)return;unlocked=true;const u=new SpeechSynthesisUtterance(' ');u.volume=0;synth.speak(u)},{capture:true});
 
+/* ---------- My texts library ---------- */
+S.lib=Array.isArray(S.lib)?S.lib:[];S.names=S.names||{};
+(function(){try{Object.keys(S.texts||{}).forEach(k=>{const t=S.texts[k];if(t&&!S.lib.some(x=>x.text===t)){S.lib.push({id:'t'+Date.now()+k.replace(/\W/g,''),title:(S.names&&S.names[k])||(S.book&&S.book[k])||'My first text',book:(S.book&&S.book[k])||'',text:t,t:Date.now(),open:0})}delete S.texts[k]});save()}catch(e){}})();
+let view='lib';
+function curItem(){return S.lib.find(x=>x.id===S.curLib)||null}
+function curText(){const it=curItem();return it?it.text:''}
+function addText(title,book,text){const it={id:'t'+Date.now()+Math.random().toString(36).slice(2,6),title:title||'Text',book:book||'',text,t:Date.now(),open:0};S.lib.push(it);save();return it}
+function openText(id){const it=S.lib.find(x=>x.id===id);if(!it)return;S.curLib=id;it.open=Date.now();save();view='read';showView();renderText();window.scrollTo(0,0)}
+function showView(){const rd=view==='read'&&curItem();$('lib').hidden=!!rd;$('paste').hidden=!!rd;$('read').hidden=!rd;$('readbar').hidden=!rd;if(rd){$('readtitle').textContent=(curItem().book?curItem().book+' · ':'')+curItem().title;$('textname').textContent=''}else{$('textname').textContent='Your books and texts, with the words matched to your wordbank.';renderLib()}}
+function ago(t){if(!t)return'not opened yet';const d=Math.round((Date.now()-t)/864e5);return d<=0?'opened today':d===1?'opened yesterday':'opened '+d+' days ago'}
+function renderLib(){const box=$('liblist');box.replaceChildren();
+  if(!S.lib.length){const e=node('div','','libempty');if(window.catEl)e.append(catEl('sleep','orange','cat'));e.append(node('p','No texts yet. Add your first one below: paste a page, or open an EPUB and add its chapters.','muted'));box.append(e);$('pastebox').open=true;return}
+  const groups=new Map();S.lib.forEach(x=>{const g=x.book||'Pasted texts';if(!groups.has(g))groups.set(g,[]);groups.get(g).push(x)});
+  groups.forEach((items,g)=>{box.append(node('div',g+' · '+items.length+(items.length>1?' texts':' text'),'libgroup'));
+    items.forEach(it=>{const r=node('div','','libitem'+(it.id===S.curLib?' cur':''));const mid=node('div');const nw=S.words.filter(w=>w.tid===it.id).length;mid.append(node('b',it.title),node('div',Math.max(1,Math.round(it.text.length/1000))+'k characters · '+ago(it.open)+(nw?' · '+nw+' saved words':''),'m'));
+      const a=node('div','','a');a.append(button('▶ Open',()=>openText(it.id),'primary'),button('✎',()=>{const n=prompt('New name for this text',it.title);if(n&&n.trim()){it.title=n.trim();save();renderLib()}}),(()=>{const del=button('🗑',()=>{if(del.dataset.sure){S.lib=S.lib.filter(x=>x!==it);if(S.curLib===it.id)S.curLib=null;save();renderLib();return}del.dataset.sure=1;del.textContent='Delete?';setTimeout(()=>{del.dataset.sure='';del.textContent='🗑'},3000)});del.setAttribute('aria-label','Delete text');return del})());
+      r.append(mid,a);box.append(r)})})}
 /* ---------- chapter + glossary ---------- */
 let C=null,GL=new Map(),MAXP=1;
 const low=s=>s.normalize('NFC').toLocaleLowerCase('sv').replace(/[!?.,;:”"’']+$/,'').replace(/^[”"’']+/,'');
@@ -335,7 +355,7 @@ function setChapter(id){
   C=CHAPTERS.find(c=>c.id===id)||CHAPTERS[0];S.ch=C.id;save();GL=new Map();MAXP=1;
   C.gloss.forEach(e=>{const ent={sv:e[0],en:e[1]};[e[0]].concat(e.slice(2)).forEach(f=>{const k=f.split(/\s+/).map(low).join(' ');if(!GL.has(k))GL.set(k,ent);MAXP=Math.max(MAXP,k.split(' ').length)})});
   $('ctitle').textContent=C.book+' · '+C.title;$('cintro').textContent=C.intro+' (pages '+C.pages+')';
-  $('src').value=S.texts[C.id]||'';$('pastebox').open=!S.texts[C.id];
+  $('src').value='';
   renderText();renderWords();renderQs();renderGloss();$('keyresult').replaceChildren();
 }
 CHAPTERS.forEach(c=>{const o=node('option',c.book+' · '+c.title);o.value=c.id;$('chapter').append(o)});$('chapter').value=S.ch;$('chapter').onchange=()=>setChapter($('chapter').value);
@@ -362,8 +382,10 @@ function clean(t){
   flush();return paras.join('\n\n');
 }
 $('clean').onclick=()=>{$('src').value=clean($('src').value);toast('Cleaned. Check the text, then press “Use this text”.')};
-$('use').onclick=()=>{const t=$('src').value.trim();if(EP.title&&EP.cur>=0&&t){S.book=S.book||{};S.book[C.id]=EP.title}if(!t){toast('Paste the text first.');return}if(t.length>60000){toast('That is very long — paste one chapter at a time.');return}S.texts[C.id]=/\n(?!\n)/.test(t)?clean(t):t;$('src').value=S.texts[C.id];S.keys[C.id]=[];save();$('pastebox').open=false;renderText();$('read').scrollIntoView()};
-$('cleartext').onclick=()=>{if(!confirm('Delete the text for this chapter from this device?'))return;delete S.texts[C.id];S.keys[C.id]=[];save();$('src').value='';renderText()};
+$('use').onclick=()=>{const t=$('src').value.trim();if(!t){toast('Paste the text first.');return}if(t.length>60000){toast('That is very long — paste one chapter at a time.');return}
+  const txt=/\n(?!\n)/.test(t)?clean(t):t;const book=EP.title&&EP.cur>=0?EP.title:'';const title=$('ttitle').value.trim()||(EP.title&&EP.cur>=0&&EP.secs[EP.cur]?EP.secs[EP.cur].title:'Pasted text '+new Date().toLocaleDateString('sv-SE'));
+  const it=addText(title,book,txt);$('src').value='';$('ttitle').value='';openText(it.id)};
+$('cleartext').onclick=()=>{$('src').value='';$('ttitle').value=''};
 
 /* ---------- EPUB: read the book on this device (zip + XHTML, no libraries) ---------- */
 const EP={secs:[],title:'',cur:-1};
@@ -420,6 +442,8 @@ async function openEpub(file){if(!('DecompressionStream' in window)){toast('This
   $('epubtitle').textContent='📖 '+EP.title+' · '+EP.secs.length+' sections';$('epubpick').hidden=false;toast('Book opened. Pick the chapter.')}
 $('epubfile').onchange=async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;try{await openEpub(f)}catch(err){console.log(err);toast('Could not read this EPUB file.')}};
 $('epubload').onclick=()=>{const i=+$('epubsec').value;const s=EP.secs[i];if(!s)return;EP.cur=i;$('src').value=s.text;toast('Chapter in the box. Check it, then press “Use this text”.');$('src').scrollIntoView({block:'center'})};
+$('epubadd').onclick=()=>{const i=+$('epubsec').value;const s=EP.secs[i];if(!s)return;if(s.text.length>60000){toast('That section is very long; use “Put in the box instead” and split it.');return}addText(s.title,EP.title,s.text);renderLib();toast('Added: '+s.title);if($('epubsec').selectedIndex<EP.secs.length-1)$('epubsec').selectedIndex++};
+$('epubaddall').onclick=()=>{const tot=EP.secs.reduce((a,s)=>a+s.text.length,0);if(!confirm('Add all '+EP.secs.length+' sections ('+Math.round(tot/1000)+'k characters) to My texts? This uses browser storage on this device.'))return;let n=0;EP.secs.forEach(s=>{if(s.text.length>=200&&s.text.length<=60000&&!S.lib.some(x=>x.book===EP.title&&x.title===s.title)){addText(s.title,EP.title,s.text);n++}});renderLib();toast('Added '+n+' texts')};
 $('epubnext').onclick=()=>{const i=EP.cur<0?+$('epubsec').value:EP.cur+1;const s=EP.secs[i];if(!s){toast('That was the last section.');return}EP.cur=i;$('epubsec').value=i;$('src').value=($('src').value.trim()?$('src').value.trim()+'\n\n':'')+s.text;toast('Added: '+s.title)};
 
 /* ---------- render text ---------- */
@@ -428,10 +452,10 @@ function sentencesOf(p){let a=window.Intl&&Intl.Segmenter?Array.from(new Intl.Se
   /* ”Vart ska du?” frågar mamma. — a piece starting in lowercase belongs to the sentence before */
   const out=[];a.forEach(x=>{if(out.length&&/^\s*\p{Ll}/u.test(x))out[out.length-1]+=x;else out.push(x)});return out}
 function renderText(){
-  const box=$('text');box.replaceChildren();sentences=[];const txt=S.texts[C.id];
-  $('pastesum').textContent=txt?'Edit the text':'Paste the pages or open an EPUB';
+  const box=$('text');box.replaceChildren();sentences=[];const txt=curText();
+    
   $('pastestatus').textContent=txt?'Text added: '+txt.split(/\s+/).length+' words. Tap “Edit the text” to change it.':'';
-  if(!txt){box.append(node('p','Add the text in step 01 first.','muted'));return}
+  if(!txt){box.append(node('p','Open a text from My texts first.','muted'));return}
   BST=null;const saved=new Set(S.words.map(w=>low(w.form)));const keys=new Set(S.keys[C.id]||[]);
   txt.split(/\n{2,}/).forEach(par=>{const p=node('p');
     sentencesOf(par).forEach(st=>{const si=sentences.length;sentences.push(st.trim());const span=node('span',undefined,'s'+(keys.has(si)?' key':''));span.dataset.i=si;
@@ -514,7 +538,7 @@ function bankSummary(){const old=document.getElementById('bankstat');if(old)old.
   seen.forEach((el,k)=>{if(GL.has(k)&&!bankGet(k)){c.none++;return}const b=bankGet(k);if(!b){c.none++;return}const st=bankStatus(b.id);if(st==='know')c.know++;else if(st==='new'){c.newb++;fresh.push([b,el])}else c.learn++});
   const box=node('div',undefined,'bankstat');box.id='bankstat';box.append(node('b','📚 Match with your wordbank · '+seen.size+' different words in this text'));
   const ch=node('div',undefined,'chips');[['✓ '+c.know+' you know',''],['● '+c.learn+' learning','background:#fbeeb8'],['○ '+c.newb+' in the wordbank, not studied yet',''],['？ '+c.none+' not in the wordbank','']].forEach(([t,s])=>{const x=node('span',t,'chip');if(s)x.style.cssText=s;ch.append(x)});box.append(ch);
-  if(fresh.length){const seenB=new Set(S.words.map(w=>w.bid).filter(Boolean));const add=fresh.filter(([b])=>!seenB.has(b.id));if(add.length)box.append(button('＋ Save the '+add.length+' wordbank words I have not studied yet',()=>{if(add.length>60&&!confirm('Save '+add.length+' words to My words?'))return;add.forEach(([b,el])=>{const form=el.textContent;if(S.words.some(x=>low(x.form)===low(form)))return;S.words.push({form,base:b.sv,en:b.en,bid:b.id,ctx:sentences[Number(el.dataset.s)]||'',ch:C.id,t:Date.now(),src:'📖 '+((S.book&&S.book[C.id])||C.title)})});save();if(window.SV)SV.refreshChip();renderText();renderWords();toast('Saved '+add.length+' words')})) }
+  if(fresh.length){const seenB=new Set(S.words.map(w=>w.bid).filter(Boolean));const add=fresh.filter(([b])=>!seenB.has(b.id));if(add.length)box.append(button('＋ Save the '+add.length+' wordbank words I have not studied yet',()=>{if(add.length>60&&!confirm('Save '+add.length+' words to My words?'))return;add.forEach(([b,el])=>{const form=el.textContent;if(S.words.some(x=>low(x.form)===low(form)))return;S.words.push({form,tid:S.curLib||undefined,base:b.sv,en:b.en,bid:b.id,ctx:sentences[Number(el.dataset.s)]||'',ch:C.id,t:Date.now(),src:'📖 '+((S.book&&S.book[C.id])||C.title)})});save();if(window.SV)SV.refreshChip();renderText();renderWords();toast('Saved '+add.length+' words')})) }
   $('text').parentNode.insertBefore(box,$('text'))}
 /* ---------- online meaning lookup (Wiktionary), cached ---------- */
 const WC_KEY='sv-wikt-cache-v1';let WC={};try{WC=JSON.parse(localStorage.getItem(WC_KEY))||{}}catch(e){}
@@ -548,7 +572,7 @@ function openWord(w){
   const c=node('p',undefined,'ctx');c.lang='sv';c.append(document.createTextNode(ctx+' '),sayBtn(ctx));box.append(c,recRow(Number(w.dataset.s),ctx));
   const r2=node('div',undefined,'row');
   const exists=S.words.some(x=>low(x.form)===low(form));
-  const sb=button(exists?'✓ In My words':'＋ Save word',()=>{if(S.words.some(x=>low(x.form)===low(form)))return;const en=ent?ent.en:(enInput.value.trim()||'?');S.words.push({form,bid:ent&&ent.bank?ent.id:undefined,base:ent?ent.sv:(found&&found.base)||form,en,ctx,ch:C.id,t:Date.now(),src:'📖 '+((S.book&&S.book[C.id])||C.title)});save();if(window.SV)SV.refreshChip();document.querySelectorAll('#text .w').forEach(x=>{if(low(x.textContent)===low(form))x.classList.add('saved')});renderWords();sb.textContent='✓ Saved';sb.disabled=true;toast('Saved to My words')},'primary');
+  const sb=button(exists?'✓ In My words':'＋ Save word',()=>{if(S.words.some(x=>low(x.form)===low(form)))return;const en=ent?ent.en:(enInput.value.trim()||'?');S.words.push({form,tid:S.curLib||undefined,bid:ent&&ent.bank?ent.id:undefined,base:ent?ent.sv:(found&&found.base)||form,en,ctx,ch:C.id,t:Date.now(),src:'📖 '+((S.book&&S.book[C.id])||C.title)});save();if(window.SV)SV.refreshChip();document.querySelectorAll('#text .w').forEach(x=>{if(low(x.textContent)===low(form))x.classList.add('saved')});renderWords();sb.textContent='✓ Saved';sb.disabled=true;toast('Saved to My words')},'primary');
   if(exists)sb.disabled=true;
   const tl=node('a','Translate the whole sentence ↗');tl.href=gt(ctx);tl.target='_blank';tl.rel='noopener';
   r2.append(sb,button('🐢 Slowly',()=>say(form,0.6)),tl,button('Close',closeSheet));box.append(r2);
@@ -613,5 +637,5 @@ function renderQs(){const box=$('qs');box.replaceChildren();const A=S.ans[C.id]|
 function renderGloss(){const box=$('gl');box.replaceChildren();C.gloss.forEach(([s,e])=>{const d=node('div');d.append(sayBtn(s),sv('b',s),node('span',e,'e'),button('＋',()=>{if(S.words.some(x=>low(x.form)===low(s))){toast('Already in My words');return}S.words.push({form:s,base:s,en:e,ctx:'',ch:C.id,t:Date.now()});save();renderWords();renderText();toast('Saved to My words')}));box.append(d)})}
 $('hearall').onclick=()=>sayAll(C.gloss.map(g=>g[0]));
 
-setChapter(S.ch);setMode('words');
+setChapter(S.ch);setMode('words');view=curItem()?'read':'lib';showView();$('pastebox').open=!S.lib.length;$('backlib').onclick=()=>{closeSheet();if(synth)synth.cancel();view='lib';showView();window.scrollTo(0,0)};
 </script><nav class="tabbar" aria-label="App"><a href="daily.html"><i>🏠</i>Idag</a><a href="index.html"><i>🗺️</i>Uppdrag</a><a href="arena.html"><i>🎯</i>Arena</a><a href="reader.html" aria-current="page"><i>📖</i>Läsa</a><a href="ordbank.html"><i>📚</i>Ord</a><a href="resurser.html"><i>🎧</i>Resurser</a></nav></body></html>
