@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded',decorate);
 <div class="label">Reader · read, understand, collect words</div>
 <div class="row"><label>Chapter <select id="chapter"></select></label></div>
 <h1 id="ctitle"></h1><p id="cintro"></p>
-<nav class="page-shortcuts" aria-label="On this page"><span>On this page</span><a href="#paste">Add the text</a><a href="#read">Read</a><a href="#summary">Key sentences</a><a href="#mywords">My words</a><a href="#questions">Questions</a><a href="#chapterwords">Chapter words</a></nav>
+<nav class="page-shortcuts" aria-label="On this page"><span>On this page</span><a href="#paste">Add the text</a><a href="#read">Read</a><a href="#summary">Key sentences</a><a href="#mywords">My words</a></nav>
 
 <section id="paste"><div class="label">01 · Add the text</div><h2>Put the book text here.</h2>
 <details id="pastebox"><summary id="pastesum">Paste the pages or open an EPUB</summary>
@@ -242,9 +242,9 @@ document.addEventListener('DOMContentLoaded',decorate);
 <div id="wordlist"></div>
 <div class="row"><button id="copywords">Copy list</button><button id="csv">Download (CSV)</button><button id="clearwords">Delete all</button></div></section>
 
-<section id="questions"><div class="label">05 · Questions</div><h2>Do you understand the text?</h2><p>Answer in Swedish if you can (English is OK too). Then compare with the model answer.</p><div id="qs"></div></section>
+<section id="questions" hidden><div class="label">05 · Questions</div><h2>Do you understand the text?</h2><p>Answer in Swedish if you can (English is OK too). Then compare with the model answer.</p><div id="qs"></div></section>
 
-<section id="chapterwords"><div class="label">06 · Chapter words</div><h2>All words for this chapter</h2><p class="muted">Good to go through before reading. Tap ＋ to add a word to My words.</p><div class="row"><button id="hearall">▶ Hear all</button></div><div id="gl" class="gl"></div></section>
+<section id="chapterwords" hidden><div class="label">06 · Chapter words</div><h2>All words for this chapter</h2><p class="muted">Good to go through before reading. Tap ＋ to add a word to My words.</p><div class="row"><button id="hearall">▶ Hear all</button></div><div id="gl" class="gl"></div></section>
 
 <details class="noprint"><summary>Voice for 🔊 buttons</summary><div class="row"><label>Voice <select id="voice"></select></label><label>Speed <select id="rate"><option value="1">Normal</option><option value="0.9" selected>A little slower</option><option value="0.75">Slow</option></select></label><button id="voicetest">🔊 Test</button></div><p id="voicenote" class="muted"></p></details>
 </main>
@@ -328,23 +328,44 @@ async function unzip(buf){const v=new DataView(buf),u8=new Uint8Array(buf);let e
   return {files,get}}
 function xml(s,type){return new DOMParser().parseFromString(s,type||'application/xml')}
 function resolve(base,href){const parts=(base?base.split('/'):[]).concat(decodeURIComponent(href.split('#')[0]).split('/'));const out=[];parts.forEach(p=>{if(p==='..')out.pop();else if(p&&p!=='.')out.push(p)});return out.join('/')}
-function pageText(html){let doc=xml(html,'application/xhtml+xml');if(doc.querySelector('parsererror'))doc=xml(html,'text/html');const body=doc.body||doc.querySelector('body')||doc.documentElement;
-  const paras=[];let cur='';const BLOCK=/^(p|div|h[1-6]|li|blockquote|section|article|tr|dd|dt|pre|figcaption)$/i;
-  (function walk(n){for(const c of n.childNodes){if(c.nodeType===3){cur+=c.nodeValue}else if(c.nodeType===1){const t=c.localName||c.nodeName;if(/^(script|style|head)$/i.test(t))continue;if(/^br$/i.test(t)){cur+='\n';continue}const b=BLOCK.test(t);if(b&&cur.trim()){paras.push(cur);cur=''}walk(c);if(b&&cur.trim()){paras.push(cur);cur=''}}}})(body);
-  if(cur.trim())paras.push(cur);return paras.map(x=>x.replace(/[ \t ]+/g,' ').replace(/ *\n */g,' ').trim()).filter(Boolean).join('\n\n')}
+function pageText(html,cut,pages){let doc=xml(html,'application/xhtml+xml');if(doc.querySelector('parsererror'))doc=xml(html,'text/html');const body=doc.body||doc.querySelector('body')||doc.documentElement;
+  /* returns segments [{id, paras:[{t,page}]}]; a new segment starts at every element whose id is in cut */
+  const segs=[{id:null,paras:[]}];let cur='',page=null;const BLOCK=/^(p|div|h[1-6]|li|blockquote|section|article|tr|dd|dt|pre|figcaption)$/i;
+  const flush=()=>{const t=cur.replace(/[ \t ]+/g,' ').replace(/ *\n */g,' ').trim();if(t)segs[segs.length-1].paras.push({t,page});cur=''};
+  (function walk(n){for(const c of n.childNodes){if(c.nodeType===3){cur+=c.nodeValue}else if(c.nodeType===1){const t=c.localName||c.nodeName;if(/^(script|style|head)$/i.test(t))continue;const id=c.getAttribute&&c.getAttribute('id');
+     if(id&&pages&&pages.has(id))page=pages.get(id);
+     if(id&&cut&&cut.has(id)){flush();segs.push({id,paras:[]})}
+     if(/^br$/i.test(t)){cur+='\n';continue}const b=BLOCK.test(t);if(b)flush();walk(c);if(b)flush()}}})(body);
+  flush();return segs}
+const PART=9000;
+function splitLong(title,paras){const text=paras.map(p=>p.t).join('\n\n');if(text.length<=PART*1.4)return [{title,text}];
+  const parts=[];let buf=[],len=0;for(const p of paras){if(len+p.t.length>PART&&buf.length){parts.push(buf);buf=[];len=0}buf.push(p);len+=p.t.length+2}if(buf.length)parts.push(buf);
+  return parts.map((ps,i)=>{const a=ps.find(p=>p.page!=null),z=[...ps].reverse().find(p=>p.page!=null);const pg=a?(' · s. '+a.page+(z&&z.page!==a.page?'–'+z.page:'')):'';return {title:title+' · del '+(i+1)+'/'+parts.length+pg,text:ps.map(p=>p.t).join('\n\n')}})}
 async function openEpub(file){if(!('DecompressionStream' in window)){toast('This browser can’t open EPUB files. Update to a newer iPadOS/Chrome.');return}
   toast('Opening the book …');const z=await unzip(await file.arrayBuffer());
   if(z.files.has('META-INF/encryption.xml')||z.files.has('META-INF/rights.xml')){const enc=await z.get('META-INF/encryption.xml')||'';if(/CipherReference[^>]*URI="[^"]*\.x?html?"/i.test(enc)||z.files.has('META-INF/rights.xml')){toast('This EPUB is copy-protected (DRM), so it can’t be opened here.');return}}
   const cont=xml(await z.get('META-INF/container.xml'));const opfPath=cont.querySelector('rootfile').getAttribute('full-path');const base=opfPath.includes('/')?opfPath.replace(/\/[^/]*$/,''):'';
   const opf=xml(await z.get(opfPath));const man=new Map();opf.querySelectorAll('manifest > item, manifest item').forEach(i=>man.set(i.getAttribute('id'),{href:resolve(base,i.getAttribute('href')),type:i.getAttribute('media-type')||'',props:i.getAttribute('properties')||''}));
   EP.title=(opf.querySelector('title')||{}).textContent||file.name.replace(/\.epub$/i,'');
-  const names=new Map();
+  const toc=[],pagesBy=new Map();/* toc: [{file,frag,title}] ; pagesBy: file -> Map(id -> page label) */
+  const addPage=(h,label)=>{const [f,fr]=h.split('#');if(!fr)return;if(!pagesBy.has(f))pagesBy.set(f,new Map());pagesBy.get(f).set(fr,label)};
   const nav=[...man.values()].find(m=>/\bnav\b/.test(m.props));
-  try{if(nav){const nd=xml(await z.get(nav.href),'application/xhtml+xml');const nb=nav.href.includes('/')?nav.href.replace(/\/[^/]*$/,''):'';nd.querySelectorAll('a[href]').forEach(a=>{const h=resolve(nb,a.getAttribute('href'));if(!names.has(h))names.set(h,a.textContent.trim())})}
-   else{const ncx=[...man.values()].find(m=>/ncx/.test(m.type));if(ncx){const nd=xml(await z.get(ncx.href));const nb=ncx.href.includes('/')?ncx.href.replace(/\/[^/]*$/,''):'';nd.querySelectorAll('navPoint').forEach(np=>{const c=np.querySelector('content'),l=np.querySelector('navLabel');if(c&&l){const h=resolve(nb,c.getAttribute('src'));if(!names.has(h))names.set(h,l.textContent.trim())}})}}}catch(e){}
-  EP.secs=[];let k=0;
-  for(const ir of opf.querySelectorAll('spine itemref')){const it=man.get(ir.getAttribute('idref'));if(!it||!/html/.test(it.type))continue;k++;const html=await z.get(it.href);if(!html)continue;const text=pageText(html);if(text.length<40)continue;
-   let title=names.get(it.href);if(!title){const m=text.split('\n')[0];title=m.length<70?m:'Section '+k}EP.secs.push({title,text})}
+  try{if(nav){const nd=xml(await z.get(nav.href),'application/xhtml+xml');const nb=nav.href.includes('/')?nav.href.replace(/\/[^/]*$/,''):'';
+     const navs=[...nd.getElementsByTagName('nav')];const typ=n=>(n.getAttribute('epub:type')||n.getAttributeNS('http://www.idpf.org/2007/ops','type')||n.getAttribute('role')||'');
+     const tocNav=navs.find(n=>/toc/.test(typ(n)))||navs[0];const pageNav=navs.find(n=>/page-list/.test(typ(n)));
+     if(tocNav)[...tocNav.getElementsByTagName('a')].forEach(a=>{const h=a.getAttribute('href');if(!h)return;const r=resolve(nb,h.split('#')[0]);toc.push({file:r,frag:h.split('#')[1]||null,title:a.textContent.replace(/\s+/g,' ').trim()})});
+     if(pageNav)[...pageNav.getElementsByTagName('a')].forEach(a=>{const h=a.getAttribute('href');if(h)addPage(resolve(nb,h.split('#')[0])+'#'+(h.split('#')[1]||''),a.textContent.trim())})}
+   else{const ncx=[...man.values()].find(m=>/ncx/.test(m.type));if(ncx){const nd=xml(await z.get(ncx.href));const nb=ncx.href.includes('/')?ncx.href.replace(/\/[^/]*$/,''):'';
+     nd.querySelectorAll('navMap navPoint').forEach(np=>{const c=np.querySelector('content'),l=np.querySelector('navLabel');if(c&&l){const s=c.getAttribute('src');toc.push({file:resolve(nb,s.split('#')[0]),frag:s.split('#')[1]||null,title:l.textContent.replace(/\s+/g,' ').trim()})}});
+     nd.querySelectorAll('pageList pageTarget').forEach(pt=>{const c=pt.querySelector('content'),l=pt.querySelector('navLabel');if(c&&l)addPage(resolve(nb,c.getAttribute('src').split('#')[0])+'#'+(c.getAttribute('src').split('#')[1]||''),l.textContent.trim())})}}}catch(e){console.log(e)}
+  EP.secs=[];let pending=null,k=0,lastTitle='';
+  for(const ir of opf.querySelectorAll('spine itemref')){const it=man.get(ir.getAttribute('idref'));if(!it||!/html/.test(it.type))continue;k++;const html=await z.get(it.href);if(!html)continue;
+   const here=toc.filter(t=>t.file===it.href);const cut=new Set(here.filter(t=>t.frag).map(t=>t.frag));const segs=pageText(html,cut,pagesBy.get(it.href));
+   const fileTitle=(here.find(t=>!t.frag)||{}).title;
+   segs.forEach((sg,si)=>{const tt=sg.id?(here.find(t=>t.frag===sg.id)||{}).title:fileTitle;const text=sg.paras.map(p=>p.t).join('\n\n');
+     if(text.length<300){if(tt)pending=tt;else if(text.length>=40&&!pending&&si===0)pending=null;return}
+     let title=pending||tt||(si>0?null:null);pending=null;if(!title){const m=sg.paras[0]?sg.paras[0].t:'';title=m.length<60?m:(lastTitle?lastTitle+' (forts.)':'Section '+k)}lastTitle=title;
+     splitLong(title,sg.paras).forEach(s=>EP.secs.push(s))})}
   if(!EP.secs.length){toast('No readable text found in this EPUB.');return}
   const sel=$('epubsec');sel.innerHTML='';EP.secs.forEach((s,i)=>{const o=document.createElement('option');o.value=i;o.textContent=(i+1)+'. '+s.title+' · '+Math.max(1,Math.round(s.text.length/1000))+'k tecken';sel.append(o)});
   $('epubtitle').textContent='📖 '+EP.title+' · '+EP.secs.length+' sections';$('epubpick').hidden=false;toast('Book opened. Pick the chapter.')}
