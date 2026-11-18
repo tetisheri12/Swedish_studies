@@ -17,6 +17,7 @@ section{padding:26px 0;border-top:1px solid var(--line)}
 .big{font-size:20px;padding:16px 26px}
 /* journey map */
 #map{position:relative}#map>*:not(.ribsvg){position:relative;z-index:1}.ribsvg{position:absolute!important;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:0!important;overflow:visible}.map .ln{visibility:hidden}.chase{margin:4px 0 40px}.chase .chasecat{display:block;width:min(300px,64%)}.chase .chasecat svg{width:100%;height:auto;display:block;overflow:visible}
+.shw{font-size:24px;line-height:2;text-align:center;margin:8px 0}.shw span{padding:2px 7px;border-radius:9px}.shw .ok{background:#dcefd3}.shw .miss{background:#f6d9cb}
 .lvl{margin:18px 0 6px;display:flex;align-items:center;gap:10px}.lvl b{font-size:19px}.lvl .bar{flex:1;height:8px;background:var(--wash);border-radius:99px;overflow:hidden}.lvl .bar i{display:block;height:100%;background:var(--gold);transition:width .8s}
 .map{display:flex;flex-wrap:wrap;gap:10px 0;align-items:center;padding:6px 0}.stn{position:relative;display:flex;align-items:center}.stn button{width:52px;height:52px;border-radius:50%;padding:0;font-weight:bold;font-size:15px;border:3px solid var(--line);background:#fffdf7}.stn.done button{background:var(--good);border-color:var(--good);color:white}.stn.cur button{background:var(--accent);border-color:var(--accent);color:white;transform:scale(1.15);animation:pulse 1.6s ease-in-out infinite}.stn.locked button{opacity:.55}.stn .ln{width:16px;height:4px;background:var(--line)}.stn.done .ln{background:var(--good)}
 .unitcard{border:2px solid var(--ink);border-radius:var(--r);background:#fffdf7;padding:18px;margin:14px 0}.unitcard .meters{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.meter{background:var(--wash);border-radius:12px;padding:8px;text-align:center;font-size:13px}.meter b{display:block;font-size:20px}.meter.ok{background:#d6eadb;color:var(--good)}
@@ -352,6 +353,12 @@ window.catAvatar=function(av){var m=AVRE.exec(av||'');return m?avHTML(m[1]):null
 <div id="session" hidden><div class="stage" id="stage"></div></div>
 </main>
 <dialog id="dlg"><div id="dlgbody"></div><div class="row" style="justify-content:flex-end"><button id="dlgclose" class="primary">OK</button></div></dialog>
+<section id="backup" style="max-width:980px;margin:24px auto;padding:0 24px"><div style="background:var(--card,#fffdf7);border:1.5px solid var(--line,#c8cec3);border-radius:14px;padding:16px 18px;display:grid;gap:8px"><b style="font-size:18px">💾 Backup all progress</b><span class="muted" style="color:var(--muted,#526665)">One file with everything: Idag, Uppdrag, Arena, Läsa, Ord, Grammatikskolan and every profile. Download it now and then, and restore it if the iPad or browser ever loses its data.</span><div style="display:flex;flex-wrap:wrap;gap:8px"><button type="button" id="bkdl" class="primary">⬇ Download backup</button><button type="button" id="bkup">⬆ Restore from file</button><input type="file" id="bkfile" accept="application/json,.json" hidden></div><span id="bkmsg" role="status" style="font-size:14px;color:var(--muted,#526665)"></span></div></section>
+<script>(function(){const m=document.getElementById('bkmsg');
+function keys(){const o={};try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.indexOf('swedish')===0)o[k]=localStorage.getItem(k)}}catch(e){}return o}
+document.getElementById('bkdl').onclick=()=>{const data=keys();const n=Object.keys(data).length;const out={app:'swedish-studies',version:1,saved:new Date().toISOString(),data};const u=URL.createObjectURL(new Blob([JSON.stringify(out)],{type:'application/json'}));const a=document.createElement('a');a.href=u;a.download='swedish-studies-backup-'+new Date().toISOString().slice(0,10)+'.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),2000);m.textContent='Backup downloaded ('+n+' items). Keep the file somewhere safe.'};
+document.getElementById('bkup').onclick=()=>document.getElementById('bkfile').click();
+document.getElementById('bkfile').onchange=async e=>{try{const f=e.target.files[0];if(!f)return;const j=JSON.parse(await f.text());if(!j||j.app!=='swedish-studies'||!j.data)throw Error('x');const ks=Object.keys(j.data).filter(k=>k.indexOf('swedish')===0);if(!ks.length)throw Error('x');if(!confirm('Replace the progress in this browser with the backup from '+String(j.saved||'').slice(0,10)+'?'))return;ks.forEach(k=>localStorage.setItem(k,String(j.data[k])));m.textContent='Restored '+ks.length+' items. Reloading…';setTimeout(()=>location.reload(),600)}catch(err){m.textContent='That file is not a Swedish Studies backup.'}finally{e.target.value=''}};})();</script>
 <div id="toast" role="status" hidden></div><footer>Progress stays in this browser.</footer>
 <script src="lessons.js"></script>
 <script>
@@ -2021,13 +2028,46 @@ function recorder(box){const b=button('🎙 Spela in',toggle,'primary');const st
     try{const ms=await navigator.mediaDevices.getUserMedia({audio:true});recChunks=[];rec=new MediaRecorder(ms);rec.ondataavailable=e=>{if(e.data.size)recChunks.push(e.data)};
       rec.onstop=()=>{ms.getTracks().forEach(t=>t.stop());if(recUrl)URL.revokeObjectURL(recUrl);recUrl=URL.createObjectURL(new Blob(recChunks,{type:rec.mimeType||'audio/mp4'}));b.textContent='🎙 Spela in igen';st.replaceChildren();const au=node('audio');au.controls=true;au.src=recUrl;st.append(au)};
       rec.start();b.textContent='⏹ Stoppa';st.replaceChildren(node('span','','dot'),document.createTextNode(' recording…'))}catch(e){toast('No microphone access — allow it in the browser settings.')}}}
+
+/* ---------- speaking without a partner: listen, repeat, get checked ---------- */
+const SRC=window.SpeechRecognition||window.webkitSpeechRecognition;let SRBAD=false;
+function lev(a,b){const m=[];for(let i=0;i<=a.length;i++){m[i]=[i];for(let j=1;j<=b.length;j++)m[i][j]=i?0:j}for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)m[i][j]=Math.min(m[i-1][j]+1,m[i][j-1]+1,m[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return m[a.length][b.length]}
+function toks(s){return String(s).toLowerCase().replace(/[.,!?;:"“”()\-–—]/g,' ').split(/\s+/).filter(Boolean)}
+function shadowSentences(){const seen=new Set(),out=[];const add=ex=>{if(!ex)return;const t=exFull(ex);const n=toks(t).length;if(n<3||n>13||seen.has(t))return;seen.add(t);out.push(t)};
+  Object.values(S.cards||{}).filter(c=>c.ex).sort((a,b)=>(a.box||0)-(b.box||0)||(b.due||0)-(a.due||0)).slice(0,60).sort(()=>Math.random()-.5).forEach(c=>{if(out.length<3)add(c.ex)});
+  if(out.length<3)unitWords(curUnit()).filter(v=>v.ex).sort(()=>Math.random()-.5).forEach(v=>{if(out.length<3)add(v.ex)});return out}
+function runShadow(done){
+  const list=shadowSentences();if(!list.length){done();return}let i=0;
+  const go=()=>{if(i>=list.length){done();return}
+    const t=list[i];const s=shell('Säg efter Ragnar','Mening '+(i+1)+' av '+list.length+' · listen, then say it out loud.');
+    if(window.catEl)s.append(catEl('happy',['orange','grey','tabby'][i%3],'midcat'));
+    const line=node('div','','shw');const spans=toks(t).map(w=>{const x=node('span',w);line.append(x,' ');return x});s.append(line);
+    const r0=node('div','','row center');r0.append(sayBtn(t,'🔊 Lyssna'),button('🐢 Långsamt',()=>say(t,.65)));s.append(r0);
+    const fb=node('div','','fb');const box=node('div','','rec');const nextRow=node('div','','row center');let got=false;
+    const next=()=>{stopRec();i++;go()};
+    const finish=(q)=>{if(!got){got=true;addXP(q,s);S.shadow=(S.shadow||0)+1;save()}nextRow.replaceChildren(button(i+1<list.length?'Nästa →':'Klart ✓',next,'primary'))};
+    const rate=()=>{const rr=node('div','','row center');[['😬 Nästan',1],['🙂 Bra',2],['🎯 Perfekt',3]].forEach(([l,q])=>rr.append(button(l,()=>{rr.remove();fb.textContent='Bra jobbat!';finish(q)})));fb.replaceChildren(node('p','Listen to Ragnar again, then to yourself. How did it sound?','muted center'),rr)};
+    let micRow=null;const recordMode=why=>{if(micRow)micRow.remove();if(why)fb.textContent=why;box.replaceChildren();recorder(box);s.append(box);if(!box.parentNode)s.append(box);rate()};
+    const listen=()=>{synth&&synth.cancel();const rc=new SRC();rc.lang='sv-SE';rc.interimResults=false;rc.maxAlternatives=3;let ok=false;fb.textContent='🎧 Jag lyssnar … säg meningen nu.';
+      rc.onresult=e=>{ok=true;const T=toks(t);let best=null;for(let k=0;k<e.results[0].length;k++){const H=toks(e.results[0][k].transcript);const pool=H.slice();const hit=T.map(w=>{let j=pool.findIndex(h=>h===w||(w.length>4&&lev(h,w)<=1));if(j>=0){pool.splice(j,1);return true}return false});const sc=hit.filter(Boolean).length/T.length;if(!best||sc>best.sc)best={sc,hit}}
+        spans.forEach((x,k)=>{x.className=best.hit[k]?'ok':'miss'});const p=Math.round(best.sc*100);
+        fb.className='fb '+(best.sc>=.6?'ok':'');fb.textContent=best.sc>=.85?'🎯 Jättebra! '+p+'%':best.sc>=.6?'🙂 Nästan! '+p+'% – de orangea orden missade jag.':'😬 '+p+'% – lyssna på Ragnar och försök igen.';
+        finish(best.sc>=.85?3:best.sc>=.6?2:1)};
+      rc.onerror=e=>{if(/not-allowed|service-not-allowed|language-not-supported/.test(e.error)){SRBAD=true;recordMode('Den här enheten kan inte lyssna på svenska här – spela in dig själv och jämför med Ragnar.')}else if(e.error==='no-speech'){fb.textContent='Jag hörde inget – tryck på mikrofonen och försök igen.'}else{fb.textContent='Det gick inte – försök igen.'}};
+      rc.onend=()=>{if(!ok&&!SRBAD&&!/Jag hörde|gick inte/.test(fb.textContent))fb.textContent='Jag hörde inget – försök igen.'};
+      try{rc.start()}catch(e){SRBAD=true;recordMode('Spela in dig själv och jämför med Ragnar.')}};
+    if(SRC&&!SRBAD){const mic=button('🎤 Säg meningen',listen,'primary');micRow=node('div','','row center');micRow.append(mic);s.append(micRow)}else recordMode('Spela in dig själv och jämför med Ragnar.');
+    s.append(fb,nextRow);const ex=node('div','','row center');ex.append(button('Hoppa över',()=>{stopRec();done()}),exitBtn());s.append(ex);
+    setTimeout(()=>say(t),300)};
+  go()}
 function runSay(){
+  if(S.shadowDay!==T){return runShadow(()=>{S.shadowDay=T;save();runSay()})}
   const u=curUnit(),st=ust(u),pf=curProf();const kid=pf.lv!=='pro';S.isl=S.isl||{fotboll:0,spel:0};
   let usePrompt,isl=null;if(!st.said){usePrompt=kid&&KID_TASKS[u.id]?KID_TASKS[u.id]:[u.q,u.hint,u.starters];if(typeof usePrompt[2]==='string')usePrompt=[usePrompt[0],usePrompt[1],usePrompt[2].split(';')]}
   else if(kid){const key=T%2?'fotboll':'spel';const I=ISLANDS[key];const k=S.isl[key]%I.prompts.length;const pp=I.prompts[k];isl=key;usePrompt=[pp[0],I.e+' '+I.name+' · '+pp[1],pp[2].split(';')]}
   else usePrompt=ADULT_PROMPTS[T%ADULT_PROMPTS.length];
   const s=shell(usePrompt[0]);s.children[1].append(' ',sayBtn(usePrompt[0]));s.append(node('p',usePrompt[1]+(st.said?(isl?' · island sentence':' · daily question'):' · station task'),'muted'));
-  s.append(node('p','1) Think, then say your answer out loud and record it. 2) Listen to yourself. 3) Write it — a parent corrects it and the corrected sentences become cards.','muted'));
+  s.append(node('p','1) Think, then say your answer out loud and record it. 2) Listen to yourself. 3) Write it. If a grown-up checks it later, the corrected sentences become cards.','muted'));
   const rb=node('div','','rec');recorder(rb);s.append(rb);
   const ch=node('div',undefined,'chips');const ta=node('textarea');ta.lang='sv';ta.placeholder='Skriv här …';
   usePrompt[2].forEach(x=>ch.append(button(x+' …',()=>{ta.value+=(ta.value&&!/\s$/.test(ta.value)?' ':'')+x+' ';ta.focus()})));
