@@ -151,103 +151,98 @@ document.addEventListener('DOMContentLoaded',function(){if(document.body.classLi
 </script><script>/* Original watercolour-and-ink cats drawn in SVG for Swedish Studies. */
 (function(){
 var n=0;
-/* Ink-and-wash cats: loose pen line + watercolour wash, drawn for this site. */
-var PAPER='#fffdf8',INK='#1f1b19';
+/* Wash-and-pencil cats: a soft watercolour wash with a few charcoal lines. Drawn for this site. */
+var PAPER='#fffdf8',PEN='#3b3837',EYE='#bcc56c';
 var COAT={
- tabby:{wash:'#cbb9a1',wo:.45,stripe:'#4f4035'},
- orange:{wash:'#e7a54b',wo:.75,stripe:'#c0732a'},
- ginger:{wash:'#e7a54b',wo:.75,stripe:'#c0732a'},
- brown:{wash:'#b9895f',wo:.7,stripe:'#5e3f2a'},
- grey:{wash:'#a9aaad',wo:.6,stripe:null},
- cream:{wash:'#efd3a6',wo:.6,stripe:null},
- white:{wash:null,stripe:null},
- calico:{wash:null,patchA:'#e7a54b',patchB:'#5b524b'},
- tuxedo:{dark:'#2b2726',mask:true},
- black:{dark:'#2b2726',all:true}};
-function ARM(k){return k.all||k.mask?k.dark:k.wash?k.wash:k.patchA||PAPER}
-function K(col){return COAT[col]||COAT.tabby}
-function defs(id){return '<filter id="'+id+'i" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves="2" seed="'+(n%11+1)+'"/><feDisplacementMap in="SourceGraphic" scale="1.6"/></filter>'
- +'<filter id="'+id+'w" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="4" seed="'+(n%7+3)+'"/><feDisplacementMap in="SourceGraphic" scale="15"/><feGaussianBlur stdDeviation="1.8"/></filter>'}
-function ink(d,w,id,extra){return '<path d="'+d+'" fill="none" stroke="'+INK+'" stroke-width="'+(w||2.2)+'" stroke-linecap="round" stroke-linejoin="round" filter="url(#'+id+'i)"'+(extra||'')+'/>'}
-/* wash inside a silhouette; region = 'head' | 'body' */
-function wash(sil,col,id,cid,region,cx,cy,rx,ry){var c=K(col),o='<clipPath id="'+cid+'"><path d="'+sil+'"/></clipPath><path d="'+sil+'" fill="'+(c.all?c.dark:PAPER)+'"/><g clip-path="url(#'+cid+')"><g filter="url(#'+id+'w)">';
- if(c.wash)o+='<ellipse cx="'+cx+'" cy="'+(cy-ry*.35)+'" rx="'+(rx*1.1)+'" ry="'+(ry*.9)+'" fill="'+c.wash+'" opacity="'+(c.wo*.75)+'"/><ellipse cx="'+(cx-rx*.35)+'" cy="'+(cy-ry*.55)+'" rx="'+(rx*.6)+'" ry="'+(ry*.5)+'" fill="'+c.wash+'" opacity="'+(c.wo*.6)+'"/><ellipse cx="'+(cx+rx*.5)+'" cy="'+(cy-ry*.15)+'" rx="'+(rx*.45)+'" ry="'+(ry*.6)+'" fill="'+(c.stripe||c.wash)+'" opacity=".22"/>';
- if(c.patchA)o+='<ellipse cx="'+(cx-rx*.55)+'" cy="'+(cy-ry*.45)+'" rx="'+(rx*.55)+'" ry="'+(ry*.5)+'" fill="'+c.patchA+'" opacity=".85"/><ellipse cx="'+(cx+rx*.6)+'" cy="'+(cy-ry*.1)+'" rx="'+(rx*.45)+'" ry="'+(ry*.55)+'" fill="'+c.patchB+'" opacity=".8"/>';
- if(c.mask)o+=region==='head'?'<path d="M'+(cx-rx*1.2)+' '+(cy-ry*1.4)+' H'+(cx+rx*1.2)+' V'+(cy+ry)+' H'+(cx+rx*.32)+' C'+(cx+rx*.3)+' '+(cy+ry*.2)+' '+(cx+rx*.12)+' '+(cy-ry*.35)+' '+cx+' '+(cy-ry*.4)+' C'+(cx-rx*.12)+' '+(cy-ry*.35)+' '+(cx-rx*.3)+' '+(cy+ry*.2)+' '+(cx-rx*.32)+' '+(cy+ry)+' H'+(cx-rx*1.2)+'Z" fill="'+c.dark+'"/>':'<rect x="0" y="0" width="200" height="200" fill="'+c.dark+'"/><ellipse cx="'+cx+'" cy="'+(cy+ry*.2)+'" rx="'+(rx*.42)+'" ry="'+(ry*.9)+'" fill="'+PAPER+'"/>';
- if(c.wash&&!c.mask&&region==='body')o+='<ellipse cx="'+cx+'" cy="'+(cy+ry*.25)+'" rx="'+(rx*.38)+'" ry="'+(ry*.75)+'" fill="'+PAPER+'" opacity=".9"/>';
- if(c.wash&&region==='head')o+='<ellipse cx="'+cx+'" cy="'+(cy+ry*.55)+'" rx="'+(rx*.5)+'" ry="'+(ry*.4)+'" fill="'+PAPER+'" opacity=".9"/>';
- o+='</g>';
- if(c.stripe){var sw=Math.max(3,rx*.09);o+='<g stroke="'+c.stripe+'" stroke-width="'+sw+'" stroke-linecap="round" fill="none" opacity=".85" filter="url(#'+id+'w)">';
-  if(region==='head')o+='<path d="M'+(cx-rx*.18)+' '+(cy-ry*.95)+' l'+(rx*.05)+' '+(ry*.35)+' M'+cx+' '+(cy-ry*.98)+' v'+(ry*.38)+' M'+(cx+rx*.18)+' '+(cy-ry*.95)+' l-'+(rx*.05)+' '+(ry*.35)+' M'+(cx-rx)+' '+(cy-ry*.05)+' q'+(rx*.15)+' '+(ry*.05)+' '+(rx*.28)+' 0 M'+(cx-rx*.98)+' '+(cy+ry*.2)+' q'+(rx*.13)+' '+(ry*.05)+' '+(rx*.24)+' 0 M'+(cx+rx)+' '+(cy-ry*.05)+' q-'+(rx*.15)+' '+(ry*.05)+' -'+(rx*.28)+' 0 M'+(cx+rx*.98)+' '+(cy+ry*.2)+' q-'+(rx*.13)+' '+(ry*.05)+' -'+(rx*.24)+' 0"/>';
-  else for(var i=-2;i<=2;i++)o+='<path d="M'+(cx-rx*1.05)+' '+(cy+i*ry*.32)+' q'+(rx*.25)+' -'+(ry*.08)+' '+(rx*.45)+' '+(ry*.04)+' M'+(cx+rx*1.05)+' '+(cy+i*ry*.32)+' q-'+(rx*.25)+' -'+(ry*.08)+' -'+(rx*.45)+' '+(ry*.04)+'"/>';
-  o+='</g>'}
- return o+'</g>'}
-/* head in local coords, centre (100,86), half-width 50 */
-var HEAD='M50 92 C48 62 70 46 100 46 C130 46 152 62 150 92 C148 118 126 130 100 130 C74 130 52 118 50 92Z';
-var EARS='M53 74 C50 56 51 40 56 28 C68 34 79 41 88 48 L100 47 L112 48 C121 41 132 34 144 28 C149 40 150 56 147 74 Z';
-function face(id,cid,col,eye,mouth){var c=K(col),o='';
- o+=wash(EARS+' '+HEAD,col,id,cid,'head',100,90,50,42);
- o+=ink('M53 74 C50 56 51 40 56 28 C68 34 79 41 88 48 M147 74 C150 56 149 40 144 28 C132 34 121 41 112 48',2.4,id);
- o+='<path d="M60 58 C59 48 60 41 62 37 C69 41 74 45 78 49 Z M140 58 C141 48 140 41 138 37 C131 41 126 45 122 49 Z" fill="#e8a49a" opacity=".55" filter="url(#'+id+'w)"/>';
- o+=ink('M52 80 C49 104 64 126 100 130 C136 126 151 104 148 80',2.4,id)+ink('M49 96 l-6 5 l7 1 M151 96 l6 5 l-7 1',1.6,id);
- var light=c.all||c.mask;var irisC=light?'#e3c34a':'#c9c48a';
- [[80,88],[120,88]].forEach(function(p,k){var x=p[0],y=p[1];
-  if(eye==='happy')o+=ink('M'+(x-9)+' '+(y+2)+' q9 -10 18 0',2.6,id,light?' stroke="#f1e6d3"':'');
-  else if(eye==='sleep')o+=ink('M'+(x-9)+' '+y+' q9 8 18 0',2.4,id,light?' stroke="#f1e6d3"':'');
-  else if(eye==='smug'){o+='<path d="M'+(x-11)+' '+(y-1)+' a11 11 0 0 0 22 0Z" fill="'+irisC+'" stroke="'+INK+'" stroke-width="2"/><circle cx="'+(x+1)+'" cy="'+(y+4)+'" r="4.5" fill="'+INK+'"/>'+ink('M'+(x-13)+' '+(y-2)+' H'+(x+13),2.6,id,light?' stroke="#f1e6d3"':'')}
-  else{var shock=eye==='shock',r=shock?13:11,pr=shock?3.4:7.8,dx=eye==='side'?4:0,dy=eye==='up'?-4:0;
-   o+='<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(shock?'#fff':irisC)+'" stroke="'+INK+'" stroke-width="2.2"/><circle cx="'+(x+dx)+'" cy="'+(y+dy)+'" r="'+pr+'" fill="'+INK+'"/><circle cx="'+(x+dx-pr*.38)+'" cy="'+(y+dy-pr*.4)+'" r="'+Math.max(1.4,pr*.3)+'" fill="#fff"/>'}});
- o+='<path d="M96 103 h8 l-4 4.5z" fill="#e48e8a" stroke="'+INK+'" stroke-width="1.2" stroke-linejoin="round"/>';
- if(mouth==='o')o+='<ellipse cx="100" cy="117" rx="6" ry="8" fill="'+INK+'"/><ellipse cx="100" cy="121" rx="3.6" ry="3" fill="#e48e8a"/>';
- else if(mouth==='smile')o+='<path d="M89 110 q11 14 22 0 Z" fill="#8f3d38" stroke="'+INK+'" stroke-width="1.8" stroke-linejoin="round"/><path d="M95 116 q5 4 10 0" fill="#e48e8a"/>';
- else if(mouth==='flat')o+=ink('M100 108 v4 M93 113 h14',1.8,id,light?' stroke="#f1e6d3"':'');
- else o+=ink('M100 108 v3 q-5 6 -10 1 M100 111 q5 6 10 1',1.8,id,light?' stroke="#f1e6d3"':'');
- var wc=light?'#f1e6d3':INK;
- o+='<g stroke="'+wc+'" stroke-width="1.1" stroke-linecap="round" fill="none" opacity=".8" filter="url(#'+id+'i)"><path d="M82 108 C66 104 50 102 28 104 M82 112 C64 112 48 116 30 122 M118 108 C134 104 150 102 172 104 M118 112 C136 112 152 116 170 122 M86 72 C84 66 80 62 74 60 M114 72 C116 66 120 62 126 60"/></g>';
+ grey:{w:'#8e8a8c'},
+ tuxedo:{w:'#5f5a5c'},
+ black:{w:'#474244',full:1},
+ orange:{w:'#e3a341',s:'#c27a1e',full:1},
+ ginger:{w:'#e3a341',s:'#c27a1e',full:1},
+ tabby:{w:'#a59a8d',s:'#5e554e',full:1},
+ brown:{w:'#b78d66',s:'#7b5636'},
+ cream:{w:'#ead2a6'},
+ calico:{w:'#e3a341',w2:'#6b6567'},
+ white:{w:'#ddd6cc'}};
+function K(col){return COAT[col]||COAT.grey}
+function defs(id){return '<filter id="'+id+'w" x="-25%" y="-25%" width="150%" height="150%"><feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="4" seed="'+(n%9+2)+'"/><feDisplacementMap in="SourceGraphic" scale="13"/><feGaussianBlur stdDeviation="2.4"/></filter>'
+ +'<filter id="'+id+'p" x="-6%" y="-6%" width="112%" height="112%"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" seed="'+(n%13+1)+'" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="1.8"/></filter>'}
+function wash(d,c,id,o){return c?'<path d="'+d+'" fill="'+c+'" opacity="'+(o||.82)+'" filter="url(#'+id+'w)"/>':''}
+function pen(d,id,w,o){return '<path d="'+d+'" fill="none" stroke="'+PEN+'" stroke-width="'+(w||3)+'" stroke-linecap="round" stroke-linejoin="round" opacity="'+(o||.9)+'" filter="url(#'+id+'p)"/>'}
+function stroke(d,c,id,w,o){return c?'<path d="'+d+'" fill="none" stroke="'+c+'" stroke-width="'+w+'" stroke-linecap="round" opacity="'+(o||.8)+'" filter="url(#'+id+'w)"/>':''}
+function eye(x,y,rot,mood,id){
+ if(mood==='happy')return pen('M'+(x-10)+' '+(y+1)+' q10 -9 20 0',id,2.4);
+ if(mood==='sleep')return pen('M'+(x-10)+' '+(y-1)+' q10 6 20 1',id,2.2);
+ if(mood==='shock')return '<g transform="translate('+x+' '+y+')"><circle r="9.5" fill="'+EYE+'" stroke="'+PEN+'" stroke-width="1.8"/><circle r="3.4" fill="'+PEN+'"/><circle cx="-1.6" cy="-2" r="1.1" fill="#fff"/></g>';
+ var dx=mood==='side'?3:0,dy=mood==='up'?-1.5:0;
+ return '<g transform="translate('+x+' '+y+') rotate('+rot+')"><path d="M-11 1 C-6 -5 6 -6 11 -1 C6 5 -6 6 -11 1Z" fill="'+EYE+'" stroke="'+PEN+'" stroke-width="1.5" stroke-linejoin="round"/><ellipse cx="'+dx+'" cy="'+dy+'" rx="1.9" ry="4" fill="'+PEN+'"/><circle cx="'+(dx-1.2)+'" cy="'+(dy-1.8)+'" r=".9" fill="#fff"/><path d="M-12.5 0 C-6 -6.5 6 -7.5 12.5 -2.5" fill="none" stroke="'+PEN+'" stroke-width="2.6" stroke-linecap="round"/></g>'}
+/* head in local coords: centre (100,84), about 104 wide */
+function face(id,col,mood,mouth,chin){var k=K(col),o='';
+ var L='M100 44 C66 44 44 58 48 88 C50 106 64 112 76 108 C84 92 92 80 100 76Z',R='M100 44 C134 44 156 58 152 88 C150 106 136 112 124 108 C116 92 108 80 100 76Z';
+ o+=wash(L,k.w,id)+wash(R,k.w2||k.w,id);
+ if(k.full)o+='<ellipse cx="100" cy="98" rx="44" ry="24" fill="'+k.w+'" opacity=".7" filter="url(#'+id+'w)"/><ellipse cx="100" cy="106" rx="15" ry="9" fill="'+PAPER+'" opacity=".75" filter="url(#'+id+'w)"/>';
+ if(k.s)o+=stroke('M88 46 q2 9 5 16 M100 44 v18 M112 46 q-2 9 -5 16',k.s,id,4.5)+stroke('M52 86 q9 3 16 0 M54 98 q8 3 14 0 M148 86 q-9 3 -16 0 M146 98 q-8 3 -14 0',k.s,id,3.6,.65);
+ o+=wash('M124 50 C132 40 140 30 146 22 C151 36 152 52 148 66 Z',k.w2||k.w,id,.45);
+ o+=pen('M54 66 C50 48 51 32 55 20 C66 27 76 36 84 46',id,3.2)+pen('M116 46 C124 36 134 27 145 20 C149 32 150 48 146 66',id,3.2);
+ if(chin)o+=pen('M56 106 C66 126 134 126 144 106',id,2.4,.75);
+ o+=eye(80,90,8,mood,id)+eye(120,90,-8,mood,id);
+ o+='<ellipse cx="86" cy="104" rx="6.5" ry="3.6" fill="#e2a37f" opacity=".5" filter="url(#'+id+'w)"/>';
+ o+='<path d="M96 101 h8 l-4 5z" fill="#e3b3aa" stroke="'+PEN+'" stroke-width="1.5" stroke-linejoin="round"/>';
+ if(mouth==='o')o+='<ellipse cx="100" cy="113" rx="3.6" ry="4.6" fill="'+PEN+'"/>';
+ else if(mouth==='smile')o+=pen('M100 106 v3 q-4 4 -8 1 M100 109 q4 4 8 1',id,1.7);
+ else o+=pen('M100 106 v3.5',id,1.6);
  return o}
-function H(id,col,eye,mouth,tx,ty,sc,rot){return '<g transform="translate('+(tx||0)+' '+(ty||0)+')'+(sc?' scale('+sc+')':'')+(rot?' rotate('+rot+' 100 88)':'')+'">'+face(id,id+'h'+(++n),col,eye,mouth)+'</g>'}
-function beans(x,y,s){s=s||1;return '<g fill="#e8a49a" opacity=".9"><ellipse cx="'+x+'" cy="'+(y+4*s)+'" rx="'+(6*s)+'" ry="'+(5*s)+'"/><circle cx="'+(x-7*s)+'" cy="'+(y-4*s)+'" r="'+(2.6*s)+'"/><circle cx="'+(x-2.4*s)+'" cy="'+(y-7*s)+'" r="'+(2.6*s)+'"/><circle cx="'+(x+2.4*s)+'" cy="'+(y-7*s)+'" r="'+(2.6*s)+'"/><circle cx="'+(x+7*s)+'" cy="'+(y-4*s)+'" r="'+(2.6*s)+'"/></g>'}
-var HELMET='<g><path d="M58 52 C62 18 138 18 142 52 Z" fill="#b8bec2" stroke="#1f1b19" stroke-width="2.4" stroke-linejoin="round"/><path d="M56 52 h88" stroke="#7a5a32" stroke-width="7" stroke-linecap="round"/><path d="M58 42 C38 40 28 22 32 8 C42 22 52 26 62 32" fill="#f6eedf" stroke="#1f1b19" stroke-width="2.2" stroke-linejoin="round"/><path d="M142 42 C162 40 172 22 168 8 C158 22 148 26 138 32" fill="#f6eedf" stroke="#1f1b19" stroke-width="2.2" stroke-linejoin="round"/></g>';
-function svg(kind,col){col=col||'tabby';if(col==='orange'&&kind==='viking')col='orange';var id='c'+(++n),b='',k=K(col);
- var body=function(sil,lines,cx,cy,rx,ry){return wash(sil,col,id,id+'b',  'body',cx,cy,rx,ry)+ink(lines,2.3,id)};
+function H(id,col,mood,mouth,tx,ty,sc,rot,chin){return '<g transform="translate('+(tx||0)+' '+(ty||0)+')'+(sc?' scale('+sc+')':'')+(rot?' rotate('+rot+' 100 84)':'')+'">'+face(id,col,mood,mouth,chin)+'</g>'}
+function toes(x,y,id,s){s=s||1;return pen('M'+(x-9*s)+' '+y+' q'+(-3*s)+' '+(-10*s)+' '+(6*s)+' '+(-12*s)+' q'+(10*s)+' 0 '+(12*s)+' '+(12*s)+' M'+(x-3*s)+' '+y+' v'+(-5*s)+' M'+(x+3*s)+' '+y+' v'+(-5*s),id,2.6)}
+var HELMET='<g><path d="M58 50 C62 18 138 18 142 50 Z" fill="#b8bec2" stroke="#3b3837" stroke-width="2.6" stroke-linejoin="round"/><path d="M56 50 h88" stroke="#7a5a32" stroke-width="7" stroke-linecap="round"/><path d="M58 40 C38 38 28 20 32 6 C42 20 52 24 62 30" fill="#f6eedf" stroke="#3b3837" stroke-width="2.4" stroke-linejoin="round"/><path d="M142 40 C162 38 172 20 168 6 C158 20 148 24 138 30" fill="#f6eedf" stroke="#3b3837" stroke-width="2.4" stroke-linejoin="round"/></g>';
+function svg(kind,col){col=col||'grey';var id='c'+(++n),b='',k=K(col),w=k.w,w2=k.w2||k.w;
+ var tailW=function(d,wd){return stroke(d,w2,id,wd||15,.85)};
+ var bst=function(list){return k.s?stroke(list,k.s,id,4,.6):''};
  if(kind==='sleep'){
-  var sil='M100 52 C150 50 174 88 170 120 C166 156 132 176 96 174 C56 172 30 144 34 108 C38 74 64 54 100 52Z';
-  b=body(sil,'M100 52 C150 50 174 88 170 120 C166 156 132 176 96 174 C56 172 30 144 34 108 C38 82 54 64 74 56 M170 122 C176 150 150 176 110 172',102,112,68,60)
-   +H(id,col,'sleep','w',-2,62,.66,-14)+ink('M58 160 q14 8 30 4',2,id)+'<text x="140" y="56" font-family="Caveat Brush,cursive" font-size="22" fill="'+INK+'" opacity=".75">z z</text>';
+  b=wash('M32 132 C28 92 62 70 104 70 C150 70 178 96 174 132 C170 164 136 178 100 176 C62 176 36 164 32 132Z',w,id)+bst('M96 78 q4 12 0 24 M118 80 q4 12 0 24 M140 90 q2 10 -2 20')
+   +wash('M60 150 C62 132 84 128 112 132 C134 136 146 150 138 162 C120 172 78 172 60 150Z',PAPER,id,.85)
+   +tailW('M150 156 C120 176 80 176 56 160',14)+H(id,col,'sleep','',-40,52,.72,-12)+'<text x="140" y="60" font-family="Caveat Brush,cursive" font-size="24" fill="'+PEN+'" opacity=".7">z z</text>';
  } else if(kind==='peek'){
-  b='<clipPath id="'+id+'k"><rect x="62" y="0" width="140" height="200"/></clipPath><g clip-path="url(#'+id+'k)">'+H(id,col,'side','w',-8,38,1.1)+'</g>'
-   +'<path d="M62 0 V200" stroke="'+INK+'" stroke-width="2.6"/>'+'<path d="M52 150 C54 140 68 136 76 142 C84 148 82 160 72 162 C64 164 56 160 52 150Z" fill="'+(k.all?k.dark:PAPER)+'"/>'+ink('M52 150 C54 140 68 136 76 142 C84 148 82 160 72 162 C64 164 56 160 52 150Z M60 141 v6 M68 140 v6',2,id);
+  /* looking over the top of an open book */
+  b=H(id,col,'open','',0,-2,1)+pen('M22 122 C60 116 84 122 100 132 C116 122 140 116 178 122 V194 H22Z M100 132 V194',id,3)+pen('M30 126 V190 M170 126 V190',id,2,.6)
+   +'<path d="M54 122 q-4 -14 10 -15 q14 0 14 14 q-10 6 -24 1Z M122 121 q0 -14 14 -14 q14 1 10 15 q-14 5 -24 -1Z" fill="'+PAPER+'"/>'+toes(66,122,id,1.05)+toes(134,122,id,1.05);
  } else if(kind==='face'){
-  b=H(id,col,'up','w',0,12,1);
+  b=H(id,col,'up','',0,14,1,0,true);
  } else if(kind==='shock'||kind==='surprised'){
-  b=body('M40 200 C44 160 62 140 100 140 C138 140 156 160 160 200Z','M44 200 C48 168 64 146 82 140 M156 200 C152 168 136 146 118 140',100,170,58,40)+H(id,col,'shock','o',-20,-14,1.2);
+  b=wash('M52 200 C52 164 66 140 80 132 L120 132 C134 140 148 164 148 200Z',w,id,.6)+wash('M78 200 C76 170 84 148 100 144 C116 148 124 170 122 200Z',PAPER,id,.9)+pen('M50 200 C52 168 60 146 72 134 M150 200 C148 168 140 146 128 134',id,3)+H(id,col,'shock','o',-10,2,1.1);
  } else if(kind==='paws'){
-  var L='M52 200 C50 170 54 140 62 118 C66 104 82 100 90 112 C96 122 92 150 90 200',R='M110 200 C108 150 104 122 110 112 C118 100 134 104 138 118 C146 140 150 170 148 200';
-  b=body(L+' '+R+'Z',L+' '+R,100,160,48,40)+beans(76,120,1.25)+beans(124,120,1.25)+ink('M66 106 l-4 -10 M76 101 v-11 M86 104 l4 -10 M114 104 l-4 -10 M124 101 v-11 M134 106 l4 -10',1.6,id,' opacity=".6"');
+  b=wash('M54 200 C52 160 58 126 68 112 C76 104 90 108 92 122 C94 150 92 176 92 200Z',w,id,.75)+wash('M108 200 C108 176 106 150 108 122 C110 108 124 104 132 112 C142 126 148 160 146 200Z',w2,id,.75)
+   +pen('M54 200 C52 160 58 126 68 112 C76 104 90 108 92 122 C94 150 92 176 92 200 M108 200 C108 176 106 150 108 122 C110 108 124 104 132 112 C142 126 148 160 146 200',id,3)
+   +pen('M72 110 v9 M80 108 v9 M88 111 v8 M112 111 v8 M120 108 v9 M128 110 v9',id,2.2,.8);
  } else if(kind==='reach'){
-  var A='M84 0 C82 40 84 80 90 110 C94 130 116 134 120 114 C124 90 120 40 118 0';
-  b=body(A+'Z',A,102,60,20,60)+beans(105,112,1.1)+ink('M86 120 l-6 8 M96 128 l-2 10 M110 128 l2 10 M120 120 l6 8',1.5,id,' opacity=".7"');
+  b=wash('M84 0 C82 44 84 84 90 108 C96 126 116 126 120 108 C124 84 120 44 118 0Z',w,id,.78)+pen('M84 0 C82 44 84 84 90 108 C96 126 116 126 120 108 C124 84 120 44 118 0',id,3)+pen('M96 120 v-9 M104 122 v-10 M112 120 v-9',id,2.2,.8);
  } else if(kind==='belly'||kind==='roll'){
-  var B='M36 104 C34 62 78 40 122 46 C164 52 178 92 166 126 C154 156 112 166 80 158 C52 152 38 134 36 104Z';
-  b=ink('M164 120 C186 110 190 84 176 70',2.4,id)+body(B,B+' M70 48 C66 34 70 22 80 20 C88 22 90 34 86 46 M104 44 C104 28 110 18 120 20 C128 24 126 38 120 46 M142 56 C150 42 162 40 168 48 C170 58 162 66 154 70',104,104,66,58)
-   +beans(78,28,.8)+beans(116,26,.8)+H(id,col,'up','o',4,92,.62,180);
+  /* on its back, paws curled, eyes closed */
+  b=wash('M30 200 C26 150 40 96 100 92 C160 96 174 150 170 200Z',w,id)+bst('M52 150 q10 4 18 0 M50 172 q10 4 18 0 M148 150 q-10 4 -18 0 M150 172 q-10 4 -18 0')
+   +wash('M72 200 C70 160 82 132 100 130 C118 132 130 160 128 200Z',PAPER,id,.8)
+   +H(id,col,'sleep','smile',0,-14,1)
+   +pen('M50 150 C44 128 56 112 72 116 C86 120 88 140 80 152',id,3.2)+pen('M62 150 v-7 M70 152 v-7',id,2.2,.8)+pen('M150 150 C156 128 144 112 128 116 C114 120 112 140 120 152',id,3.2)+pen('M138 150 v-7 M130 152 v-7',id,2.2,.8);
  } else if(kind==='loaf'){
-  var Lf='M28 176 C24 136 54 112 100 112 C146 112 176 136 172 176 Z';
-  b=body(Lf,'M28 176 C24 136 54 112 82 110 M118 110 C146 112 176 136 172 176 M20 178 H180',100,150,72,36)+ink('M78 174 q8 -8 16 0 M106 174 q8 -8 16 0',2,id)+H(id,col,'smug','flat',0,20,.9);
+  b=wash('M20 150 C16 110 50 92 96 94 C150 96 184 118 180 156 C178 180 150 190 110 190 C70 190 24 184 20 150Z',w,id)+bst('M44 118 q6 12 2 24 M64 106 q6 12 2 24')
+   +wash('M92 186 C84 160 92 132 122 128 C150 128 168 146 164 170 C160 184 130 190 92 186Z',PAPER,id,.9)
+   +pen('M170 128 C182 148 178 176 160 186 M112 190 C128 192 146 190 160 186',id,3)+toes(118,190,id,.9)+toes(146,188,id,.9)+H(id,col,'open','',34,6,.92);
  } else if(kind==='stretch'){
-  var St='M30 176 C40 160 70 150 100 120 C118 100 140 70 160 64 C176 60 184 80 176 100 C168 124 152 150 146 176 C130 178 120 176 112 172 C96 168 66 176 30 176Z';
-  b=ink('M166 66 C176 40 168 18 156 14',2.4,id)+body(St,St,120,120,58,52)+H(id,col,'happy','w',-52,94,.62);
+  /* lying flat, chin on the floor, giving a look */
+  b=wash('M0 150 C20 118 70 110 110 118 C140 124 150 150 140 170 L0 170Z',w,id)+wash('M0 170 C30 150 80 150 120 170Z',PAPER,id,.8)+pen('M0 172 H196',id,3.2)+pen('M0 150 q14 -4 22 2',id,2.4,.7)
+   +H(id,col,'side','',30,76,.9,10);
  } else if(kind==='dance'){
-  var D='M62 124 C50 150 56 184 76 194 L124 194 C144 184 150 150 138 124 Z';
-  b='<g class="tail">'+ink('M134 180 C170 186 182 152 166 132',2.4,id)+'</g>'+body(D,'M62 124 C50 150 56 184 76 194 M138 124 C150 150 144 184 124 194 M78 194 q8 -8 16 0 M106 194 q8 -8 16 0',100,160,40,36)
-   +'<g class="armL"><path d="M68 140 C42 128 26 100 26 66 C26 54 42 52 44 64 C46 90 58 112 80 126Z" fill="'+ARM(k)+'"/>'+ink('M68 140 C42 128 26 100 26 66 C26 54 42 52 44 64 C46 90 58 112 80 126',2.2,id)+beans(35,62,.6)+'</g>'
-   +'<g class="armR"><path d="M132 140 C158 128 174 100 174 66 C174 54 158 52 156 64 C154 90 142 112 120 126Z" fill="'+ARM(k)+'"/>'+ink('M132 140 C158 128 174 100 174 66 C174 54 158 52 156 64 C154 90 142 112 120 126',2.2,id)+beans(165,62,.6)+'</g>'
-   +H(id,col,'happy','smile',18,30,.82);
+  b='<g class="tail">'+tailW('M136 178 C172 182 184 150 168 128',14)+'</g>'
+   +wash('M62 196 C50 168 54 132 74 122 L126 122 C146 132 150 168 138 196Z',w,id)+wash('M82 196 C78 168 86 140 100 136 C114 140 122 168 118 196Z',PAPER,id,.9)
+   +pen('M62 196 C52 172 54 142 66 126 M138 196 C148 172 146 142 134 126',id,3)+toes(84,197,id,.9)+toes(116,197,id,.9)
+   +'<g class="armL">'+wash('M70 136 C44 122 30 96 30 66 C32 54 46 54 48 66 C50 92 60 112 82 124Z',w,id,.8)+pen('M70 136 C44 122 30 96 30 66 C32 54 46 54 48 66 C50 92 60 112 82 124',id,3)+pen('M34 62 v8 M40 60 v8',id,2,.8)+'</g>'
+   +'<g class="armR">'+wash('M130 136 C156 122 170 96 170 66 C168 54 154 54 152 66 C150 92 140 112 118 124Z',w2,id,.8)+pen('M130 136 C156 122 170 96 170 66 C168 54 154 54 152 66 C150 92 140 112 118 124',id,3)+pen('M166 62 v8 M160 60 v8',id,2,.8)+'</g>'
+   +H(id,col,'happy','smile',18,28,.82);
  } else {
-  var S='M60 112 C48 140 48 176 58 194 L142 194 C152 176 152 140 140 112 Z';
-  b=ink('M140 184 C178 190 190 156 172 132',2.4,id)+body(S,'M60 112 C48 140 48 176 58 194 M140 112 C152 140 152 176 142 194 M84 150 C82 170 82 184 84 194 M116 150 C118 170 118 184 116 194 M76 194 q8 -8 16 0 M108 194 q8 -8 16 0',100,158,44,40)
-   +H(id,col,kind==='happy'?'happy':kind==='smug'?'smug':'open',kind==='happy'?'smile':'w',0,0,1);
-  if(kind==='wave')b+='<path d="M136 150 C156 136 164 112 160 92 C158 82 146 82 146 92 C146 108 138 124 126 134Z" fill="'+ARM(k)+'"/>'+ink('M136 150 C156 136 164 112 160 92 C158 82 146 82 146 92 C146 108 138 124 126 134',2.2,id)+beans(153,90,.6);
+  b=tailW('M138 186 C176 190 188 156 170 132',14)
+   +wash('M58 196 C40 170 44 132 62 114 L84 118 C72 140 72 172 82 196Z',w,id)+wash('M142 196 C160 170 156 132 138 114 L116 118 C128 140 128 172 118 196Z',w2,id)+bst('M52 146 q10 4 18 0 M50 166 q10 4 18 0 M148 146 q-10 4 -18 0 M150 166 q-10 4 -18 0')
+   +pen('M84 132 C80 156 80 180 84 196 M116 132 C120 156 120 180 116 196',id,3)+toes(84,197,id,.9)+toes(116,197,id,.9)
+   +H(id,col,kind==='happy'?'happy':'open',kind==='happy'?'smile':'',0,0,1);
+  if(kind==='wave')b+=wash('M136 152 C158 136 166 110 162 88 C160 78 146 78 146 90 C146 108 138 124 124 136Z',w2,id,.8)+pen('M136 152 C158 136 166 110 162 88 C160 78 146 78 146 90 C146 108 138 124 124 136',id,3)+pen('M150 86 v8 M156 85 v8',id,2,.8);
   if(kind==='viking')b+=HELMET;
  }
  return '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><defs>'+defs(id)+'</defs>'+b+'</svg>'}
