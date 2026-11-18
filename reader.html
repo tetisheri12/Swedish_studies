@@ -58,7 +58,40 @@ a{color:var(--accent)}
 .arenahero{position:relative}.arenahero h1{padding-right:120px}.herocat{position:absolute;right:-6px;bottom:-24px;width:110px;height:110px}
 .resultcat{display:block;width:150px;height:150px;margin:0 auto}
 @media(max-width:700px){.herocat{width:96px;height:96px}.arenahero h1{padding-right:84px}.peekcat{width:116px;height:116px;top:-76px}}
-</style><script>/* Original watercolour-and-ink cats drawn in SVG for Swedish Studies. */
+</style><script>/* Shared profile + word-bank helpers for every page of Swedish Studies. */
+(function(){
+var PKEY='swedish-profiles-v1',DKEY='swedish-daily-v1';
+function rd(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}
+function wr(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}
+function P(){var p=rd(PKEY);return p&&Array.isArray(p.list)?p:{list:[],cur:null}}
+function cur(){var p=P();return p.list.filter(function(x){return x.id===p.cur})[0]||p.list[0]||null}
+function keyFor(base,prof){prof=prof===undefined?cur():prof;return !prof||prof.id==='p1'?base:base+':'+prof.id}
+function dayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+/* number of words in the current profile's bank: started cards (one per word) + words waiting in the Reader */
+function wordCount(){var p=cur();if(!p)return 0;var s=rd(keyFor(DKEY,p))||{};var seen={};Object.keys(s.cards||{}).forEach(function(id){seen[id.replace(/:(p|f|spell)$/,'')]=1});
+ var r=rd(keyFor('swedish-reader-v1',p));if(r&&Array.isArray(r.words))r.words.forEach(function(w){seen['r:'+String(w.form).toLowerCase()]=1});return Object.keys(seen).length}
+var SV={P:P,cur:cur,key:keyFor,dayNum:dayNum,rd:rd,wr:wr,count:wordCount,
+ setCur:function(id){var p=P();p.cur=id;wr(PKEY,p)}};
+window.SV=SV;
+var CSS='.profchip{display:inline-flex;align-items:center;gap:6px;border:2px solid #c8cec3;background:#fffdf7;color:#203536;border-radius:999px;padding:4px 12px 4px 6px;font:bold 15px/1.2 Manrope,system-ui,sans-serif;cursor:pointer;white-space:nowrap}.profchip:hover,.profchip:focus-visible{border-color:#a53e23;outline:none}.profchip .pav{font-size:20px}.profchip .pwc{font-weight:600;color:#526665;font-size:13px;border-left:1px solid #c8cec3;padding-left:7px}'
+ +'.profhost{display:flex;justify-content:flex-end;padding:8px max(16px,env(safe-area-inset-right,0px)) 0 16px}header .profchip{margin-left:12px}'
+ +'.profpop{position:fixed;z-index:9000;inset:0;background:rgba(32,53,54,.25);display:flex;align-items:flex-start;justify-content:flex-end;padding:calc(env(safe-area-inset-top,0px) + 60px) 16px 16px}.profpop .card{background:#fffdf7;border:2px solid #c8cec3;border-radius:16px;padding:14px;min-width:240px;max-width:92vw;display:grid;gap:8px;box-shadow:0 10px 30px rgba(0,0,0,.15);font:16px/1.4 Manrope,system-ui,sans-serif;color:#203536}'
+ +'.profpop .card b{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#a53e23}.profpop button,.profpop a{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:2px solid #e3e6dc;background:#fff;border-radius:12px;padding:8px 12px;font:bold 16px Manrope,system-ui,sans-serif;color:#203536;text-decoration:none;cursor:pointer}.profpop button[aria-current=true]{border-color:#a53e23;background:#f2e6dc}.profpop .pav{font-size:22px}';
+function chip(){var p=cur();var b=document.createElement('button');b.type='button';b.className='profchip';b.setAttribute('aria-label','Profile and word bank');
+ b.innerHTML=p?'<span class="pav">'+esc(p.av||'🙂')+'</span>'+esc(p.name)+'<span class="pwc">📚 '+wordCount()+'</span>':'<span class="pav">👤</span>Vem är du?';
+ b.onclick=function(){if(!P().list.length){location.href='daily.html';return}menu()};return b}
+function menu(){var o=document.createElement('div');o.className='profpop';var c=document.createElement('div');c.className='card';c.setAttribute('role','dialog');c.setAttribute('aria-label','Choose profile');
+ c.innerHTML='<b>Vem tränar?</b>';var pr=P(),me=cur();pr.list.forEach(function(p){var x=document.createElement('button');x.type='button';x.setAttribute('aria-current',me&&p.id===me.id?'true':'false');x.innerHTML='<span class="pav">'+esc(p.av||'🙂')+'</span>'+esc(p.name);x.onclick=function(){if(me&&p.id===me.id){o.remove();return}SV.setCur(p.id);location.reload()};c.appendChild(x)});
+ var a=document.createElement('a');a.href='ordbank.html';a.innerHTML='<span class="pav">📚</span>Ordbank · '+wordCount()+' ord';c.appendChild(a);
+ var n=document.createElement('a');n.href='daily.html';n.innerHTML='<span class="pav">＋</span>Ny person (på Idag)';c.appendChild(n);
+ o.appendChild(c);o.onclick=function(e){if(e.target===o)o.remove()};document.addEventListener('keydown',function k(e){if(e.key==='Escape'){o.remove();document.removeEventListener('keydown',k)}});document.body.appendChild(o);var f=c.querySelector('button,a');if(f)f.focus()}
+SV.refreshChip=function(){document.querySelectorAll('.profchip').forEach(function(b){b.replaceWith(chip())})};
+document.addEventListener('DOMContentLoaded',function(){if(document.body.classList.contains('embed'))return;var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);
+ var nav=document.querySelector('header nav');if(nav&&!document.documentElement.classList.contains('app')){nav.appendChild(chip())}
+ else{var h=document.createElement('div');h.className='profhost';h.appendChild(chip());var hd=document.querySelector('header');if(hd)hd.appendChild(h);else document.body.insertBefore(h,document.body.firstChild)}});
+})();
+</script><script>/* Original watercolour-and-ink cats drawn in SVG for Swedish Studies. */
 (function(){
 var n=0;
 /* Ink-and-wash cats: loose pen line + watercolour wash, drawn for this site. */
@@ -203,9 +236,9 @@ document.addEventListener('DOMContentLoaded',decorate);
     <a href="daily.html">Idag</a>
     <a href="index.html">Uppdrag</a>
     <a href="arena.html">Arena</a>
-    <a href="kemi.html">Kemi</a>
+    
     <a href="reader.html" aria-current="page">Läsa</a>
-    <a href="resurser.html">Resurser</a>
+    <a href="ordbank.html">Ord</a><a href="resurser.html">Resurser</a>
   </nav>
 </header><main>
 <div class="label">Reader · read, understand, collect words</div>
@@ -255,7 +288,7 @@ document.addEventListener('DOMContentLoaded',decorate);
 <script>
 'use strict';
 const $=id=>document.getElementById(id);
-const KEY='swedish-reader-v1',VKEY='swedish-missions-voice-v1',RKEY='swedish-missions-rate-v1';
+const KEY=(window.SV?SV.key('swedish-reader-v1'):'swedish-reader-v1'),VKEY='swedish-missions-voice-v1',RKEY='swedish-missions-rate-v1';
 let S={texts:{},keys:{},words:[],ans:{},ch:CHAPTERS[0].id};try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.texts&&s.keys&&Array.isArray(s.words)&&s.ans)S=Object.assign(S,s)}catch(e){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast('Browser storage is unavailable — your work stays only while the page is open.')}}
 function node(t,x,c){const n=document.createElement(t);if(x!==undefined)n.textContent=x;if(c)n.className=c;return n}
@@ -313,7 +346,7 @@ function clean(t){
   flush();return paras.join('\n\n');
 }
 $('clean').onclick=()=>{$('src').value=clean($('src').value);toast('Cleaned. Check the text, then press “Use this text”.')};
-$('use').onclick=()=>{const t=$('src').value.trim();if(!t){toast('Paste the text first.');return}if(t.length>60000){toast('That is very long — paste one chapter at a time.');return}S.texts[C.id]=/\n(?!\n)/.test(t)?clean(t):t;$('src').value=S.texts[C.id];S.keys[C.id]=[];save();$('pastebox').open=false;renderText();$('read').scrollIntoView()};
+$('use').onclick=()=>{const t=$('src').value.trim();if(EP.title&&EP.cur>=0&&t){S.book=S.book||{};S.book[C.id]=EP.title}if(!t){toast('Paste the text first.');return}if(t.length>60000){toast('That is very long — paste one chapter at a time.');return}S.texts[C.id]=/\n(?!\n)/.test(t)?clean(t):t;$('src').value=S.texts[C.id];S.keys[C.id]=[];save();$('pastebox').open=false;renderText();$('read').scrollIntoView()};
 $('cleartext').onclick=()=>{if(!confirm('Delete the text for this chapter from this device?'))return;delete S.texts[C.id];S.keys[C.id]=[];save();$('src').value='';renderText()};
 
 /* ---------- EPUB: read the book on this device (zip + XHTML, no libraries) ---------- */
@@ -448,7 +481,7 @@ function openWord(w){
   const c=node('p',undefined,'ctx');c.lang='sv';c.append(document.createTextNode(ctx+' '),sayBtn(ctx));box.append(c,recRow(Number(w.dataset.s),ctx));
   const r2=node('div',undefined,'row');
   const exists=S.words.some(x=>low(x.form)===low(form));
-  const sb=button(exists?'✓ In My words':'＋ Save word',()=>{if(S.words.some(x=>low(x.form)===low(form)))return;const en=ent?ent.en:(enInput.value.trim()||'?');S.words.push({form,base:ent?ent.sv:form,en,ctx,ch:C.id,t:Date.now()});save();document.querySelectorAll('#text .w').forEach(x=>{if(low(x.textContent)===low(form))x.classList.add('saved')});renderWords();sb.textContent='✓ Saved';sb.disabled=true;toast('Saved to My words')},'primary');
+  const sb=button(exists?'✓ In My words':'＋ Save word',()=>{if(S.words.some(x=>low(x.form)===low(form)))return;const en=ent?ent.en:(enInput.value.trim()||'?');S.words.push({form,base:ent?ent.sv:form,en,ctx,ch:C.id,t:Date.now(),src:'📖 '+((S.book&&S.book[C.id])||C.title)});save();if(window.SV)SV.refreshChip();document.querySelectorAll('#text .w').forEach(x=>{if(low(x.textContent)===low(form))x.classList.add('saved')});renderWords();sb.textContent='✓ Saved';sb.disabled=true;toast('Saved to My words')},'primary');
   if(exists)sb.disabled=true;
   const tl=node('a','Translate the whole sentence ↗');tl.href=gt(ctx);tl.target='_blank';tl.rel='noopener';
   r2.append(sb,button('🐢 Slowly',()=>say(form,0.6)),tl,button('Close',closeSheet));box.append(r2);
@@ -513,4 +546,4 @@ function renderGloss(){const box=$('gl');box.replaceChildren();C.gloss.forEach((
 $('hearall').onclick=()=>sayAll(C.gloss.map(g=>g[0]));
 
 setChapter(S.ch);setMode('words');
-</script><nav class="tabbar" aria-label="App"><a href="daily.html"><i>🏠</i>Idag</a><a href="index.html"><i>🗺️</i>Uppdrag</a><a href="arena.html"><i>🎯</i>Arena</a><a href="kemi.html"><i>🧪</i>Kemi</a><a href="reader.html" aria-current="page"><i>📖</i>Läsa</a><a href="resurser.html"><i>🎧</i>Resurser</a></nav></body></html>
+</script><nav class="tabbar" aria-label="App"><a href="daily.html"><i>🏠</i>Idag</a><a href="index.html"><i>🗺️</i>Uppdrag</a><a href="arena.html"><i>🎯</i>Arena</a><a href="reader.html" aria-current="page"><i>📖</i>Läsa</a><a href="ordbank.html"><i>📚</i>Ord</a><a href="resurser.html"><i>🎧</i>Resurser</a></nav></body></html>
