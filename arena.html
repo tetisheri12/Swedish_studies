@@ -18,6 +18,7 @@ input.type{font-size:28px;padding:10px 14px;border:2px solid var(--ink);border-r
 .ready{position:absolute;inset:0;background:rgba(247,243,233,.97);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;z-index:5;text-align:center;padding:20px}.ready .av{font-size:80px}
 .result{text-align:center}.result .big{font-size:64px}.board{display:grid;gap:8px;max-width:520px;margin:16px auto}.board div{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:20px;background:white}.board div.win{border-color:var(--gold);box-shadow:0 0 0 3px #f3e3a6}
 .miss{max-width:620px;margin:12px auto;text-align:left}.miss div{display:flex;gap:10px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line)}
+.lessonlink{display:inline-flex;align-items:center;border:2px solid var(--line);border-radius:999px;background:#fff;padding:8px 14px;font-weight:bold;text-decoration:none;color:var(--ink)}.lessonlink:hover{border-color:var(--accent)}.gschool{display:grid;gap:2px;background:#fff3d6;border:2px solid #e8c777;border-radius:16px;padding:12px 16px;margin:10px 0;text-decoration:none;color:var(--ink)}.gschool span{font-size:15px;color:var(--muted)}.gschool:hover{border-color:var(--accent)}
 .sheet{background:var(--wash);border-radius:var(--r);padding:16px 20px;margin:12px 0}.sheet table{border-collapse:collapse;margin:8px 0}.sheet td,.sheet th{padding:4px 10px;border-bottom:1px solid var(--line);text-align:left}
 .say{padding:5px 10px;font-size:16px;line-height:1}
 .confetti{position:absolute;top:-40px;font-size:28px;animation:fall 2.4s linear forwards;pointer-events:none}@keyframes fall{to{transform:translateY(560px) rotate(360deg);opacity:.2}}
@@ -263,6 +264,7 @@ window.catAvatar=function(av){var m=AVRE.exec(av||'');return m?avHTML(m[1]):null
 </header><main>
 <div id="home">
 <div class="label">Arena · grammar games for kids and grown-ups</div><div class="arenahero"><h1>Verb- och grammatikarenan</h1><span class="cat herocat" data-cat="wave" data-col="grey"></span></div>
+<a class="gschool" href="grammatik.html"><b>📖 Grammatikskolan</b><span>New to grammar? Learn each rule step by step first, then play. Start with “grammar words in plain English”.</span></a>
 <p>Short, fast rounds of Swedish grammar. Play alone to beat your record, or <b>duel</b> on the same iPad — each player at their own level. <b>Junior</b> taps the answer, <b>Pro</b> types it.</p>
 <section><div class="row" style="justify-content:space-between"><h2 style="margin:0">Spelare · players</h2><button id="addp">＋ Add player</button></div><p class="muted" id="pickhint">Tap one player for Solo, or two players for a Duel.</p><div id="players" class="players"></div></section>
 <section><div class="row" style="justify-content:space-between"><h2 style="margin:0">Spel · games</h2><span class="row" style="margin:0"><label class="muted" style="font-size:14px">Mix up to <select id="mixlvl"><option>A2</option><option selected>B1</option><option>B2</option><option>C1</option></select></label><button id="mix" class="primary">⚡ Dagens mix</button></span></div><p class="muted">10 questions per round. Fast answers and combos give extra points. “Dagens mix” mixes all games and gives double XP once a day.</p><div id="games" class="games"></div></section>
@@ -933,6 +935,8 @@ function verbPool(lv){return VERBS.filter(v=>lv==='pro'||!HARD.has(v.inf))}
 function verbChoices(v,f){const base=[v.inf,v.pres,v.past,v.sup].filter(x=>x&&x!=='-');let wrong=[];
   if(v.g==='4'||v.g==='m'){wrong.push(v.inf.replace(/a$/,'')+'ade',v.inf+'de')}else if(v.g==='1'){wrong.push(v.inf.replace(/a$/,'')+'te',v.inf+'t')}else{wrong.push(v.inf+'de',v.pres+'de')}
   const opts=[...new Set([f].concat(base.filter(x=>x!==f),wrong.filter(x=>x!==f)))].slice(0,4);return shuffle(opts)}
+const LESSON_IDS=new Set('verb grupp enett plural def adj v2 inte sin konj bisats v2b prep hos tanka komp kond passiv part rel satsadv lagga partikel samband prepverb idiom register ordbild'.split(' '));
+function lessonLink(id,lab){const a=document.createElement('a');a.href='grammatik.html#'+id;a.className='lessonlink';a.textContent=lab||'📖 Lektion';return a}
 const GAMES=[
 {id:'verb',lvl:'A2',e:'⚡',name:'Verb-blixten',en:'Verb blitz',desc:'Nu, igår, har … — pick or type the right verb form.',
  gen(lv,item){const v=item||pickOne(verbPool(lv));const ts=TENSES.filter(t=>v[t[0]]&&v[t[0]]!=='-'&&(lv==='pro'||t[0]!=='imp'));const t=pickOne(ts);const f=v[t[0]];
@@ -996,7 +1000,7 @@ function renderHome(){
   const g=$('games');g.replaceChildren();let lastL='';
   GAMES.forEach(gm=>{if(gm.lvl!==lastL){lastL=gm.lvl;const h=node('h3',LVL_NAMES[gm.lvl]||gm.lvl,'lvlh');g.append(h)}const b=node('div','','game');const top=node('div','','row');top.style.margin='0';top.style.justifyContent='space-between';top.append(node('span',gm.e,'e'),button('?',()=>showSheet(gm)));top.lastChild.setAttribute('aria-label','How it works: '+gm.name);
     b.append(top,sv('b',gm.name),node('small',gm.en+' · '+gm.desc));const bests=S.players.filter(p=>p.best&&p.best[gm.id]).map(p=>p.av+' '+p.best[gm.id]);if(bests.length)b.append(node('div','Best: '+bests.join('  '),'best'));
-    const miss=picked.length===1?(pl(picked[0]).miss||{})[gm.id]||[]:[];const r=node('div','','row');r.style.margin='6px 0 0';r.append(button('Play',()=>start([gm.id]),'primary'));if(miss.length)r.append(button('Practise misses ('+miss.length+')',()=>start([gm.id],true)));b.append(r);g.append(b)});
+    const miss=picked.length===1?(pl(picked[0]).miss||{})[gm.id]||[]:[];const r=node('div','','row');r.style.margin='6px 0 0';r.append(button('Play',()=>start([gm.id]),'primary'));if(LESSON_IDS.has(gm.id))r.append(lessonLink(gm.id));if(miss.length)r.append(button('Practise misses ('+miss.length+')',()=>start([gm.id],true)));b.append(r);g.append(b)});
   const mixed=picked.length&&picked.every(id=>S.mixDay[id]===today());$('mix').textContent=mixed?'⚡ Dagens mix (done today)':'⚡ Dagens mix · 2× XP';
 }
 var pl=function(id){return S.players.find(p=>p.id===id)}
@@ -1022,7 +1026,7 @@ function demoPlayer(id){const frames=(typeof DEMOS!=='undefined'&&DEMOS[id])||nu
     clearTimeout(tm);if(i<frames.length-1)tm=setTimeout(()=>{if(box.isConnected)show(i+1)},3200);else{again.hidden=false}}
   const prev=button('◀',()=>{if(k>0)show(k-1)});const nxt=button('▶',()=>{if(k<frames.length-1)show(k+1)});const again=button('↺ Igen',()=>{again.hidden=true;live.forEach(el=>el.remove());live.clear();show(0)});again.hidden=true;
   ctl.append(prev,nxt,again);box.append(st,cap,dots,ctl);setTimeout(()=>show(0),250);return box}
-function showSheet(gm){const b=$('dlgbody');b.replaceChildren(node('h2',gm.e+' '+gm.name));const dp=demoPlayer(gm.id);if(dp)b.append(dp);const d=node('div','','sheet');d.innerHTML=gm.sheet;d.lang='sv';b.append(d);$('dlgclose').onclick=()=>{$('dlg').close();if(synth)synth.cancel()};$('dlg').showModal()}
+function showSheet(gm){const b=$('dlgbody');b.replaceChildren(node('h2',gm.e+' '+gm.name));const dp=demoPlayer(gm.id);if(dp)b.append(dp);const d=node('div','','sheet');d.innerHTML=gm.sheet;d.lang='sv';b.append(d);if(LESSON_IDS.has(gm.id)){const lp=node('p');lp.append(lessonLink(gm.id,'📖 Full lesson: learn this step by step →'));b.append(lp)}$('dlgclose').onclick=()=>{$('dlg').close();if(synth)synth.cancel()};$('dlg').showModal()}
 $('dlg').addEventListener('cancel',e=>{});
 $('addp').onclick=()=>editPlayer(null);
 const LV_ORDER=['A2','B1','B2','C1'];
@@ -1120,5 +1124,5 @@ if(EMBED){
   picked=[p.id];window.pl=id=>id===p.id?p:S.players.find(x=>x.id===id);
   const gm=GAMES.find(g=>g.id===gid);if(!gm){post({type:'arena-close'})}else{$('home').hidden=true;$('play').hidden=false;const s=$('stage');s.replaceChildren();const h=node('h2',gm.e+' '+gm.name);h.lang='sv';s.append(node('div',(gm.lvl||'')+' · '+gm.en,'label'),h);const dp=demoPlayer(gm.id);if(dp)s.append(dp);const d=node('div','','sheet');d.innerHTML=gm.sheet;d.lang='sv';s.append(d);const r=node('div','','row center');const go=button('Start ▶  (10 questions)',()=>start([gid]),'primary');go.style.fontSize='20px';r.append(go);s.append(r)}
 }else{(function(){const pr=window.SV&&SV.cur();if(!pr)return;const nm=String(pr.name).toLowerCase();let me=S.players.find(x=>String(x.name).toLowerCase()===nm);
-  if(!me){me={id:'pf-'+pr.id,name:pr.name,av:pr.av||AVATARS[S.players.length%AVATARS.length],lv:pr.lv==='pro'?'pro':'junior',xp:0,best:{},miss:{}};S.players.push(me);save()}picked=[me.id]})();renderHome()}
+  if(!me){me={id:'pf-'+pr.id,name:pr.name,av:pr.av||AVATARS[S.players.length%AVATARS.length],lv:pr.lv==='pro'?'pro':'junior',xp:0,best:{},miss:{}};S.players.push(me);save()}picked=[me.id]})();renderHome();{const g0=QS.get('game');if(g0&&GAMES.some(g=>g.id===g0)&&picked.length)setTimeout(()=>start([g0]),0)}}
 </script><nav class="tabbar" aria-label="App"><a href="daily.html"><i>🏠</i>Idag</a><a href="index.html"><i>🗺️</i>Uppdrag</a><a href="arena.html" aria-current="page"><i>🎯</i>Arena</a><a href="reader.html"><i>📖</i>Läsa</a><a href="ordbank.html"><i>📚</i>Ord</a><a href="resurser.html"><i>🎧</i>Resurser</a></nav></body></html>
