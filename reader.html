@@ -10,7 +10,8 @@ select{padding:9px;border:1px solid var(--line);border-radius:var(--r);backgroun
 .modes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}.modes button{padding:10px;line-height:1.25}.modes small{display:block;font-size:13px;opacity:.9}
 .text{background:#fffdf7;border:1px solid var(--line);border-radius:var(--r);padding:clamp(16px,4vw,34px);font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:1.85}
 .text p{margin:0 0 1.2em;max-width:none}.text.lines .s{display:block;margin:0 0 .55em}.s{border-radius:6px;transition:background .15s}.keys .s{cursor:pointer}.keys .s:hover{background:var(--wash)}.s.key{background:var(--key);box-shadow:0 0 0 2px var(--key)}
-.w{cursor:pointer;border-radius:4px}.words .w:hover{background:var(--wash)}.w.g{text-decoration:underline dotted #8aa29a;text-underline-offset:5px}.w.saved{text-decoration:underline solid var(--accent) 2px;text-underline-offset:5px}.w.on{background:#cfe0d6}
+.w{cursor:pointer;border-radius:4px}.words .w:hover{background:var(--wash)}.w.bk-learn{background:#fbeeb8}.w.bk-new{text-decoration:underline dotted #b9b39a;text-underline-offset:5px}.bankstat{background:#fffdf7;border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;margin:10px 0;display:grid;gap:6px}.bankstat .chips{display:flex;flex-wrap:wrap;gap:6px}.bankstat .chip{border-radius:999px;padding:2px 10px;font-size:14px;background:var(--wash)}
+.w.g{text-decoration:underline dotted #8aa29a;text-underline-offset:5px}.w.saved{text-decoration:underline solid var(--accent) 2px;text-underline-offset:5px}.w.on{background:#cfe0d6}
 .sheet{position:fixed;left:0;right:0;bottom:0;z-index:60;padding-bottom:calc(22px + env(safe-area-inset-bottom,0px));background:#fffdf7;border-top:2px solid var(--ink);box-shadow:0 -8px 24px rgba(0,0,0,.12);padding:16px 20px 22px;max-height:60vh;overflow:auto}.sheet .in{max-width:900px;margin:auto}.sheet .big{font-size:28px;font-weight:bold;display:flex;gap:12px;align-items:center;flex-wrap:wrap}.sheet .en{font-size:21px;margin:4px 0}.sheet .ctx{font-family:Georgia,serif;color:var(--muted)}.sheet input{padding:9px;border:1px solid var(--line);border-radius:10px;min-width:220px}
 .events{list-style:none;padding:0;margin:10px 0}.events li{padding:10px 0;border-bottom:1px solid var(--line);display:flex;gap:12px}.events b.ok{color:var(--good)}.events b.no{color:var(--accent)}
 .chosen{font-family:Georgia,serif;font-size:19px}.chosen li{margin:6px 0}
@@ -299,6 +300,7 @@ window.catAvatar=function(av){var m=AVRE.exec(av||'');return m?avHTML(m[1]):null
 <div id="toast" role="status" hidden></div>
 <footer>Swedish Studies · Reader. The book text is not part of this site: you paste it in, and it stays in this browser. Word meanings, key events and questions are written for study use.</footer>
 <script src="reader-data.js"></script>
+<script src="reader-bank.js"></script>
 <script>
 'use strict';
 const $=id=>document.getElementById(id);
@@ -430,7 +432,7 @@ function renderText(){
   $('pastesum').textContent=txt?'Edit the text':'Paste the pages or open an EPUB';
   $('pastestatus').textContent=txt?'Text added: '+txt.split(/\s+/).length+' words. Tap “Edit the text” to change it.':'';
   if(!txt){box.append(node('p','Add the text in step 01 first.','muted'));return}
-  const saved=new Set(S.words.map(w=>low(w.form)));const keys=new Set(S.keys[C.id]||[]);
+  BST=null;const saved=new Set(S.words.map(w=>low(w.form)));const keys=new Set(S.keys[C.id]||[]);
   txt.split(/\n{2,}/).forEach(par=>{const p=node('p');
     sentencesOf(par).forEach(st=>{const si=sentences.length;sentences.push(st.trim());const span=node('span',undefined,'s'+(keys.has(si)?' key':''));span.dataset.i=si;
       const parts=st.split(/([\p{L}\p{N}][\p{L}\p{N}_:'’-]*[\p{L}\p{N}]|[\p{L}\p{N}])/u);
@@ -438,19 +440,20 @@ function renderText(){
       const wi=toks.map((t,i)=>t.w!==undefined?i:-1).filter(i=>i>=0);
       let k=0;
       while(k<wi.length){
-        let len=Math.min(MAXP,wi.length-k),hit=null;
-        for(;len>=1;len--){const ws=wi.slice(k,k+len).map(i=>low(toks[i].w)).join(' ');if(GL.has(ws)){hit=GL.get(ws);break}if(len===1)break}
+        let len=Math.min(Math.max(MAXP,3),wi.length-k),hit=null,hk='';
+        for(;len>=1;len--){const ws=wi.slice(k,k+len).map(i=>low(toks[i].w)).join(' ');if(GL.has(ws)){hit=GL.get(ws);hk=ws;break}const bb=bankGet(ws);if(bb){hit=bb;hk=ws;break}if(len===1)break}
         if(!hit)len=1;
         const from=wi[k],to=wi[k+len-1];
         // append separators before this word group
         const prevEnd=k===0?-1:wi[k-1];for(let j=prevEnd+1;j<from;j++)span.append(toks[j].sep);
         const text=toks.slice(from,to+1).map(t=>t.w!==undefined?t.w:t.sep).join('');
-        const w=node('span',text,'w'+(hit?' g':'')+(saved.has(low(text))?' saved':''));w.dataset.s=si;if(hit){w.dataset.g=hit.sv}
+        const bcls=hit&&hit.bank?(()=>{const st=bankStatus(hit.id);return st==='know'?' bk-know':st==='new'?' bk-new':' bk-learn'})():(hit?' g':'');const w=node('span',text,'w'+bcls+(saved.has(low(text))?' saved':''));w.dataset.s=si;if(hit){w.dataset.g=hit.sv;w.dataset.k=hk}
         span.append(w);k+=len;
       }
       const last=wi.length?wi[wi.length-1]:-1;for(let j=last+1;j<toks.length;j++)span.append(toks[j].sep);
       span.append(' ');p.append(span)});
     box.append(p)});
+  bankSummary();
 }
 function setMode(m){mode=m;$('text').className='text '+(m==='words'?'words':'keys')+(S.perline?' lines':'');$('mWords').className=m==='words'?'selected':'';$('mKeys').className=m==='keys'?'selected':'';$('modehelp').textContent=m==='words'?'Tap any word to see what it means.':'Tap a sentence to mark it ⭐. Tap again to unmark.';closeSheet()}
 $('perline').checked=!!S.perline;$('perline').onchange=()=>{S.perline=$('perline').checked;save();$('text').classList.toggle('lines',S.perline)};
@@ -481,21 +484,53 @@ function recRow(si,text){
   function upd(){bMe.disabled=bBoth.disabled=!rec.map.has(si)}upd();
   r.append(bRec,bMe,bBoth,st);return r;
 }
+
+
+/* ---------- wordbank matching ---------- */
+function bankGet(k){if(typeof BANK==='undefined'||!Object.prototype.hasOwnProperty.call(BANK,k))return null;const e=BANKE[BANK[k]];return{sv:e[0],en:e[1],id:e[2],u:e[3],bank:true}}
+let BST=null;function bankStatus(id){if(!BST){BST=new Map();try{const ds=window.SV&&SV.rd?SV.rd(SV.key('swedish-daily-v1')):null;const T=SV.dayNum();const g=new Map();if(ds&&ds.cards)Object.values(ds.cards).forEach(c=>{const b=String(c.id).replace(/:(p|f|spell)$/,'');if(!g.has(b))g.set(b,[]);g.get(b).push(c)});g.forEach((cs,b)=>{const m=cs.filter(c=>c.box>0);BST.set(b,!m.length?'new':m.some(c=>c.due<=T)?'due':Math.min(...m.map(c=>c.box))>=4?'know':'learn')})}catch(e){}}return BST.get(id)||'new'}
+const BSL={know:'Kan',learn:'Lär mig',due:'Att öva',new:'Not studied yet'};
+function bankSummary(){const old=document.getElementById('bankstat');if(old)old.remove();if(typeof BANK==='undefined')return;const els=[...document.querySelectorAll('#text .w')];if(!els.length)return;
+  const seen=new Map();els.forEach(e=>{const k=e.dataset.k||low(e.textContent);if(!seen.has(k))seen.set(k,e)});
+  const c={know:0,learn:0,newb:0,none:0},fresh=[];
+  seen.forEach((el,k)=>{if(GL.has(k)&&!bankGet(k)){c.none++;return}const b=bankGet(k);if(!b){c.none++;return}const st=bankStatus(b.id);if(st==='know')c.know++;else if(st==='new'){c.newb++;fresh.push([b,el])}else c.learn++});
+  const box=node('div',undefined,'bankstat');box.id='bankstat';box.append(node('b','📚 Match with your wordbank · '+seen.size+' different words in this text'));
+  const ch=node('div',undefined,'chips');[['✓ '+c.know+' you know',''],['● '+c.learn+' learning','background:#fbeeb8'],['○ '+c.newb+' in the wordbank, not studied yet',''],['？ '+c.none+' not in the wordbank','']].forEach(([t,s])=>{const x=node('span',t,'chip');if(s)x.style.cssText=s;ch.append(x)});box.append(ch);
+  if(fresh.length){const seenB=new Set(S.words.map(w=>w.bid).filter(Boolean));const add=fresh.filter(([b])=>!seenB.has(b.id));if(add.length)box.append(button('＋ Save the '+add.length+' wordbank words I have not studied yet',()=>{if(add.length>60&&!confirm('Save '+add.length+' words to My words?'))return;add.forEach(([b,el])=>{const form=el.textContent;if(S.words.some(x=>low(x.form)===low(form)))return;S.words.push({form,base:b.sv,en:b.en,bid:b.id,ctx:sentences[Number(el.dataset.s)]||'',ch:C.id,t:Date.now(),src:'📖 '+((S.book&&S.book[C.id])||C.title)})});save();if(window.SV)SV.refreshChip();renderText();renderWords();toast('Saved '+add.length+' words')})) }
+  $('text').parentNode.insertBefore(box,$('text'))}
+/* ---------- online meaning lookup (Wiktionary), cached ---------- */
+const WC_KEY='sv-wikt-cache-v1';let WC={};try{WC=JSON.parse(localStorage.getItem(WC_KEY))||{}}catch(e){}
+function wcSave(){try{const k=Object.keys(WC);if(k.length>1500)k.slice(0,300).forEach(x=>delete WC[x]);localStorage.setItem(WC_KEY,JSON.stringify(WC))}catch(e){}}
+async function wdef(w){const res=await fetch('https://en.wiktionary.org/api/rest_v1/page/definition/'+encodeURIComponent(w));if(!res.ok)return[];const j=await res.json();const out=[];(j.sv||[]).forEach(x=>(x.definitions||[]).forEach(df=>{const t=String(df.definition||'').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();if(t)out.push({t,pos:x.partOfSpeech||''})}));return out}
+const INFL=/\b(?:definite|indefinite|plural|singular|past|present|supine|participle|imperative|infinitive|comparative|superlative|genitive|neuter|common|inflection|form|passive|s-form|attributive)[^.;]*?\bof\s+([\p{L}-]+)/iu;
+async function wikt(form){const f=low(form);if(f in WC)return WC[f];
+  const cands=[f];const suf=['en','et','na','ar','er','or','ade','ande','de','te','t','n','a','e','s'];suf.forEach(s=>{if(f.length>s.length+2&&f.endsWith(s))cands.push(f.slice(0,-s.length),f.slice(0,-s.length)+'a',f.slice(0,-s.length)+'e')});
+  let res=null,tries=0;
+  try{for(const c of [...new Set(cands)]){if(tries++>5)break;const defs=await wdef(c);if(!defs.length)continue;
+    const inf=defs.map(x=>INFL.exec(x.t)).find(Boolean);
+    if(inf&&low(inf[1])!==c){const lem=low(inf[1]);const ld=(await wdef(lem)).filter(x=>!INFL.test(x.t));if(ld.length){res={en:ld[0].t.slice(0,80),base:lem,all:ld.slice(0,3).map(x=>x.t.slice(0,60)).join(' · ')};break}}
+    const real=defs.filter(x=>!INFL.test(x.t));if(real.length){res={en:real[0].t.slice(0,80),base:c,all:real.slice(0,3).map(x=>x.t.slice(0,60)).join(' · ')};break}}
+  }catch(e){return null}
+  if(res){WC[f]=res;wcSave()}return res}
 function closeSheet(){stopRec();$('sheet').hidden=true;if(onEl)onEl.classList.remove('on');onEl=null}
 function gt(t){return 'https://translate.google.com/?sl=sv&tl=en&op=translate&text='+encodeURIComponent(t)}
 function openWord(w){
   if(onEl)onEl.classList.remove('on');onEl=w;w.classList.add('on');
-  const form=w.textContent,ctx=sentences[Number(w.dataset.s)]||'',ent=w.dataset.g?GL.get(w.dataset.g.split(/\s+/).map(low).join(' ')):GL.get(low(form));
+  const form=w.textContent,ctx=sentences[Number(w.dataset.s)]||'',kk=w.dataset.k||low(form),ent=GL.get(kk)||bankGet(kk);
   const box=$('sheetin');box.replaceChildren();
   const big=node('div',undefined,'big');big.append(sv('span',form),sayBtn(form));if(ent&&low(ent.sv)!==low(form))big.append(node('span','· '+ent.sv,'muted'));
   box.append(big);
-  let enInput=null;
+  let enInput=null,found=null;
   if(ent)box.append(node('div',ent.en,'en'));
-  else{box.append(node('p','This word is not in the chapter list. Guess from the sentence, or look it up — You can save it without a meaning and add the meaning later.','muted'));const r=node('div',undefined,'row');enInput=node('input');enInput.placeholder='Meaning in English';enInput.setAttribute('aria-label','Meaning in English');const a=node('a','Look up ↗');a.href=gt(form);a.target='_blank';a.rel='noopener';r.append(enInput,a);box.append(r);const fm=button('🔎 Find meaning',async()=>{fm.disabled=true;fm.textContent='Searching …';try{const res=await fetch('https://en.wiktionary.org/api/rest_v1/page/definition/'+encodeURIComponent(low(form)));const j=await res.json();const sv=j.sv||[];const defs=[];sv.forEach(x=>(x.definitions||[]).forEach(df=>{const t=String(df.definition||'').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();if(t&&defs.length<3)defs.push(t)}));if(defs.length){enInput.value=defs[0].slice(0,80);fl.textContent='Found: '+defs.join(' · ')+' — edit if needed, then save.'}else fl.textContent='No entry found. Try the base form (katt, not katten) with Look up ↗.'}catch(e){fl.textContent='Could not search (offline?). Use Look up ↗, or save now and add the meaning later.'}fm.disabled=false;fm.textContent='🔎 Find meaning'});const fl=node('p','','muted');box.append(fm,fl)}
+  if(ent&&ent.bank){const stl=node('p','📚 In your wordbank · station '+ent.u.toUpperCase()+' · '+BSL[bankStatus(ent.id)],'muted');box.append(stl)}
+  else{box.append(node('p','This word is not in the chapter list. The meaning is looked up online for you. You can also save it without a meaning and add it later.','muted'));const r=node('div',undefined,'row');enInput=node('input');enInput.placeholder='Meaning in English';enInput.setAttribute('aria-label','Meaning in English');const a=node('a','Look up ↗');a.href=gt(form);a.target='_blank';a.rel='noopener';r.append(enInput,a);box.append(r);const fl=node('p','Looking up the meaning …','muted');box.append(fl);
+    const fm=button('🔎 Search again',()=>autoLookup());box.append(fm);
+    const autoLookup=async()=>{fl.textContent='Looking up the meaning …';const r=await wikt(form);if(r){found=r;enInput.value=r.en;fl.textContent=(r.base&&low(r.base)!==low(form)?'Base word: '+r.base+'. ':'')+'Found: '+r.all+' — edit if it is not right, then save.'}else fl.textContent='No meaning found online. Use Look up ↗, or save now and add the meaning later.'};
+    autoLookup()}
   const c=node('p',undefined,'ctx');c.lang='sv';c.append(document.createTextNode(ctx+' '),sayBtn(ctx));box.append(c,recRow(Number(w.dataset.s),ctx));
   const r2=node('div',undefined,'row');
   const exists=S.words.some(x=>low(x.form)===low(form));
-  const sb=button(exists?'✓ In My words':'＋ Save word',()=>{if(S.words.some(x=>low(x.form)===low(form)))return;const en=ent?ent.en:(enInput.value.trim()||'?');S.words.push({form,base:ent?ent.sv:form,en,ctx,ch:C.id,t:Date.now(),src:'📖 '+((S.book&&S.book[C.id])||C.title)});save();if(window.SV)SV.refreshChip();document.querySelectorAll('#text .w').forEach(x=>{if(low(x.textContent)===low(form))x.classList.add('saved')});renderWords();sb.textContent='✓ Saved';sb.disabled=true;toast('Saved to My words')},'primary');
+  const sb=button(exists?'✓ In My words':'＋ Save word',()=>{if(S.words.some(x=>low(x.form)===low(form)))return;const en=ent?ent.en:(enInput.value.trim()||'?');S.words.push({form,bid:ent&&ent.bank?ent.id:undefined,base:ent?ent.sv:(found&&found.base)||form,en,ctx,ch:C.id,t:Date.now(),src:'📖 '+((S.book&&S.book[C.id])||C.title)});save();if(window.SV)SV.refreshChip();document.querySelectorAll('#text .w').forEach(x=>{if(low(x.textContent)===low(form))x.classList.add('saved')});renderWords();sb.textContent='✓ Saved';sb.disabled=true;toast('Saved to My words')},'primary');
   if(exists)sb.disabled=true;
   const tl=node('a','Translate the whole sentence ↗');tl.href=gt(ctx);tl.target='_blank';tl.rel='noopener';
   r2.append(sb,button('🐢 Slowly',()=>say(form,0.6)),tl,button('Close',closeSheet));box.append(r2);

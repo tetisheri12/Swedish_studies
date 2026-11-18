@@ -282,7 +282,7 @@ function collect(){const s=loadDaily();const groups=new Map();
   const words=[];groups.forEach((cs,b)=>{const m=cs.find(c=>c.id===b)||cs[0];const t=textOf(m);words.push({id:b,cards:cs,main:m,sv:t.sv,blank:t.blank,ex:t.ex,en:m.en||m.def||'',src:m.src?((/^(v|w|n):/.test(b)?'🏠 ':/^g:/.test(b)?'🎯 ':/^m:/.test(b)?'🗺️ ':'')+m.src):srcGuess(b),status:statusOf(cs)})});
   const has=new Set(groups.keys());
   s.extra.forEach(x=>{if(has.has(x.id))return;words.push({id:x.id,pending:'extra',sv:x.full||x.w||'',blank:x.blank,en:x.en||'',src:x.src||'Egen',status:'new',cards:[]})});
-  const rd=SV.rd(SV.key('swedish-reader-v1'));if(rd&&Array.isArray(rd.words))rd.words.forEach(w=>{const id='r:'+norm(w.form);if(has.has(id))return;words.push({id,pending:'reader',form:w.form,sv:w.ctx||w.form,blank:w.ctx?w.form:null,en:w.en&&w.en!=='?'?w.en:'',src:w.src||'📖 Läsning',status:'new',cards:[]})});
+  const rd=SV.rd(SV.key('swedish-reader-v1'));if(rd&&Array.isArray(rd.words))rd.words.forEach(w=>{const id='r:'+norm(w.form);if(has.has(id)||(w.bid&&has.has(w.bid)))return;words.push({id,pending:'reader',form:w.form,sv:w.ctx||w.form,blank:w.ctx?w.form:null,en:w.en&&w.en!=='?'?w.en:'',src:w.src||'📖 Läsning',status:'new',cards:[]})});
   return {s,words}}
 function srcGuess(id){if(/^v:|^n:|^w:/.test(id))return'🏠 Idag · Rivstart';if(/^m:/.test(id))return'🗺️ Uppdrag';if(/^g:/.test(id))return'🎯 Arena';if(/^r:/.test(id))return'📖 Läsning';return'🏠 Idag'}
 /* ---- render ---- */
