@@ -11,6 +11,7 @@ select{padding:9px;border:1px solid var(--line);border-radius:var(--r);backgroun
 .text{background:#fffdf7;border:1px solid var(--line);border-radius:var(--r);padding:clamp(16px,4vw,34px);font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:1.85}
 .text p{margin:0 0 1.2em;max-width:none}.text.lines .s{display:block;margin:0 0 .55em}.s{border-radius:6px;transition:background .15s}.keys .s{cursor:pointer}.keys .s:hover{background:var(--wash)}.s.key{background:var(--key);box-shadow:0 0 0 2px var(--key)}
 .w{cursor:pointer;border-radius:4px}.words .w:hover{background:var(--wash)}#summary,#questions,#chapterwords,#mKeys{display:none!important}
+.readhero{position:relative;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;min-height:150px}.readhero h1{margin-bottom:6px}.readcat{width:240px;height:160px;flex:none;margin-bottom:-6px}@media(max-width:700px){.readcat{width:170px;height:114px}}
 .libgroup{margin:14px 0 4px;font-weight:bold;color:var(--muted);font-size:14px;text-transform:uppercase;letter-spacing:.08em}.libitem{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;background:#fffdf7;border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;margin:6px 0}.libitem.cur{border-color:var(--accent)}.libitem b{font-size:18px}.libitem .m{color:var(--muted);font-size:14px}.libitem .a{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.libitem .a button{padding:6px 12px;font-size:14px}.libempty{text-align:center;background:#fffdf7;border:1.5px dashed var(--line);border-radius:14px;padding:22px}.libempty .cat{width:110px;height:110px;display:inline-block}.readbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:8px 0}.readbar b{font-size:20px}#ttitle{width:100%;border:2px solid var(--line);border-radius:12px;padding:10px 12px;margin:8px 0;background:#fff}
 .w.bk-learn{background:#fbeeb8}.w.bk-new{text-decoration:underline dotted #b9b39a;text-underline-offset:5px}.bankstat{background:#fffdf7;border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;margin:10px 0;display:grid;gap:6px}.bankstat .chips{display:flex;flex-wrap:wrap;gap:6px}.bankstat .chip{border-radius:999px;padding:2px 10px;font-size:14px;background:var(--wash)}
 .w.g{text-decoration:underline dotted #8aa29a;text-underline-offset:5px}.w.saved{text-decoration:underline solid var(--accent) 2px;text-underline-offset:5px}.w.on{background:#cfe0d6}
@@ -154,6 +155,18 @@ function svg(kind,col){col=col||'grey';var id='c'+(++n),b='',k=K(col),w=k.w,w2=k
    +'<path d="M54 122 q-4 -14 10 -15 q14 0 14 14 q-10 6 -24 1Z M122 121 q0 -14 14 -14 q14 1 10 15 q-14 5 -24 -1Z" fill="'+PAPER+'"/>'+toes(66,122,id,1.05)+toes(134,122,id,1.05);
  } else if(kind==='sidepeek'){
   b=wash('M100 196 C100 150 116 124 150 116 L186 116 V200Z',w,id,.85)+wash('M116 196 C116 164 128 142 150 138 L186 138 V200Z',PAPER,id,.7)+H(id,col,'sideL','',34,12,.92,-16,1)+'<path d="M158 166 q-4 -15 11 -16 q15 0 13 16 q-11 6 -24 0Z" fill="'+PAPER+'"/>'+pen('M158 166 q-4 -15 11 -16 q15 0 13 16',id,2.6)+toes(170,166,id,.95)+'<path d="M190 0 V200" stroke="'+PEN+'" stroke-width="3.4" stroke-linecap="round" fill="none" opacity=".85"/>';
+ } else if(kind==='onbooks'){
+  /* a cat lying on a stack of books, one paw hanging over the edge, tail down the side */
+  var bk=function(x1,x2,y1,y2,c,off){return wash('M'+x1+' '+(y1+4)+' C'+x1+' '+(y1+1)+' '+(x1+4)+' '+y1+' '+(x1+10)+' '+y1+' L'+(x2-10)+' '+y1+' C'+(x2-4)+' '+y1+' '+x2+' '+(y1+1)+' '+x2+' '+(y1+4)+' L'+x2+' '+(y2-4)+' C'+x2+' '+(y2-1)+' '+(x2-4)+' '+y2+' '+(x2-10)+' '+y2+' L'+(x1+10)+' '+y2+' C'+(x1+4)+' '+y2+' '+x1+' '+(y2-1)+' '+x1+' '+(y2-4)+'Z',c,id,.9)
+   +wash('M'+(x1+12)+' '+(y1+8)+' H'+(x2-4)+' V'+(y2-8)+' H'+(x1+12)+'Z',PAPER,id,.95)
+   +pen('M'+(x1+4)+' '+(y1+1)+' H'+(x2-10)+' M'+(x1+4)+' '+(y2-1)+' H'+(x2-10)+' M'+(x1+12)+' '+(y1+8)+' V'+(y2-8),id,2.6)
+   +pen('M'+(x1+20)+' '+(y1+(y2-y1)/2)+' H'+(x2-8)+' M'+(x1+20)+' '+(y1+(y2-y1)/2+5)+' H'+(x2-16),id,1.6,.45)};
+  b=bk(22,278,146,188,'#c66a49')+bk(42,254,114,146,'#5f948e')+bk(60,246,88,114,'#d9b24d')+tailW('M84 80 C52 76 28 98 32 134 C34 152 38 164 44 172',13)+stroke('M42 166 q2 6 6 8',PEN,id,7,.7)
+   +wash('M72 90 C68 60 100 44 142 44 C182 44 210 58 216 88 L216 92 L72 92Z',w,id)+bst('M92 52 q6 12 2 26 M118 46 q6 12 2 28 M144 46 q5 12 1 28 M170 50 q4 10 0 24')
+   +wash('M96 92 C110 82 176 82 204 92Z',PAPER,id,.8)+pen('M72 90 C68 60 100 44 142 44 C178 44 204 56 214 78',id,3)+pen('M76 92 H212',id,2.6,.8)
+   +wash('M188 88 C184 102 186 116 194 122 C204 124 212 118 210 106 C208 96 204 90 198 86Z',PAPER,id,.95)+pen('M188 90 C184 104 186 118 194 122 C204 126 212 120 210 106',id,2.8)+toes(201,124,id,.8)
+   +wash('M204 84 C214 78 238 80 246 88 C246 94 214 96 204 90Z',PAPER,id,.9)+pen('M206 92 C220 96 240 94 246 90',id,2.4,.8)
+   +H(id,col,'happy','smile',150,0,.7,6);
  } else if(kind==='stalk'){
   /* lying flat, hips up, head low and wide-eyed, tail stretched behind: the ribbon-chaser */
   b=tailW('M46 98 C22 100 8 90 8 74',12)+stroke('M5 76 q1 -7 7 -9',PEN,id,7,.75)+wash('M30 104 C28 64 76 44 124 48 C172 52 204 70 222 92 L222 106 C150 112 80 112 30 104Z',w,id)+bst('M84 54 q6 12 2 28 M110 50 q6 12 2 28 M136 54 q5 12 1 26 M160 62 q4 10 0 20')+wash('M60 108 C90 98 140 98 190 106 C170 114 90 114 60 108Z',PAPER,id,.8)+pen('M30 104 C28 64 76 44 124 48 C164 51 192 64 210 82',id,3)+pen('M36 106 C80 112 150 112 200 108',id,2.4,.7)+wash('M186 104 C198 96 244 96 270 104 C270 112 196 114 186 104Z',PAPER,id,.9)+toes(236,106,id,.9)+toes(262,106,id,.9)+H(id,col,'shock','',156,2,.9,5);
@@ -196,7 +209,7 @@ function svg(kind,col){col=col||'grey';var id='c'+(++n),b='',k=K(col),w=k.w,w2=k
   if(kind==='wave')b+=wash('M136 152 C158 136 166 110 162 88 C160 78 146 78 146 90 C146 108 138 124 124 136Z',w2,id,.8)+pen('M136 152 C158 136 166 110 162 88 C160 78 146 78 146 90 C146 108 138 124 124 136',id,3)+pen('M150 86 v8 M156 85 v8',id,2,.8);
   if(kind==='viking')b+=HELMET;
  }
- return '<svg viewBox="'+(kind==='stalk'?'0 0 300 120':'0 0 200 '+(kind==='peek'?170:200))+'"'+(kind==='peek'?' preserveAspectRatio="xMidYMax meet"':'')+' xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><defs>'+defs(id)+'</defs>'+b+'</svg>'}
+ return '<svg viewBox="'+(kind==='stalk'?'0 0 300 120':kind==='onbooks'?'0 0 300 200':'0 0 200 '+(kind==='peek'?170:200))+'"'+(kind==='peek'?' preserveAspectRatio="xMidYMax meet"':'')+' xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><defs>'+defs(id)+'</defs>'+b+'</svg>'}
 window.catSVG=svg;
 window.catEl=function(kind,col,cls){var s=document.createElement('span');s.className='cat '+(cls||'');s.innerHTML=svg(kind,col);return s};
 document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('[data-cat]').forEach(function(e){e.innerHTML=svg(e.getAttribute('data-cat'),e.getAttribute('data-col'))})});
@@ -231,7 +244,7 @@ function edge(){document.querySelectorAll('.catedge').forEach(function(x){x.remo
 function decorate(){if(document.body.hasAttribute('data-nocats'))return;css();
  var ft=document.querySelector('footer');if(ft&&!ft.querySelector('.catparade')){var pr=document.createElement('div');pr.className='catparade';pr.setAttribute('aria-hidden','true');ft.style.marginTop=Math.max(78,parseFloat(getComputedStyle(ft).marginTop)||0)+'px';
   var cs=pick(5);cs.forEach(function(c,i){var k=document.createElement('span');k.innerHTML=svg(['face','loaf','shock','sleep','belly'][i],c);pr.appendChild(k)});ft.insertBefore(pr,ft.firstChild)}
- var h=document.querySelector('main h1, .hero h1, body > h1');if(h&&!h.querySelector('.cat, .cath1, svg')&&!document.querySelector('.herocat,.peekcat,.catcorner')&&!(h.parentNode&&h.parentNode.querySelector('.cat'))){var k=document.createElement('span');k.className='cath1';k.setAttribute('aria-hidden','true');k.innerHTML=svg('face',pick(1)[0]);h.appendChild(k)}
+ var h=document.querySelector('main h1, .hero h1, body > h1');if(h&&!h.querySelector('.cat, .cath1, svg')&&!document.querySelector('.herocat,.peekcat,.catcorner,.readcat')&&!(h.parentNode&&h.parentNode.querySelector('.cat'))){var k=document.createElement('span');k.className='cath1';k.setAttribute('aria-hidden','true');k.innerHTML=svg('face',pick(1)[0]);h.appendChild(k)}
  var t=document.querySelector('aside, .passport, .card, .panel');if(t&&!t.querySelector('.cat, .catcorner')&&getComputedStyle(t).overflow==='visible'){if(getComputedStyle(t).position==='static')t.style.position='relative';var cc=document.createElement('span');cc.className='catcorner';cc.setAttribute('aria-hidden','true');pick(1).forEach(function(c,i){var e=document.createElement('span');e.innerHTML=svg('loaf',c);cc.appendChild(e)});t.appendChild(cc)}
  edge();window.addEventListener('resize',edge);
  var last=0;try{last=+sessionStorage.getItem('catwalk')||0}catch(e){}if(false){try{sessionStorage.setItem('catwalk',Date.now())}catch(e){}setTimeout(function(){var w=document.createElement('span');w.className='catwalk';w.setAttribute('aria-hidden','true');w.innerHTML=svg(['sit','happy','dance','smug'][Math.floor(Math.random()*4)],pick(1)[0]);document.body.appendChild(w);setTimeout(function(){w.remove()},9500)},1500)}}
@@ -259,7 +272,7 @@ window.catAvatar=function(av){var m=AVRE.exec(av||'');return m?avHTML(m[1]):null
   </nav>
 </header><main>
 <div class="label">Reader · read, understand, collect words</div>
-<h1>Reader</h1><p class="muted" id="textname">Your books and texts, with the words matched to your wordbank.</p>
+<div class="readhero"><div><h1>Reader</h1><p class="muted" id="textname">Your books and texts, with the words matched to your wordbank.</p></div><span class="cat readcat" data-cat="onbooks" data-col="orange"></span></div>
 <div hidden><select id="chapter"></select><span id="ctitle"></span><span id="cintro"></span></div>
 <section id="lib"><div class="label">My texts</div><div id="liblist"></div></section>
 <div id="readbar" class="readbar" hidden><button id="backlib">← My texts</button><b id="readtitle"></b></div>
@@ -342,7 +355,7 @@ function openText(id){const it=S.lib.find(x=>x.id===id);if(!it)return;S.curLib=i
 function showView(){const rd=view==='read'&&curItem();$('lib').hidden=!!rd;$('paste').hidden=!!rd;$('read').hidden=!rd;$('readbar').hidden=!rd;if(rd){$('readtitle').textContent=(curItem().book?curItem().book+' · ':'')+curItem().title;$('textname').textContent=''}else{$('textname').textContent='Your books and texts, with the words matched to your wordbank.';renderLib()}}
 function ago(t){if(!t)return'not opened yet';const d=Math.round((Date.now()-t)/864e5);return d<=0?'opened today':d===1?'opened yesterday':'opened '+d+' days ago'}
 function renderLib(){const box=$('liblist');box.replaceChildren();
-  if(!S.lib.length){const e=node('div','','libempty');if(window.catEl)e.append(catEl('sleep','orange','cat'));e.append(node('p','No texts yet. Add your first one below: paste a page, or open an EPUB and add its chapters.','muted'));box.append(e);$('pastebox').open=true;return}
+  if(!S.lib.length){const e=node('div','','libempty');e.append(node('p','No texts yet. Add your first one below: paste a page, or open an EPUB and add its chapters.','muted'));box.append(e);$('pastebox').open=true;return}
   const groups=new Map();S.lib.forEach(x=>{const g=x.book||'Pasted texts';if(!groups.has(g))groups.set(g,[]);groups.get(g).push(x)});
   groups.forEach((items,g)=>{box.append(node('div',g+' · '+items.length+(items.length>1?' texts':' text'),'libgroup'));
     items.forEach(it=>{const r=node('div','','libitem'+(it.id===S.curLib?' cur':''));const mid=node('div');const nw=S.words.filter(w=>w.tid===it.id).length;mid.append(node('b',it.title),node('div',Math.max(1,Math.round(it.text.length/1000))+'k characters · '+ago(it.open)+(nw?' · '+nw+' saved words':''),'m'));
