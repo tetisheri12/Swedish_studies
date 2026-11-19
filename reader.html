@@ -10,7 +10,7 @@ select{padding:9px;border:1px solid var(--line);border-radius:var(--r);backgroun
 .modes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}.modes button{padding:10px;line-height:1.25}.modes small{display:block;font-size:13px;opacity:.9}
 .text{background:#fffdf7;border:1px solid var(--line);border-radius:var(--r);padding:clamp(16px,4vw,34px);font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:1.85}
 .text p{margin:0 0 1.2em;max-width:none}.text.lines .s{display:block;margin:0 0 .55em}.s{border-radius:6px;transition:background .15s}.keys .s{cursor:pointer}.keys .s:hover{background:var(--wash)}.s.key{background:var(--key);box-shadow:0 0 0 2px var(--key)}
-.w{cursor:pointer;border-radius:4px}.words .w:hover{background:var(--wash)}#summary,#questions,#chapterwords,#mKeys{display:none!important}
+.w{cursor:pointer;border-radius:4px}.words .w:hover{background:var(--wash)}#summary,#questions,#chapterwords,#mKeys,.modes{display:none!important}
 .readhero{position:relative;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;min-height:150px}.readhero h1{margin-bottom:6px}.readcat{width:240px;height:160px;flex:none;margin-bottom:-6px}@media(max-width:700px){.readcat{width:170px;height:114px}}
 .libgroup{margin:14px 0 4px;font-weight:bold;color:var(--muted);font-size:14px;text-transform:uppercase;letter-spacing:.08em}.libitem{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;background:#fffdf7;border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;margin:6px 0}.libitem.cur{border-color:var(--accent)}.libitem b{font-size:18px}.libitem .m{color:var(--muted);font-size:14px}.libitem .a{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.libitem .a button{padding:6px 12px;font-size:14px}.libempty{text-align:center;background:#fffdf7;border:1.5px dashed var(--line);border-radius:14px;padding:22px}.libempty .cat{width:110px;height:110px;display:inline-block}.readbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:8px 0}.readbar b{font-size:20px}#ttitle{width:100%;border:2px solid var(--line);border-radius:12px;padding:10px 12px;margin:8px 0;background:#fff}
 .w.bk-learn{background:#fbeeb8}.w.bk-new{text-decoration:underline dotted #b9b39a;text-underline-offset:5px}.bankstat{background:#fffdf7;border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;margin:10px 0;display:grid;gap:6px}.bankstat .chips{display:flex;flex-wrap:wrap;gap:6px}.bankstat .chip{border-radius:999px;padding:2px 10px;font-size:14px;background:var(--wash)}
@@ -271,8 +271,8 @@ window.catAvatar=function(av){var m=AVRE.exec(av||'');return m?avHTML(m[1]):null
     <a href="ordbank.html">Ord</a><a href="resurser.html">Resurser</a>
   </nav>
 </header><main>
-<div class="label">Reader · read, understand, collect words</div>
-<div class="readhero"><div><h1>Reader</h1><p class="muted" id="textname">Your books and texts, with the words matched to your wordbank.</p></div><span class="cat readcat" data-cat="onbooks" data-col="orange"></span></div>
+<div id="libhead"><div class="label">Reader · read, understand, collect words</div>
+<div class="readhero"><div><h1>Reader</h1><p class="muted" id="textname">Your books and texts, with the words matched to your wordbank.</p></div><span class="cat readcat" data-cat="onbooks" data-col="orange"></span></div></div>
 <div hidden><select id="chapter"></select><span id="ctitle"></span><span id="cintro"></span></div>
 <section id="lib"><div class="label">My texts</div><div id="liblist"></div></section>
 <div id="readbar" class="readbar" hidden><button id="backlib">← My texts</button><b id="readtitle"></b></div>
@@ -289,7 +289,7 @@ window.catAvatar=function(av){var m=AVRE.exec(av||'');return m?avHTML(m[1]):null
 <p class="muted">Clean up joins words split across lines (mot-ståndarens → motståndarens) and removes page numbers. Check the result, then add it to My texts.</p>
 </details><p id="pastestatus" class="muted"></p></section>
 
-<section id="read" hidden><div class="label">Read</div><h2>Tap a word to see what it means</h2>
+<section id="read" hidden>
 <div class="modes" role="group" aria-label="Reading mode"><button id="mWords"><b>📖 Ord</b><small>Tap a word → meaning</small></button><button id="mKeys"><b>⭐ Viktiga meningar</b><small>Tap sentences that tell the story</small></button></div>
 <div class="row"><button id="readall">▶ Read the text aloud</button><button id="stop">Stop</button><label><input type="checkbox" id="perline"> One sentence per line</label><span class="muted" id="modehelp"></span></div>
 <div id="text" class="text words" lang="sv"><p class="muted" style="font-family:inherit;font-size:17px">Open a text from My texts first.</p></div>
@@ -352,7 +352,7 @@ function curItem(){return S.lib.find(x=>x.id===S.curLib)||null}
 function curText(){const it=curItem();return it?it.text:''}
 function addText(title,book,text){const it={id:'t'+Date.now()+Math.random().toString(36).slice(2,6),title:title||'Text',book:book||'',text,t:Date.now(),open:0};S.lib.push(it);save();return it}
 function openText(id){const it=S.lib.find(x=>x.id===id);if(!it)return;S.curLib=id;it.open=Date.now();save();view='read';showView();renderText();window.scrollTo(0,0)}
-function showView(){const rd=view==='read'&&curItem();$('lib').hidden=!!rd;$('paste').hidden=!!rd;$('read').hidden=!rd;$('readbar').hidden=!rd;if(rd){$('readtitle').textContent=(curItem().book?curItem().book+' · ':'')+curItem().title;$('textname').textContent=''}else{$('textname').textContent='Your books and texts, with the words matched to your wordbank.';renderLib()}}
+function showView(){const rd=view==='read'&&curItem();$('libhead').hidden=!!rd;$('lib').hidden=!!rd;$('paste').hidden=!!rd;$('read').hidden=!rd;$('readbar').hidden=!rd;if(rd){{const it=curItem();$('readtitle').textContent=it.book&&it.book!==it.title?it.book+' · '+it.title:it.title}}else{renderLib()}}
 function ago(t){if(!t)return'not opened yet';const d=Math.round((Date.now()-t)/864e5);return d<=0?'opened today':d===1?'opened yesterday':'opened '+d+' days ago'}
 function renderLib(){const box=$('liblist');box.replaceChildren();
   if(!S.lib.length){const e=node('div','','libempty');e.append(node('p','No texts yet. Add your first one below: paste a page, or open an EPUB and add its chapters.','muted'));box.append(e);$('pastebox').open=true;return}
