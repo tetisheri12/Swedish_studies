@@ -41,7 +41,7 @@ input[type=text]{padding:10px 12px;border:1px solid var(--line);border-radius:10
 .inbox .item{padding:12px 0;border-bottom:1px solid var(--line)}.inbox .item p{margin:4px 0}
 .party{font-size:84px;text-align:center;animation:spin 1s ease}@keyframes spin{from{transform:scale(.2) rotate(-200deg)}to{transform:none}}
 .vid{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#111;margin:12px 0}.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.arena{width:100%;height:680px;border:0;border-radius:12px;background:#fffdf7}
+.arena{width:100%;height:clamp(640px,82vh,900px);border:0;border-radius:12px;background:#fffdf7}
 .rec{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center;margin:10px 0}.rec .dot{width:12px;height:12px;border-radius:50%;background:var(--accent);animation:pulse 1s infinite}
 .confetti{position:absolute;top:-40px;font-size:28px;animation:fall 2.6s linear forwards;pointer-events:none;z-index:4}@keyframes fall{to{transform:translateY(620px) rotate(360deg);opacity:.2}}
 .xp{position:absolute;right:18px;top:14px;font-weight:bold;color:var(--gold);animation:float 1.2s ease forwards;pointer-events:none}@keyframes float{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-40px)}}
@@ -1769,7 +1769,7 @@ function fillSettings(){$('setNew').value=String(S.set.newWords);$('setCap').val
 let stepIdx=0;
 function stage(){return $('stage')}
 function shell(title,sub){const s=stage();s.replaceChildren();const bar=node('div',undefined,'steps');const curK=STEPS[stepIdx]&&STEPS[stepIdx][0];GROUPS4.forEach(g=>{const done=g[2].every(k=>D()[k]);const sp=node('span',(done?'✓ ':g[1]+' ')+g[0],done?'ok':'');if(g[2].includes(curK))sp.className='on';bar.append(sp)});s.append(bar);if(title){const h=node('h2');h.append(sv('span',title));s.append(h)}if(sub)s.append(node('p',sub,'muted'));return s}
-function openSession(){if(!S.placement&&!S.skipPlace&&!Object.keys(S.days).length&&!Object.keys(S.cards).length){S.skipPlace=true;save();$('home').hidden=true;$('session').hidden=false;window.scrollTo(0,0);runLevelCheck();return}const ns=nextStep();$('home').hidden=true;$('session').hidden=false;window.scrollTo(0,0);if(ns<0){stepIdx=STEPS.findIndex(x=>x[0]==='review');runReview(true);return}stepIdx=ns;runStep()}
+function openSession(){if(!S.placement&&!S.skipPlace&&!(S.xp>0)&&!Object.keys(S.cards).length&&!Object.keys(S.units||{}).some(k=>S.units[k].checked)){S.skipPlace=true;save();$('home').hidden=true;$('session').hidden=false;window.scrollTo(0,0);runLevelCheck();return}const ns=nextStep();$('home').hidden=true;$('session').hidden=false;window.scrollTo(0,0);if(ns<0){stepIdx=STEPS.findIndex(x=>x[0]==='review');runReview(true);return}stepIdx=ns;runStep()}
 function finishStep(){if(!D()[STEPS[stepIdx][0]]){D()[STEPS[stepIdx][0]]=true;S.xp=(S.xp||0)+10}S.lastActive=T;save();
   const u=curUnit(),st=ust(u);if(!st.done&&unitComplete(u)){stationDone(u);return}
   const ns=nextStep();if(ns<0){celebrate();return}stepIdx=ns;runStep()}
