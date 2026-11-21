@@ -1149,3 +1149,222 @@ pick('Answer a thank-you with “no worries”.','Tack för hjälpen! – ___',[
 ],
 boss:'Role-play a first day at an office. One of you is the new employee who introduces themself (Jag heter …, Jag är ny här, Trevligt att träffas) and asks three polite favours with Kan du …? or Skulle du kunna …?; the other is the colleague who answers Javisst or Självklart. Then swap roles.'
 };
+
+/* ---- Vardag för barn: five everyday kid-life missions (original content) ---- */
+LESSONS[24]={
+unit:25,title:'First lesson at school',sv:'Skoldagen',place:'KLASSRUM',
+rule:'Asking for help in class',
+reference:'Use Kan jag få låna …? to borrow something. Use Jag förstår inte or Kan du upprepa? when you do not understand. A command uses the bare verb: Öppna boken! Sätt dig! Räck upp handen!',
+intro:'Leo is new in class 4B. Help him borrow a pen, ask what a word means, and get through the first lesson.',
+words:[
+['en lärare','a teacher'],['en elev','a pupil'],['ett klassrum','a classroom'],['en lektion','a lesson'],['en rast','a break'],['en läxa','homework'],['ett prov','a test'],
+['en penna','a pen'],['ett suddgummi','an eraser'],['en bok','a book'],['matte','maths'],['svenska','Swedish (subject)'],['idrott','PE'],
+['Sätt dig!','Sit down!'],['Öppna boken.','Open the book.'],['Räck upp handen.','Raise your hand.'],['Jag förstår inte.','I do not understand.'],['Kan du upprepa?','Can you repeat that?'],
+['Vad betyder …?','What does … mean?'],['Kan jag få låna …?','Can I borrow …?'],['Ursäkta, jag är sen.','Excuse me, I am late.'],['sen','late'],['tyst','quiet'],['matsalen','the canteen']
+],
+story:{title:'Första lektionen',lines:[
+['Läraren: God morgon, klass! Sätt er, tack.','Teacher: Good morning, class! Sit down, please.'],
+['Leo: Ursäkta, jag är sen.','Leo: Excuse me, I am late.'],
+['Läraren: Det gör inget, Leo. Sätt dig bredvid Nora.','Teacher: That is OK, Leo. Sit next to Nora.'],
+['Läraren: Öppna boken på sidan tio.','Teacher: Open the book on page ten.'],
+['Leo: Nora, jag har ingen penna. Kan jag få låna en?','Leo: Nora, I have no pen. Can I borrow one?'],
+['Nora: Javisst! Varsågod.','Nora: Of course! Here you are.'],
+['Läraren: Er läxa till fredag är på sidan elva.','Teacher: Your homework for Friday is on page eleven.'],
+['Leo: Jag förstår inte. Vad betyder läxa?','Leo: I do not understand. What does läxa mean?'],
+['Nora: Det är arbete som man gör hemma.','Nora: It is work that you do at home.'],
+['Läraren: Räck upp handen om ni har en fråga.','Teacher: Raise your hand if you have a question.'],
+['Leo: Tack, Nora. Du är snäll.','Leo: Thanks, Nora. You are kind.']
+]},
+tasks:[
+pick('Leo is late. What does he say?','Leo walks in after the lesson has started.',['Ursäkta, jag är sen.','Sätt dig!','Jag förstår inte.'],0,'Sen = late.','Ursäkta, jag är sen means Excuse me, I am late.'),
+tile('Ask to borrow a pen.',['Kan','jag','få','låna','en','penna?'],'Can / I / get / borrow / a / pen','Kan jag få låna … is the polite way to borrow something.'),
+pick('Choose the right article.','___ penna',['en','ett'],0,'Penna is an en word.','En penna: a pen.'),
+pick('Choose the right article.','___ suddgummi',['en','ett'],1,'Learn it as a pair.','Ett suddgummi: an eraser.'),
+listen('Listen. What does the teacher say?','Öppna boken på sidan tio.',['Open the book on page ten.','Close the book on page ten.','Open the book on page two.'],0,'Öppna = open. Sidan tio = page ten.','Öppna boken på sidan tio = Open the book on page ten.'),
+tile('Tell a pupil to sit down.',['Sätt','dig!'],'Sit yourself down.','A command is the bare verb: sätt. Add dig for “yourself”.'),
+pick('You do not know a word. What do you ask?','The teacher uses the word “läxa”.',['Vad betyder läxa?','Var är läxa?','Vem är läxa?'],0,'Betyder = means.','Vad betyder …? = What does … mean?'),
+type('Write “homework”.','Läraren: Din ___ är på sidan elva.',['läxa'],'It is an en word ending in -a.','Läxa = homework.'),
+pick('Story check: where does Leo sit?','Läraren: Sätt dig bredvid Nora.',['Next to Nora','Next to the teacher','At the back'],0,'Bredvid = next to.','Bredvid Nora = next to Nora.'),
+tile('Say that you do not understand.',['Jag','förstår','inte.'],'I / understand / not','In a statement, inte comes after the verb.'),
+listen('Listen. What does Leo ask?','Kan du upprepa?',['Can you repeat that?','Can you help me?','Can I borrow a pen?'],0,'Upprepa = repeat.','Kan du upprepa? = Can you repeat that?'),
+pick('Nora lends Leo a pen. What does Leo say?','Nora: Varsågod.',['Tack!','Ursäkta!','Hej då!'],0,'Say thanks.','Tack! is the usual answer to varsågod.'),
+type('Write “quiet”.','Läraren: Var ___, tack.',['tyst'],'It starts with t.','Var tyst = be quiet.'),
+pick('Story check: what is the homework for Friday?','Läraren: Er läxa till fredag är på sidan elva.',['Page eleven','Page ten','Read a book'],0,'Fredag = Friday.','The homework is on page eleven.'),
+pick('Which sentence is a command?','The teacher talks to the class.',['Räck upp handen.','Jag räcker upp handen.','Han räcker upp handen.'],0,'A command has no subject.','Räck upp handen! has no jag or han: it is a command.')
+],
+boss:'Role-play the first lesson. One of you is the teacher and gives three commands (Öppna boken, Sätt dig, Räck upp handen). The other is the pupil who borrows a pen, says Jag förstår inte and asks Vad betyder …? Then swap roles.'
+};
+LESSONS[25]={
+unit:26,title:'Can I join in?',sv:'Leken',place:'LEKPARK',
+rule:'Inviting and asking permission',
+reference:'Use Vill du …? to invite someone: Vill du leka? After vill, kan and får the verb stays in the infinitive: Vill du spela? Får jag vara med? Turns: Det är min tur. Din tur!',
+intro:'Nora and Leo meet Elias and Maja at the playground. Help them play fair, take turns and say sorry.',
+words:[
+['en kompis','a friend'],['en lekplats','a playground'],['en boll','a ball'],['ett spel','a game'],['ett kort','a card'],['en gunga','a swing'],
+['leka','to play'],['vara med','to join in'],['vinna','to win'],['förlora','to lose'],['fuska','to cheat'],['dela','to share'],['bjuda hem','to invite home'],
+['rolig','fun'],['tråkig','boring'],['snäll','kind'],
+['Vill du leka?','Do you want to play?'],['Får jag vara med?','May I join in?'],['Det är min tur.','It is my turn.'],['Din tur!','Your turn!'],
+['Förlåt.','Sorry.'],['Det gör inget.','Never mind.'],['Det var kul!','That was fun!'],['självklart','of course']
+],
+story:{title:'På lekplatsen',lines:[
+['Nora: Hej, Elias! Vill du leka med oss?','Nora: Hi, Elias! Do you want to play with us?'],
+['Elias: Ja gärna! Vad ska vi leka?','Elias: Yes, please! What shall we play?'],
+['Leo: Vi kan spela kort. Jag har en kortlek.','Leo: We can play cards. I have a pack of cards.'],
+['Maja: Hej! Får jag vara med?','Maja: Hi! May I join in?'],
+['Nora: Ja, självklart! Sätt dig här.','Nora: Yes, of course! Sit here.'],
+['Leo: Det är min tur.','Leo: It is my turn.'],
+['Elias: Nej, det är min tur! Du fuskar!','Elias: No, it is my turn! You are cheating!'],
+['Leo: Förlåt, jag glömde. Det är din tur.','Leo: Sorry, I forgot. It is your turn.'],
+['Elias: Det gör inget.','Elias: Never mind.'],
+['Maja: Jag vinner!','Maja: I am winning!'],
+['Nora: Grattis, Maja! Det var kul!','Nora: Congratulations, Maja! That was fun!'],
+['Maja: Kan ni komma hem till mig i morgon?','Maja: Can you come to my place tomorrow?']
+]},
+tasks:[
+pick('Invite a friend to play.','At the playground you see Elias.',['Vill du leka?','Har du leka?','Är du leka?'],0,'Vill = want.','After vill, use the infinitive: leka.'),
+tile('Ask to join in.',['Får','jag','vara','med?'],'May / I / be / with','Får jag vara med? = May I join in?'),
+pick('It is Leo’s turn. What does Nora say?','Leo waits. Nora says:',['Din tur!','Min tur!','Hans tur!'],0,'Din = your.','Din tur! = Your turn!'),
+listen('Listen. What does Leo say?','Det är min tur.',['It is my turn.','It is your turn.','It is not fun.'],0,'Min = my.','Det är min tur = It is my turn.'),
+pick('Elias thinks Leo breaks the rules.','Elias: Du ___!',['fuskar','vinner','leker'],0,'Fuska = to cheat.','Du fuskar = You are cheating.'),
+tile('Say sorry and that you forgot.',['Förlåt,','jag','glömde.'],'Sorry, I forgot.','Glömde is the past tense of glömma.'),
+pick('Choose the kind answer to Förlåt.','Leo: Förlåt!',['Det gör inget.','Jag fuskar.','Du förlorar.'],0,'Say it is no problem.','Det gör inget = Never mind.'),
+type('Write “fun”.','Det var ___!',['kul','roligt'],'Short and starts with k, or longer and starts with r.','Det var kul / roligt = That was fun.'),
+pick('Story check: who asks to join in?','Maja: Får jag vara med?',['Maja','Elias','Leo'],0,'Look at who speaks.','Maja asks Får jag vara med?'),
+tile('Invite a friend to your home.',['Kan','du','komma','hem','till','mig?'],'Can / you / come / home / to / me','After kan the verb is in the infinitive: komma.'),
+pick('Which verb form is right?','Vill du ___ fotboll?',['spela','spelar','spelade'],0,'After vill: the infinitive.','Vill du spela fotboll? Vill + infinitive.'),
+listen('Listen. What does Maja say?','Jag vinner!',['I am winning.','I am losing.','I am cheating.'],0,'Vinna = to win.','Jag vinner = I win / I am winning.'),
+pick('Story check: what do Leo and Nora want to play?','Leo: Vi kan spela kort.',['Cards','Football','A video game'],0,'Kort = cards.','Vi kan spela kort = We can play cards.'),
+type('Write “friend”.','Elias är min ___.',['kompis'],'It starts with k and ends in -is.','En kompis = a friend.'),
+pick('Choose the nice thing to say after a game.','The game is over.',['Det var kul!','Du fuskar!','Det är min tur!'],0,'Be a good winner or loser.','Det var kul! = That was fun!')
+],
+boss:'Invent a game for three kids. One invites (Vill du leka?), one asks to join (Får jag vara med?) and everyone takes turns (Min tur, din tur). Say sorry once and answer with Det gör inget.'
+};
+LESSONS[26]={
+unit:27,title:'The big match',sv:'Matchen',place:'IDROTTSHALL',
+rule:'Sport words, score and past tense',
+reference:'Say what you do in the present: Jag tränar på tisdagar. Say how it ended in the past: Vi vann! (vinna – vann). Read the score with mot: tre mot två = 3–2. Cheer with Heja! and praise with Bra jobbat!',
+intro:'Nora and Leo play their first match for the school team. Help them pass, score and celebrate.',
+words:[
+['en match','a match'],['ett lag','a team'],['en spelare','a player'],['en tränare','a coach'],['en domare','a referee'],['ett mål','a goal'],['en poäng','a point'],
+['fotboll','football'],['simning','swimming'],['träna','to train'],['springa','to run'],['kasta','to throw'],['fånga','to catch'],['sparka','to kick'],['vinna','to win'],['förlora','to lose'],
+['oavgjort','a draw'],['heja','to cheer'],['trött','tired'],['snabb','fast'],
+['Bra jobbat!','Well done!'],['Hur gick matchen?','How did the match go?'],['Vi vann med tre mot två.','We won three–two.'],['Passa!','Pass!']
+],
+story:{title:'Matchen',lines:[
+['Tränaren: I dag spelar vi match mot Björkskolan.','Coach: Today we play a match against Björkskolan.'],
+['Nora: Jag är nervös!','Nora: I am nervous!'],
+['Tränaren: Lugn. Spring, passa och ha kul!','Coach: Stay calm. Run, pass and have fun!'],
+['Leo: Passa, Nora!','Leo: Pass, Nora!'],
+['Nora: Där är målet! Jag skjuter!','Nora: There is the goal! I shoot!'],
+['Domaren: Mål! Ett–noll till Nora och Leos lag!','Referee: Goal! One–nil to Nora and Leo’s team!'],
+['Leo: Bra jobbat, Nora!','Leo: Well done, Nora!'],
+['Tränaren: Nu är det paus. Drick vatten!','Coach: Now it is half-time. Drink some water!'],
+['Nora: Jag är jättetrött men glad.','Nora: I am really tired but happy.'],
+['Domaren: Matchen är slut. Det blev tre mot två till Nora och Leos lag.','Referee: The match is over. It ended three–two to Nora and Leo’s team.'],
+['Leo: Vi vann! Heja laget!','Leo: We won! Go team!']
+]},
+tasks:[
+pick('What does the coach say about today?','Tränaren: I dag spelar vi match.',['We play a match today.','We train tomorrow.','We swim today.'],0,'I dag = today.','I dag spelar vi match = Today we play a match.'),
+tile('Shout to a team mate: Pass, Nora!',['Passa,','Nora!'],'Pass, Nora!','Passa is a command: the bare verb.'),
+listen('Listen. What does the referee say?','Mål!',['Goal!','Stop!','Time!'],0,'Mål = goal.','Mål! = Goal!'),
+pick('Choose the right article.','___ mål',['en','ett'],1,'Mål is an ett word.','Ett mål: a goal.'),
+type('Write “the team”.','Heja ___!',['laget'],'The ending -et means “the” here.','Heja laget! = Go team!'),
+pick('Story check: what is the final score?','Domaren: Det blev tre mot två.',['3–2','2–3','3–3'],0,'Mot = against.','Tre mot två = 3–2.'),
+tile('Say: We won!',['Vi','vann!'],'We / won','Vann is the past tense of vinna.'),
+pick('Choose the past tense of vinna.','I går ___ vi matchen.',['vann','vinner','vinna'],0,'I går = yesterday, so past tense.','I går vann vi matchen.'),
+listen('Listen. How does Nora feel?','Jag är jättetrött men glad.',['Very tired but happy','Very hungry','Angry and sad'],0,'Trött = tired.','Jättetrött men glad = very tired but happy.'),
+pick('Which word means that nobody won?','Matchen slutade ___.',['oavgjort','snabb','trött'],0,'The score is equal.','Oavgjort = a draw.'),
+tile('Ask how the match went.',['Hur','gick','matchen?'],'How / went / the match','Gick is the past tense of gå.'),
+pick('Who is the referee?','Someone blows a whistle and stops the game.',['Domaren','Tränaren','Spelaren'],0,'He or she decides the rules.','Domaren is the referee.'),
+type('Write “to run”.','Jag kan ___ snabbt.',['springa'],'It starts with sp.','Springa = to run.'),
+pick('Story check: when do the players drink water?','Tränaren: Nu är det paus. Drick vatten!',['At half-time','Before the match','After the match'],0,'Paus = break.','Paus = a break in the game.'),
+pick('Choose the nice thing to say to a team mate.','Nora scores a goal.',['Bra jobbat!','Du fuskar!','Förlåt!'],0,'Say well done.','Bra jobbat! = Well done!')
+],
+boss:'Commentate a short match. One of you describes what happens (Han springer! Hon skjuter! Mål!); the other is the coach who shouts Passa! and Bra jobbat! At the end say the score with mot.'
+};
+LESSONS[27]={
+unit:28,title:'Dinner at home',sv:'Hemma',place:'HEMMA',
+rule:'Rooms, chores and “the” on the end',
+reference:'Put “the” on the end of the noun: ett kök → köket, en säng → sängen, ett fönster → fönstret. Ask for help with Kan du hjälpa mig? and share chores with Det är din tur att diska.',
+intro:'It is evening at Nora’s home. Help set the table, wash up and get ready for bed.',
+words:[
+['ett kök','a kitchen'],['ett sovrum','a bedroom'],['ett badrum','a bathroom'],['ett vardagsrum','a living room'],['en säng','a bed'],['en soffa','a sofa'],['en lampa','a lamp'],['ett fönster','a window'],
+['en middag','dinner'],['en tallrik','a plate'],['disk','dishes'],['duka','to set the table'],['diska','to wash up'],['torka','to dry'],['städa','to tidy up'],['bädda','to make a bed'],['laga mat','to cook'],['hjälpa till','to help out'],['sova','to sleep'],['borsta tänderna','to brush your teeth'],
+['Middagen är klar!','Dinner is ready!'],['Det är din tur att diska.','It is your turn to wash up.'],['Dags att sova!','Time to sleep!'],['Kan du hjälpa mig?','Can you help me?']
+],
+story:{title:'Middag hemma',lines:[
+['Pappa: Middagen är snart klar! Kan du duka, Nora?','Dad: Dinner is nearly ready! Can you set the table, Nora?'],
+['Nora: Javisst. Var är tallrikarna?','Nora: Sure. Where are the plates?'],
+['Pappa: I köket, bredvid fönstret.','Dad: In the kitchen, next to the window.'],
+['Leo: Jag hjälper till. Jag tar glasen.','Leo: I will help out. I will take the glasses.'],
+['Pappa: Middagen är klar! Kom och sätt er!','Dad: Dinner is ready! Come and sit down!'],
+['Nora: Mmm, det luktar gott!','Nora: Mmm, it smells good!'],
+['Pappa: Det är din tur att diska, Leo.','Dad: It is your turn to wash up, Leo.'],
+['Leo: Okej. Kan du hjälpa mig, Nora?','Leo: OK. Can you help me, Nora?'],
+['Nora: Ja, jag torkar.','Nora: Yes, I will dry.'],
+['Mamma: Tack, barn! Nu är det dags att borsta tänderna.','Mum: Thanks, kids! Now it is time to brush your teeth.'],
+['Leo: Och sedan sova. God natt!','Leo: And then sleep. Good night!']
+]},
+tasks:[
+pick('Dad says dinner is ready. What does he say?','Everyone is hungry.',['Middagen är klar!','Frukosten är klar!','Disken är klar!'],0,'Middag = dinner.','Middagen är klar! = Dinner is ready!'),
+pick('Add “the”: ett kök →','Köket is the kitchen.',['köket','kökt','köken'],0,'Ett words get -et.','Ett kök → köket (the kitchen).'),
+pick('Add “the”: en säng →','Sängen is the bed.',['sängen','sängt','sängar'],0,'En words get -en.','En säng → sängen (the bed).'),
+tile('Ask for help.',['Kan','du','hjälpa','mig?'],'Can / you / help / me','After kan the verb is in the infinitive: hjälpa.'),
+listen('Listen. What does Dad say?','Det är din tur att diska.',['It is your turn to wash up.','It is my turn to cook.','It is time to sleep.'],0,'Diska = wash up.','Din tur att diska = your turn to wash up.'),
+type('Write “bed”.','Jag sover i min ___.',['säng'],'It starts with s.','En säng = a bed.'),
+pick('Where do you cook?','Man lagar mat …',['I köket','I badrummet','I sovrummet'],0,'Laga mat = cook.','Man lagar mat i köket.'),
+pick('Where do you brush your teeth?','Man borstar tänderna …',['I badrummet','I köket','I vardagsrummet'],0,'Borsta tänderna.','I badrummet.'),
+tile('Say: It is time to sleep!',['Dags','att','sova!'],'Time / to / sleep','Dags att + infinitive.'),
+pick('Story check: what does Leo take?','Leo: Jag tar glasen.',['The glasses','The plates','The forks'],0,'Glas = glass.','Glasen = the glasses.'),
+pick('Which sentence is a command?','Mum talks to Leo.',['Städa ditt rum!','Jag städar mitt rum.','Hon städar sitt rum.'],0,'A command has no subject.','Städa ditt rum! = Tidy your room!'),
+type('Write “the window”.','Öppna ___, tack.',['fönstret'],'It is an ett word, so add -et.','Fönstret = the window.'),
+listen('Listen. What is it time for?','Nu är det dags att borsta tänderna.',['Time to brush your teeth','Time to eat breakfast','Time to go to school'],0,'Tänderna = the teeth.','Dags att borsta tänderna.'),
+pick('Story check: who will dry?','Nora: Ja, jag torkar.',['Nora','Dad','Mum'],0,'Look at who says it.','Nora dries while Leo washes up.'),
+pick('Answer politely when asked to help.','Kan du hjälpa mig?',['Javisst!','Förlåt!','Hej då!'],0,'Say yes.','Javisst = of course.')
+],
+boss:'Plan a family evening. Say who cooks, who sets the table and who washes up (Det är din tur att …). Ask for help with Kan du hjälpa mig? and end the day with Dags att sova!'
+};
+LESSONS[28]={
+unit:29,title:'Ice cream money',sv:'I affären',place:'STAN',
+rule:'Prices, money and asking the way',
+reference:'Ask the price with Hur mycket kostar …? Answer Den kostar tjugo kronor (en-words) or Det kostar tjugo kronor (ett-words). Inte goes after the verb: Jag har inte pengar. To ask the way say Var är …? and listen for till vänster, till höger or rakt fram.',
+intro:'Nora has pocket money and Leo wants ice cream. Help them pay, count the kronor and find the way to the bus stop.',
+words:[
+['en glass','an ice cream'],['godis','sweets'],['en kiosk','a kiosk'],['en affär','a shop'],['pengar','money'],['en veckopeng','pocket money'],['en krona','a krona'],['en påse','a bag'],['en hållplats','a bus stop'],
+['kosta','to cost'],['betala','to pay'],['köpa','to buy'],['spara','to save'],['billig','cheap'],['dyr','expensive'],
+['vänster','left'],['höger','right'],['rakt fram','straight ahead'],
+['Hur mycket kostar den?','How much does it cost?'],['Den kostar tjugo kronor.','It costs twenty kronor.'],['Jag har inte tillräckligt med pengar.','I do not have enough money.'],['Vill du ha en påse?','Do you want a bag?'],['Jag har gått vilse.','I have got lost.'],['Var finns toaletten?','Where is the toilet?']
+],
+story:{title:'Glass i staden',lines:[
+['Nora: Jag har fått min veckopeng i dag! Hundra kronor.','Nora: I have got my pocket money today! A hundred kronor.'],
+['Leo: Ska vi köpa glass?','Leo: Shall we buy ice cream?'],
+['Nora: Ja! Kiosken ligger på hörnet, till höger.','Nora: Yes! The kiosk is on the corner, on the right.'],
+['Leo: Ursäkta, hur mycket kostar glassen?','Leo: Excuse me, how much does the ice cream cost?'],
+['Kioskägaren: Den kostar tjugo kronor.','Kiosk owner: It costs twenty kronor.'],
+['Leo: Jag har inte tillräckligt med pengar. Jag har bara femton kronor.','Leo: I do not have enough money. I only have fifteen kronor.'],
+['Nora: Jag kan bjuda dig.','Nora: I can treat you.'],
+['Leo: Tack! Du är snäll.','Leo: Thanks! You are kind.'],
+['Kioskägaren: Vill ni ha en påse?','Kiosk owner: Do you want a bag?'],
+['Nora: Nej tack. Var är hållplatsen? Vi har gått vilse.','Nora: No thanks. Where is the bus stop? We have got lost.'],
+['Kioskägaren: Gå rakt fram och sedan till vänster.','Kiosk owner: Go straight ahead and then left.'],
+['Nora: Tack för hjälpen!','Nora: Thanks for the help!']
+]},
+tasks:[
+pick('Ask the price.','You want an ice cream.',['Hur mycket kostar glassen?','Vad heter glassen?','Var är glassen?'],0,'Kostar = costs.','Hur mycket kostar …? = How much does … cost?'),
+listen('Listen. How much is the ice cream?','Den kostar tjugo kronor.',['20 kronor','12 kronor','200 kronor'],0,'Tjugo = twenty.','Tjugo = 20.'),
+tile('Say that you do not have enough money.',['Jag','har','inte','tillräckligt','med','pengar.'],'I / have / not / enough / with / money','Inte comes right after the verb.'),
+pick('Add “the”: en glass →','Glassen is the ice cream.',['glassen','glasset','glassar'],0,'En words get -en.','En glass → glassen.'),
+pick('Is it cheap or expensive?','The kiosk wants 200 kronor for one ice cream.',['dyr','billig','snäll'],0,'Dyr = expensive.','Dyr = expensive. Billig = cheap.'),
+type('Write “money”.','Jag har inga ___.',['pengar'],'It starts with p.','Pengar = money.'),
+listen('Listen. Where is the kiosk?','Kiosken ligger på hörnet, till höger.',['On the corner, on the right','Behind the school','Next to the bus stop'],0,'Höger = right.','Till höger = to the right.'),
+pick('Which word means “left”?','Gå ___ vid hörnet.',['vänster','höger','rakt fram'],0,'Vänster = left.','Vänster = left. Höger = right.'),
+tile('Say that you are lost.',['Jag','har','gått','vilse.'],'I / have / gone / astray','Har gått = have gone. Gå vilse = get lost.'),
+pick('Story check: how much money does Leo have?','Leo: Jag har bara femton kronor.',['15 kronor','50 kronor','100 kronor'],0,'Femton = 15.','Femton = 15.'),
+pick('Story check: who pays for Leo?','Nora: Jag kan bjuda dig.',['Nora','Leo','The kiosk owner'],0,'Bjuda = to treat.','Nora treats Leo.'),
+tile('Ask for help.',['Kan','du','hjälpa','mig?'],'Can / you / help / me','Kan + infinitive.'),
+pick('The kiosk owner asks about a bag. Answer “no thanks”.','Vill du ha en påse?',['Nej tack.','Ja, jag är sen.','Det var kul!'],0,'Nej tack = no thank you.','Nej tack.'),
+type('Write “bus stop”.','Var är ___?',['hållplatsen','busshållplatsen'],'It starts with h.','Hållplatsen = the bus stop.'),
+pick('You get 100 kronor a week and spend nothing. What do you do?','Du köper inget.',['Jag sparar.','Jag fuskar.','Jag glömmer.'],0,'Spara = to save.','Jag sparar = I save.')
+],
+boss:'Role-play a kiosk. One of you is the shopkeeper who says prices (Den kostar … kronor); the other asks Hur mycket kostar …?, says if it is billig or dyr, and pays. Then ask the way to the bus stop with Var är …? and answer with till vänster, till höger or rakt fram.'
+};
