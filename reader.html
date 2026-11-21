@@ -28,7 +28,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
 header nav{display:flex;flex-wrap:wrap;gap:8px 18px}header nav a{padding:6px 0;text-decoration:none;font-size:14px;font-weight:normal}header nav a[aria-current="page"]{color:var(--ink);font-weight:bold;border-bottom:2px solid var(--accent)}header nav a:hover{text-decoration:underline}
 .page-shortcuts{display:flex;align-items:center;flex-wrap:wrap;gap:8px 18px;padding:16px 0;font-size:14px}.page-shortcuts>span{color:var(--muted);font-size:11px;font-weight:bold;letter-spacing:.1em;text-transform:uppercase}.page-shortcuts a{color:var(--muted);text-underline-offset:4px}.page-shortcuts a:hover{color:var(--accent)}
 @media(max-width:700px){header,main,footer{padding:18px}header{align-items:flex-start}header nav{width:100%}.page-shortcuts>span{flex-basis:100%}.text{font-size:20px}.gl{columns:1}}
-.epub{margin-top:10px}.btnlike{display:inline-block;cursor:pointer;border:2px solid var(--ink);border-radius:999px;padding:8px 16px;font-weight:bold;background:white}.btnlike:focus-within,.btnlike:hover{border-color:var(--accent)}#epubsec{max-width:100%;min-width:0;font-size:16px;padding:8px;border-radius:10px;border:2px solid var(--line);background:white;flex:1 1 260px}</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat+Brush&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+.epub{margin-top:10px}.btnlike{display:inline-block;cursor:pointer;border:2px solid var(--ink);border-radius:999px;padding:8px 16px;font-weight:bold;background:white}.btnlike:focus-within,.btnlike:hover{border-color:var(--accent)}#epubsec{max-width:100%;min-width:0;font-size:16px;padding:8px;border-radius:10px;border:2px solid var(--line);background:white;flex:1 1 260px}.w.kar{background:#ffd54a;color:#000;border-radius:4px;box-shadow:0 0 0 2px #ffd54a}.trb{font-size:13px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:0 6px;margin-left:4px;cursor:pointer;vertical-align:middle;opacity:.7}.trb.on{background:var(--wash);opacity:1}.trl{display:block;font:italic 15px/1.4 system-ui,sans-serif;color:var(--muted);margin:.1em 0 .7em;padding-left:.6em;border-left:3px solid var(--line)}</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat+Brush&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Svenska"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#f7f3e9">
 <style>.tabbar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(255,253,247,.97);border-top:1px solid #c8cec3;padding:6px 6px calc(6px + env(safe-area-inset-bottom));justify-content:space-around;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}.tabbar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;color:#526665;font-size:12px;font-weight:bold;padding:4px 0;border-radius:12px}.tabbar a i{font-style:normal;font-size:24px;line-height:1.1}.tabbar a[aria-current=page]{color:#a53e23;background:#f2e6dc}
 html.app .tabbar{display:flex}html.app header nav{display:none}html.app body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}html.app header{padding-top:calc(14px + env(safe-area-inset-top))}html.app footer{display:none}html.app body{-webkit-user-select:none;user-select:none}html.app input,html.app textarea{-webkit-user-select:text;user-select:text}
@@ -291,7 +291,7 @@ window.catAvatar=function(av){var m=AVRE.exec(av||'');return m?avHTML(m[1]):null
 
 <section id="read" hidden>
 <div class="modes" role="group" aria-label="Reading mode"><button id="mWords"><b>📖 Ord</b><small>Tap a word → meaning</small></button><button id="mKeys"><b>⭐ Viktiga meningar</b><small>Tap sentences that tell the story</small></button></div>
-<div class="row"><button id="readall">▶ Read the text aloud</button><button id="stop">Stop</button><label><input type="checkbox" id="perline"> One sentence per line</label><span class="muted" id="modehelp"></span></div>
+<div class="row"><button id="readall">▶ Read the text aloud</button><button id="pausebtn">⏸ Pause</button><button id="stop">Stop</button><label><input type="checkbox" id="perline"> One sentence per line</label><label><input type="checkbox" id="showtr"> 🌐 English buttons</label><span class="muted" id="modehelp"></span></div>
 <div id="text" class="text words" lang="sv"><p class="muted" style="font-family:inherit;font-size:17px">Open a text from My texts first.</p></div>
 <p class="muted">Dotted underline = in your wordbank, not studied yet. Yellow = you are learning it. Red underline = a word you saved. No mark = you know it, or it is not in the wordbank.</p></section>
 
@@ -336,7 +336,7 @@ function cur(){return voices.find(v=>v.voiceURI===$('voice').value)||voices[0]}
 function note(){$('voicenote').textContent=!synth?'This browser cannot play speech.':!voices.length?'No Swedish voice found. Install one in the device settings (Accessibility → Spoken Content → Voices → Swedish).':'Using '+cur().name+'.'}
 function utter(t,r){const v=cur(),u=new SpeechSynthesisUtterance(t);u.voice=v;u.lang=v.lang;u.rate=r||Number($('rate').value)||0.9;return u}
 function say(t,r){if(!synth||!voices.length){toast('No Swedish voice on this device — see “Voice for 🔊” at the bottom.');return}synth.cancel();setTimeout(()=>{try{synth.resume()}catch(e){}synth.speak(utter(t,r))},120)}
-function sayAll(l,each){if(!synth||!voices.length){toast('No Swedish voice on this device.');return}synth.cancel();setTimeout(()=>{try{synth.resume()}catch(e){}l.forEach((t,i)=>{const u=utter(t);if(each)u.onstart=()=>each(i);synth.speak(u)})},120)}
+function sayAll(l,each,bound,done){if(!synth||!voices.length){toast('No Swedish voice on this device.');return}synth.cancel();setTimeout(()=>{try{synth.resume()}catch(e){}l.forEach((t,i)=>{const u=utter(t);if(each)u.onstart=()=>each(i);if(bound)u.onboundary=e=>{if(e.name==='word'||e.name===undefined)bound(i,e.charIndex)};if(done&&i===l.length-1)u.onend=done;synth.speak(u)})},120)}
 function sayBtn(t,lab){const b=button(lab||'🔊',e=>{e.stopPropagation();say(t)},'say');b.setAttribute('aria-label','Listen: '+t);return b}
 if(synth){loadVoices();if('onvoiceschanged' in synth)synth.onvoiceschanged=loadVoices;[300,1000,2500].forEach(ms=>setTimeout(loadVoices,ms))}else note();
 $('voice').onchange=()=>{try{localStorage.setItem(VKEY,$('voice').value)}catch(e){}note()};
@@ -490,7 +490,7 @@ function renderText(){
       const last=wi.length?wi[wi.length-1]:-1;for(let j=last+1;j<toks.length;j++)span.append(toks[j].sep);
       span.append(' ');p.append(span)});
     box.append(p)});
-  bankSummary();
+  bankSummary();if(typeof applyTr==='function')applyTr();
 }
 function setMode(m){mode=m;$('text').className='text '+(m==='words'?'words':'keys')+(S.perline?' lines':'');$('mWords').className=m==='words'?'selected':'';$('mKeys').className=m==='keys'?'selected':'';$('modehelp').textContent=m==='words'?'Tap any word to see what it means.':'Tap a sentence to mark it ⭐. Tap again to unmark.';closeSheet()}
 $('perline').checked=!!S.perline;$('perline').onchange=()=>{S.perline=$('perline').checked;save();$('text').classList.toggle('lines',S.perline)};
@@ -498,8 +498,22 @@ $('mWords').onclick=()=>setMode('words');$('mKeys').onclick=()=>setMode('keys');
 $('text').onclick=e=>{
   if(mode==='keys'){const s=e.target.closest('.s');if(!s)return;const i=Number(s.dataset.i);const arr=S.keys[C.id]||(S.keys[C.id]=[]);const at=arr.indexOf(i);if(at>=0)arr.splice(at,1);else arr.push(i);s.classList.toggle('key',at<0);save();$('keyresult').replaceChildren();return}
   const w=e.target.closest('.w');if(!w)return;openWord(w)};
-$('readall').onclick=()=>{if(!sentences.length){toast('Add the text first.');return}const els=document.querySelectorAll('#text .s');sayAll(sentences,i=>{els.forEach(x=>x.style.outline='');if(els[i]){els[i].style.outline='2px solid var(--accent)';els[i].scrollIntoView({block:'center',behavior:'smooth'})}})};
-$('stop').onclick=()=>{if(synth)synth.cancel();document.querySelectorAll('#text .s').forEach(x=>x.style.outline='')};
+$('readall').onclick=()=>{if(!sentences.length){toast('Add the text first.');return}const els=document.querySelectorAll('#text .s');let curW=null;const clr=()=>{if(curW)curW.classList.remove('kar');curW=null};
+sayAll(sentences,i=>{clr();els.forEach(x=>x.style.outline='');if(els[i]){els[i].style.outline='2px solid var(--accent)';els[i].scrollIntoView({block:'center',behavior:'smooth'})}},(i,ci)=>{const el=els[i];if(!el)return;const off=(el.textContent.length-el.textContent.trimStart().length);let pos=0,hit=null;const lead=off;for(const n of el.childNodes){const len=n.textContent.length;if(n.nodeType===1&&n.classList.contains('w')&&ci+lead<pos+len+0&&ci+lead>=pos){hit=n;break}pos+=len}if(hit){clr();hit.classList.add('kar');curW=hit}},()=>{clr();els.forEach(x=>x.style.outline='')})};
+$('pausebtn').onclick=()=>{if(!synth)return;if(synth.paused){synth.resume();$('pausebtn').textContent='⏸ Pause'}else{synth.pause();$('pausebtn').textContent='▶ Resume'}};
+
+/* Side-by-side English (online, cached) */
+const TRKEY='swedish-reader-tr-v1';let TR={};try{TR=JSON.parse(localStorage.getItem(TRKEY)||'{}')}catch(e){}
+function saveTR(){try{const k=Object.keys(TR);if(k.length>1500)k.slice(0,300).forEach(x=>delete TR[x]);localStorage.setItem(TRKEY,JSON.stringify(TR))}catch(e){}}
+let trQ=Promise.resolve();
+function trFetch(s){if(TR[s])return Promise.resolve(TR[s]);return trQ=trQ.then(()=>fetch('https://api.mymemory.translated.net/get?langpair=sv|en&q='+encodeURIComponent(s)).then(r=>r.json()).then(j=>{let t=(j&&j.responseData&&j.responseData.translatedText)||'';if(!t||/MYMEMORY|QUERY LENGTH/i.test(t))throw 0;TR[s]=t;saveTR();return t})).catch(()=>'')}
+function applyTr(){document.querySelectorAll('#text .trl,#text .trb').forEach(x=>x.remove());document.body.classList.toggle('showtr',!!S.showtr);if(!S.showtr)return;
+  document.querySelectorAll('#text .s').forEach(el=>{const i=+el.dataset.i;const b=node('button','🌐','trb');b.type='button';b.setAttribute('aria-label','Show English');let d=null;
+    b.onclick=e=>{e.stopPropagation();if(d){d.remove();d=null;b.classList.remove('on');return}b.classList.add('on');d=node('span','…','trl');(b.after(d));trFetch(sentences[i]).then(t=>{if(d)d.textContent=t||'(translation needs internet)'})};
+    el.append(b)})}
+$('showtr').checked=!!S.showtr;$('showtr').onchange=()=>{S.showtr=$('showtr').checked;save();applyTr()};
+
+$('stop').onclick=()=>{if(synth)synth.cancel();$('pausebtn').textContent='⏸ Pause';document.querySelectorAll('#text .w.kar').forEach(x=>x.classList.remove('kar'));document.querySelectorAll('#text .s').forEach(x=>x.style.outline='')};
 
 /* ---------- word sheet ---------- */
 let onEl=null;
