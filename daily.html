@@ -1548,7 +1548,8 @@ function refreshVoc(){Object.values(S.cards).forEach(c=>{const b=String(c.id).re
 function save(){const p=curProf();if(!p)return;if(!writeLS(profKey(p),S))toast('Browser storage is unavailable — progress will be lost when you close the page.')}
 function ust(u){return S.units[u.id]||(S.units[u.id]={checked:false,unknown:[],game:0,videos:[],said:false,done:false})}
 function curUnit(){return UNITS[Math.min(S.unit,UNITS.length-1)]}
-function wordsLeft(u){const st=ust(u);return st.unknown.filter(id=>!S.cards[id]&&VBYID.has(id)).length}
+function unkOf(u){const ok=new Set(checkWords(u).map(v=>v.id));return ust(u).unknown.filter(id=>ok.has(id))}
+function wordsLeft(u){return unkOf(u).filter(id=>!S.cards[id]&&VBYID.has(id)).length}
 function unitParts(u){const st=ust(u);const gd=gramDone();const ms=missState(curProf());return{words:checkDone(u)&&wordsLeft(u)===0,lesson:stationLessons(u).every(i=>gd[i]),game:st.game>=8,video:!!st.videoSkip||u.videos.some(v=>st.videos.includes(v)),mission:(ST_MISS[u.id]||[]).every(i=>{const m=ms(i);return !m||m.done}),say:st.said}}
 function unitComplete(u){const p=unitParts(u);return p.words&&p.lesson&&p.game&&p.video&&p.mission&&p.say}
 function addXP(n,el){S.xp=(S.xp||0)+n;if(el){const x=node('div','+'+n+' XP','xp');el.append(x);setTimeout(()=>x.remove(),1300)}}
@@ -1727,7 +1728,7 @@ function renderCourses(){const box=$('courses');box.replaceChildren();const IC={
 function renderUnit(){const u=curUnit(),st=ust(u),pt=unitParts(u);const c=$('unitcard');c.replaceChildren();
   c.append(node('div',u.lvl+' · '+BOOKS[u.book]+' · '+u.ch,'label'));const h=node('h2');h.append(sv('span','Station '+(S.unit+1)+': '+u.title));c.append(h);
   const g=GAME_NAMES[u.game]||['🎯',u.game];const m=node('div','','meters');
-  m.append(meter('words',st.checked?(st.unknown.length-wordsLeft(u))+'/'+st.unknown.length:'check first',pt.words),meter(g[0]+' '+g[1],st.game?st.game+'/10':'8/10 to pass',pt.game),meter('videos',st.videos.filter(v=>u.videos.includes(v)).length+'/'+u.videos.length,pt.video),meter('speak',st.said?'✓':'—',pt.say));c.append(m)}
+  m.append(meter('words',st.checked?(unkOf(u).length-wordsLeft(u))+'/'+unkOf(u).length:'check first',pt.words),meter(g[0]+' '+g[1],st.game?st.game+'/10':'8/10 to pass',pt.game),meter('videos',st.videos.filter(v=>u.videos.includes(v)).length+'/'+u.videos.length,pt.video),meter('speak',st.said?'✓':'—',pt.say));c.append(m)}
 function chaseBanner(){const w=node('div','','chase');w.setAttribute('aria-hidden','true');if(window.catEl)w.append(catEl('stalk','calico','chasecat'));return w}
 let RIBON=0;
 function drawRibbon(){const box=$('map');if(!box)return;const old=box.querySelector('.ribsvg');if(old)old.remove();const stns=[...box.querySelectorAll('.stn button')];const br=box.getBoundingClientRect();if(stns.length<2||!br.width)return;
@@ -1892,7 +1893,8 @@ function runReview(extra){
 }
 
 /* ---------- station word check ---------- */
-function checkWords(u){const seenG=new Set();return unitWords(u).filter(v=>!/…|\.\.\./.test(v.sv)).filter(v=>{const g=norm(String(v.en).split(/[,;(]/)[0]);if(seenG.has(g))return false;seenG.add(g);return true})}
+const WCAP=35;
+function checkWords(u){const seenG=new Set();return unitWords(u).filter(v=>!/…|\.\.\./.test(v.sv)).filter(v=>{const g=norm(String(v.en).split(/[,;(]/)[0]);if(seenG.has(g))return false;seenG.add(g);return true}).slice(0,WCAP)}
 function checkDone(u){const st=ust(u);return st.checked&&(st.cpos==null||st.cpos>=checkWords(u).length)}
 function checkDueToday(u){const st=ust(u);return !st.checked||(!checkDone(u)&&st.cday!==T)}
 const CHUNK=25;
@@ -1924,7 +1926,7 @@ function runUnitCheck(u,after){
 }
 
 /* ---------- step 3: new ---------- */
-function unitItems(){const out=[];const k=Math.min(S.unit,UNITS.length-1);for(let j=Math.max(0,k-2);j<=k;j++){const u=UNITS[j],st=ust(u);if(!st.checked)continue;st.unknown.filter(id=>!S.cards[id]).map(id=>VBYID.get(id)).filter(Boolean).forEach(v=>out.push({voc:v,u}))}
+function unitItems(){const out=[];const k=Math.min(S.unit,UNITS.length-1);for(let j=Math.max(0,k-2);j<=k;j++){const u=UNITS[j],st=ust(u);if(!st.checked)continue;unkOf(u).filter(id=>!S.cards[id]).map(id=>VBYID.get(id)).filter(Boolean).forEach(v=>out.push({voc:v,u}))}
   // mix: shuffle, and never two words with the same meaning on one day
   const seen=new Set(Object.values(S.cards).filter(c=>c.added===T&&c.en).map(c=>norm(String(c.en).split(/[,;(]/)[0])));return shuffle(out).filter(x=>{const g=norm(String(x.voc.en).split(/[,;(]/)[0]);if(seen.has(g))return false;seen.add(g);return true})}
 function newItems(limit){
