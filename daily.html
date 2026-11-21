@@ -1549,8 +1549,8 @@ function save(){const p=curProf();if(!p)return;if(!writeLS(profKey(p),S))toast('
 function ust(u){return S.units[u.id]||(S.units[u.id]={checked:false,unknown:[],game:0,videos:[],said:false,done:false})}
 function curUnit(){return UNITS[Math.min(S.unit,UNITS.length-1)]}
 function wordsLeft(u){const st=ust(u);return st.unknown.filter(id=>!S.cards[id]&&VBYID.has(id)).length}
-function unitParts(u){const st=ust(u);return{words:checkDone(u)&&wordsLeft(u)===0,game:st.game>=8,video:!!st.videoSkip||u.videos.some(v=>st.videos.includes(v)),say:st.said}}
-function unitComplete(u){const p=unitParts(u);return p.words&&p.game&&p.video&&p.say}
+function unitParts(u){const st=ust(u);const gd=gramDone();const ms=missState(curProf());return{words:checkDone(u)&&wordsLeft(u)===0,lesson:stationLessons(u).every(i=>gd[i]),game:st.game>=8,video:!!st.videoSkip||u.videos.some(v=>st.videos.includes(v)),mission:(ST_MISS[u.id]||[]).every(i=>{const m=ms(i);return !m||m.done}),say:st.said}}
+function unitComplete(u){const p=unitParts(u);return p.words&&p.lesson&&p.game&&p.video&&p.mission&&p.say}
 function addXP(n,el){S.xp=(S.xp||0)+n;if(el){const x=node('div','+'+n+' XP','xp');el.append(x);setTimeout(()=>x.remove(),1300)}}
 
 /* ---------- speech ---------- */
@@ -1608,12 +1608,18 @@ function harvest(){
 function fromBrackets(text,src,id){const m=text.match(/\[([^\]]+)\]/);const full=text.replace(/[\[\]]/g,'').trim();return m?{id,kind:'cloze',full,blank:m[1].trim(),src}:{id,kind:'echo',full,src}}
 
 /* ---------- day record ---------- */
-const STEPS=[['ear','Ljud','👂','Sounds'],['new','Nya ord','🆕','New words'],['game','Grammatik','🎯','Grammar'],['review','Repetera','🔁','Review'],['watch','Titta','📺','Watch'],['say','Säg','🎙','Speak']];
+const STEPS=[['ear','Ljud','👂','Sounds'],['new','Nya ord','🆕','New words'],['lesson','Lektion','🎓','Lesson'],['game','Grammatik','🎯','Grammar'],['review','Repetera','🔁','Review'],['watch','Titta','📺','Watch'],['mission','Uppdrag','📖','Mission'],['say','Säg','🎙','Speak']];const MINSTEPS=5;
 function D(){return S.days[T]||(S.days[T]={})}
-const GROUPS4=[['Lär','📚',['ear','new','game']],['Repetera','🔁',['review']],['Titta','📺',['watch']],['Säg','🎙',['say']]];
+const GROUPS4=[['Lär','📚',['ear','new','lesson','game']],['Repetera','🔁',['review']],['Titta','📺',['watch']],['Säg','🎙',['mission','say']]];
+const ST_LESS={a1:['basics','pron'],a2:['fraga'],a3:['tal'],a5:['imper','framtid'],a11:['tempus'],b1:['adverb'],b2:['indef'],b3:['gen'],b4:['tvarv']};
+function gramDone(){return(readLS(profKeyB('swedish-gram-v1',curProf()))||{}).done||{}}
+function stationLessons(u){const ids=[];if(GRAM_PATH.some(x=>x[0]===u.game))ids.push(u.game);(ST_LESS[u.id]||[]).forEach(i=>{if(!ids.includes(i))ids.push(i)});return ids}
+function nextLesson(u){const gd=gramDone();return stationLessons(u).find(i=>!gd[i])||null}
+function nextMissionFor(u){const mst=missState(curProf());for(const i of (ST_MISS[u.id]||[])){const m=mst(i);if(m&&!m.done)return[i,m]}return null}
+function skippable(k){const u=curUnit();if(k==='lesson')return !nextLesson(u);if(k==='mission')return !nextMissionFor(u);return false}
 function startGroup(gi){const g=GROUPS4[gi];let idx=STEPS.findIndex(s=>g[2].includes(s[0])&&!D()[s[0]]);if(idx<0)idx=STEPS.findIndex(s=>s[0]===g[2][0]);$('home').hidden=true;$('session').hidden=false;window.scrollTo(0,0);stepIdx=idx;runStep()}
-function nextStep(){return STEPS.findIndex(s=>!D()[s[0]])}
-function streak(){let n=0,d=T;if(!(S.days[d]&&STEPS.filter(s=>S.days[d][s[0]]).length>=4))d--;while(S.days[d]&&STEPS.filter(s=>S.days[d][s[0]]).length>=4){n++;d--}return n}
+function nextStep(){return STEPS.findIndex(s=>{if(D()[s[0]])return false;if(skippable(s[0])){D()[s[0]]=true;return false}return true})}
+function streak(){let n=0,d=T;if(!(S.days[d]&&STEPS.filter(s=>S.days[d][s[0]]).length>=MINSTEPS))d--;while(S.days[d]&&STEPS.filter(s=>S.days[d][s[0]]).length>=MINSTEPS){n++;d--}return n}
 
 /* ---------- profile picker ---------- */
 function delProfile(p){const b=$('dlgbody');b.replaceChildren(node('h2','Delete '+p.name+'?'),node('p','This removes '+p.name+'’s progress, cards, word bank, reading and missions on this device. It cannot be undone.','muted'));
@@ -1640,8 +1646,8 @@ const GRAM_PATH=[["basics", "Grammar words in plain English", "A1"], ["tal", "Nu
 const ST_MISS={a1:[1],a2:[19],a3:[8],a4:[0,15],a5:[17,10],a6:[9],a7:[14,20],a9:[2,11],a10:[6],a11:[3],a12:[4],a13:[23],a16:[7,18],a17:[5,21],a18:[16,22],a19:[12],a20:[13]};
 function missState(p){const ms=readLS(profKeyB('swedish-missions-v1',p))||{};const sv=new Set(ms.solved||[]),bs=new Set(ms.boss||[]);const ML=Array.isArray(window.LESSONS)?window.LESSONS:[];
   return i=>{const m=ML[i];if(!m)return null;const n=m.tasks.filter((t,j)=>sv.has(i+'-'+j)).length;return{m,n,tot:m.tasks.length,done:n===m.tasks.length&&bs.has(i)}}}
-function weekDays(){let n=0;for(let d=T-6;d<=T;d++){const r=S.days[d];if(r&&STEPS.filter(s=>r[s[0]]).length>=4)n++}return n}
-function weekDots(){const w=node('span','','wk');for(let d=T-6;d<=T;d++){const r=S.days[d];const ok=r&&STEPS.filter(s=>r[s[0]]).length>=4;const i=node('i','',ok?'full':(r&&STEPS.some(s=>r[s[0]])?'part':''));if(d===T)i.classList.add('today');w.append(i)}return w}
+function weekDays(){let n=0;for(let d=T-6;d<=T;d++){const r=S.days[d];if(r&&STEPS.filter(s=>r[s[0]]).length>=MINSTEPS)n++}return n}
+function weekDots(){const w=node('span','','wk');for(let d=T-6;d<=T;d++){const r=S.days[d];const ok=r&&STEPS.filter(s=>r[s[0]]).length>=MINSTEPS;const i=node('i','',ok?'full':(r&&STEPS.some(s=>r[s[0]])?'part':''));if(d===T)i.classList.add('today');w.append(i)}return w}
 function startFor(lvl,frac){const us=UNITS.filter(u=>u.lvl===lvl);return us.length?UNITS.indexOf(us[Math.floor(us.length*frac)]):S.unit}
 function runLevelCheck(after){const qs=[];['A2','B1','B2'].forEach(L=>{const all=buildTest(L).filter(q=>q.skill!=='listen');const v=all.filter(q=>q.skill==='vocab').slice(0,4),g=all.filter(q=>q.skill!=='vocab').slice(0,4);v.concat(g).forEach(q=>{q.lv=L;qs.push(q)})});
   runTest('A2',{qs,label:'Nivåtest · where should I start?',finish:(qs2,res)=>{const sc={};qs2.forEach((q,k)=>{const b=sc[q.lv]||(sc[q.lv]={n:0,ok:0});b.n++;if(res[k])b.ok++});
@@ -1669,7 +1675,7 @@ function renderHome(){
   $('sWords').textContent=started;$('sDue').textContent=dueCards().length;$('sStreak').textContent=streak();$('sXP').textContent=S.xp||0;
   const recent=S.log.filter(l=>l[0]>T-30);$('sRet').textContent=recent.length>=20?'Remembered '+Math.round(100*recent.reduce((a,l)=>a+l[1],0)/recent.length)+'% of cards in the last 30 days.':'';
   const cal=$('cal');cal.replaceChildren();for(let d=T-13;d<=T;d++){const r=S.days[d]||{};const n=STEPS.filter(s=>r[s[0]]).length;const i=node('i','',n===STEPS.length?'full':n?'part':'');if(d===T)i.classList.add('today');i.title=dayStr(d)+': '+n+'/'+STEPS.length;cal.append(i)}
-  const ns=nextStep(),q=quota();const pa=$('path');pa.replaceChildren();const nsg=ns<0?-1:GROUPS4.findIndex(g=>g[2].includes(STEPS[ns][0]));GROUPS4.forEach((g,gi)=>{const done=g[2].every(k=>D()[k]);const d=node('div','','st gt'+(done?' ok':gi===nsg?' next':''));d.append(node('i',done?'✅':g[1]),node('span',g[0]));pa.append(d)});
+  const ns=nextStep(),q=quota();const pa=$('path');pa.replaceChildren();const nsg=ns<0?-1:GROUPS4.findIndex(g=>g[2].includes(STEPS[ns][0]));GROUPS4.forEach((g,gi)=>{const done=g[2].every(k=>D()[k]);const d=node('button','','st gt'+(done?' ok':gi===nsg?' next':''));d.type='button';d.onclick=()=>startGroup(gi);d.append(node('i',done?'✅':g[1]),node('span',g[0]));pa.append(d)});
   $('start').textContent=ns<0?'✓ Klart idag — practise more':ns===0?'▶ Starta dagens pass':'▶ Fortsätt: '+STEPS[ns][1];
   const u=curUnit();$('plan').textContent=(q.back?'Welcome back! Today is a short comeback day. ':'')+'Today: '+Math.min(dueCards().length,q.cap)+' reviews · up to '+q.newWords+' new words · station '+(S.unit+1)+': '+u.title+'.';
   renderRoute();renderTabs();renderTips();renderListen();renderCourses();renderUnit();renderMap();renderTests();renderChest();renderWordList();renderInbox();fillSettings();renderIslands();$('inboxcount2').textContent=$('inboxcount').textContent;
@@ -1761,17 +1767,27 @@ function fillSettings(){$('setNew').value=String(S.set.newWords);$('setCap').val
 /* ---------- session shell ---------- */
 let stepIdx=0;
 function stage(){return $('stage')}
-function shell(title,sub){const s=stage();s.replaceChildren();const bar=node('div',undefined,'steps');STEPS.forEach((st,i)=>{const sp=node('span',(D()[st[0]]?'✓ ':st[2]+' ')+st[1],D()[st[0]]?'ok':'');if(i===stepIdx)sp.className='on';bar.append(sp)});s.append(bar);if(title){const h=node('h2');h.append(sv('span',title));s.append(h)}if(sub)s.append(node('p',sub,'muted'));return s}
-function openSession(){const ns=nextStep();$('home').hidden=true;$('session').hidden=false;window.scrollTo(0,0);if(ns<0){stepIdx=3;runReview(true);return}stepIdx=ns;runStep()}
+function shell(title,sub){const s=stage();s.replaceChildren();const bar=node('div',undefined,'steps');const curK=STEPS[stepIdx]&&STEPS[stepIdx][0];GROUPS4.forEach(g=>{const done=g[2].every(k=>D()[k]);const sp=node('span',(done?'✓ ':g[1]+' ')+g[0],done?'ok':'');if(g[2].includes(curK))sp.className='on';bar.append(sp)});s.append(bar);if(title){const h=node('h2');h.append(sv('span',title));s.append(h)}if(sub)s.append(node('p',sub,'muted'));return s}
+function openSession(){if(!S.placement&&!S.skipPlace&&!Object.keys(S.days).length&&!Object.keys(S.cards).length){S.skipPlace=true;save();$('home').hidden=true;$('session').hidden=false;window.scrollTo(0,0);runLevelCheck();return}const ns=nextStep();$('home').hidden=true;$('session').hidden=false;window.scrollTo(0,0);if(ns<0){stepIdx=STEPS.findIndex(x=>x[0]==='review');runReview(true);return}stepIdx=ns;runStep()}
 function finishStep(){if(!D()[STEPS[stepIdx][0]]){D()[STEPS[stepIdx][0]]=true;S.xp=(S.xp||0)+10}S.lastActive=T;save();
   const u=curUnit(),st=ust(u);if(!st.done&&unitComplete(u)){stationDone(u);return}
   const ns=nextStep();if(ns<0){celebrate();return}stepIdx=ns;runStep()}
-function runStep(){({ear:runEar,review:runReview,new:runNew,game:runGame,watch:runWatch,say:runSay})[STEPS[stepIdx][0]]()}
+
+let lessonMsg=null,missionMsg=null;
+window.addEventListener('message',e=>{const m=e.data;if(!m)return;if(m.src==='gram'&&lessonMsg)lessonMsg(m);if(m.src==='mission'&&missionMsg)missionMsg(m)});
+function runLesson(){const u=curUnit(),id=nextLesson(u);if(!id){finishStep();return}const g=GRAM_PATH.find(x=>x[0]===id);const s=shell('🎓 '+(g?g[1]:'Lektion'),'Read it card by card — then the game.');
+  const f=node('iframe');f.className='arena';f.title='Grammar lesson';f.src='grammatik.html?embed=1#'+id;s.append(f);lessonMsg=m=>{if(m.type==='gram-next'){lessonMsg=null;finishStep()}};
+  const r=node('div',undefined,'row');r.append(button('Skip today',()=>{lessonMsg=null;finishStep()}),exitBtn());s.append(r)}
+function runMission(){const u=curUnit(),pk=nextMissionFor(u);if(!pk){finishStep();return}const [mi,st0]=pk;const base=st0.n;let fired=false;const s=shell('📖 '+st0.m.title,'Do about 5 challenges today.');
+  const f=node('iframe');f.className='arena';f.title='Mission';f.src='index.html?embed=1#m='+mi;s.append(f);
+  missionMsg=m=>{if(m.type==='mission-progress'&&m.i===mi&&!fired&&(m.solved-base>=5||m.done)){fired=true;toast('🎉 Bra! Klart för idag');setTimeout(()=>{missionMsg=null;finishStep()},1200)}};
+  const r=node('div',undefined,'row');r.append(button('Done for today →',()=>{missionMsg=null;finishStep()},'primary'),exitBtn());s.append(r)}
+function runStep(){({ear:runEar,review:runReview,new:runNew,lesson:runLesson,game:runGame,watch:runWatch,mission:runMission,say:runSay})[STEPS[stepIdx][0]]()}
 function backHome(){if(synth)synth.cancel();stopRec();$('session').hidden=true;$('home').hidden=false;renderHome();window.scrollTo(0,0)}
 function exitBtn(){return button('Pause — back to start',backHome)}
 function confetti(s,n){const em=['🎉','⭐','⚽','🏆','✨','🇸🇪'];for(let i=0;i<(n||26);i++){const c=node('span',pickOne(em),'confetti');c.style.left=Math.random()*95+'%';c.style.animationDelay=(Math.random()*.9)+'s';s.append(c);setTimeout(()=>c.remove(),3600)}}
 function celebrate(){if(window.catDance)setTimeout(()=>catDance('Dagen klar!','Alla steg gjorda i dag – Ragnar dansar! 🐾'),500);const s=shell();s.append(window.catEl?catEl('happy','orange','bigcat party'):node('div','🏆','party'),node('h2','Bra jobbat! Klart för idag.'),node('p','Streak: '+streak()+' 🔥 · '+(S.xp||0)+' XP. Every word you practised today will come back at the right time. Vi ses imorgon!'));
-  const r=node('div',undefined,'row center');{const bm=node('a','📖 Bonus: Uppdrag');bm.href='index.html';r.append(bm)}r.append(button('Practise a few more cards',()=>{stepIdx=3;runReview(true)}),button('Back to start',backHome,'primary'));s.append(r);confetti(s)}
+  const r=node('div',undefined,'row center');{const bm=node('a','📖 Bonus: Uppdrag');bm.href='index.html';r.append(bm)}r.append(button('Practise a few more cards',()=>{stepIdx=STEPS.findIndex(x=>x[0]==='review');runReview(true)}),button('Back to start',backHome,'primary'));s.append(r);confetti(s)}
 function stationDone(u){if(window.catDance)setTimeout(()=>catDance('Station klar!',u.title+' ✓'),900);const st=ust(u);st.done=true;S.xp=(S.xp||0)+50;const k=UIDX.get(u.id);if(S.unit===k&&k<UNITS.length-1)S.unit=k+1;save();
   const s=shell();const g=SAGA.get(u.id)||{e:'🎖️',badge:u.title};s.append(node('h2','Station klar: '+u.title+'!'));
   const rv=node('div','','reveal');const st2=node('div','','stone');st2.append(node('div',g.e,'e'),node('b',g.badge),node('div',toRunes(g.badge),'r'));rv.append(st2);s.append(rv);
