@@ -141,6 +141,18 @@ function svg(kind,col){col=col||'grey';var id='c'+(++n),b='',k=K(col),w=k.w,w2=k
    +'<path d="M54 122 q-4 -14 10 -15 q14 0 14 14 q-10 6 -24 1Z M122 121 q0 -14 14 -14 q14 1 10 15 q-14 5 -24 -1Z" fill="'+PAPER+'"/>'+toes(66,122,id,1.05)+toes(134,122,id,1.05);
  } else if(kind==='sidepeek'){
   b=wash('M100 196 C100 150 116 124 150 116 L186 116 V200Z',w,id,.85)+wash('M116 196 C116 164 128 142 150 138 L186 138 V200Z',PAPER,id,.7)+H(id,col,'sideL','',34,12,.92,-16,1)+'<path d="M158 166 q-4 -15 11 -16 q15 0 13 16 q-11 6 -24 0Z" fill="'+PAPER+'"/>'+pen('M158 166 q-4 -15 11 -16 q15 0 13 16',id,2.6)+toes(170,166,id,.95)+'<path d="M190 0 V200" stroke="'+PEN+'" stroke-width="3.4" stroke-linecap="round" fill="none" opacity=".85"/>';
+ } else if(kind==='onbooks'){
+  /* a cat lying on a stack of books, one paw hanging over the edge, tail down the side */
+  var bk=function(x1,x2,y1,y2,c,off){return wash('M'+x1+' '+(y1+4)+' C'+x1+' '+(y1+1)+' '+(x1+4)+' '+y1+' '+(x1+10)+' '+y1+' L'+(x2-10)+' '+y1+' C'+(x2-4)+' '+y1+' '+x2+' '+(y1+1)+' '+x2+' '+(y1+4)+' L'+x2+' '+(y2-4)+' C'+x2+' '+(y2-1)+' '+(x2-4)+' '+y2+' '+(x2-10)+' '+y2+' L'+(x1+10)+' '+y2+' C'+(x1+4)+' '+y2+' '+x1+' '+(y2-1)+' '+x1+' '+(y2-4)+'Z',c,id,.9)
+   +wash('M'+(x1+12)+' '+(y1+8)+' H'+(x2-4)+' V'+(y2-8)+' H'+(x1+12)+'Z',PAPER,id,.95)
+   +pen('M'+(x1+4)+' '+(y1+1)+' H'+(x2-10)+' M'+(x1+4)+' '+(y2-1)+' H'+(x2-10)+' M'+(x1+12)+' '+(y1+8)+' V'+(y2-8),id,2.6)
+   +pen('M'+(x1+20)+' '+(y1+(y2-y1)/2)+' H'+(x2-8)+' M'+(x1+20)+' '+(y1+(y2-y1)/2+5)+' H'+(x2-16),id,1.6,.45)};
+  b=bk(22,278,146,188,'#c66a49')+bk(42,254,114,146,'#5f948e')+bk(60,246,88,114,'#d9b24d')+tailW('M84 80 C52 76 28 98 32 134 C34 152 38 164 44 172',13)+stroke('M42 166 q2 6 6 8',PEN,id,7,.7)
+   +wash('M72 90 C68 60 100 44 142 44 C182 44 210 58 216 88 L216 92 L72 92Z',w,id)+bst('M92 52 q6 12 2 26 M118 46 q6 12 2 28 M144 46 q5 12 1 28 M170 50 q4 10 0 24')
+   +wash('M96 92 C110 82 176 82 204 92Z',PAPER,id,.8)+pen('M72 90 C68 60 100 44 142 44 C178 44 204 56 214 78',id,3)+pen('M76 92 H212',id,2.6,.8)
+   +wash('M188 88 C184 102 186 116 194 122 C204 124 212 118 210 106 C208 96 204 90 198 86Z',PAPER,id,.95)+pen('M188 90 C184 104 186 118 194 122 C204 126 212 120 210 106',id,2.8)+toes(201,124,id,.8)
+   +wash('M204 84 C214 78 238 80 246 88 C246 94 214 96 204 90Z',PAPER,id,.9)+pen('M206 92 C220 96 240 94 246 90',id,2.4,.8)
+   +H(id,col,'happy','smile',150,0,.7,6);
  } else if(kind==='stalk'){
   /* lying flat, hips up, head low and wide-eyed, tail stretched behind: the ribbon-chaser */
   b=tailW('M46 98 C22 100 8 90 8 74',12)+stroke('M5 76 q1 -7 7 -9',PEN,id,7,.75)+wash('M30 104 C28 64 76 44 124 48 C172 52 204 70 222 92 L222 106 C150 112 80 112 30 104Z',w,id)+bst('M84 54 q6 12 2 28 M110 50 q6 12 2 28 M136 54 q5 12 1 26 M160 62 q4 10 0 20')+wash('M60 108 C90 98 140 98 190 106 C170 114 90 114 60 108Z',PAPER,id,.8)+pen('M30 104 C28 64 76 44 124 48 C164 51 192 64 210 82',id,3)+pen('M36 106 C80 112 150 112 200 108',id,2.4,.7)+wash('M186 104 C198 96 244 96 270 104 C270 112 196 114 186 104Z',PAPER,id,.9)+toes(236,106,id,.9)+toes(262,106,id,.9)+H(id,col,'shock','',156,2,.9,5);
@@ -183,7 +195,7 @@ function svg(kind,col){col=col||'grey';var id='c'+(++n),b='',k=K(col),w=k.w,w2=k
   if(kind==='wave')b+=wash('M136 152 C158 136 166 110 162 88 C160 78 146 78 146 90 C146 108 138 124 124 136Z',w2,id,.8)+pen('M136 152 C158 136 166 110 162 88 C160 78 146 78 146 90 C146 108 138 124 124 136',id,3)+pen('M150 86 v8 M156 85 v8',id,2,.8);
   if(kind==='viking')b+=HELMET;
  }
- return '<svg viewBox="'+(kind==='stalk'?'0 0 300 120':'0 0 200 '+(kind==='peek'?170:200))+'"'+(kind==='peek'?' preserveAspectRatio="xMidYMax meet"':'')+' xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><defs>'+defs(id)+'</defs>'+b+'</svg>'}
+ return '<svg viewBox="'+(kind==='stalk'?'0 0 300 120':kind==='onbooks'?'0 0 300 200':'0 0 200 '+(kind==='peek'?170:200))+'"'+(kind==='peek'?' preserveAspectRatio="xMidYMax meet"':'')+' xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><defs>'+defs(id)+'</defs>'+b+'</svg>'}
 window.catSVG=svg;
 window.catEl=function(kind,col,cls){var s=document.createElement('span');s.className='cat '+(cls||'');s.innerHTML=svg(kind,col);return s};
 document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('[data-cat]').forEach(function(e){e.innerHTML=svg(e.getAttribute('data-cat'),e.getAttribute('data-col'))})});
@@ -218,7 +230,7 @@ function edge(){document.querySelectorAll('.catedge').forEach(function(x){x.remo
 function decorate(){if(document.body.hasAttribute('data-nocats'))return;css();
  var ft=document.querySelector('footer');if(ft&&!ft.querySelector('.catparade')){var pr=document.createElement('div');pr.className='catparade';pr.setAttribute('aria-hidden','true');ft.style.marginTop=Math.max(78,parseFloat(getComputedStyle(ft).marginTop)||0)+'px';
   var cs=pick(5);cs.forEach(function(c,i){var k=document.createElement('span');k.innerHTML=svg(['face','loaf','shock','sleep','belly'][i],c);pr.appendChild(k)});ft.insertBefore(pr,ft.firstChild)}
- var h=document.querySelector('main h1, .hero h1, body > h1');if(h&&!h.querySelector('.cat, .cath1, svg')&&!document.querySelector('.herocat,.peekcat,.catcorner')&&!(h.parentNode&&h.parentNode.querySelector('.cat'))){var k=document.createElement('span');k.className='cath1';k.setAttribute('aria-hidden','true');k.innerHTML=svg('face',pick(1)[0]);h.appendChild(k)}
+ var h=document.querySelector('main h1, .hero h1, body > h1');if(h&&!h.querySelector('.cat, .cath1, svg')&&!document.querySelector('.herocat,.peekcat,.catcorner,.readcat')&&!(h.parentNode&&h.parentNode.querySelector('.cat'))){var k=document.createElement('span');k.className='cath1';k.setAttribute('aria-hidden','true');k.innerHTML=svg('face',pick(1)[0]);h.appendChild(k)}
  var t=document.querySelector('aside, .passport, .card, .panel');if(t&&!t.querySelector('.cat, .catcorner')&&getComputedStyle(t).overflow==='visible'){if(getComputedStyle(t).position==='static')t.style.position='relative';var cc=document.createElement('span');cc.className='catcorner';cc.setAttribute('aria-hidden','true');pick(1).forEach(function(c,i){var e=document.createElement('span');e.innerHTML=svg('loaf',c);cc.appendChild(e)});t.appendChild(cc)}
  edge();window.addEventListener('resize',edge);
  var last=0;try{last=+sessionStorage.getItem('catwalk')||0}catch(e){}if(false){try{sessionStorage.setItem('catwalk',Date.now())}catch(e){}setTimeout(function(){var w=document.createElement('span');w.className='catwalk';w.setAttribute('aria-hidden','true');w.innerHTML=svg(['sit','happy','dance','smug'][Math.floor(Math.random()*4)],pick(1)[0]);document.body.appendChild(w);setTimeout(function(){w.remove()},9500)},1500)}}
@@ -284,7 +296,7 @@ function collect(){const s=loadDaily();const groups=new Map();
   s.extra.forEach(x=>{if(has.has(x.id))return;words.push({id:x.id,pending:'extra',sv:x.full||x.w||'',blank:x.blank,en:x.en||'',src:x.src||'Egen',status:'new',cards:[]})});
   const rd=SV.rd(SV.key('swedish-reader-v1'));if(rd&&Array.isArray(rd.words))rd.words.forEach(w=>{const id='r:'+norm(w.form);if(has.has(id)||(w.bid&&has.has(w.bid)))return;words.push({id,pending:'reader',form:w.form,base:w.base,bid:w.bid,ctx:w.ctx||'',sv:w.ctx||w.form,blank:w.ctx?w.form:null,en:w.en&&w.en!=='?'?w.en:'',src:w.src||'📖 Läsning',status:'new',cards:[]})});
   return {s,words}}
-function srcGuess(id){if(/^v:|^n:|^w:/.test(id))return'🏠 Idag · Rivstart';if(/^m:/.test(id))return'🗺️ Uppdrag';if(/^g:/.test(id))return'🎯 Arena';if(/^r:/.test(id))return'📖 Läsning';return'🏠 Idag'}
+function srcGuess(id){if(/^v:|^n:|^w:/.test(id))return'🏠 Idag';if(/^m:/.test(id))return'🗺️ Uppdrag';if(/^g:/.test(id))return'🎯 Arena';if(/^r:/.test(id))return'📖 Läsning';return'🏠 Idag'}
 /* ---- render ---- */
 let filt='all',q='',src='';
 function sentNode(w,cls){const d=node('div','',cls);if(w.blank&&w.sv&&w.sv.toLocaleLowerCase('sv').indexOf(w.blank.toLocaleLowerCase('sv'))>=0&&w.sv!==w.blank){const i=w.sv.toLocaleLowerCase('sv').indexOf(w.blank.toLocaleLowerCase('sv'));d.append(document.createTextNode(w.sv.slice(0,i)),node('mark',w.sv.slice(i,i+w.blank.length)),document.createTextNode(w.sv.slice(i+w.blank.length)))}else d.textContent=String(w.sv).replace(/[\[\]]/g,'');return d}
