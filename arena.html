@@ -158,6 +158,18 @@ function svg(kind,col){col=col||'grey';var id='c'+(++n),b='',k=K(col),w=k.w,w2=k
    +'<path d="M54 122 q-4 -14 10 -15 q14 0 14 14 q-10 6 -24 1Z M122 121 q0 -14 14 -14 q14 1 10 15 q-14 5 -24 -1Z" fill="'+PAPER+'"/>'+toes(66,122,id,1.05)+toes(134,122,id,1.05);
  } else if(kind==='sidepeek'){
   b=wash('M100 196 C100 150 116 124 150 116 L186 116 V200Z',w,id,.85)+wash('M116 196 C116 164 128 142 150 138 L186 138 V200Z',PAPER,id,.7)+H(id,col,'sideL','',34,12,.92,-16,1)+'<path d="M158 166 q-4 -15 11 -16 q15 0 13 16 q-11 6 -24 0Z" fill="'+PAPER+'"/>'+pen('M158 166 q-4 -15 11 -16 q15 0 13 16',id,2.6)+toes(170,166,id,.95)+'<path d="M190 0 V200" stroke="'+PEN+'" stroke-width="3.4" stroke-linecap="round" fill="none" opacity=".85"/>';
+ } else if(kind==='onbooks'){
+  /* a cat lying on a stack of books, one paw hanging over the edge, tail down the side */
+  var bk=function(x1,x2,y1,y2,c,off){return wash('M'+x1+' '+(y1+4)+' C'+x1+' '+(y1+1)+' '+(x1+4)+' '+y1+' '+(x1+10)+' '+y1+' L'+(x2-10)+' '+y1+' C'+(x2-4)+' '+y1+' '+x2+' '+(y1+1)+' '+x2+' '+(y1+4)+' L'+x2+' '+(y2-4)+' C'+x2+' '+(y2-1)+' '+(x2-4)+' '+y2+' '+(x2-10)+' '+y2+' L'+(x1+10)+' '+y2+' C'+(x1+4)+' '+y2+' '+x1+' '+(y2-1)+' '+x1+' '+(y2-4)+'Z',c,id,.9)
+   +wash('M'+(x1+12)+' '+(y1+8)+' H'+(x2-4)+' V'+(y2-8)+' H'+(x1+12)+'Z',PAPER,id,.95)
+   +pen('M'+(x1+4)+' '+(y1+1)+' H'+(x2-10)+' M'+(x1+4)+' '+(y2-1)+' H'+(x2-10)+' M'+(x1+12)+' '+(y1+8)+' V'+(y2-8),id,2.6)
+   +pen('M'+(x1+20)+' '+(y1+(y2-y1)/2)+' H'+(x2-8)+' M'+(x1+20)+' '+(y1+(y2-y1)/2+5)+' H'+(x2-16),id,1.6,.45)};
+  b=bk(22,278,146,188,'#c66a49')+bk(42,254,114,146,'#5f948e')+bk(60,246,88,114,'#d9b24d')+tailW('M84 80 C52 76 28 98 32 134 C34 152 38 164 44 172',13)+stroke('M42 166 q2 6 6 8',PEN,id,7,.7)
+   +wash('M72 90 C68 60 100 44 142 44 C182 44 210 58 216 88 L216 92 L72 92Z',w,id)+bst('M92 52 q6 12 2 26 M118 46 q6 12 2 28 M144 46 q5 12 1 28 M170 50 q4 10 0 24')
+   +wash('M96 92 C110 82 176 82 204 92Z',PAPER,id,.8)+pen('M72 90 C68 60 100 44 142 44 C178 44 204 56 214 78',id,3)+pen('M76 92 H212',id,2.6,.8)
+   +wash('M188 88 C184 102 186 116 194 122 C204 124 212 118 210 106 C208 96 204 90 198 86Z',PAPER,id,.95)+pen('M188 90 C184 104 186 118 194 122 C204 126 212 120 210 106',id,2.8)+toes(201,124,id,.8)
+   +wash('M204 84 C214 78 238 80 246 88 C246 94 214 96 204 90Z',PAPER,id,.9)+pen('M206 92 C220 96 240 94 246 90',id,2.4,.8)
+   +H(id,col,'happy','smile',150,0,.7,6);
  } else if(kind==='stalk'){
   /* lying flat, hips up, head low and wide-eyed, tail stretched behind: the ribbon-chaser */
   b=tailW('M46 98 C22 100 8 90 8 74',12)+stroke('M5 76 q1 -7 7 -9',PEN,id,7,.75)+wash('M30 104 C28 64 76 44 124 48 C172 52 204 70 222 92 L222 106 C150 112 80 112 30 104Z',w,id)+bst('M84 54 q6 12 2 28 M110 50 q6 12 2 28 M136 54 q5 12 1 26 M160 62 q4 10 0 20')+wash('M60 108 C90 98 140 98 190 106 C170 114 90 114 60 108Z',PAPER,id,.8)+pen('M30 104 C28 64 76 44 124 48 C164 51 192 64 210 82',id,3)+pen('M36 106 C80 112 150 112 200 108',id,2.4,.7)+wash('M186 104 C198 96 244 96 270 104 C270 112 196 114 186 104Z',PAPER,id,.9)+toes(236,106,id,.9)+toes(262,106,id,.9)+H(id,col,'shock','',156,2,.9,5);
@@ -200,7 +212,7 @@ function svg(kind,col){col=col||'grey';var id='c'+(++n),b='',k=K(col),w=k.w,w2=k
   if(kind==='wave')b+=wash('M136 152 C158 136 166 110 162 88 C160 78 146 78 146 90 C146 108 138 124 124 136Z',w2,id,.8)+pen('M136 152 C158 136 166 110 162 88 C160 78 146 78 146 90 C146 108 138 124 124 136',id,3)+pen('M150 86 v8 M156 85 v8',id,2,.8);
   if(kind==='viking')b+=HELMET;
  }
- return '<svg viewBox="'+(kind==='stalk'?'0 0 300 120':'0 0 200 '+(kind==='peek'?170:200))+'"'+(kind==='peek'?' preserveAspectRatio="xMidYMax meet"':'')+' xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><defs>'+defs(id)+'</defs>'+b+'</svg>'}
+ return '<svg viewBox="'+(kind==='stalk'?'0 0 300 120':kind==='onbooks'?'0 0 300 200':'0 0 200 '+(kind==='peek'?170:200))+'"'+(kind==='peek'?' preserveAspectRatio="xMidYMax meet"':'')+' xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><defs>'+defs(id)+'</defs>'+b+'</svg>'}
 window.catSVG=svg;
 window.catEl=function(kind,col,cls){var s=document.createElement('span');s.className='cat '+(cls||'');s.innerHTML=svg(kind,col);return s};
 document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('[data-cat]').forEach(function(e){e.innerHTML=svg(e.getAttribute('data-cat'),e.getAttribute('data-col'))})});
@@ -235,7 +247,7 @@ function edge(){document.querySelectorAll('.catedge').forEach(function(x){x.remo
 function decorate(){if(document.body.hasAttribute('data-nocats'))return;css();
  var ft=document.querySelector('footer');if(ft&&!ft.querySelector('.catparade')){var pr=document.createElement('div');pr.className='catparade';pr.setAttribute('aria-hidden','true');ft.style.marginTop=Math.max(78,parseFloat(getComputedStyle(ft).marginTop)||0)+'px';
   var cs=pick(5);cs.forEach(function(c,i){var k=document.createElement('span');k.innerHTML=svg(['face','loaf','shock','sleep','belly'][i],c);pr.appendChild(k)});ft.insertBefore(pr,ft.firstChild)}
- var h=document.querySelector('main h1, .hero h1, body > h1');if(h&&!h.querySelector('.cat, .cath1, svg')&&!document.querySelector('.herocat,.peekcat,.catcorner')&&!(h.parentNode&&h.parentNode.querySelector('.cat'))){var k=document.createElement('span');k.className='cath1';k.setAttribute('aria-hidden','true');k.innerHTML=svg('face',pick(1)[0]);h.appendChild(k)}
+ var h=document.querySelector('main h1, .hero h1, body > h1');if(h&&!h.querySelector('.cat, .cath1, svg')&&!document.querySelector('.herocat,.peekcat,.catcorner,.readcat')&&!(h.parentNode&&h.parentNode.querySelector('.cat'))){var k=document.createElement('span');k.className='cath1';k.setAttribute('aria-hidden','true');k.innerHTML=svg('face',pick(1)[0]);h.appendChild(k)}
  var t=document.querySelector('aside, .passport, .card, .panel');if(t&&!t.querySelector('.cat, .catcorner')&&getComputedStyle(t).overflow==='visible'){if(getComputedStyle(t).position==='static')t.style.position='relative';var cc=document.createElement('span');cc.className='catcorner';cc.setAttribute('aria-hidden','true');pick(1).forEach(function(c,i){var e=document.createElement('span');e.innerHTML=svg('loaf',c);cc.appendChild(e)});t.appendChild(cc)}
  edge();window.addEventListener('resize',edge);
  var last=0;try{last=+sessionStorage.getItem('catwalk')||0}catch(e){}if(false){try{sessionStorage.setItem('catwalk',Date.now())}catch(e){}setTimeout(function(){var w=document.createElement('span');w.className='catwalk';w.setAttribute('aria-hidden','true');w.innerHTML=svg(['sit','happy','dance','smug'][Math.floor(Math.random()*4)],pick(1)[0]);document.body.appendChild(w);setTimeout(function(){w.remove()},9500)},1500)}}
@@ -847,6 +859,230 @@ Det var igår ___ snön kom.|som|att;när;då|det var … som
 Det är därför ___ jag är trött.|som|att;vad;så|det är därför som`}
 ];
 
+/* A2–B1 grammar games, batch 2. Cloze items: sentence with ___ | answer | wrong options separated by ; | short note */
+GRAMMAR_GAMES.push(
+{id:'pron',e:'🙋',lvl:'A2',name:'Jag eller mig?',en:'Subject, object and reflexive pronouns',desc:'jag/mig, han/honom, de/dem — and sig, mig, dig.',
+ sheet:`<p>Use the <b>subject</b> form for the doer and the <b>object</b> form for the receiver or after a small word like <i>med, till, för</i>.</p><table><tr><th>subject</th><th>object</th></tr><tr><td>jag</td><td>mig</td></tr><tr><td>du</td><td>dig</td></tr><tr><td>han / hon</td><td>honom / henne</td></tr><tr><td>vi</td><td>oss</td></tr><tr><td>ni</td><td>er</td></tr><tr><td>de</td><td>dem</td></tr></table><p><b>Reflexive:</b> when the object is the same person as the subject: <i>jag tvättar mig, du tvättar dig, hon tvättar <b>sig</b>, de tvättar <b>sig</b></i>.</p>`,
+ items:`Anna ringer mig, och ___ svarar direkt.|jag|mig;min;mitt|doer of svarar → jag
+Kan du hjälpa ___ med läxan?|mig|jag;min;sig|receiver → mig
+Vi bjuder Lisa, och hon bjuder ___ nästa gång.|oss|vi;vår;sig|object of bjuder → oss
+Jag tvättar ___ innan jag går ut.|mig|jag;sig;min|reflexive, jag → mig
+Hon tittar på ___ i spegeln.|sig|hon;hennes;sin|reflexive, 3rd person → sig
+Pojkarna är trötta, så ___ går hem.|de|dem;sig;deras|doer → de
+Jag känner Erik och Maja. Jag träffar ___ ofta.|dem|de;sig;deras|object → dem
+Du måste skynda ___ annars missar du tåget.|dig|du;sig;din|reflexive, du → dig
+Anna och ___ åker till Göteborg i helgen.|jag|mig;min;oss|part of the subject → jag
+Det är min bror. Jag ringer ___ varje dag.|honom|han;sig;hans|object → honom
+Han har glömt boken, så jag lånar ut min till ___.|honom|han;sig;hans|after till → object form
+Vi roar ___ på festen.|oss|vi;sig;vår|reflexive, vi → oss
+Barnen klär på ___ själva.|sig|de;sin;deras|reflexive, 3rd person plural → sig
+Det här är ett brev till ___, Maria.|dig|du;sig;ditt|after till → dig
+___ heter Sara, och du?|Jag|Mig;Min;Sig|doer → Jag
+Han säger att ___ är hungrig.|han|honom;sig;sin|subject of är → han
+Mormor och morfar bor i Umeå. Vi besöker ___ i sommar.|dem|de;sig;deras|object → dem
+Du och jag är kompisar. ___ hjälper varandra.|Vi|Oss;Er;Sig|doers → Vi
+Jag vet att hon bor här, men jag har aldrig träffat ___.|henne|hon;sig;hennes|object → henne
+Ni borde vila ___ lite.|er|ni;sig;din|reflexive, ni → er`},
+{id:'indef',e:'🤷',lvl:'B1',name:'Någon, ingen, alla',en:'Indefinite words',desc:'man, någon/något/några, ingen/inget/inga, all/alla/allt, varje.',
+ sheet:`<p><b>man</b> = people in general (only as subject). Pairs follow the noun:</p><table><tr><th>en-word</th><th>ett-word</th><th>plural</th></tr><tr><td>någon</td><td>något</td><td>några</td></tr><tr><td>ingen</td><td>inget</td><td>inga</td></tr><tr><td>—</td><td>allt</td><td>alla</td></tr></table><ul><li>Do not add <i>inte</i> to <i>ingen/inget/inga</i>.</li><li><b>varje</b> + singular noun: <i>varje dag</i>.</li><li>Alone: <i>allt</i> = everything, <i>alla</i> = everyone.</li></ul>`,
+ items:`På bussen får ___ inte skräpa ner.|man|sig;dem;mig|people in general → man
+Finns det ___ mjölk kvar i kylen?|någon|något;några;alla|mjölk is an en-word → någon
+Jag behöver ___ bra bok att läsa.|någon|något;några;inga|en bok → någon
+Har du ___ syskon?|några|någon;något;ingen|plural → några
+Det finns ___ hus på gatan som är rött.|något|någon;några;ingen|ett hus → något
+Jag har ___ bil, så jag cyklar.|ingen|inget;inga;någon|en bil, none → ingen
+Hon har ___ pengar kvar efter helgen.|inga|ingen;inget;någon|plural, none → inga
+Det är ___ ljud i huset. Det är tyst.|inget|ingen;inga;allt|ett ljud → inget
+Jag har inte ___ tid idag.|någon|ingen;inget;inga|after inte use någon
+___ i klassen gillar pizza.|Alla|Allt;Varje;Man|everyone → Alla
+Jag har ätit upp ___ godis.|allt|alla;varje;ingen|all of an uncountable → allt
+___ elev får en bok.|Varje|Alla;Allt;Man|each + singular → Varje
+___ som kommer sent får inte komma in.|Alla|Allt;Varje;Inget|everyone who → Alla
+Hon berättade ___ för mig.|allt|alla;varje;ingen|everything → allt
+Är det ___ här som kan hjälpa mig?|någon|något;allt;varje|anyone → någon
+Det var tomt. ___ hade gått hem.|Alla|Allt;Varje;Inget|everyone → Alla
+Jag har ___ till dig, en present!|något|någon;några;ingen|something → något
+Det finns ___ mer att säga.|inget|ingen;inga;allt|nothing → inget
+Jag tränar ___ dag.|varje|alla;allt;inga|each day → varje dag
+Här i huset känner ___ varandra.|alla|allt;varje;inget|everyone → alla`},
+{id:'fraga',e:'❓',lvl:'A2',name:'Frågor',en:'Question words',desc:'vad, vem, var, vart, vilken, hur — and ja, jo, nej.',
+ sheet:`<p>Question word first, then the <b>verb</b> (V2): <i>Vad gör du?</i> No question word → verb first: <i>Bor du här?</i></p><ul><li><b>var</b> = where (position) · <b>vart</b> = where to · <b>varifrån</b> = where from</li><li><b>vem</b> = who · <b>vems</b> = whose · <b>vad</b> = what</li><li><b>vilken / vilket / vilka</b> = which (match the noun)</li><li><b>hur</b> + adjective: <i>hur mycket, hur många, hur dags</i></li><li>Answer a negative question with <b>jo</b> (yes) or <b>nej</b>.</li></ul>`,
+ items:`___ bor du? I Malmö.|Var|Vart;Vad;Vem|place you stay → Var
+___ ska du imorgon? Till tandläkaren.|Vart|Var;Vad;Varifrån|direction → Vart
+___ kommer hon ifrån? Från Polen.|Var|Vart;Vem;Vad|kommer ifrån → Var … ifrån
+___ heter din syster? Maja.|Vad|Vem;Vilken;Var|asking for a name → Vad
+___ är det där? Det är min lärare.|Vem|Vad;Var;Hur|a person → Vem
+___ bil är det? Det är pappas bil.|Vems|Vem;Vad;Vilka|whose → Vems
+___ mycket kostar äpplena?|Hur|Vad;Vem;Var|hur mycket → how much
+___ många barn har du? Tre.|Hur|Vad;Vem;Var|hur många → how many
+___ buss ska jag ta till stan?|Vilken|Vilket;Vilka;Vem|buss is an en-word → vilken
+___ hus bor du i, det röda eller det gula?|Vilket|Vilken;Vilka;Vem|hus is an ett-word → vilket
+___ skor ska du ha idag?|Vilka|Vilken;Vilket;Vad|plural → vilka
+___ kommer tåget? Klockan åtta.|När|Var;Vem;Hur|time → När
+___ gråter barnet? För att hon har ont i magen.|Varför|Vart;Vem;Vilket|reason → Varför
+Har du en penna? ___, det har jag.|Ja|Jo;Nej;Vad|positive question → Ja
+Har du inte en penna? ___, det har jag.|Jo|Ja;Nej;Vem|negative question, yes → Jo
+___ du kaffe?|Dricker|Du dricker;Vad dricker;Vem dricker|yes/no question: verb first
+Vad ___ du på helgen?|gör|göra;gjort;att göra|verb right after the question word
+Vem ___ du igår?|träffade|träffa;träffat;träffas|verb second, past tense
+___ dags börjar filmen?|Hur|Vad;När;Vilken|hur dags = at what time
+___ vill du ha, te eller kaffe?|Vad|Vem;Var;Vart|what thing → Vad`},
+{id:'tal',e:'🔢',lvl:'A2',name:'Siffror och tid',en:'Numbers, ordinals, clock and dates',desc:'tredje, halv tre, kvart i åtta, tjugotre.',
+ sheet:`<p><b>Ordinals:</b> första, andra, tredje, fjärde, femte … tjugonde.</p><p><b>Clock:</b> <b>halv tre</b> = 2.30 (half <i>to</i> three!), <b>kvart över</b> = :15, <b>kvart i</b> = :45, <b>fem över / fem i</b>.</p><ul><li>Tens + ones are one word: <i>tjugotre, sextiosju</i>.</li><li><i>en</i> with en-words, <i>ett</i> with ett-words.</li><li>Dates: <i>den tredje mars</i>; months have no capital letter.</li></ul>`,
+ items:`Min födelsedag är den 3 mars, alltså den ___ mars.|tredje|tre;tredde;trettonde|ordinal 3rd → tredje
+Klockan är 14.30. Vi säger halv ___.|tre|två;fyra;trettio|halv tre = 2.30
+Klockan är 7.45. Det är kvart i ___.|åtta|sju;sex;nio|a quarter to eight
+Klockan är 7.15. Det är kvart över ___.|sju|åtta;sex;femton|a quarter past seven
+Klockan är 4.05, alltså fem ___ fyra.|över|i;till;på|past the hour → över
+Klockan är 5.50, alltså tio ___ sex.|i|över;på;efter|before the hour → i
+Tolv plus åtta är ___.|tjugo|tolv;åtta;tjugotvå|12 + 8 = 20
+Femton plus fyra är ___.|nitton|fjorton;nittio;niton|15 + 4 = 19
+Sextio plus sju är ___.|sextiosju|sjuttiosex;sjutton;sextisju|67
+Vi har ___ hus och en bil.|ett|en;etta;enda|hus is an ett-word
+Det är den 1 maj. Det är den ___ maj.|första|ett;etta;enda|ordinal 1st → första
+Julen firas den ___ december.|tjugofemte|tjugofem;femtonde;tjugofemman|25th → tjugofemte
+Jag är född ___ 1990.|år|i;på;den|född år 1990
+Skolan börjar ___ augusti.|i|på;den;vid|months take i
+Äpplena kostar tjugofem ___.|kronor|krona;kronan;kronar|plural of krona
+Biljetten kostar ___ kronor.|hundra|hundre;hundrad;tusen|100 → hundra
+Efter november kommer ___.|december|oktober;mars;juli|month order
+Dagen efter tisdag heter ___.|onsdag|torsdag;måndag;fredag|weekday order
+Mötet börjar 18.30, alltså ___ sju.|halv|kvart;tio;över|halv sju = 6.30
+Det är min ___ gång i Sverige.|andra|två;tvåa;tvåde|ordinal 2nd → andra`},
+{id:'gen',e:'🧱',lvl:'B1',name:'Sammansatta ord',en:'Compounds and the genitive -s',desc:'fotbollsmatch, Annas bil, husets tak.',
+ sheet:`<p><b>Compounds</b> are written as one word; the <b>last part</b> decides en/ett: <i>en match → en fotbollsmatch</i>, <i>ett däck → ett bildäck</i>. Sometimes a joining <b>-s-</b> or other letter appears: <i>tidningsartikel, kaffekopp</i>.</p><ul><li><b>Genitive:</b> add <b>-s</b>, no apostrophe: <i>Annas bil, husets tak, barnens hund</i>.</li><li>Names ending in -s add nothing: <i>Lars bil</i>.</li><li>Put -s on the end of the whole owner: <i>pojkens hund</i>.</li></ul>`,
+ items:`Det här är ___ bil.|Annas|Anna;Anna’s;Annans|owner + -s, no apostrophe
+Det här är ___ cykel. (Lars)|Lars|Larss;Lars’;Larsas|names ending in -s stay as they are
+Jag köper en biljett till tåget. Det är en ___.|tågbiljett|tåg biljett;tågsbiljett;biljettåg|one word, main word last
+Det är ___ rum, inte mitt. (pappa)|pappas|pappa;pappars;pappa’s|owner + -s
+___ står mitt i rummet. (the kitchen table)|Köksbordet|Kökbordet;Köket bordet;Köks bordet|one word with joining -s
+Jag läser en ___ om fotboll. (newspaper article)|tidningsartikel|tidningartikel;tidnings artikel;artikeltidning|-ing words take -s
+Matchen är en match, därför säger vi ___ fotbollsmatch.|en|ett;den;det|last part decides gender
+Jag läser en ___ för min dotter. (children’s book)|barnbok|barnsbok;barnenbok;bokbarn|barn + bok
+Hon är ___ syster. (Johan)|Johans|Johan;Johans’;Johanna|owner + -s
+Det är ___ hund. (the boy’s)|pojkens|pojken;pojke;pojkenens|definite owner + -s
+Hon jobbar på ett ___. (sjuk + hus)|sjukhus|sjukehus;sjukshus;sjuk hus|one word
+___ huvudstad är Stockholm.|Sveriges|Sverige;Sverigens;Sverige’s|genitive of Sverige
+Jag dricker kaffe ur min ___.|kaffekopp|kaffeskopp;kaffkopp;kopp kaffe|kaffe + kopp, no -s
+___ födelsedag är idag. (Eva)|Evas|Eva;Evans;Eva’s|Eva → Evas
+Jag behöver ___ bildäck.|ett|en;ena;etts|däck is an ett-word
+Vi åkte på en lång ___ till Stockholm. (train + trip)|tågresa|tågsresa;tåg resa;resatåg|one word, no -s
+___ tak är rött. (the house’s)|Husets|Hus;Huset;Hussets|definite genitive
+Läraren har en bok. Det är ___ bok.|lärarens|läraren;lärare;lärarn|the teacher’s → lärarens
+Det är mina ___ bil. (parents)|föräldrars|föräldrar;föräldrarna;förälders|plural owner + -s
+I ___ finns många böcker. (the school library)|skolbiblioteket|skolsbiblioteket;skolebiblioteket;skola biblioteket|one word, definite ending at the end`},
+{id:'imper',e:'📣',lvl:'A2',name:'Gör så här!',en:'Imperative, infinitive, att and modals',desc:'Stäng dörren! Jag kan simma. Det är kul att läsa.',
+ sheet:`<p><b>Imperative</b> = verb without -a: <i>stäng, skriv, kom</i>. Some keep -a: <i>titta, lyssna, spela</i>. Negative: <i>Stäng inte dörren!</i></p><ul><li><b>Modals</b> (kan, vill, ska, måste, får, bör) + infinitive, no att: <i>Jag kan simma.</i></li><li><b>att</b> + infinitive after adjectives, nouns and many verbs: <i>Det är kul att läsa.</i></li><li>The infinitive ends in a vowel: <i>gå, äta, tala</i>.</li></ul>`,
+ items:`___ dörren, snälla!|Stäng|Stänga;Stänger;Stängt|imperative, no -a
+___ hit!|Kom|Komma;Kommer;Kommit|imperative of komma
+___ inte här, det är förbjudet!|Parkera|Parker;Parkerar;Park|parkera keeps its -a
+Jag vill ___ pizza ikväll.|äta|äter;åt;äts|infinitive after a modal
+Hon kan ___ spanska.|tala|talar;talade;att tala|modal + infinitive
+Det är kallt, så jag måste ___ jacka.|ha|har;haft;att ha|modal + infinitive
+Det är viktigt ___ sova bra.|att|ska;kan;vill|att after an adjective
+Jag älskar ___ simma.|att|ska;kan;vill|att after älska
+Vi ska ___ hem nu.|gå|går;gick;att gå|ska + infinitive, no att
+Du får inte ___ här.|röka|röker;rökte;rökt|modal + infinitive
+___ du hjälpa mig?|Kan|Kunna;Hjälp;Att|modal first in a question
+___ inte så fort!|Kör|Köra;Kört;Körde|imperative of köra
+___ upp! Det är sju.|Vakna|Vaknar;Vaknade;Vaknat|imperative of vakna
+Jag har bestämt mig för ___ sluta röka.|att|ska;kan;har|att after för
+Hon brukar ___ upp tidigt.|stiga|stigit;steg;stiger|brukar + infinitive
+___ på mig!|Lyssna|Lyssn;Lyssnar;Lyssnat|lyssna keeps its -a
+___ försiktig!|Var|Vara;Är;Varit|imperative of vara is var
+Vi måste ___ kl. 8.|börja|börjar;började;börjat|modal + infinitive
+Han vill inte ___ med oss.|följa|följer;följde;följt|modal + infinitive
+Det är kul ___ spela fotboll.|att|ska;kan;måste|att after an adjective`},
+{id:'tempus',e:'⏳',lvl:'B1',name:'Då och nu',en:'Present, past, perfect, pluperfect',desc:'åt, har ätit, hade ätit.',
+ sheet:`<table><tr><th>tense</th><th>form</th><th>use</th></tr><tr><td>presens</td><td>äter</td><td>now</td></tr><tr><td>preteritum</td><td>åt</td><td>finished, time named (igår)</td></tr><tr><td>perfekt</td><td>har ätit</td><td>link to now, no time named</td></tr><tr><td>pluskvamperfekt</td><td>hade ätit</td><td>earlier than another past event</td></tr></table><p>Specific past time (igår, förra veckan) → preteritum. <i>sedan, hittills, aldrig, redan</i> → perfekt.</p>`,
+ items:`Igår ___ jag på bio.|var|har varit;är;hade varit|igår → preteritum
+Jag ___ aldrig ätit sushi, men nu ska jag smaka.|har|hade;åt;är|perfect, link to now
+Vi ___ i Malmö i fem år, men nu bor vi i Lund.|bodde|bor;har bott;hade bott|finished period → preteritum
+Hon ___ här sedan 2020.|har bott|bodde;bor;hade bott|still true now → perfekt
+När jag kom hem hade tåget redan ___.|gått|gick;går;gå|hade + supine
+Jag ___ min nyckel, så jag kunde inte öppna dörren.|hade tappat|har tappat;tappar;tappa|earlier than kunde → pluperfect
+Förra veckan ___ vi en ny soffa.|köpte|köper;har köpt;hade köpt|förra veckan → preteritum
+Har du ___ filmen?|sett|såg;se;ser|har + supine
+Jag ___ honom igår.|träffade|har träffat;träffat;träffar|igår → preteritum
+Hon har ___ i Stockholm i tre år.|bott|bodde;bor;bo|har + supine
+Innan vi åt hade vi ___ händerna.|tvättat|tvättade;tvättar;tvätta|hade + supine
+Kalle ___ ofta fotboll när han var liten.|spelade|har spelat;spelar;spelat|past habit → preteritum
+Nej tack, jag har redan ___.|ätit|åt;äter;äta|har + supine
+Han sa att han redan ___ gått hem när jag ringde.|hade|har;är;blev|pluperfect helper
+Vad ___ du förra helgen?|gjorde|gör;har gjort;hade gjort|named time → preteritum
+Jag har aldrig ___ i Japan.|varit|var;vara;är|supine of vara
+___ du någonsin ätit surströmming?|Har|Hade;Åt;Är|perfect question
+Titta ut, det ___ regnat hela dagen!|har|hade;är;blev|still true → perfekt
+När chefen kom hade vi redan ___ klart.|gjort|gjorde;göra;gör|supine of göra
+Just nu ___ jag en bok.|läser|läste;har läst;hade läst|now → presens`},
+{id:'framtid',e:'🔮',lvl:'A2',name:'Framtiden',en:'ska, kommer att, tänker',desc:'Plans, predictions and intentions.',
+ sheet:`<p>Swedish has no future tense. Choose by purpose:</p><ul><li><b>ska</b> + infinitive: a plan or promise — <i>Jag ska resa i sommar.</i></li><li><b>kommer att</b> + infinitive: a prediction — <i>Det kommer att regna.</i></li><li><b>tänker</b> + infinitive: an intention — <i>Jag tänker flytta.</i></li><li><b>presens</b> + time word: timetables — <i>Tåget går imorgon.</i></li></ul><p>Never <i>ska att</i> or <i>tänker att</i>.</p>`,
+ items:`Imorgon ___ jag träffa tandläkaren.|ska|skulle;har;gjorde|plan → ska
+Det ___ att regna i kväll, säger vädret.|kommer|tänker;vill;borde|prediction + att → kommer
+Jag ___ köpa en ny telefon nästa månad.|tänker|har;gör;är|intention → tänker
+Tåget ___ imorgon klockan 9.15.|går|gick;gått;gå|timetable → presens
+Vi ___ fira midsommar hos mormor i år.|ska|skulle;gjorde;har|plan → ska
+Du ___ att gilla maten, den är jättegod.|kommer|ska;tänker;har|prediction + att
+Nästa vecka ___ jag på semester.|åker|åkte;åkt;åka|presens + time word
+Vad ___ du göra i helgen?|ska|har;gjorde;gjort|asking about plans
+Jag ___ hjälpa dig! Jag lovar.|ska|har;hade;gjorde|promise → ska
+Om tio år ___ jorden att vara varmare.|kommer|ska;tänker;vill|prediction + att
+Tänker du ___ med oss ikväll?|följa|följer;följde;följt|tänker + infinitive
+Jag ___ inte bli sen, jag lovar.|ska|har;är;gör|promise → ska
+Mormor ___ att fylla 80 nästa år.|kommer|ska;tänker;vill|certain future + att
+Filmen ___ imorgon klockan sju.|börjar|började;börjat;börja|timetable → presens
+Jag ___ lära mig simma i sommar.|tänker|tänka;tänkt;att tänker|intention → tänker
+Hon ___ inte att komma, hon är sjuk.|kommer|ska;tänker;har|kommer inte att
+Pappa ___ hem i kväll klockan fem.|kommer|kom;kommit;komma|presens of komma
+Vi har bestämt oss: vi ___ flytta till Skåne.|ska|har;gjorde;hade|decided plan → ska
+Jag vet inte om jag ___ att hinna.|kommer|ska;tänker;vill|prediction + att
+Vad ___ du bli när du blir stor?|ska|har;är;blev|ska bli = going to be`},
+{id:'adverb',e:'📍',lvl:'B1',name:'Hemma eller hem?',en:'Place, direction and adverb forms',desc:'hemma/hem, här/hit, ute/ut, snabbt.',
+ sheet:`<p>Swedish splits <b>position</b> and <b>direction</b>:</p><table><tr><th>staying</th><th>going</th></tr><tr><td>hemma</td><td>hem</td></tr><tr><td>här</td><td>hit</td></tr><tr><td>där</td><td>dit</td></tr><tr><td>ute / inne</td><td>ut / in</td></tr><tr><td>uppe / nere</td><td>upp / ner</td></tr><tr><td>borta</td><td>bort</td></tr></table><p>Manner adverbs are usually adjective + <b>-t</b>: <i>snabbt, vänligt</i>. Sentence adverbs go after the verb: <i>Jag äter aldrig fisk.</i></p>`,
+ items:`Jag är ___ idag.|hemma|hem;hemmet;hemmas|staying → hemma
+Nu går vi ___.|hem|hemma;hemmet;hemmas|going → hem
+Kom ___ till mig!|hit|här;dit;där|toward me → hit
+Jag bor ___ i Göteborg.|här|hit;dit;hem|staying → här
+Jag har aldrig varit i Paris, men jag vill åka ___ en dag.|dit|där;hit;här|going to a far place → dit
+Barnen är ___ och leker.|ute|ut;in;åt|staying outside → ute
+Han gick ___ i skogen.|ut|ute;inne;uppe|movement → ut
+Katten sover ___ i huset.|inne|in;ute;ut|staying inside → inne
+Boken ligger ___ på hyllan.|uppe|upp;ut;in|position → uppe
+Han springer ___.|snabbt|snabb;snabba;snabbe|adjective + t
+Hon sjunger riktigt ___.|bra|bart;brat;brast|bra stays bra
+Jag har ___ varit i Norge.|aldrig|ingen;ingenting;ingenstans|never → aldrig
+Jag äter ___ fisk, för jag tycker inte om den.|aldrig|alltid;ofta;ibland|sentence adverb after the verb
+Idag ___ jag inte på jobbet.|är|jag;inte;har|verb second
+Kom, vi går ___ nu!|ut|ute;uppe;nere|movement → ut
+Han är ___ i en vecka.|borta|bort;bortom;bortåt|staying away → borta
+Hon åkte ___ i en vecka.|bort|borta;bortom;bortt|movement → bort
+Jag går ___ i källaren.|ner|nere;nedan;nedre|movement → ner
+Jag är ___ i källaren.|nere|ner;nedan;nedre|position → nere
+Hon svarade ___.|vänligt|vänlig;vänliga;vänlige|adjective + t`},
+{id:'tvarv',e:'🛋️',lvl:'B1',name:'Lägga eller ligga?',en:'Reflexive and transitive verbs',desc:'lägga/ligga, sätta/sitta, ställa/stå, skynda sig.',
+ sheet:`<p>Pairs: one verb <b>puts</b> something (needs an object), the other <b>is</b> there.</p><table><tr><th>put</th><th>be</th></tr><tr><td>lägga, lägger, la, lagt</td><td>ligga, ligger, låg, legat</td></tr><tr><td>sätta, sätter, satte, satt</td><td>sitta, sitter, satt, suttit</td></tr><tr><td>ställa, ställer, ställde, ställt</td><td>stå, står, stod, stått</td></tr></table><p><b>Reflexive verbs</b> need mig, dig, sig, oss, er: <i>skynda sig, känna sig, skada sig, sätta sig</i>.</p>`,
+ items:`Jag ___ boken på bordet.|lägger|ligger;lagt;låg|put + object → lägger
+Boken ___ på bordet.|ligger|lägger;lagt;la|no object, is there → ligger
+Hon ___ på stolen och läser.|sitter|sätter;sätta;ställer|is sitting → sitter
+Han ___ barnet i stolen.|sätter|sitter;satt;suttit|puts + object → sätter
+Glasen ___ i skåpet.|står|ställer;ställde;ställt|are standing → står
+Jag ___ glasen i skåpet.|ställer|står;stod;stått|put + object → ställer
+Hon ___ sig i soffan och tittade på tv.|satte|satt;sitter;suttit|sat down (past of sätta)
+Vi har ___ här i två timmar.|suttit|satt;sitter;sittit|supine of sitta
+Barnet ___ i sängen och sov.|låg|la;lagt;lade|past of ligga
+Hon ___ barnet i sängen.|la|låg;legat;ligger|past of lägga
+Skynda ___, tåget går snart!|dig|du;sig;mig|reflexive, du → dig
+Vi känner ___ trötta idag.|oss|vi;sig;dem|reflexive, vi → oss
+Hon känner ___ nöjd.|sig|henne;hon;sin|känna sig
+Nu ___ jag mig vid bordet.|sätter|sitter;satt;suttit|sätta sig = sit down
+Han har ___ sig på golvet.|lagt|legat;låg;la|lägga sig, supine
+Han har ___ på golvet hela natten.|legat|lagt;låg;la|ligga, supine
+Kan du ___ vasen på bordet?|ställa|stå;stått;stod|put + object
+Vasen ___ på bordet.|står|ställer;ställa;ställt|is standing → står
+Barnen ___ sig och kom fram i tid.|skyndade|skyndat;skynda;skyndar|past of skynda sig
+Han ___ sig i armen när han föll.|skadade|skadat;skada;skadar|past of skada sig`}
+);
+
 /* Animated rule explainers. Each frame: tiles separated by spaces; "_" joins a multi-word tile;
    "*" marks the star tile; "base|ending" shows a glowing ending. Same word = same tile (it moves). */
 const DEMOS={
@@ -935,7 +1171,7 @@ function verbPool(lv){return VERBS.filter(v=>lv==='pro'||!HARD.has(v.inf))}
 function verbChoices(v,f){const base=[v.inf,v.pres,v.past,v.sup].filter(x=>x&&x!=='-');let wrong=[];
   if(v.g==='4'||v.g==='m'){wrong.push(v.inf.replace(/a$/,'')+'ade',v.inf+'de')}else if(v.g==='1'){wrong.push(v.inf.replace(/a$/,'')+'te',v.inf+'t')}else{wrong.push(v.inf+'de',v.pres+'de')}
   const opts=[...new Set([f].concat(base.filter(x=>x!==f),wrong.filter(x=>x!==f)))].slice(0,4);return shuffle(opts)}
-const LESSON_IDS=new Set('verb grupp enett plural def adj v2 inte sin konj bisats v2b prep hos tanka komp kond passiv part rel satsadv lagga partikel samband prepverb idiom register ordbild'.split(' '));
+const LESSON_IDS=new Set('verb grupp enett plural def adj v2 inte sin konj bisats v2b prep hos tanka komp kond passiv part rel satsadv lagga partikel samband prepverb idiom register ordbild pron indef fraga tal gen imper tempus framtid adverb tvarv'.split(' '));
 function lessonLink(id,lab){const a=document.createElement('a');a.href='grammatik.html#'+id;a.className='lessonlink';a.textContent=lab||'📖 Lektion';return a}
 const GAMES=[
 {id:'verb',lvl:'A2',e:'⚡',name:'Verb-blixten',en:'Verb blitz',desc:'Nu, igår, har … — pick or type the right verb form.',
