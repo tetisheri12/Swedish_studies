@@ -494,7 +494,7 @@ function renderTiles(t){$('rail').replaceChildren();$('tiles').replaceChildren()
 function norm(s){return String(s).normalize('NFC').toLocaleLowerCase('sv').trim().replace(/[.!?,;:]+$/,'').replace(/\s+/g,' ')}
 function check(t){
   if(passed)return;let ok,msg='';
-  if(t.type==='tiles'){if(order.length!==t.answer.length){$('feedback').textContent='Use every tile. '+t.hint;return}ok=order.every((v,i)=>v===i)}
+  if(t.type==='tiles'){if(order.length!==t.answer.length){$('feedback').textContent='Use every tile. '+t.hint;return}ok=order.every((v,i)=>v===i||t.answer[v]===t.answer[i])}
   else if(t.type==='type'){const v=norm($('typed').value);if(!v){$('feedback').textContent='Write an answer first. '+t.hint;return}ok=t.answers.some(a=>norm(a)===v)}
   else{if(choice===null){$('feedback').textContent='Choose an answer first.';return}ok=choice===t.correct}
   if(ok){
