@@ -82,7 +82,8 @@ input.gap{font:inherit;font-size:21px;width:9em;max-width:60%;padding:4px 10px;b
 #toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:white;padding:12px 18px;border-radius:var(--r);max-width:min(92vw,520px);z-index:10;font-size:15px}
 @media(max-width:700px){.wordgrid{grid-template-columns:1fr}.tabs{grid-template-columns:repeat(2,1fr)}}
 body.embed header,body.embed footer,body.embed .hero,body.embed #coach{display:none!important}body.embed main{padding:8px}body.embed .gamehead button{display:none}</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat+Brush&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Svenska"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#f7f3e9">
+<link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Svenska"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png"><link rel="shortcut icon" href="favicon.ico"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#f7f3e9">
+<style>.brandlogo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:inherit}.brandlogo img{width:34px;height:34px;border-radius:9px;flex:none}</style>
 <style>.tabbar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(255,253,247,.97);border-top:1px solid #c8cec3;padding:6px 6px calc(6px + env(safe-area-inset-bottom));justify-content:space-around;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}.tabbar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;color:#526665;font-size:12px;font-weight:bold;padding:4px 0;border-radius:12px}.tabbar a i{font-style:normal;font-size:24px;line-height:1.1}.tabbar a[aria-current=page]{color:#a53e23;background:#f2e6dc}
 html.app .tabbar{display:flex}html.app header nav{display:none}html.app body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}html.app header{padding-top:calc(14px + env(safe-area-inset-top))}html.app footer{display:none}html.app body{-webkit-user-select:none;user-select:none}html.app input,html.app textarea{-webkit-user-select:text;user-select:text}
 @media (display-mode: standalone){.tabbar{display:flex}header nav{display:none}}body.embed .tabbar{display:none!important}html.app body.embed{padding-bottom:0}</style>
@@ -314,7 +315,7 @@ window.catAvatar=function(av){var m=AVRE.exec(av||'');return m?avHTML(m[1]):null
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start()})();
 })();
 </script></head><body><header>
-  <strong>SWEDISH / STUDIES</strong>
+  <a class="brandlogo" href="daily.html"><img src="favicon.svg" alt="" width="34" height="34"><strong>SWEDISH / STUDIES</strong></a>
   <nav aria-label="Main navigation">
     <a href="daily.html">Idag</a>
     <a href="index.html" aria-current="page">Uppdrag</a>
