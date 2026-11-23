@@ -1368,3 +1368,875 @@ pick('You get 100 kronor a week and spend nothing. What do you do?','Du köper i
 ],
 boss:'Role-play a kiosk. One of you is the shopkeeper who says prices (Den kostar … kronor); the other asks Hur mycket kostar …?, says if it is billig or dyr, and pays. Then ask the way to the bus stop with Var är …? and answer with till vänster, till höger or rakt fram.'
 };
+
+/* ---- B/C missions: original drills matched to each station's grammar focus ---- */
+LESSONS[29]={
+unit:30,title:'Free-time interests',sv:'Fritiden',place:'FRITID',
+rule:'Prepositions with free-time words',
+reference:'Swedish prepositions often differ from English, so learn each verb or adjective with its preposition: intresserad av, bra på, glad över, prata om, vara med i, ägna sig åt. Times: på kvällen, på måndag, i helgen.',
+intro:'A member of a photography club tells you about her free time. Practise the small words that glue the sentences together.',
+words:[['en fritid','free time'],['ett intresse','an interest'],['en förening','a club'],['intresserad av','interested in'],['bra på','good at'],['glad över','happy about'],['vara med i','to be a member of'],['ägna sig åt','to devote yourself to'],['träffas','to meet'],['regelbundet','regularly'],['redigera','to edit'],['en utställning','an exhibition']],
+story:{title:'Min fritid',lines:[
+['På fritiden är jag mycket intresserad av fotografi.','In my free time I am very interested in photography.'],
+['Jag är med i en förening som träffas varje torsdag.','I belong to a club that meets every Thursday.'],
+['Vi ägnar oss åt både landskap och porträtt.','We devote ourselves to both landscapes and portraits.'],
+['Förra veckan var jag på en utställning och blev glad över att så många kom.','Last week I went to an exhibition and was happy that so many came.'],
+['Jag är inte särskilt bra på att redigera bilder, men jag lär mig av de andra.','I am not especially good at editing pictures, but I learn from the others.'],
+['Det bästa med hobbyn är att man träffar människor som man annars aldrig skulle ha träffat.','The best thing about the hobby is that you meet people you would never otherwise have met.']]},
+tasks:[
+pick('Choose the correct preposition.','Jag är intresserad ___ historia.',['av','på','för'],0,'Intresserad av is a fixed pair.','Intresserad av = interested in.'),
+pick('Choose the correct preposition.','Hon är bra ___ att teckna.',['på','av','i'],0,'Bra på = good at.','Bra på = good at.'),
+pick('Choose the correct preposition.','Vi träffas ___ kvällen.',['på','i','vid'],0,'Parts of the day take på.','På kvällen = in the evening.'),
+pick('Choose the correct preposition.','Vi ses ___ måndag.',['på','av','för'],0,'Days of the week take på.','På måndag = on Monday.'),
+type('Write the preposition.','Han är med ___ en simklubb.',['i'],'Vara med i = be a member of.','Vara med i en klubb.'),
+tile('Put the words in order.',['Jag','ägnar','mig','åt','trädgården','på','fritiden.'],'I devote myself to the garden in my free time.','Ägna sig åt + noun.'),
+pick('Which sentence is correct?','Choose the natural Swedish.',['Jag tycker om att vandra.','Jag tycker att vandra om.','Jag tycker vandra.'],0,'Tycka om = like.','Tycka om att + infinitive.'),
+type('Write the missing word.','Hon blev glad ___ presenten.',['över'],'Glad över + noun.','Glad över = happy about.'),
+listen('Listen. What does the club talk about?','Föreningen träffas varje torsdag och pratar om fotografi.',['Photography','Football','Cooking'],0,'Fotografi = photography.','The club talks about photography.'),
+pick('Story check: what is the writer not so good at?','Jag är inte särskilt bra på att redigera bilder.',['Editing pictures','Taking pictures','Meeting people'],0,'Redigera = edit.','She is not good at editing pictures.'),
+pick('Choose the right preposition.','Vi pratade ___ filmen hela kvällen.',['om','av','på'],0,'Prata om = talk about.','Prata om något.'),
+tile('Say: I am interested in music.',['Jag','är','intresserad','av','musik.'],'Interested in = intresserad av.','Intresserad av.')
+],
+boss:'Tell a partner about your free time using five prepositions (på, i, av, om, åt). Your partner asks two follow-up questions with Vad …? and Hur länge har du …?'
+};
+LESSONS[30]={
+unit:31,title:'Friends and fall-outs',sv:'Vänner',place:'VÄNNER',
+rule:'Word order in subordinate clauses',
+reference:'In a main clause the verb is second: Hon kommer inte. In a subordinate clause (after att, som, eftersom, när, om, att) the subject comes first and inte or aldrig goes before the verb: …att hon inte kommer. If a subordinate clause starts the sentence, the main clause verb follows right after it: Eftersom hon var sjuk, kom hon inte.',
+intro:'A friend explains how a quarrel started and ended. Practise where inte, aldrig and the verb go.',
+words:[['en vän','a friend'],['en vänskap','a friendship'],['lita på','to trust'],['bry sig om','to care about'],['sakna','to miss'],['bråka','to quarrel'],['förlåta','to forgive'],['ärlig','honest'],['pålitlig','reliable'],['eftersom','because'],['en hemlighet','a secret'],['be om ursäkt','to apologise']],
+story:{title:'Min bästa vän',lines:[
+['Jag har en vän som alltid lyssnar när jag har det svårt.','I have a friend who always listens when I am having a hard time.'],
+['Hon säger att hon inte bryr sig om vad andra tycker.','She says that she does not care what others think.'],
+['Vi bråkade förra året eftersom jag inte hade ringt henne.','We quarrelled last year because I had not called her.'],
+['Efter en vecka bad jag om ursäkt, och hon sa att hon redan hade förlåtit mig.','After a week I apologised, and she said she had already forgiven me.'],
+['Nu vet jag att man måste vara ärlig om man vill behålla en vän.','Now I know that you have to be honest if you want to keep a friend.'],
+['Jag litar på henne för att hon aldrig har berättat mina hemligheter.','I trust her because she has never told my secrets.']]},
+tasks:[
+pick('Choose the correct sentence.','Which word order is right?',['Jag vet att hon inte kommer.','Jag vet att hon kommer inte.','Jag vet hon inte kommer att.'],0,'In a subordinate clause inte comes before the verb.','…att hon inte kommer.'),
+pick('Choose the correct sentence.','Which word order is right?',['Hon sa att han aldrig ringer.','Hon sa att han ringer aldrig.','Hon sa han aldrig att ringer.'],0,'Aldrig goes before the verb in a subordinate clause.','…att han aldrig ringer.'),
+tile('Put the words in order.',['Jag','mår','dåligt','eftersom','jag','inte','har','sovit.'],'I feel bad because I have not slept.','Inte comes before the verb har in the subordinate clause.'),
+type('Write the missing word.','Hon undrar om han ___ har tid.',['inte'],'Inte comes before the verb in a subordinate clause.','…om han inte har tid.'),
+pick('Choose the correct sentence.','The sentence starts with a subordinate clause.',['Eftersom hon var sjuk kom hon inte.','Eftersom hon var sjuk hon kom inte.','Eftersom hon var sjuk inte kom hon.'],0,'After a subordinate clause the main clause verb comes right away.','Eftersom hon var sjuk, kom hon inte.'),
+tile('Put the words in order.',['Om','du','har','tid,','kan','vi','ses','i','morgon.'],'If you have time, we can meet tomorrow.','Subordinate clause first, then the verb kan.'),
+listen('Listen. Why did they quarrel?','Vi bråkade eftersom jag inte hade ringt henne.',['I had not called her','She was late','It was about money'],0,'Ringa = call.','They quarrelled because I had not called her.'),
+pick('Story check: what did the friend say after the apology?','Hon sa att hon redan hade förlåtit mig.',['She had already forgiven me','She would forgive me later','She did not want to talk'],0,'Förlåta = forgive.','She had already forgiven the writer.'),
+type('Write the missing word.','Jag är glad ___ du kom.',['att'],'Which word starts the subordinate clause?','Glad att du kom.'),
+pick('Choose the right word.','Hon är en vän ___ alltid hjälper mig.',['som','att','om'],0,'Som refers back to en vän.','En vän som … = a friend who …'),
+tile('Put the words in order.',['Hon','sa','att','hon','inte','ville','komma.'],'She said that she did not want to come.','Inte before the verb ville.'),
+pick('Story check: why does she trust her friend?','Hon har aldrig berättat mina hemligheter.',['She never told her secrets','She is older','She is rich'],0,'Hemlighet = secret.','Because she has never told her secrets.')
+],
+boss:'Tell a partner about a disagreement with a friend. Use eftersom, att and när, and put inte or aldrig before the verb in each subordinate clause. Your partner asks Varför …? twice.'
+};
+LESSONS[31]={
+unit:32,title:'Money and happiness',sv:'Pengar och lycka',place:'LYCKA',
+rule:'Conjunctions: men, utan, eller, så att',
+reference:'Use men for contrast and utan after a negative: Jag är inte rik, utan glad. Så att introduces a result: Han sparade så att han kunde resa. Både … och = both … and. Antingen … eller = either … or. Varken … eller = neither … nor.',
+intro:'Two people discuss whether money makes you happy. Practise the little words that join ideas.',
+words:[['en lön','a salary'],['spara','to save'],['ha råd med','to afford'],['en dröm','a dream'],['lycklig','happy (lasting)'],['nöjd','satisfied'],['en skuld','a debt'],['både … och','both … and'],['antingen … eller','either … or'],['varken … eller','neither … nor'],['utan','but (after a negative)'],['trots att','even though']],
+story:{title:'Räcker pengarna?',lines:[
+['Mia: Jag tjänar inte särskilt mycket, men jag är ändå nöjd.','Mia: I do not earn very much, but I am still satisfied.'],
+['Jonas: Jag är inte nöjd, utan jag drömmer om att byta jobb.','Jonas: I am not satisfied; I dream of changing jobs.'],
+['Mia: Har du råd att sluta?','Mia: Can you afford to quit?'],
+['Jonas: Antingen sparar jag i ett år, eller så tar jag ett lån.','Jonas: Either I save for a year, or I take a loan.'],
+['Mia: Ta inget lån! Varken du eller jag behöver fler skulder.','Mia: Do not take a loan! Neither you nor I need more debts.'],
+['Jonas: Du har rätt. Jag sparar så att jag kan välja själv.','Jonas: You are right. I will save so that I can choose myself.']]},
+tasks:[
+pick('Choose the right word.','Jag är inte trött, ___ hungrig.',['utan','men','eller'],0,'After a negative, use utan.','Inte trött, utan hungrig.'),
+pick('Choose the right word.','Hon tjänar lite, ___ hon är nöjd.',['men','utan','så att'],0,'Contrast after a positive statement.','Men = but.'),
+type('Write the missing word.','Han sparar ___ han kan resa i sommar.',['så att'],'Two words that introduce a result.','Så att = so that.'),
+pick('Choose the correct pair.','___ jag ___ min syster har råd med bilen.',['Varken … eller','Både … eller','Antingen … och'],0,'Neither … nor.','Varken … eller = neither … nor.'),
+tile('Put the words in order.',['Antingen','sparar','jag,','eller','så','lånar','jag.'],'Either I save, or I borrow.','After antingen the verb comes second; after eller så too.'),
+listen('Listen. What does Jonas dream about?','Jag drömmer om att byta jobb.',['Changing jobs','Buying a house','Moving abroad'],0,'Byta jobb = change jobs.','He dreams of changing jobs.'),
+pick('Story check: what does Mia advise?','Ta inget lån!',['Not to take a loan','To take a big loan','To quit at once'],0,'Lån = loan.','She says: do not take a loan.'),
+type('Write the missing word.','Han har både en bil ___ en cykel.',['och'],'Både … och.','Både … och = both … and.'),
+pick('Choose the better word.','___ att det regnade, gick vi ut.',['Trots','Därför','Eftersom'],0,'Despite the rain.','Trots att = even though.'),
+tile('Say: I do not want a loan, but I want to save.',['Jag','vill','inte','ha','ett','lån,','utan','jag','vill','spara.'],'Utan after a negative.','Utan follows a negative clause.'),
+pick('Choose the correct word.','Du kan få kaffe ___ te.',['eller','utan','trots'],0,'A choice between two things.','Eller = or.'),
+pick('Story check: why does Jonas save?','Jag sparar så att jag kan välja själv.',['To be free to choose','To buy a car','To pay his debts'],0,'Välja = choose.','So that he can choose for himself.')
+],
+boss:'Debate with a partner: Does money make you happy? Use men, utan, både … och and trots att at least once each, and finish with your own dream in one sentence.'
+};
+LESSONS[32]={
+unit:33,title:'Animals and verbs with particles',sv:'Djur',place:'DJURPARK',
+rule:'Particle verbs',
+reference:'Many Swedish verbs combine with a small word that changes the meaning: ta upp (bring up), ge sig av (set off), komma på (think of), hålla med (agree), titta på (look at). The particle is stressed and stays after the verb: Jag tar med hunden. In a subordinate clause: …att jag tog med hunden.',
+intro:'A vet and a dog owner meet at a park. Practise common particle verbs.',
+words:[['ta med','to bring along'],['släppa lös','to let loose'],['ge upp','to give up'],['komma på','to think of'],['hålla med','to agree'],['titta på','to look at'],['ta hand om','to look after'],['vänja sig vid','to get used to'],['springa ifatt','to catch up with'],['ett koppel','a lead'],['skälla','to bark'],['en veterinär','a vet']],
+story:{title:'I hundparken',lines:[
+['Vi tar alltid med hunden till parken.','We always bring the dog to the park.'],
+['Först hade han svårt att vänja sig vid de andra hundarna.','At first he found it hard to get used to the other dogs.'],
+['Jag tänkte ge upp, men veterinären kom på ett bra tips.','I thought of giving up, but the vet came up with a good tip.'],
+['Hon sa att man ska släppa lös hunden i små steg.','She said you should let the dog loose in small steps.'],
+['Nu springer han ifatt alla och jag tar hand om honom på kvällarna.','Now he catches up with everyone and I look after him in the evenings.'],
+['Alla håller med om att han är en glad hund.','Everyone agrees that he is a happy dog.']]},
+tasks:[
+pick('Choose the right particle.','Vi tar ___ hunden till parken.',['med','upp','av'],0,'Ta med = bring along.','Ta med = bring along.'),
+pick('Choose the right particle.','Jag håller ___ dig.',['med','på','om'],0,'Hålla med = agree.','Hålla med = agree.'),
+type('Write the particle.','Hon kom ___ en bra idé.',['på'],'Komma på = think of.','Komma på en idé.'),
+tile('Put the words in order.',['Han','vänjer','sig','vid','de','andra','hundarna.'],'He gets used to the other dogs.','Vänja sig vid.'),
+pick('Choose the correct word order.','In a subordinate clause.',['…att jag tog med hunden.','…att jag med tog hunden.','…att tog jag med hunden.'],0,'The particle follows the verb.','…att jag tog med hunden.'),
+listen('Listen. Who takes care of the dog in the evening?','Jag tar hand om honom på kvällarna.',['The writer','The vet','The neighbour'],0,'Ta hand om = look after.','The writer looks after the dog.'),
+pick('Story check: what did the vet advise?','Man ska släppa lös hunden i små steg.',['Let the dog loose in small steps','Keep the dog on the lead','Move away'],0,'Steg = step.','Little by little.'),
+type('Write the missing word.','Titta ___ den lilla hunden!',['på'],'Titta på = look at.','Titta på = look at.'),
+pick('Choose the correct meaning.','Jag ger inte upp.',['I do not give up.','I do not look up.','I do not wake up.'],0,'Ge upp = give up.','Ge upp = give up.'),
+tile('Say: She catches up with the dog.',['Hon','springer','ifatt','hunden.'],'Springa ifatt.','Springa ifatt = catch up with.'),
+pick('Choose the right word.','Hon ___ hand om tre katter.',['tar','ger','sätter'],0,'Ta hand om.','Ta hand om = look after.'),
+pick('Story check: how does the dog feel now?','Alla håller med om att han är en glad hund.',['Happy','Afraid','Tired'],0,'Glad = happy.','Everyone agrees he is a happy dog.')
+],
+boss:'Describe a day with a pet or an animal you know. Use at least five particle verbs (ta med, titta på, ge upp, komma på, ta hand om). Your partner asks Vad hände sedan?'
+};
+LESSONS[33]={
+unit:34,title:'Everyday life and the weekend',sv:'Vardag och helg',place:'HELGEN',
+rule:'Tricky small words: man/en, lite/litet, annan/andra',
+reference:'Man is the general “you”: Man kan alltid fråga. Lite means a little (lite socker); litet is the neuter of liten (ett litet hus). Annan (en), annat (ett), andra (plural). Vilken, vilket, vilka follow the noun’s gender.',
+intro:'A weekend in a Swedish family: practise choosing the right small word.',
+words:[['en vardag','a weekday'],['en helg','a weekend'],['lite','a little'],['litet','small (ett-word)'],['en annan','another (en)'],['ett annat','another (ett)'],['andra','other (plural)'],['vilken/vilket/vilka','which'],['ändå','still, anyway'],['bara','only'],['hinna','to have time to'],['slappna av','to relax']],
+story:{title:'Helg hos familjen',lines:[
+['På vardagarna hinner vi bara äta lite frukost och springa.','On weekdays we only have time for a little breakfast before running out.'],
+['På helgen vill man slappna av och göra något annat.','At the weekend you want to relax and do something different.'],
+['Vi har ett litet hus med en stor trädgård.','We have a small house with a big garden.'],
+['Vilken dag gillar du bäst, lördag eller söndag?','Which day do you like best, Saturday or Sunday?'],
+['Jag tycker om söndagar, för då kommer andra släktingar på middag.','I like Sundays, because then other relatives come to dinner.'],
+['Ibland är jag trött, men jag är ändå glad att vi ses.','Sometimes I am tired, but I am still glad we meet.']]},
+tasks:[
+pick('Choose the right word.','Jag vill ha ___ socker i kaffet.',['lite','litet','liten'],0,'A little sugar: lite.','Lite = a little.'),
+pick('Choose the right word.','Det är ett ___ hus.',['litet','lite','liten'],0,'Hus is an ett-word.','Ett litet hus.'),
+pick('Choose the right word.','Vi tar en ___ buss.',['annan','annat','andra'],0,'En buss → annan.','En annan buss.'),
+pick('Choose the right word.','Har du ett ___ förslag?',['annat','annan','andra'],0,'Ett förslag → annat.','Ett annat förslag.'),
+type('Write the missing word.','___ bil är din?',['vilken'],'En bil → vilken.','Vilken bil? = Which car?'),
+type('Write the missing word.','___ hus bor du i?',['vilket'],'Ett hus → vilket.','Vilket hus? = Which house?'),
+tile('Put the words in order.',['På','helgen','kan','man','slappna','av.'],'At the weekend you can relax.','Man = people in general.'),
+listen('Listen. When do the relatives come?','På söndagar kommer släktingarna på middag.',['On Sundays','On Fridays','Every morning'],0,'Söndag = Sunday.','The relatives come on Sundays.'),
+pick('Story check: what do they have time for on weekdays?','Vi hinner bara äta lite frukost.',['A little breakfast','A long lunch','A big dinner'],0,'Hinna = have time.','Only a little breakfast.'),
+pick('Choose the right word.','Det finns många ___ möjligheter.',['andra','annan','annat'],0,'Plural: andra.','Andra möjligheter.'),
+tile('Say: I am tired but still happy.',['Jag','är','trött','men','ändå','glad.'],'Ändå = still.','Ändå = still, anyway.'),
+pick('Choose the correct sentence.','What does man mean here?',['Man kan alltid fråga.','Man alltid kan fråga.','Alltid man kan fråga.'],0,'Verb second in a main clause.','Man kan alltid fråga.')
+],
+boss:'Describe your ideal weekend with a partner. Use lite, litet, annan/annat/andra and vilken/vilket/vilka at least once each. Your partner asks Vilken dag gillar du bäst?'
+};
+LESSONS[34]={
+unit:35,title:'Politics and the state',sv:'Statsskick',place:'RIKSDAG',
+rule:'Conditional with om … skulle',
+reference:'Use skulle + infinitive for what would happen: Om jag var statsminister skulle jag sänka skatten. For an impossible past: Om jag hade vetat, hade jag röstat annorlunda. Note: in the om-clause you use past tense (var, hade), not skulle.',
+intro:'A civics class talks about how Sweden is governed and what they would do in power.',
+words:[['ett val','an election'],['rösta','to vote'],['en riksdag','a parliament'],['en regering','a government'],['en statsminister','a prime minister'],['ett parti','a party'],['en skatt','a tax'],['sänka','to lower'],['höja','to raise'],['ett förslag','a proposal'],['besluta','to decide'],['demokrati','democracy']],
+story:{title:'Samhällskunskap',lines:[
+['Läraren: I Sverige väljer vi riksdagen vart fjärde år.','Teacher: In Sweden we elect parliament every four years.'],
+['Ali: Om jag var statsminister skulle jag sänka skatten.','Ali: If I were prime minister I would lower taxes.'],
+['Eva: Då skulle vi få sämre skolor, om du inte sparade någon annanstans.','Eva: Then we would get worse schools, unless you saved elsewhere.'],
+['Läraren: Om ni var riksdagsledamöter skulle ni bli tvungna att samarbeta.','Teacher: If you were MPs you would have to cooperate.'],
+['Ali: Om jag hade vetat det, hade jag valt ett annat parti.','Ali: If I had known that, I would have chosen another party.'],
+['Läraren: Det är demokrati – man diskuterar och sedan röstar man.','Teacher: That is democracy – you discuss and then you vote.']]},
+tasks:[
+pick('Choose the correct form.','Om jag ___ rik, skulle jag resa mycket.',['var','skulle vara','är'],0,'Past tense in the om-clause.','Om jag var rik, skulle jag resa.'),
+pick('Choose the correct form.','Om jag var statsminister ___ jag sänka skatten.',['skulle','ska','sänkte'],0,'Skulle + infinitive in the result clause.','Skulle sänka.'),
+type('Write the missing verb.','Om han hade tid, ___ han hjälpa oss.',['skulle'],'Result clause: skulle.','Om han hade tid, skulle han hjälpa oss.'),
+tile('Put the words in order.',['Om','jag','hade','vetat,','hade','jag','röstat','annorlunda.'],'If I had known, I would have voted differently.','Hade vetat … hade röstat.'),
+pick('Choose the correct sentence.','Impossible past.',['Om jag hade vetat det, hade jag stannat hemma.','Om jag skulle ha vetat det, hade jag stannat hemma.','Om jag vet det, hade jag stannat hemma.'],0,'Hade + supine in both clauses.','Om jag hade vetat … hade jag stannat.'),
+listen('Listen. How often do Swedes elect parliament?','Vi väljer riksdagen vart fjärde år.',['Every four years','Every year','Every second year'],0,'Vart fjärde år = every fourth year.','Every four years.'),
+pick('Story check: what would Ali do as prime minister?','Om jag var statsminister skulle jag sänka skatten.',['Lower taxes','Raise taxes','Close schools'],0,'Sänka = lower.','He would lower taxes.'),
+type('Write the missing word.','De får ___ på söndag.',['rösta'],'A verb after får.','Rösta = vote.'),
+pick('Choose the right word.','Regeringen vill ___ skatten.',['höja','dricka','sova'],0,'What does a government do to taxes?','Höja = raise.'),
+tile('Say: If I were rich, I would travel.',['Om','jag','var','rik,','skulle','jag','resa.'],'Om + past, skulle + infinitive.','Conditional.'),
+pick('Choose the correct sentence.','Which is right?',['Om det regnade, skulle vi stanna hemma.','Om det skulle regna, vi stannade hemma.','Om det regnar, skulle vi stanna hemma.'],0,'Om + past, skulle + infinitive.','Om det regnade, skulle vi stanna hemma.'),
+pick('Story check: what is democracy, according to the teacher?','Man diskuterar och sedan röstar man.',['Discuss, then vote','Obey the king','Avoid parties'],0,'Diskutera = discuss.','You discuss and then vote.')
+],
+boss:'Imagine you are prime minister for a day. Say five things you would do with Om jag var statsminister, skulle jag … Your partner reacts with Då skulle det bli … or Men om du hade …'
+};
+LESSONS[35]={
+unit:36,title:'Favourite places and local food',sv:'Smultronstället',place:'SMULTRON',
+rule:'Relative clauses: som, där, vars',
+reference:'Som links a noun to more information: Det är en plats som jag älskar. When som is the object you may leave it out: Det är en plats jag älskar. Där = where: Caféet där vi fikade. Vars = whose: Mannen, vars bil stod där, var sen.',
+intro:'A writer describes a favourite island in the archipelago. Practise som, där and vars.',
+words:[['ett smultronställe','a favourite spot'],['en skärgård','an archipelago'],['en rätt','a dish'],['en specialitet','a speciality'],['en brygga','a jetty'],['hembakad','home-baked'],['ägaren','the owner'],['en tradition','a tradition'],['känd för','known for'],['äkta','genuine'],['besöka','to visit'],['stolt över','proud of']],
+story:{title:'Mitt smultronställe',lines:[
+['Mitt smultronställe är en liten ö som ligger i skärgården.','My favourite spot is a small island in the archipelago.'],
+['Det är en plats som jag har åkt till varje sommar sedan barndomen.','It is a place I have gone to every summer since childhood.'],
+['På ön finns ett café där man säljer hembakat bröd.','On the island there is a café where they sell home-baked bread.'],
+['Ägaren, vars familj har bott där i hundra år, bakar fortfarande efter gamla recept.','The owner, whose family has lived there for a hundred years, still bakes from old recipes.'],
+['Det bästa jag vet är att sitta på bryggan och äta en kanelbulle.','The best thing I know is to sit on the jetty and eat a cinnamon bun.'],
+['Den rätt som lokalborna är mest stolta över är böckling.','The dish the locals are proudest of is smoked herring.']]},
+tasks:[
+pick('Choose the right word.','Det är en ö ___ jag älskar.',['som','där','vars'],0,'Som = that / which.','Det är en ö som jag älskar.'),
+pick('Choose the right word.','Platsen ___ vi badade var vacker.',['där','som','vars'],0,'A place where something happened.','Där = where.'),
+pick('Choose the right word.','Mannen, ___ bil stod utanför, var sen.',['vars','som','där'],0,'Whose = vars.','Vars = whose.'),
+type('Write the missing word.','Det är boken ___ jag läste.',['som'],'Som = that.','Det är boken som jag läste.'),
+tile('Put the words in order.',['Caféet','där','vi','fikade','har','stängt.'],'The café where we had coffee has closed.','Där starts the relative clause.'),
+pick('Which sentence is correct?','Choose the right word order.',['Det är en rätt som jag älskar.','Det är en rätt som älskar jag.','Det är en rätt jag som älskar.'],0,'Subject then verb inside the relative clause.','Som jag älskar.'),
+listen('Listen. What does the café sell?','Vi säljer hembakat bröd och kanelbullar.',['Home-baked bread','Pizza','Sushi'],0,'Hembakat = home-baked.','They sell home-baked bread and buns.'),
+pick('Story check: whose family has lived there for a hundred years?','Ägaren, vars familj har bott där i hundra år …',['The owner','The writer','The locals'],0,'Vars familj = whose family.','The café owner’s family.'),
+type('Write the missing word.','Hon bor i en stad ___ många turister besöker.',['som'],'The city is the object of besöker.','Staden som många besöker.'),
+pick('Choose the right word.','Det här är ett land ___ språk jag älskar.',['vars','där','som'],0,'Whose language.','Vars = whose.'),
+tile('Put the words in order.',['Det','bästa','jag','vet','är','kanelbullar.'],'The best thing I know is cinnamon buns.','Som is left out here.'),
+pick('Story check: where does the writer like to sit?','Det bästa jag vet är att sitta på bryggan.',['On the jetty','In the café','In a boat'],0,'Brygga = jetty.','On the jetty.')
+],
+boss:'Describe your favourite place to a partner. Use som, där and vars at least once each, and name one local dish with Den rätt som … Your partner asks Vad är det bästa med …?'
+};
+LESSONS[36]={
+unit:37,title:'The Nordic countries',sv:'Norden',place:'NORDEN',
+rule:'Prepositions of place and time',
+reference:'Countries and cities take i: i Sverige, i Finland, i Stockholm. Islands usually take på: på Island, på Gotland, på Åland. Time in history: på 1800-talet, under medeltiden, i början av 1900-talet, sedan 1995, i tre år.',
+intro:'A short tour of the Nordic countries and their languages. Choose the right preposition.',
+words:[['Norden','the Nordic countries'],['ett kungarike','a kingdom'],['en union','a union'],['en gräns','a border'],['ett grannland','a neighbouring country'],['medeltiden','the Middle Ages'],['förr i tiden','in the old days'],['släkt med','related to'],['officiell','official'],['påverka','to influence'],['utvecklas','to develop'],['ett folk','a people']],
+story:{title:'Norden förr och nu',lines:[
+['På medeltiden var Norden uppdelat i flera kungariken.','In the Middle Ages the Nordic region was divided into several kingdoms.'],
+['Under 1300-talet bildade några av dem en union.','During the 14th century some of them formed a union.'],
+['Danmark, Norge och Sverige är grannländer, och många förstår varandras språk.','Denmark, Norway and Sweden are neighbours, and many understand each other’s languages.'],
+['På Island pratar man ett språk som ligger nära fornnordiskan.','In Iceland they speak a language that is close to Old Norse.'],
+['Finska är släkt med estniska, inte med svenska.','Finnish is related to Estonian, not to Swedish.'],
+['I Finland är svenska ett av två officiella språk.','In Finland Swedish is one of two official languages.']]},
+tasks:[
+pick('Choose the right preposition.','Det hände ___ början av 1900-talet.',['i','på','vid'],0,'Början av = the beginning of.','I början av.'),
+pick('Choose the right preposition.','Jag bor ___ Island.',['på','i','vid'],0,'Islands often take på.','På Island.'),
+pick('Choose the right preposition.','Min vän bor ___ Finland.',['i','på','vid'],0,'Countries take i.','I Finland.'),
+type('Write the missing word.','Hon reste ___ Danmark förra året.',['till'],'Travelling to a country.','Resa till Danmark.'),
+pick('Choose the right word.','Han kommer ___ Norge.',['från','av','ur'],0,'Origin: från.','Från Norge.'),
+tile('Put the words in order.',['Under','medeltiden','var','Norden','uppdelat','i','flera','riken.'],'During the Middle Ages the Nordic region was divided into several kingdoms.','Under + a period.'),
+listen('Listen. What is Finnish related to?','Finska är släkt med estniska.',['Estonian','Swedish','Danish'],0,'Estniska = Estonian.','Finnish is related to Estonian.'),
+pick('Story check: which language is official in Finland besides Finnish?','I Finland är svenska ett av två officiella språk.',['Swedish','Norwegian','Russian'],0,'Officiell = official.','Swedish.'),
+type('Write the missing word.','Svenska är släkt ___ norska.',['med'],'Related to = släkt med.','Släkt med.'),
+pick('Choose the correct sentence.','Since 2015.',['Hon har bott här sedan 2015.','Hon har bott här från 2015.','Hon har bott här av 2015.'],0,'Sedan + a starting point.','Sedan 2015.'),
+pick('Choose the right word.','Vi har studerat ___ tre år.',['i','vid','på'],0,'A duration: i tre år.','I tre år.'),
+tile('Say: The Nordic region consists of five countries.',['Norden','består','av','fem','länder.'],'Bestå av = consist of.','Består av.')
+],
+boss:'Tell a partner about three Nordic places or periods, using i, på, under, sedan and från. Your partner asks Var ligger …? and När var det?'
+};
+LESSONS[37]={
+unit:38,title:'Truth and lies',sv:'Sanning och lögn',place:'SANNING',
+rule:'Tänka, tycka, tro and veta',
+reference:'Tycka = opinion: Jag tycker att filmen var bra. Tro = belief or guess: Jag tror att det blir regn. Tänka = think about, or intend: Jag tänker på dig; Jag tänker åka. Veta = know a fact: Jag vet att Stockholm är huvudstad. Tänka på = think about.',
+intro:'Someone suspects a friend of lying. Practise the verbs of thinking, believing and knowing.',
+words:[['en sanning','a truth'],['en lögn','a lie'],['ljuga','to lie'],['påstå','to claim'],['misstänka','to suspect'],['ett bevis','proof'],['avslöja','to reveal'],['ärlig','honest'],['stämma','to be correct'],['rakt ut','straight out'],['tänka på','to think about'],['komma fram','to come out']],
+story:{title:'Vem säger sanningen?',lines:[
+['Jag tycker att han ljuger.','I think he is lying.'],
+['Han påstår att han var hemma hela kvällen, men jag tror att det inte stämmer.','He claims he was at home all evening, but I believe that is not true.'],
+['Jag vet att bilen stod utanför huset, så jag misstänker att han har ljugit.','I know the car was outside the house, so I suspect he has lied.'],
+['Vad tänker du göra? – Jag tänker fråga honom rakt ut.','What are you going to do? – I intend to ask him straight out.'],
+['Om han är ärlig kommer han att berätta sanningen.','If he is honest he will tell the truth.'],
+['Jag tänker på vad min mormor brukade säga: ”Sanningen kommer alltid fram.”','I think of what my grandmother used to say: “The truth always comes out.”']]},
+tasks:[
+pick('Choose the right verb.','Vad ___ du om filmen?',['tycker','tror','vet'],0,'You ask for an opinion.','Tycka = opinion.'),
+pick('Choose the right verb.','Jag ___ att det blir regn imorgon.',['tror','tycker','tänker'],0,'A guess about the future.','Tro = believe, guess.'),
+pick('Choose the right verb.','Jag ___ åka till Göteborg i helgen.',['tänker','tycker','vet'],0,'An intention.','Tänka + infinitive = intend.'),
+pick('Choose the right verb.','Jag ___ att Stockholm är Sveriges huvudstad.',['vet','tycker','tänker'],0,'A fact.','Veta = know a fact.'),
+type('Write the missing verb.','Hon ___ på sin mormor.',['tänker'],'Think about someone.','Tänka på.'),
+tile('Put the words in order.',['Han','påstår','att','han','var','hemma.'],'He claims he was at home.','Att starts the subordinate clause.'),
+listen('Listen. What does the writer suspect?','Jag misstänker att han har ljugit.',['He has lied','He is ill','He is late'],0,'Ljuga = lie.','The writer suspects he has lied.'),
+pick('Story check: what does the writer intend to do?','Jag tänker fråga honom rakt ut.',['Ask him directly','Call the police','Do nothing'],0,'Rakt ut = straight out.','Ask him directly.'),
+pick('Choose the right form.','Jag har ___ på det i flera dagar.',['tänkt','trott','tyckt'],0,'Think about = tänka på.','Har tänkt på.'),
+type('Write the missing verb.','Man ska inte ___ för sina vänner.',['ljuga'],'After ska the verb is in the infinitive.','Ljuga = to lie.'),
+tile('Say: I think that the truth is important.',['Jag','tycker','att','sanningen','är','viktig.'],'Tycker att = opinion.','Tycker att.'),
+pick('Which verb means to claim something?','Choose one.',['påstå','dricka','springa'],0,'He ___ that he was at home.','Påstå = claim.')
+],
+boss:'Make five sentences about something you think, believe, know or plan, using tycker, tror, vet and tänker once each. Your partner says Det tycker jag också or Det tror jag inte.'
+};
+LESSONS[38]={
+unit:39,title:'How milk gets to the shop',sv:'Mjölkens väg',place:'MJÖLK',
+rule:'The passive voice',
+reference:'The s-passive: add -s to the verb: Mjölken säljs i butiken. Stems in -a: stoppa → stoppas; verbs in -r: lagar → lagas. With the supine: Huset har sålts. The doer is introduced by av: Brödet bakas av bagaren.',
+intro:'Follow a carton of milk from the farm to the shop and practise the passive.',
+words:[['mjölk','milk'],['ett mejeri','a dairy'],['en bonde','a farmer'],['pastörisera','to pasteurise'],['producera','to produce'],['transportera','to transport'],['förpacka','to pack'],['kyla','to chill'],['en kartong','a carton'],['sälja','to sell'],['servera','to serve'],['hållbarhet','shelf life']],
+story:{title:'Mjölkens väg',lines:[
+['Mjölken mjölkas på gården tidigt på morgonen.','The milk is milked on the farm early in the morning.'],
+['Därefter körs den till ett mejeri där den pastöriseras.','Then it is driven to a dairy where it is pasteurised.'],
+['På mejeriet fylls mjölken på kartonger och kyls ned.','At the dairy the milk is filled into cartons and chilled.'],
+['Kartongerna transporteras till affärerna.','The cartons are transported to the shops.'],
+['I Sverige har mjölk drickits i många hundra år.','In Sweden milk has been drunk for many hundreds of years.'],
+['I dag säljs även havredryck och sojadryck.','Today oat drink and soy drink are also sold.']]},
+tasks:[
+pick('Choose the passive form.','Mjölken ___ i affären.',['säljs','säljer','sålde'],0,'Passive: add -s.','Mjölken säljs.'),
+pick('Choose the passive form.','Brödet ___ av bagaren.',['bakas','bakar','bakat'],0,'Passive with av.','Brödet bakas av bagaren.'),
+type('Write the passive form of transportera.','Kartongerna ___ till affärerna.',['transporteras'],'Add -s to the verb.','Transporteras.'),
+tile('Put the words in order.',['Mjölken','pastöriseras','på','mejeriet.'],'The milk is pasteurised at the dairy.','Passive: -s.'),
+pick('Which sentence is passive?','Choose one.',['Boken skrevs av en lärare.','Läraren skrev boken.','Läraren har skrivit boken.'],0,'The book is the subject.','Skrevs = was written.'),
+pick('Choose the passive supine.','Huset har ___ för flera år sedan.',['sålts','sålde','sålt'],0,'Har + supine with -s.','Har sålts.'),
+listen('Listen. Where is the milk pasteurised?','Mjölken pastöriseras på mejeriet.',['At the dairy','At the farm','In the shop'],0,'Mejeri = dairy.','At the dairy.'),
+pick('Story check: when is the milk milked?','Mjölken mjölkas tidigt på morgonen.',['Early in the morning','At night','At lunch'],0,'Tidigt = early.','Early in the morning.'),
+type('Write the passive form of servera.','Frukosten ___ klockan åtta.',['serveras'],'Add -s.','Serveras.'),
+pick('Which sentence is passive?','Choose one.',['Dörren stängs klockan tio.','Jag stänger dörren.','Hon stängde dörren.'],0,'Dörren does not act.','Stängs = is closed.'),
+tile('Put the words in order.',['Havredryck','säljs','i','nästan','alla','butiker.'],'Oat drink is sold in almost all shops.','Säljs = is sold.'),
+pick('Choose the correct form.','Kaffet ___ varmt.',['serveras','serverar','serverade'],0,'Coffee does not serve.','Kaffet serveras varmt.')
+],
+boss:'Describe how something is made, for example bread, a car or a film, with at least six passive verbs (görs, säljs, transporteras …). Your partner asks Av vem? or Var? after each step.'
+};
+LESSONS[39]={
+unit:40,title:'Crime and punishment',sv:'Brott och straff',place:'BROTT',
+rule:'Sin, sitt, sina or hans/hennes?',
+reference:'Use sin (en), sitt (ett), sina (plural) when the owner is the subject of the same clause: Anna tog sin väska. Use hans, hennes, deras when the owner is somebody else: Anna tog hennes väska (another woman’s). Compare: Han ringde sin mamma (his own) / Han ringde hans mamma (someone else’s).',
+intro:'A burglary and its aftermath. Practise who owns what.',
+words:[['ett brott','a crime'],['en tjuv','a thief'],['stjäla','to steal'],['anmäla','to report'],['en misstänkt','a suspect'],['ett vittne','a witness'],['ett straff','a punishment'],['böter','a fine'],['erkänna','to confess'],['undersöka','to investigate'],['ett inbrott','a burglary'],['låsa','to lock']],
+story:{title:'Inbrottet',lines:[
+['Anna anmälde inbrottet och gav polisen sin adress.','Anna reported the burglary and gave the police her address.'],
+['Polisen undersökte huset tillsammans med sina kollegor.','The police examined the house together with their colleagues.'],
+['Tjuven hade lämnat sin cykel utanför.','The thief had left his bike outside.'],
+['Han erkände och fick betala böter.','He confessed and had to pay a fine.'],
+['Anna tog sina nycklar och låste dörren.','Anna took her keys and locked the door.'],
+['Hon bad sin granne hålla ett öga på huset.','She asked her neighbour to keep an eye on the house.']]},
+tasks:[
+pick('Choose the right word.','Anna tog ___ väska.',['sin','hennes','hans'],0,'Her own bag.','Sin väska.'),
+pick('Choose the right word.','Anna lånade ___ väska. (The bag belongs to Eva.)',['Evas','sin','sitt'],0,'The bag is Eva’s, not Anna’s own.','Evas väska.'),
+pick('Choose the right word.','Han älskar ___ barn.',['sina','hans','dess'],0,'His own children.','Sina barn.'),
+pick('Choose the right word.','Hon tog ___ nycklar.',['sina','hennes','deras'],0,'Her own keys.','Sina nycklar.'),
+type('Write the missing word.','De älskar ___ hund.',['sin'],'En hund, own.','Sin hund.'),
+type('Write the missing word.','Barnet lekte med ___ leksak.',['sin'],'En leksak, own.','Sin leksak.'),
+tile('Put the words in order.',['Polisen','undersökte','huset','med','sina','kollegor.'],'The police examined the house with their colleagues.','Sina = their own.'),
+listen('Listen. What did the thief have to pay?','Tjuven fick betala böter.',['A fine','Nothing','The bag'],0,'Böter = a fine.','He paid a fine.'),
+pick('Story check: who reported the burglary?','Anna anmälde inbrottet.',['Anna','The neighbour','The police'],0,'Anmäla = report.','Anna.'),
+pick('Choose the correct sentence.','He called his own mother.',['Han ringde sin mamma.','Han ringde hans mamma.','Han ringde hennes mamma.'],0,'Own mother = sin.','Sin mamma.'),
+pick('Choose the correct sentence.','He called another man’s mother.',['Han ringde hans mamma.','Han ringde sin mamma.','Han ringde sitt mamma.'],0,'Someone else’s = hans.','Hans mamma.'),
+tile('Put the words in order.',['Anna','låste','sin','dörr','och','tog','sina','nycklar.'],'Anna locked her door and took her keys.','Sin dörr, sina nycklar.')
+],
+boss:'Tell a short story about a lost bag or a stolen bike. Use sin, sitt and sina when the owner is the subject, and hans or hennes for somebody else’s things. Your partner asks Vems … är det?'
+};
+LESSONS[40]={
+unit:41,title:'Daring to speak up',sv:'Att våga',place:'MOD',
+rule:'Sentence adverbs: inte, nog, faktiskt, redan, ju',
+reference:'Sentence adverbs (inte, aldrig, nog, faktiskt, redan, ju, kanske) stand after the verb in a main clause: Hon är faktiskt modig. In a subordinate clause they stand before the verb: …att hon faktiskt är modig. Ju means “as you know” and makes a sentence feel natural.',
+intro:'A teenager talks about hate online and learning to speak up. Place each little adverb correctly.',
+words:[['våga','to dare'],['mod','courage'],['en utmaning','a challenge'],['näthat','online hate'],['en kommentar','a comment'],['blockera','to block'],['anmäla','to report'],['ignorera','to ignore'],['rädd','afraid'],['säga ifrån','to speak up'],['självförtroende','self-confidence'],['redan','already']],
+story:{title:'Att säga ifrån',lines:[
+['Jag är faktiskt ganska rädd för att skriva på nätet.','I am actually quite afraid of writing online.'],
+['Jag tror att många faktiskt skäms efteråt.','I think many people actually feel ashamed afterwards.'],
+['Hon blockerade dem som skrev elaka kommentarer och anmälde dem.','She blocked those who wrote nasty comments and reported them.'],
+['Det är ju inte lätt att ignorera hat.','It is not easy to ignore hate, after all.'],
+['Men jag har redan lärt mig att man inte behöver svara.','But I have already learned that you do not have to answer.'],
+['Nu vågar jag faktiskt säga ifrån.','Now I actually dare to speak up.']]},
+tasks:[
+pick('Choose the correct sentence.','Main clause.',['Hon är faktiskt modig.','Hon faktiskt är modig.','Faktiskt hon är modig.'],0,'Adverb after the verb in a main clause.','Är faktiskt.'),
+pick('Choose the correct sentence.','Subordinate clause.',['Jag tror att hon faktiskt är modig.','Jag tror att hon är faktiskt modig.','Jag tror hon att faktiskt är modig.'],0,'Adverb before the verb in a subordinate clause.','…att hon faktiskt är modig.'),
+tile('Put the words in order.',['Han','kommer','nog','inte','i','kväll.'],'He probably will not come tonight.','Nog + inte after the verb.'),
+tile('Put the words in order.',['Jag','vet','att','han','redan','har','gått.'],'I know he has already left.','Redan before the verb har.'),
+type('Write the missing word.','Det är ___ inte så svårt, eller hur?',['ju'],'A word meaning “as you know”.','Ju.'),
+pick('Which word means “already”?','Choose one.',['redan','nog','ju'],0,'Time.','Redan = already.'),
+listen('Listen. What did she do with the mean comments?','Hon blockerade dem och anmälde dem.',['Blocked and reported them','Answered them','Deleted her account'],0,'Blockera = block.','She blocked and reported them.'),
+pick('Story check: what has the writer learned?','Man behöver inte svara.',['You do not have to answer','You must always answer','You must delete everything'],0,'Behöva = need.','You need not answer.'),
+pick('Choose the correct sentence.','Subordinate clause.',['Jag är glad att du inte har gett upp.','Jag är glad att du har inte gett upp.','Jag är glad att inte du har gett upp.'],0,'Inte before the verb.','…att du inte har gett upp.'),
+type('Write the missing word.','Hon har ___ lärt sig att säga ifrån.',['redan'],'Already.','Redan.'),
+tile('Put the words in order.',['Nu','vågar','jag','faktiskt','säga','ifrån.'],'Now I actually dare to speak up.','Faktiskt after the verb.'),
+pick('Story check: how does the writer feel now?','Nu vågar jag faktiskt säga ifrån.',['Brave enough to speak up','Afraid','Angry'],0,'Våga = dare.','Brave.')
+],
+boss:'Talk with a partner about a time you had to speak up. Use faktiskt, redan, nog, ju and inte in both main and subordinate clauses, and explain where each goes.'
+};
+LESSONS[41]={
+unit:42,title:'Midsummer and the seasons',sv:'Midsommar',place:'HÖGTID',
+rule:'Real and unreal conditions, ifall and annars',
+reference:'A real condition uses the present: Om vädret blir fint, firar vi ute. An unreal present uses the past: Om det var sommar, skulle vi bada. An unreal past uses hade: Om det hade regnat, hade vi firat inne. Ifall = in case. Annars = otherwise.',
+intro:'A Swedish midsummer, with its weather worries and traditions. Choose the right kind of if-sentence.',
+words:[['en högtid','a holiday'],['midsommar','midsummer'],['en midsommarstång','a maypole'],['en tradition','a tradition'],['en årstid','a season'],['fira','to celebrate'],['dansa','to dance'],['plocka','to pick'],['sill','herring'],['ifall','in case'],['annars','otherwise'],['en jordgubbe','a strawberry']],
+story:{title:'Midsommar',lines:[
+['Om vädret blir fint, firar vi midsommar ute i trädgården.','If the weather is nice we celebrate midsummer outside in the garden.'],
+['Vi reser midsommarstången, och barnen dansar runt den.','We raise the maypole and the children dance around it.'],
+['Om jag hade bott utomlands skulle jag ha saknat just den dagen.','If I had lived abroad I would have missed precisely that day.'],
+['Ta med en tröja ifall det blir kallt på kvällen.','Bring a sweater in case it gets cold in the evening.'],
+['Annars fryser du, för kvällarna kan vara svala.','Otherwise you will freeze, because the evenings can be cool.'],
+['Efter maten plockar vi sju sorters blommor och lägger dem under kudden.','After the meal we pick seven kinds of flowers and put them under the pillow.']]},
+tasks:[
+pick('Choose the right form.','Om det ___ fint väder, firar vi ute.',['blir','skulle bli','blev'],0,'A real condition uses the present.','Om det blir fint väder.'),
+pick('Choose the right form.','Om det ___ sommar, skulle vi bada.',['var','blir','är'],0,'An unreal present uses the past.','Om det var sommar, skulle vi bada.'),
+pick('Choose the right word.','Om det hade regnat, ___ vi firat inne.',['hade','har','blir'],0,'Unreal past: hade … hade.','Hade vi firat inne.'),
+type('Write the missing word.','Ta med en jacka ___ det blir kallt.',['ifall'],'In case.','Ifall.'),
+type('Write the missing word.','Klä på dig, ___ fryser du.',['annars'],'Otherwise.','Annars.'),
+tile('Put the words in order.',['Om','vädret','blir','fint,','firar','vi','ute.'],'If the weather is nice we celebrate outside.','Real condition.'),
+tile('Put the words in order.',['Om','jag','hade','haft','tid,','hade','jag','kommit.'],'If I had had time, I would have come.','Hade + supine in both parts.'),
+listen('Listen. What do the children do?','Barnen dansar runt midsommarstången.',['Dance around the maypole','Sleep','Swim'],0,'Dansa = dance.','They dance around the maypole.'),
+pick('Story check: what goes under the pillow?','Vi plockar sju sorters blommor och lägger dem under kudden.',['Seven kinds of flowers','Strawberries','A coin'],0,'Blommor = flowers.','Seven kinds of flowers.'),
+pick('Choose the correct sentence.','Unreal present.',['Om jag hade pengar, skulle jag köpa en cykel.','Om jag har pengar, skulle jag köpa en cykel.','Om jag skulle ha pengar, köpte jag cyklar.'],0,'Hade in the om-clause, skulle in the result.','Om jag hade pengar, skulle jag köpa en cykel.'),
+pick('What does ifall mean?','Ta med en tröja ifall det blir kallt.',['in case','but','because'],0,'Think of a precaution.','Ifall = in case.'),
+pick('Choose the right word.','Du måste sova, ___ blir du trött.',['annars','eftersom','ifall'],0,'Otherwise.','Annars = otherwise.')
+],
+boss:'Plan a celebration with a partner. Use one real condition (Om det blir …), one unreal condition (Om vi hade …, skulle vi …) and ifall and annars once each.'
+};
+LESSONS[42]={
+unit:43,title:'Complaints and broken things',sv:'Klagomål',place:'KUNDTJÄNST',
+rule:'Cleft sentences: det är … som …',
+reference:'Put the important word in focus with Det är/var … som …: Det var cykeln som gick sönder. Det är du som har ansvar. Negative: Det var inte kunden som gjorde fel. A time can also be in focus: Det var i går som jag ringde.',
+intro:'A customer phones a help desk about a washing machine that stopped working. Practise stressing the important word.',
+words:[['gå sönder','to break'],['ett fel','a fault, a mistake'],['laga','to repair'],['klaga','to complain'],['missnöjd','dissatisfied'],['kräva','to demand'],['en garanti','a guarantee'],['ett kvitto','a receipt'],['byta','to exchange'],['en återbetalning','a refund'],['ett klagomål','a complaint'],['en tillverkare','a manufacturer']],
+story:{title:'På kundtjänst',lines:[
+['Det var tvättmaskinen som gick sönder redan efter en vecka.','It was the washing machine that broke after only a week.'],
+['Det är jag som har kvittot, och det är ni som har garantin.','I am the one with the receipt, and you are the ones with the guarantee.'],
+['Det var inte kunden som gjorde fel, utan tillverkaren.','It was not the customer who did wrong, but the manufacturer.'],
+['Det är först nu som de svarar på mina mejl.','It is only now that they answer my emails.'],
+['Vi vill byta maskinen eller få pengarna tillbaka.','We want to exchange the machine or get our money back.'],
+['Det är därför jag ringer i dag.','That is why I am calling today.']]},
+tasks:[
+pick('Choose the cleft sentence.','Which one puts bilen in focus?',['Det var bilen som gick sönder.','Bilen var det som gick sönder.','Som det var bilen gick sönder.'],0,'Det är/var … som …','Det var bilen som gick sönder.'),
+tile('Put the words in order.',['Det','är','jag','som','har','kvittot.'],'I am the one who has the receipt.','Det är + focus + som.'),
+tile('Put the words in order.',['Det','var','inte','du','som','hade','fel.'],'It was not you who was wrong.','Negative cleft.'),
+type('Write the missing word.','Det var Anna ___ hittade nycklarna.',['som'],'The word that follows the focused word.','Det var Anna som hittade nycklarna.'),
+type('Write the missing word.','Det var i går ___ jag ringde.',['som'],'Time in focus.','Det var i går som jag ringde.'),
+pick('Which sentence puts Maria in focus?','Choose one.',['Det var Maria som städade.','Maria städade.','Städade Maria.'],0,'Cleft = det är/var … som.','Det var Maria som städade.'),
+listen('Listen. What broke?','Det var tvättmaskinen som gick sönder.',['The washing machine','The car','The phone'],0,'Tvättmaskin = washing machine.','The washing machine.'),
+pick('Story check: what does the customer want?','Vi vill byta maskinen eller få pengarna tillbaka.',['A new machine or the money back','An apology only','A discount'],0,'Byta = exchange.','Exchange it or get a refund.'),
+pick('Choose the right word.','Det är först nu ___ de svarar.',['som','att','där'],0,'Cleft: som.','Det är först nu som de svarar.'),
+pick('Choose the meaning.','Vi klagar på servicen.',['We complain about the service.','We pay for the service.','We repair the service.'],0,'Klaga = complain.','Klaga på = complain about.'),
+tile('Put the words in order.',['Det','var','på','torsdagen','som','det','hände.'],'It was on Thursday that it happened.','A time in focus.'),
+pick('Choose the correct sentence.','It is the teacher who decides.',['Det är läraren som bestämmer.','Läraren det är som bestämmer.','Det läraren är som bestämmer.'],0,'Start with Det är.','Det är läraren som bestämmer.')
+],
+boss:'Role-play a call to customer service. The customer stresses what went wrong with Det var … som …; the agent answers Det är … som … and offers a solution.'
+};
+LESSONS[43]={
+unit:44,title:'Applying for a job',sv:'Jobbansökan',place:'JOBBET',
+rule:'Den som, allt som, det som, vad',
+reference:'Den som = the person who: Den som söker ska skicka ett CV. De som = those who. Allt som = everything that: Allt som du behöver finns här. Det som = what (the thing that): Det som är viktigt är erfarenhet. Vad = what in indirect questions: Jag vet inte vad du menar.',
+intro:'A job advert, an interview and a happy ending. Practise the relative expressions.',
+words:[['en ansökan','an application'],['ett CV','a CV'],['en intervju','an interview'],['erfarenhet','experience'],['en arbetsgivare','an employer'],['en anställning','a job (position)'],['en kompetens','a skill'],['en referens','a reference'],['anställa','to hire'],['bidra med','to contribute'],['kalla till','to call in'],['en lön','a salary']],
+story:{title:'Att söka jobb',lines:[
+['Den som söker jobbet ska skicka in ett CV och ett personligt brev.','Anyone who applies for the job should send a CV and a cover letter.'],
+['Allt som arbetsgivaren behöver veta finns i ansökan.','Everything the employer needs to know is in the application.'],
+['Det som är viktigast är erfarenhet av liknande arbete.','What matters most is experience of similar work.'],
+['På intervjun frågade de vad jag kunde bidra med.','At the interview they asked what I could contribute.'],
+['De som blev kallade fick träffa chefen.','Those who were called in got to meet the manager.'],
+['Jag fick jobbet, och det som gjorde mig gladast var att de ringde själva.','I got the job, and what made me happiest was that they phoned themselves.']]},
+tasks:[
+pick('Choose the right words.','___ söker jobbet ska skriva ett brev.',['Den som','Det som','Vad som'],0,'A person who.','Den som = the person who.'),
+pick('Choose the right word.','Allt ___ du behöver finns här.',['som','vad','att'],0,'Everything that.','Allt som.'),
+pick('Choose the right word.','Jag vet inte ___ du menar.',['vad','som','den'],0,'An indirect question.','Vad = what.'),
+type('Write the missing word.','___ som är viktigast är erfarenhet.',['det'],'The thing that.','Det som.'),
+type('Write the missing word.','De ___ blev kallade fick träffa chefen.',['som'],'Those who.','De som.'),
+tile('Put the words in order.',['Den','som','söker','jobbet','ska','skicka','ett','CV.'],'Anyone who applies should send a CV.','Den som … ska.'),
+tile('Put the words in order.',['Allt','som','du','behöver','finns','på','hemsidan.'],'Everything you need is on the website.','Allt som.'),
+listen('Listen. What should the applicant send?','Skicka ett CV och ett personligt brev.',['A CV and a letter','A photo','Only a diploma'],0,'Personligt brev = cover letter.','A CV and a cover letter.'),
+pick('Story check: what made the writer happiest?','Det som gjorde mig gladast var att de ringde själva.',['They phoned themselves','The salary','The office'],0,'Ringa = phone.','That they phoned themselves.'),
+pick('Which sentence is correct?','Choose one.',['Jag förstår inte vad du säger.','Jag förstår inte som du säger.','Jag förstår inte det du vad säger.'],0,'What = vad.','Vad du säger.'),
+pick('Choose the right word.','___ som vill kan anmäla sig.',['De','Det','Vad'],0,'Those who.','De som vill.'),
+type('Write the missing word.','Hon berättade ___ hon hade gjort.',['vad'],'Indirect question.','Vad hon hade gjort.')
+],
+boss:'Role-play a job interview. The interviewer asks Vad kan du bidra med? and Vad är du mest stolt över? The candidate answers with Det som … and Allt som …'
+};
+LESSONS[44]={
+unit:45,title:'Alone, by yourself, together',sv:'Ensam eller tillsammans',place:'SOFFAN',
+rule:'Lägga/ligga, sätta/sitta, ställa/stå',
+reference:'Putting something somewhere: lägga (lägger, la, lagt), sätta (sätter, satte, satt), ställa (ställer, ställde, ställt). Being somewhere: ligga (ligger, låg, legat), sitta (sitter, satt, suttit), stå (står, stod, stått). Själv = on one’s own; ensam = lonely or alone.',
+intro:'Someone who lives alone describes the evening. Practise verbs of putting and being.',
+words:[['ensam','lonely, alone'],['själv','by oneself'],['tillsammans','together'],['ensamhet','loneliness'],['ett sällskap','company'],['vänta','to wait'],['lägga','to put (lying)'],['ligga','to lie, be located'],['sätta','to put (sitting)'],['sitta','to sit'],['ställa','to put (standing)'],['stå','to stand']],
+story:{title:'Ensam eller själv?',lines:[
+['Jag bor själv, men jag känner mig sällan ensam.','I live on my own, but I rarely feel lonely.'],
+['På kvällen lägger jag mobilen på bordet och sätter mig i soffan.','In the evening I put the phone on the table and sit down on the sofa.'],
+['Boken ligger kvar där jag la den i går.','The book is still lying where I put it yesterday.'],
+['Min granne ställde en kruka vid dörren, och nu står den där.','My neighbour put a plant by the door, and now it stands there.'],
+['Vi sitter ofta tillsammans på balkongen.','We often sit together on the balcony.'],
+['Jag har satt upp en lapp: ”Kom in och fika!”','I have put up a note: “Come in for coffee!”']]},
+tasks:[
+pick('Choose the right verb.','Jag ___ boken på bordet.',['lägger','ligger','lagt'],0,'You put it there.','Lägger = put.'),
+pick('Choose the right verb.','Boken ___ på bordet.',['ligger','lägger','la'],0,'It is located there.','Ligger = lies.'),
+pick('Choose the right verb.','Hon ___ sig i soffan.',['sätter','sitter','står'],0,'She sits down.','Sätter sig = sits down.'),
+pick('Choose the right form.','Han ___ i soffan hela kvällen.',['satt','satte','sätter'],0,'Past tense of sitta.','Satt.'),
+type('Write the past tense of ställa.','Vi ___ glaset på hyllan.',['ställde'],'Regular verb.','Ställde.'),
+type('Write the present tense of stå.','Glaset ___ på hyllan.',['står'],'Present of stå.','Står.'),
+tile('Put the words in order.',['Jag','la','mobilen','på','bordet.'],'I put the phone on the table.','La = past of lägga.'),
+tile('Put the words in order.',['Boken','har','legat','där','i','en','vecka.'],'The book has lain there for a week.','Legat = supine of ligga.'),
+listen('Listen. Where does the writer sit in the evening?','På kvällen sätter jag mig i soffan.',['On the sofa','On the balcony','In the kitchen'],0,'Soffa = sofa.','On the sofa.'),
+pick('Story check: what does the note say?','Kom in och fika!',['Come in for coffee','Be quiet','Gone out'],0,'Fika = coffee break.','Come in for coffee.'),
+pick('Which word means lonely?','Jag känner mig ___ ibland.',['ensam','själv','tillsammans'],0,'Feeling alone.','Ensam.'),
+pick('Choose the correct form.','Hon har ___ nycklarna på bordet.',['lagt','legat','låg'],0,'Put = lagt.','Har lagt.')
+],
+boss:'Describe your room or kitchen to a partner. Say where things are (ligger, står, sitter) and where you put them yesterday (la, ställde, satte). The partner draws it.'
+};
+LESSONS[45]={
+unit:46,title:'Vikings and belief',sv:'Vikingarnas tro',place:'VIKING',
+rule:'Particle verbs, part 2',
+reference:'Common particle verbs: ge sig av (set off), ta över (take over), gå under (perish), bryta ut (break out), sprida sig (spread), hålla på med (be busy with), sätta på (switch on), lägga ner (shut down). The particle keeps its place after the verb.',
+intro:'Vikings, gods and old customs. Practise particle verbs in history and everyday life.',
+words:[['en viking','a Viking'],['en gud','a god'],['en sed','a custom'],['segla','to sail'],['begrava','to bury'],['ge sig av','to set off'],['ta över','to take over'],['gå under','to perish'],['bryta ut','to break out'],['sprida sig','to spread'],['hålla på med','to be busy with'],['tro på','to believe in']],
+story:{title:'Vikingarnas värld',lines:[
+['Vikingarna gav sig av i långskepp och seglade över havet.','The Vikings set off in longships and sailed across the sea.'],
+['Många trodde på gudar som Oden och Tor.','Many believed in gods like Odin and Thor.'],
+['Man begravde de döda tillsammans med sina saker.','They buried the dead together with their belongings.'],
+['Kristendomen tog långsamt över, och gamla seder gick under.','Christianity slowly took over, and old customs perished.'],
+['Efter hand spred sig tron, och de gamla gudarna glömdes bort.','Gradually the faith spread and the old gods were forgotten.'],
+['Vi håller fortfarande på med vissa seder, som valborgsbrasor.','We still keep some customs, such as Walpurgis bonfires.']]},
+tasks:[
+pick('Choose the right particle.','Karavanen gav sig ___ tidigt på morgonen.',['av','in','ner'],0,'Ge sig av = set off.','Gav sig av.'),
+pick('Choose the right particle.','Nya ledare tog ___ makten.',['över','ut','av'],0,'Take over.','Tog över.'),
+pick('Choose the right particle.','Gamla seder gick ___.',['under','upp','på'],0,'Perished.','Gå under.'),
+type('Write the particle.','Kriget bröt ___ 1914.',['ut'],'Break out.','Bryta ut.'),
+type('Write the missing word.','Tron spred ___ över Norden.',['sig'],'Sprida sig = spread.','Spred sig.'),
+tile('Put the words in order.',['De','håller','fortfarande','på','med','gamla','seder.'],'They still keep old customs.','Hålla på med.'),
+tile('Put the words in order.',['Vikingarna','gav','sig','av','i','långskepp.'],'The Vikings set off in longships.','Gav sig av.'),
+listen('Listen. Who did many believe in?','Många trodde på Oden och Tor.',['Odin and Thor','Zeus','Only the sun'],0,'Tro på = believe in.','Odin and Thor.'),
+pick('Story check: what are valborgsbrasor?','Vi håller fortfarande på med vissa seder, som valborgsbrasor.',['Spring bonfires','Christmas markets','Boat races'],0,'Brasa = bonfire.','Spring bonfires on Walpurgis night.'),
+pick('Choose the meaning.','Allt höll på att gå under.',['Everything was about to perish.','Everything was growing.','Everything was starting.'],0,'Gå under = perish.','About to perish.'),
+pick('Choose the correct word order.','Subordinate clause.',['…att de gav sig av tidigt.','…att de sig gav av tidigt.','…att gav de sig av tidigt.'],0,'Subject, verb, reflexive, particle.','…att de gav sig av tidigt.'),
+pick('Choose the right particle.','Hon satte ___ en ny film.',['på','upp','ut'],0,'Switch on.','Sätta på.')
+],
+boss:'Tell a short story about an old tradition. Use at least five particle verbs (gav sig av, tog över, gick under, bröt ut, höll på med). Your partner asks Varför …?'
+};
+LESSONS[46]={
+unit:47,title:'Culture and the workplace',sv:'Arbetsliv',place:'KONTORET',
+rule:'Linking words and word order',
+reference:'After därför, dessutom, dock, alltså, ändå the verb comes second: Därför pratar vi engelska. Use medan, trots att, eftersom, så att as subordinate conjunctions: Medan några föredrar möten, vill andra skriva. Å ena sidan … å andra sidan = on the one hand … on the other.',
+intro:'A multicultural workplace: practise the words that connect ideas and the word order they bring.',
+words:[['dessutom','besides'],['därför','therefore'],['dock','however'],['alltså','so, thus'],['ändå','nevertheless'],['medan','while'],['å ena sidan','on the one hand'],['å andra sidan','on the other hand'],['i stället','instead'],['en kollega','a colleague'],['mångkulturell','multicultural'],['en arbetsplats','a workplace']],
+story:{title:'På arbetsplatsen',lines:[
+['Vår arbetsplats är mångkulturell, och därför pratar vi både svenska och engelska.','Our workplace is multicultural, and therefore we speak both Swedish and English.'],
+['Medan några kollegor föredrar möten, vill andra skriva mejl.','While some colleagues prefer meetings, others want to write emails.'],
+['Dessutom har vi olika syn på fika.','Besides, we have different views on coffee breaks.'],
+['Fikat är dock viktigt för alla.','The coffee break is, however, important to everyone.'],
+['Å ena sidan kan det vara svårt att förstå varandra, å andra sidan lär man sig mycket.','On the one hand it can be hard to understand each other, on the other hand you learn a lot.'],
+['Vi har alltså mycket att vinna på att vara öppna.','We have a lot to gain, then, from being open.']]},
+tasks:[
+pick('Choose the correct word order.','After därför comes the verb.',['Därför kom han inte.','Därför han kom inte.','Därför inte kom han.'],0,'Verb second.','Därför kom han inte.'),
+pick('Choose the correct word order.','After dessutom comes the verb.',['Dessutom är hon snäll.','Dessutom hon är snäll.','Dessutom snäll är hon.'],0,'Verb second.','Dessutom är hon snäll.'),
+pick('Choose the right word.','___ några gillar möten, vill andra skriva mejl.',['Medan','Därför','Dock'],0,'While.','Medan.'),
+pick('Choose the right word.','___ att det regnade, gick vi ut.',['Trots','Dock','Därför'],0,'Despite.','Trots att.'),
+type('Write the missing word.','Vi hade ingen tid. ___ gick vi på bio.',['ändå'],'Nevertheless.','Ändå.'),
+type('Write the missing word.','Han glömde nycklarna. ___ kom han inte in.',['därför'],'Therefore.','Därför.'),
+tile('Put the words in order.',['Därför','pratar','vi','både','svenska','och','engelska.'],'Therefore we speak both Swedish and English.','Verb second after därför.'),
+tile('Put the words in order.',['Medan','vissa','vill','prata,','vill','andra','skriva.'],'While some want to talk, others want to write.','Medan starts a subordinate clause.'),
+listen('Listen. Which languages does the workplace use?','Vi pratar både svenska och engelska.',['Swedish and English','Only Swedish','Swedish and German'],0,'Både … och.','Swedish and English.'),
+pick('Story check: what is important to everyone?','Fikat är viktigt för alla.',['The coffee break','Meetings','Email'],0,'Fika = coffee break.','The coffee break.'),
+pick('Which means “on the other hand”?','Choose one.',['å andra sidan','dessutom','alltså'],0,'Opposite of å ena sidan.','Å andra sidan.'),
+pick('Choose the right word.','Han var sjuk, ___ han kom ändå.',['men','eftersom','så att'],0,'Contrast.','Men.')
+],
+boss:'Give a short opinion about working in a team. Use därför, dessutom, dock, medan and å ena sidan … å andra sidan, and keep the verb second after each linking adverb.'
+};
+LESSONS[47]={
+unit:48,title:'Language and words',sv:'Språk och ord',place:'ORDBOKEN',
+rule:'Word building and word families',
+reference:'Swedish builds new words from old ones: tala → ett tal, talare, uttal, tal­språk. Prefixes: o- (opposite), miss-, för-. Suffixes: -het, -ning, -are, -else. Compound nouns take the gender of the last part.',
+intro:'How a language grows. Practise building words from a common stem and noticing their families.',
+words:[['ett uttal','a pronunciation'],['en betydelse','a meaning'],['ett ordförråd','a vocabulary'],['en översättning','a translation'],['en talare','a speaker'],['ett modersmål','a mother tongue'],['missförstå','to misunderstand'],['otydlig','unclear'],['en nyhet','a piece of news'],['en möjlighet','a possibility'],['en förklaring','an explanation'],['ett språkbruk','language use']],
+story:{title:'Ett språk växer',lines:[
+['Ett språk förändras hela tiden, och nya ord kommer till varje år.','A language changes all the time, and new words appear every year.'],
+['Många ord byggs av delar vi redan känner, till exempel uttal och översättning.','Many words are built from parts we already know, for example pronunciation and translation.'],
+['Den som missförstår ett ord ber ofta om en förklaring.','Someone who misunderstands a word often asks for an explanation.'],
+['Modersmålet är det språk man lärde sig först.','The mother tongue is the language one learned first.'],
+['Ett rikt ordförråd ger fler möjligheter att uttrycka sig.','A rich vocabulary gives more possibilities of expressing oneself.'],
+['Därför är det bra att läsa mycket, även när texten är otydlig.','That is why it is good to read a lot, even when the text is unclear.']]},
+tasks:[
+pick('Which word means “a speaker”?','Choose one.',['en talare','ett tal','ett uttal'],0,'-are makes a person.','En talare.'),
+pick('Choose the right prefix.','Texten är ___tydlig, jag förstår den inte.',['o','miss','för'],0,'O- = not.','Otydlig.'),
+pick('Choose the right word.','Jag har ___ vad du sa.',['missförstått','förstått ej','otydligt'],0,'Miss- = wrongly.','Missförstått.'),
+type('Write the noun made from förklara.','Kan du ge mig en ___?',['förklaring'],'-ning.','Förklaring.'),
+type('Write the noun made from möjlig.','Det finns en ___ att komma.',['möjlighet'],'-het.','Möjlighet.'),
+tile('Put the words in order.',['Ett','rikt','ordförråd','ger','fler','möjligheter.'],'A rich vocabulary gives more possibilities.','Subject, verb, object.'),
+tile('Put the words in order.',['Nya','ord','kommer','till','varje','år.'],'New words appear every year.','Plain main clause.'),
+listen('Listen. What is the mother tongue?','Modersmålet är det språk man lärde sig först.',['The language learned first','The language at work','A foreign language'],0,'Först = first.','The language learned first.'),
+pick('Story check: why is reading good?','Det är bra att läsa mycket för att utöka ordförrådet.',['It widens your vocabulary','It is quiet','It is cheap'],0,'Ordförråd = vocabulary.','It widens your vocabulary.'),
+pick('Which gender does uttal have?','Ett uttal.',['ett','en','either'],0,'Tal is an ett-word.','Ett uttal.'),
+pick('Choose the correct compound.','A book with words explained.',['ordbok','bokord','ordsbok'],0,'Order: first part describes.','Ordbok.'),
+pick('Choose the right word.','Hon har en fin ___ av romanen.',['översättning','översätta','översatt'],0,'A noun after fin.','En översättning.')
+],
+boss:'Take three words from one family (for example tala – talare – uttal) and make a sentence with each. Your partner guesses the meaning of a fourth member of the family.'
+};
+LESSONS[48]={
+unit:49,title:'The year around',sv:'Året runt',place:'KALENDERN',
+rule:'Particle verbs, part 3 and time phrases',
+reference:'Frequent particle verbs about time and events: gå ut (end up, go out), komma fram (arrive), ta slut (run out), dra igång (get going), skjuta upp (postpone), ställa in (cancel), hinna med (manage to). Time: under sommaren, i början av, i slutet av, vid jul, om några veckor.',
+intro:'A year of seasons and plans, and what happens to the plans. Practise particle verbs with time expressions.',
+words:[['skjuta upp','to postpone'],['ställa in','to cancel'],['dra igång','to get going'],['ta slut','to run out'],['hinna med','to manage in time'],['komma fram','to arrive'],['i början av','at the start of'],['i slutet av','at the end of'],['under sommaren','during summer'],['vid jul','at Christmas'],['en säsong','a season'],['en semester','a holiday (leave)']],
+story:{title:'Planer och ändringar',lines:[
+['I början av året drar vi igång ett nytt projekt.','At the start of the year we get a new project going.'],
+['Under våren hinner vi med mycket, men sommaren ställer in det mesta.','In spring we manage a lot, but summer cancels most things.'],
+['Mötet i juni måste skjutas upp eftersom många har semester.','The June meeting must be postponed because many are on holiday.'],
+['Vid jul brukar kassan ta slut, och därför spar vi i förväg.','At Christmas the money often runs out, and so we save in advance.'],
+['I slutet av december kommer alla fram till släkten.','At the end of December everyone arrives at the relatives.'],
+['Hinner du med allt innan nyår?','Will you manage everything before New Year?']]},
+tasks:[
+pick('Choose the right particle.','Mötet måste skjutas ___.',['upp','ut','av'],0,'Postponed.','Skjuta upp.'),
+pick('Choose the right particle.','De ställde ___ konserten på grund av regnet.',['in','på','av'],0,'Cancelled.','Ställa in.'),
+pick('Choose the right particle.','Pengarna tog ___ före månadens slut.',['slut','upp','fram'],0,'Ran out.','Ta slut.'),
+type('Write the particle.','Vi drar ___ projektet i januari.',['igång'],'Get going.','Dra igång.'),
+type('Write the particle.','Hinner du ___ allt före jul?',['med'],'Hinna med.','Hinna med.'),
+pick('Choose the right time phrase.','___ sommaren reser vi till kusten.',['Under','Vid','Mellan'],0,'During.','Under sommaren.'),
+tile('Put the words in order.',['I','slutet','av','året','kommer','alla','fram.'],'At the end of the year everyone arrives.','Verb second after the time phrase.'),
+tile('Put the words in order.',['Mötet','måste','skjutas','upp','till','nästa','vecka.'],'The meeting must be postponed until next week.','Passive with -s.'),
+listen('Listen. When does the money run out?','Vid jul tar pengarna ofta slut.',['At Christmas','In summer','In spring'],0,'Vid jul = at Christmas.','At Christmas.'),
+pick('Story check: why is the June meeting postponed?','Många har semester i juni.',['Many are on holiday','It is raining','The room is full'],0,'Semester = holiday.','Many are on holiday.'),
+pick('Choose the meaning.','Vi hinner med tåget.',['We make it in time for the train.','We miss the train.','We buy the train.'],0,'Hinna med = manage in time.','Make it in time.'),
+pick('Choose the correct sentence.','At the start of the year.',['I början av året','På början av året','Vid början på året'],0,'Fixed phrase.','I början av året.')
+],
+boss:'Plan a year in six sentences with a partner. Use skjuta upp, ställa in, dra igång, ta slut and hinna med at least once each, plus i början/slutet av.'
+};
+LESSONS[49]={
+unit:50,title:'Body and mind',sv:'Kropp och själ',place:'VÅRDCENTRALEN',
+rule:'Connectors for cause, concession and purpose',
+reference:'Cause: eftersom, på grund av. Concession: trots att, även om, fastän. Purpose: för att, så att. Result: så … att. Compare: Han gick till jobbet trots att han var sjuk. Hon vilar för att bli frisk. After on the subordinate conjunction, inte goes before the verb.',
+intro:'Staying well, resting, and the reasons people give. Practise connectors that explain why.',
+words:[['hälsa','health'],['en kropp','a body'],['vila','to rest'],['stressa','to stress'],['en vana','a habit'],['träna','to exercise'],['sömn','sleep'],['orka','to have the energy'],['må bra','to feel well'],['en läkare','a doctor'],['en kur','a treatment'],['förebygga','to prevent']],
+story:{title:'Må bra',lines:[
+['Hon tränar tre gånger i veckan för att hon vill må bra.','She exercises three times a week because she wants to feel well.'],
+['Även om hon är trött går hon ut en sväng.','Even if she is tired she goes out for a walk.'],
+['Trots att jobbet är stressigt försöker hon sova åtta timmar.','Despite the job being stressful she tries to sleep eight hours.'],
+['Eftersom hon inte vill bli sjuk äter hon regelbundet.','Because she does not want to fall ill she eats regularly.'],
+['Hon vilar så att kroppen orkar nästa dag.','She rests so that her body has the energy next day.'],
+['En god vana kan förebygga många problem.','A good habit can prevent many problems.']]},
+tasks:[
+pick('Choose the right word.','Hon vilar ___ hon ska orka.',['för att','trots att','även om'],0,'Purpose.','För att.'),
+pick('Choose the right word.','___ att det regnade gick vi ut.',['Trots','Eftersom','Så'],0,'Despite.','Trots att.'),
+pick('Choose the right word.','___ han var trött, tränade han.',['Även om','Så att','Därför'],0,'Even if/though.','Även om.'),
+type('Write the missing word.','Han stannade hemma ___ han var sjuk.',['eftersom'],'Because.','Eftersom.'),
+type('Write the missing word.','Sov mer, ___ att du orkar.',['så'],'So that.','Så att.'),
+pick('Choose the correct word order.','Subordinate clause with inte.',['…eftersom hon inte vill bli sjuk.','…eftersom hon vill inte bli sjuk.','…eftersom inte hon vill bli sjuk.'],0,'Inte before the verb.','…eftersom hon inte vill bli sjuk.'),
+tile('Put the words in order.',['Även','om','jag','är','trött,','går','jag','ut.'],'Even if I am tired I go out.','Subclause then verb-subject.'),
+tile('Put the words in order.',['Hon','äter','regelbundet','för','att','må','bra.'],'She eats regularly in order to feel well.','För att + infinitive.'),
+listen('Listen. How often does she train?','Hon tränar tre gånger i veckan.',['Three times a week','Every day','Once a month'],0,'Tre gånger.','Three times a week.'),
+pick('Story check: why does she rest?','Hon vilar så att kroppen orkar nästa dag.',['So the body has energy next day','Because she is bored','To miss work'],0,'Orka = have energy.','So her body can cope.'),
+pick('Choose the meaning.','Förebygga sjukdomar.',['To prevent illness','To cause illness','To cure illness'],0,'Före = before.','Prevent.'),
+pick('Which expresses concession?','Choose one.',['fastän','eftersom','så att'],0,'Although.','Fastän.')
+],
+boss:'Explain your own routine for feeling well. Use för att, eftersom, trots att, även om and så att once each. Your partner challenges one reason.'
+};
+LESSONS[50]={
+unit:51,title:'Society and rules',sv:'Samhälle och regler',place:'KOMMUNHUSET',
+rule:'Formal and informal register',
+reference:'Formal Swedish uses longer words and passive: Ärendet har behandlats. Vi ber er inkomma med handlingar. Everyday speech is shorter: Vi har kollat det. Skicka in papperen. Match the register to the situation: a letter to an authority, a message to a friend.',
+intro:'The same message in a letter and in a chat. Practise choosing formal or informal wording.',
+words:[['ett ärende','a case, errand'],['en handling','a document'],['inkomma med','to submit'],['behandla','to process'],['en myndighet','an authority'],['en ansökan','an application'],['ett beslut','a decision'],['överklaga','to appeal'],['en blankett','a form'],['kontrollera','to check'],['en handläggare','a case officer'],['ett svar','an answer']],
+story:{title:'Brev och kompis',lines:[
+['Myndigheten skickar ett brev: Ert ärende har behandlats.','The authority sends a letter: Your case has been processed.'],
+['Vi ber er inkomma med kompletterande handlingar senast den 15 mars.','We ask you to submit supplementary documents by 15 March at the latest.'],
+['Du kan överklaga beslutet inom tre veckor.','You can appeal the decision within three weeks.'],
+['Till en kompis skriver man: Hej! Jag har fått svar nu.','To a friend you write: Hi! I have got an answer now.'],
+['Jag måste skicka in några papper, kan du hjälpa mig?','I must send in some papers, can you help me?'],
+['Båda sätten är rätt, men bara i rätt situation.','Both ways are right, but only in the right situation.']]},
+tasks:[
+pick('Which sentence is formal?','Choose one.',['Ert ärende har behandlats.','Vi har fixat saken.','Det är klart nu.'],0,'Passive, polished.','Ert ärende har behandlats.'),
+pick('Which sentence is informal?','Choose one.',['Skicka in papperen!','Vi ber er inkomma med handlingar.','Beslutet kan överklagas.'],0,'Short imperative.','Skicka in papperen.'),
+pick('Choose the formal word.','Vi ber er ___ med handlingar.',['inkomma','kolla','fixa'],0,'Official verb.','Inkomma.'),
+type('Write the missing word.','Du kan ___ beslutet inom tre veckor.',['överklaga'],'Appeal.','Överklaga.'),
+type('Write the missing word.','Fyll i en ___ och skicka den.',['blankett'],'A form.','Blankett.'),
+pick('Which opens a letter to an authority?','Choose one.',['Bäste herr Persson,','Tjena!','Hallå där!'],0,'Polite start.','Bäste herr Persson.'),
+tile('Put the words in order.',['Ert','ärende','har','behandlats.'],'Your case has been processed.','Passive perfect.'),
+tile('Put the words in order.',['Kan','du','hjälpa','mig','med','blanketten?'],'Can you help me with the form?','Question with kan first.'),
+listen('Listen. What can you do within three weeks?','Du kan överklaga beslutet inom tre veckor.',['Appeal the decision','Move','Apply again'],0,'Inom = within.','Appeal the decision.'),
+pick('Story check: when are the documents due?','Senast den 15 mars.',['By 15 March','On 5 March','After 15 March'],0,'Senast = at the latest.','By 15 March.'),
+pick('Choose the register.','“Jag har kollat med chefen.”',['Informal','Formal','Legal'],0,'Kolla is casual.','Informal.'),
+pick('Choose the formal alternative to “fixa”.','Choose one.',['ordna','kolla','dra'],0,'More neutral/formal.','Ordna.')
+],
+boss:'Write two short messages about the same thing: one formal letter to an authority and one chat message to a friend. Your partner marks each word that changed.'
+};
+LESSONS[51]={
+unit:52,title:'Relationships',sv:'Relationer',place:'FIKAT',
+rule:'Verbs with prepositions',
+reference:'Many Swedish verbs take a fixed preposition: bero på, tänka på, träffas på, vara rädd för, bry sig om, tycka om, hålla med om, förlita sig på, skratta åt, tacka för, tro på. Learn the verb with its preposition as one unit.',
+intro:'Talking about friends, family and feelings with the right small word after the verb.',
+words:[['bero på','to depend on'],['bry sig om','to care about'],['hålla med om','to agree about'],['förlita sig på','to rely on'],['skratta åt','to laugh at'],['tacka för','to thank for'],['vara rädd för','to be afraid of'],['tycka om','to like'],['sakna','to miss'],['en vän','a friend'],['ett förtroende','trust'],['en konflikt','a conflict']],
+story:{title:'Vänner och familj',lines:[
+['Min bästa vän bryr sig om mig och jag förlitar mig på henne.','My best friend cares about me and I rely on her.'],
+['Vi skrattar åt samma saker och håller med om det mesta.','We laugh at the same things and agree about most things.'],
+['Det beror på dagen om vi träffas hemma eller på café.','It depends on the day whether we meet at home or at a café.'],
+['Ibland är jag rädd för konflikter, men vi pratar alltid till slut.','Sometimes I am afraid of conflicts, but we always talk in the end.'],
+['Jag tackar henne för stödet.','I thank her for the support.'],
+['När hon reser saknar jag henne mycket.','When she travels I miss her a lot.']]},
+tasks:[
+pick('Choose the right preposition.','Jag förlitar mig ___ dig.',['på','om','för'],0,'Rely on.','Förlita sig på.'),
+pick('Choose the right preposition.','Hon bryr sig ___ sina vänner.',['om','på','åt'],0,'Care about.','Bry sig om.'),
+pick('Choose the right preposition.','Vi skrattar ___ skämtet.',['åt','för','med'],0,'Laugh at.','Skratta åt.'),
+type('Write the preposition.','Det beror ___ vädret.',['på'],'Depends on.','Bero på.'),
+type('Write the preposition.','Tack ___ hjälpen!',['för'],'Thank for.','Tacka för.'),
+pick('Choose the right preposition.','Jag håller med dig ___ det här.',['om','på','åt'],0,'Agree about.','Hålla med om.'),
+tile('Put the words in order.',['Jag','är','rädd','för','konflikter.'],'I am afraid of conflicts.','Vara rädd för.'),
+tile('Put the words in order.',['Hon','bryr','sig','om','sina','vänner.'],'She cares about her friends.','Bry sig om.'),
+listen('Listen. What does the writer miss?','När hon reser saknar jag henne.',['The friend','The job','The city'],0,'Sakna = miss.','The friend.'),
+pick('Story check: what do the friends do together?','Vi skrattar åt samma saker.',['Laugh at the same things','Travel every week','Work together'],0,'Skratta åt.','Laugh at the same things.'),
+pick('Choose the meaning.','Vi litar på varandra.',['We trust each other.','We leave each other.','We call each other.'],0,'Lita på = trust.','Trust each other.'),
+pick('Choose the correct sentence.','Believe in.',['Jag tror på dig.','Jag tror för dig.','Jag tror om dig.'],0,'Tro på.','Jag tror på dig.')
+],
+boss:'Tell a partner about a good friend using at least five verbs with prepositions (bry sig om, lita på, skratta åt, tacka för, hålla med om). The partner repeats one in a new sentence.'
+};
+LESSONS[52]={
+unit:53,title:'Working life',sv:'Arbetslivet',place:'ARBETSPLATSEN',
+rule:'Register at work: emails, meetings, small talk',
+reference:'Work Swedish mixes polite and relaxed. Email: Hej Anna, / Hälsningar, Erik. Meeting: Jag vill gärna lägga till … Kan vi ta det i nästa punkt? Small talk: Hur var helgen? Everyone says du, even to the manager.',
+intro:'The three voices of a Swedish office: the email, the meeting and the coffee break.',
+words:[['ett möte','a meeting'],['en punkt','an item'],['lägga till','to add'],['en deadline','a deadline'],['en chef','a manager'],['en uppgift','a task'],['ett mejl','an email'],['bifoga','to attach'],['en hälsning','a greeting'],['återkomma','to get back'],['en kollega','a colleague'],['ta upp','to bring up']],
+story:{title:'På kontoret',lines:[
+['Mejlet börjar med Hej Anna, och slutar med Hälsningar, Erik.','The email begins with Hej Anna, and ends with Hälsningar, Erik.'],
+['Jag bifogar protokollet och återkommer i morgon.','I attach the minutes and will get back to you tomorrow.'],
+['På mötet säger jag: Jag vill gärna lägga till en punkt.','At the meeting I say: I would like to add an item.'],
+['Chefen svarar: Kan vi ta det sist?','The manager answers: Can we take it last?'],
+['I fikarummet frågar kollegan: Hur var helgen?','In the coffee room the colleague asks: How was the weekend?'],
+['Alla säger du, även till chefen.','Everyone says du, even to the manager.']]},
+tasks:[
+pick('Choose the right greeting.','To a colleague by email.',['Hej Anna,','Högaktade fru Andersson,','Hallå där,'],0,'Hej + name.','Hej Anna.'),
+pick('Choose the right closing.','End of an email.',['Hälsningar, Erik','Din Erik!!!','Adjö.'],0,'Neutral.','Hälsningar.'),
+pick('Choose the right phrase.','At a meeting.',['Jag vill gärna lägga till en punkt.','Ge mig ordet!','Tyst nu.'],0,'Polite.','Jag vill gärna lägga till en punkt.'),
+type('Write the missing word.','Jag ___ protokollet till mejlet.',['bifogar'],'Attach.','Bifogar.'),
+type('Write the missing word.','Jag ___ i morgon med ett svar.',['återkommer'],'Get back.','Återkommer.'),
+pick('Choose the small talk.','In the coffee room.',['Hur var helgen?','Skicka rapporten.','Beslutet överklagas.'],0,'Friendly question.','Hur var helgen?'),
+tile('Put the words in order.',['Kan','vi','ta','det','i','nästa','punkt?'],'Can we take it in the next item?','Question order.'),
+tile('Put the words in order.',['Jag','återkommer','med','ett','svar','i','morgon.'],'I will get back with an answer tomorrow.','Verb second.'),
+listen('Listen. How does the email end?','Mejlet slutar med Hälsningar, Erik.',['Hälsningar, Erik','Hej då','Kram'],0,'Hälsningar.','Hälsningar, Erik.'),
+pick('Story check: what do people say to the manager?','Alla säger du, även till chefen.',['du','ni','herr'],0,'Du-reformen.','Everyone says du.'),
+pick('Choose the meaning.','Ta upp en fråga.',['Bring up a question','Drop a question','Hide a question'],0,'Ta upp.','Bring up.'),
+pick('Choose the right register for a deadline reminder.','Choose one.',['Kom ihåg att deadline är på fredag.','Du är sen, din slarver.','Ursäkta mig, högtärade.'],0,'Neutral and clear.','Kom ihåg att deadline är på fredag.')
+],
+boss:'Act a short office scene: write the email subject and first line, make a point in a meeting, and start small talk at coffee. Partner gives one comment on the register.'
+};
+LESSONS[53]={
+unit:54,title:'Sweden and the world',sv:'Sverige och världen',place:'VÄRLDSKARTAN',
+rule:'Relative clauses: som, vars, där, vilket',
+reference:'Som = who/which/that: Landet som jag bor i. Vars = whose: En kvinna vars bok jag läste. Där/dit/dit = place: Staden där jag föddes. Vilket = which (referring to a whole sentence): Han kom sent, vilket irriterade alla. Preposition may go before: Landet i vilket jag bor (formal).',
+intro:'Countries, trade and travel. Practise relative clauses to add detail in one sentence.',
+words:[['ett land','a country'],['en gräns','a border'],['en handel','trade'],['en export','export'],['en import','import'],['ett medlemskap','membership'],['en flykting','a refugee'],['en kultur','a culture'],['en utlandsresa','a trip abroad'],['påverka','to affect'],['en union','a union'],['en nation','a nation']],
+story:{title:'Landet och världen',lines:[
+['Sverige är ett land som har exporterat stål och trä i hundratals år.','Sweden is a country that has exported steel and timber for hundreds of years.'],
+['Det finns städer där människor från många kulturer bor sida vid sida.','There are cities where people from many cultures live side by side.'],
+['Jag känner en man vars föräldrar kom som flyktingar.','I know a man whose parents came as refugees.'],
+['Handeln med omvärlden påverkar oss mycket, vilket syns i priserna.','Trade with the world affects us a lot, which shows in the prices.'],
+['Landet i vilket vi bor är medlem i EU.','The country in which we live is a member of the EU.'],
+['Allt som händer utomlands kan snabbt påverka oss.','Everything that happens abroad can quickly affect us.']]},
+tasks:[
+pick('Choose the right word.','Det är staden ___ jag föddes.',['där','som','vars'],0,'Place.','Där.'),
+pick('Choose the right word.','Hon är en författare ___ böcker jag älskar.',['vars','som','vilket'],0,'Whose.','Vars.'),
+pick('Choose the right word.','Han kom sent, ___ irriterade mig.',['vilket','som','vars'],0,'Refers to the whole clause.','Vilket.'),
+type('Write the missing word.','Det är ett land ___ exporterar stål.',['som'],'Who/which/that.','Som.'),
+type('Write the missing word.','Boken, ___ jag läste i går, var bra.',['som'],'Which.','Som.'),
+pick('Choose the correct sentence.','A refugee whose family lives here.',['En flykting vars familj bor här.','En flykting som vars familj bor här.','En flykting där familj bor här.'],0,'Vars alone.','Vars familj.'),
+tile('Put the words in order.',['Sverige','är','ett','land','som','exporterar','stål.'],'Sweden is a country that exports steel.','Relative som.'),
+tile('Put the words in order.',['Staden','där','jag','bor','är','liten.'],'The town where I live is small.','Där = where.'),
+listen('Listen. What did Sweden export?','Sverige exporterade stål och trä.',['Steel and timber','Cars only','Fish'],0,'Stål = steel.','Steel and timber.'),
+pick('Story check: what shows in prices?','Handeln med omvärlden syns i priserna.',['Trade with the world','The weather','Holidays'],0,'Handel = trade.','Trade with the world.'),
+pick('Choose the right word.','Allt ___ du ser här är nytt.',['som','vilket','där'],0,'Everything that.','Allt som.'),
+pick('Choose the meaning.','Hon blev sjuk, vilket oroade oss.',['She fell ill, which worried us.','She worried us, who was ill.','She was ill, where we worried.'],0,'Vilket = which.','Which worried us.')
+],
+boss:'Describe your home country in three sentences, each with a different relative word (som, där, vars or vilket). The partner asks a follow-up on one of them.'
+};
+LESSONS[54]={
+unit:55,title:'Technology and progress',sv:'Teknik och utveckling',place:'LABBET',
+rule:'Linking words for comparison and argument',
+reference:'Argument words: å ena sidan … å andra sidan, till skillnad från, jämfört med, däremot, tvärtom, visserligen … men, i och med att, med hänsyn till, trots detta. Use däremot and tvärtom to contrast. Visserligen introduces a concession, then men.',
+intro:'New inventions bring pros and cons. Practise connecting arguments cleanly.',
+words:[['en uppfinning','an invention'],['en utveckling','a development'],['en fördel','an advantage'],['en nackdel','a disadvantage'],['däremot','on the other hand'],['tvärtom','on the contrary'],['visserligen','admittedly'],['jämfört med','compared with'],['till skillnad från','unlike'],['en risk','a risk'],['tillgänglig','accessible'],['effektiv','efficient']],
+story:{title:'För och emot',lines:[
+['Visserligen är tekniken effektiv, men den har också nackdelar.','Admittedly the technology is efficient, but it also has disadvantages.'],
+['Jämfört med förr kan fler människor arbeta hemifrån.','Compared with the past more people can work from home.'],
+['Till skillnad från brev kommer ett mejl fram direkt.','Unlike a letter, an email arrives directly.'],
+['Många tror att det blir tråkigt; tvärtom blir det ofta enklare att träffas.','Many think it will be dull; on the contrary it often gets easier to meet.'],
+['Äldre har ibland svårt med appar. Däremot lär sig barn snabbt.','Older people sometimes find apps hard. Children, on the other hand, learn fast.'],
+['Å ena sidan sparar vi tid, å andra sidan finns det risker.','On the one hand we save time, on the other hand there are risks.']]},
+tasks:[
+pick('Choose the right word.','Han gillar kaffe. ___ dricker hon te.',['Däremot','Eftersom','Så att'],0,'Contrast.','Däremot.'),
+pick('Choose the right word.','Det blir inte svårare; ___, det blir enklare.',['tvärtom','visserligen','alltså'],0,'On the contrary.','Tvärtom.'),
+pick('Choose the right phrase.','___ förr är det enklare nu.',['Jämfört med','Trots att','Efter det'],0,'Compared with.','Jämfört med.'),
+type('Write the missing word.','___ är telefonen dyr, men den är bra.',['visserligen'],'Admittedly.','Visserligen.'),
+type('Write the missing word.','Mejl är snabba. Brev ___ tar tid.',['däremot'],'On the other hand.','Däremot.'),
+pick('Choose the correct word order.','After däremot.',['Däremot lär sig barn snabbt.','Däremot barn lär sig snabbt.','Däremot snabbt lär barn sig.'],0,'Verb second.','Däremot lär sig barn snabbt.'),
+tile('Put the words in order.',['Till','skillnad','från','brev','kommer','mejl','fram','direkt.'],'Unlike letters, emails arrive directly.','Verb second.'),
+tile('Put the words in order.',['Å','ena','sidan','sparar','vi','tid.'],'On the one hand we save time.','Verb second after å ena sidan.'),
+listen('Listen. What is easier?','Tvärtom blir det enklare att träffas.',['Meeting','Walking','Writing letters'],0,'Träffas.','Meeting.'),
+pick('Story check: who learns fast?','Däremot lär sig barn snabbt.',['Children','Pensioners','Teachers'],0,'Barn = children.','Children.'),
+pick('Choose the meaning.','Visserligen dyrt, men värt det.',['Admittedly expensive, but worth it.','Not expensive, not worth it.','Expensive because of it.'],0,'Concession.','Admittedly expensive but worth it.'),
+pick('Choose the right word.','Det är en ___ att den är dyr.',['nackdel','fördel','uppfinning'],0,'Disadvantage.','Nackdel.')
+],
+boss:'Debate with a partner: is a new technology (phone, car, AI) a good thing? Use visserligen … men, däremot, tvärtom, jämfört med and till skillnad från.'
+};
+LESSONS[55]={
+unit:56,title:'Communication',sv:'Kommunikation',place:'RADIOHUSET',
+rule:'Idioms and set phrases',
+reference:'Idioms are learned whole: ta ton (speak up), rakt på sak (straight to the point), hålla med någon (agree), lägga band på sig (hold back), dra sitt strå till stacken (do one’s part), få grepp om (get a grip of), säga ifrån (speak out), prata i nattmössan (talk nonsense), läsa mellan raderna (read between the lines).',
+intro:'Talk about talking: set phrases that make Swedish sound natural.',
+words:[['rakt på sak','straight to the point'],['säga ifrån','to speak up'],['läsa mellan raderna','to read between the lines'],['dra sitt strå till stacken','to do one’s part'],['lägga band på sig','to hold back'],['prata i nattmössan','to talk nonsense'],['få grepp om','to get a grip of'],['gå i taket','to hit the roof'],['hålla sams','to stay on good terms'],['ta i med hårdhandskarna','to be firm'],['slå an en ton','to strike a tone'],['komma överens','to agree']],
+story:{title:'Prata och förstå',lines:[
+['Jag gillar när folk kommer rakt på sak.','I like it when people get straight to the point.'],
+['Ibland måste man säga ifrån, även om det är obehagligt.','Sometimes you must speak up, even if it is unpleasant.'],
+['Läs mellan raderna: ibland betyder ett nej ett kanske.','Read between the lines: sometimes a no means a maybe.'],
+['Alla ska dra sitt strå till stacken på mötet.','Everyone should do their part at the meeting.'],
+['När chefen hörde det gick hon i taket.','When the manager heard that she hit the roof.'],
+['Det är bättre att hålla sams än att gräla.','It is better to stay on good terms than to quarrel.']]},
+tasks:[
+pick('Choose the idiom.','Come straight to the point.',['Kom rakt på sak.','Kom i taket.','Kom i nattmössan.'],0,'Rakt på sak.','Kom rakt på sak.'),
+pick('Choose the meaning.','Han pratar i nattmössan.',['He talks nonsense.','He sleeps at night.','He is quiet.'],0,'Nonsense.','Talks nonsense.'),
+pick('Choose the meaning.','Läs mellan raderna.',['Read what is implied.','Read slowly.','Skip the text.'],0,'Hidden meaning.','Read between the lines.'),
+type('Write the missing word.','Du måste säga ___ om du inte håller med.',['ifrån'],'Speak up.','Säga ifrån.'),
+type('Write the missing word.','Alla ska dra sitt ___ till stacken.',['strå'],'A straw.','Strå.'),
+pick('Choose the meaning.','Hon gick i taket.',['She got very angry.','She went up to the roof.','She fixed the roof.'],0,'Idiom.','She got very angry.'),
+tile('Put the words in order.',['Det','är','bättre','att','hålla','sams.'],'It is better to stay on good terms.','Idiom hålla sams.'),
+tile('Put the words in order.',['Kom','rakt','på','sak','och','var','kort.'],'Come straight to the point and be brief.','Imperative.'),
+listen('Listen. What happened when the boss heard?','När chefen hörde det gick hon i taket.',['She got very angry','She laughed','She left'],0,'Idiom.','She got very angry.'),
+pick('Story check: what can a no mean?','Ibland betyder ett nej ett kanske.',['A maybe','A yes','A promise'],0,'Kanske = maybe.','A maybe.'),
+pick('Choose the idiom for “do your part”.','Choose one.',['dra sitt strå till stacken','gå i taket','prata i nattmössan'],0,'Teamwork.','Dra sitt strå till stacken.'),
+pick('Choose the meaning.','Vi kom överens.',['We reached an agreement.','We came over.','We overslept.'],0,'Komma överens.','We agreed.')
+],
+boss:'Tell a short anecdote that uses at least four idioms from this mission. Your partner asks what each idiom means and replaces it with a plain phrase.'
+};
+LESSONS[56]={
+unit:57,title:'Environment',sv:'Miljö och klimat',place:'KLIMATET',
+rule:'Passive forms: -s passive, bli-passive, vara + participle',
+reference:'-s passive: Avfallet sorteras. Bli-passive (event): Huset blev sålt. Vara + participle (state): Huset är sålt. Past participles agree: en sorterad sopa, ett sorterat glas, sorterade flaskor. By whom = av: Rapporten skrevs av forskarna.',
+intro:'Climate, recycling and responsibility. Practise saying what is done without saying who does it.',
+words:[['ett avfall','waste'],['sortera','to sort'],['återvinna','to recycle'],['ett utsläpp','an emission'],['en förnybar källa','a renewable source'],['minska','to reduce'],['skydda','to protect'],['en skog','a forest'],['en klimatförändring','climate change'],['en energi','energy'],['förorena','to pollute'],['ett beslut','a decision']],
+story:{title:'Miljön',lines:[
+['Avfallet sorteras i flera kärl, och glas återvinns varje vecka.','Waste is sorted into several bins, and glass is recycled every week.'],
+['Utsläppen har minskats i många städer.','Emissions have been reduced in many cities.'],
+['Skogen blev skyddad av en ny lag förra året.','The forest was protected by a new law last year.'],
+['Rapporten skrevs av forskare, och beslutet fattades i går.','The report was written by researchers, and the decision was made yesterday.'],
+['Energin från vind är förnybar, men elen måste ändå transporteras.','Wind energy is renewable, but the electricity must still be transported.'],
+['Nu är flaskorna sorterade, och sopbilen kan komma.','Now the bottles are sorted and the bin lorry can come.']]},
+tasks:[
+pick('Choose the right passive.','Avfallet ___ i kärl.',['sorteras','sorterar','sorterat'],0,'-s passive.','Sorteras.'),
+pick('Choose the right passive.','Rapporten ___ av forskare.',['skrevs','skriver','skrivit'],0,'Past -s.','Skrevs.'),
+pick('Choose the right participle.','Huset är ___.',['sålt','sålda','sålde'],0,'Neuter.','Sålt.'),
+type('Write the missing word.','Skogen blev ___ av en ny lag. (protect)',['skyddad'],'En-word participle.','Skyddad.'),
+type('Write the missing word.','Utsläppen har ___ i många städer. (reduce, -s)',['minskats'],'Passive perfect.','Minskats.'),
+pick('Choose the correct sentence.','Passive.',['Glas återvinns varje vecka.','Glas återvinner varje vecka.','Glas återvunnit varje vecka.'],0,'Återvinns.','Glas återvinns.'),
+tile('Put the words in order.',['Rapporten','skrevs','av','forskare.'],'The report was written by researchers.','Av = by.'),
+tile('Put the words in order.',['Nu','är','flaskorna','sorterade.'],'Now the bottles are sorted.','Plural participle.'),
+listen('Listen. What is recycled weekly?','Glas återvinns varje vecka.',['Glass','Paper','Plastic'],0,'Glas = glass.','Glass.'),
+pick('Story check: what protected the forest?','En ny lag skyddade skogen.',['A new law','A fence','The weather'],0,'Lag = law.','A new law.'),
+pick('Choose the passive meaning.','Beslutet fattades i går.',['The decision was made yesterday.','They decide yesterday.','The decision fatta.'],0,'Fattas.','Was made yesterday.'),
+pick('Which is a state, not an event?','Choose one.',['Flaskorna är sorterade.','Flaskorna sorteras.','Flaskorna blev sorterade.'],0,'Vara + participle.','Är sorterade.')
+],
+boss:'Describe how waste is handled in your town using only passive forms (sorteras, återvinns, hämtas, transporteras). The partner asks who does it, and you answer with av.'
+};
+LESSONS[57]={
+unit:58,title:'City and country',sv:'Stad och land',place:'LANDSBYGDEN',
+rule:'More verbs with prepositions and place phrases',
+reference:'Verbs: bo i, flytta till/från, vara uppvuxen i, trivas med/i, sakna, längta efter/till, vänja sig vid, pendla till. Place phrases: på landet, i staden, ute på landsbygden, i storstan. Trivas = feel at home.',
+intro:'Living in the city or the countryside, and what you long for. Practise verbs of living and place phrases.',
+words:[['pendla','to commute'],['trivas','to feel at home'],['längta efter','to long for'],['vänja sig vid','to get used to'],['en storstad','a big city'],['landsbygd','countryside'],['en förort','a suburb'],['grannskap','neighbourhood'],['ett lugn','calm'],['en trafik','traffic'],['flytta till','to move to'],['vara uppvuxen','to have grown up']],
+story:{title:'Stad eller land?',lines:[
+['Jag är uppvuxen på landsbygden, men flyttade till storstan som vuxen.','I grew up in the countryside but moved to the big city as an adult.'],
+['Jag trivs med energin här, men längtar efter lugnet hemma.','I enjoy the energy here but long for the calm at home.'],
+['Det tog tid att vänja sig vid trafiken.','It took time to get used to the traffic.'],
+['Många pendlar in från förorten varje morgon.','Many commute in from the suburb every morning.'],
+['I grannskapet känner alla varandra.','In the neighbourhood everyone knows each other.'],
+['På landet bor vi, men på semestern reser vi till staden.','In the country we live, but on holiday we go to the city.']]},
+tasks:[
+pick('Choose the right preposition.','Jag längtar ___ lugnet.',['efter','på','om'],0,'Long for.','Längta efter.'),
+pick('Choose the right preposition.','Han har vant sig ___ trafiken.',['vid','på','med'],0,'Get used to.','Vänja sig vid.'),
+pick('Choose the right preposition.','Vi flyttade ___ Göteborg.',['till','på','i'],0,'Move to.','Flytta till.'),
+type('Write the missing word.','Hon trivs ___ staden.',['i','med'],'Feel at home in.','Trivs i staden.'),
+type('Write the missing word.','Många ___ in från förorten.',['pendlar'],'Commute.','Pendlar.'),
+pick('Choose the right place phrase.','Hon bor ___ landet.',['på','i','vid'],0,'På landet.','På landet.'),
+tile('Put the words in order.',['Jag','är','uppvuxen','på','landsbygden.'],'I grew up in the countryside.','Uppvuxen = brought up.'),
+tile('Put the words in order.',['Det','tog','tid','att','vänja','sig','vid','trafiken.'],'It took time to get used to the traffic.','Vänja sig vid.'),
+listen('Listen. Where does the speaker long to be?','Jag längtar efter lugnet hemma.',['At home in the calm','At work','In the city centre'],0,'Lugn = calm.','At home in the calm.'),
+pick('Story check: who commutes?','Många pendlar in från förorten.',['Many from the suburb','Only students','No one'],0,'Förort.','Many from the suburb.'),
+pick('Choose the meaning.','Jag trivs bra här.',['I feel at home here.','I travel here.','I tire here.'],0,'Trivas.','I feel at home.'),
+pick('Choose the correct sentence.','They moved from the city to the countryside.',['De flyttade från staden till landsbygden.','De flyttade av staden på landsbygden.','De flyttade till staden från landsbygden.'],0,'Från … till.','Från staden till landsbygden.')
+],
+boss:'Compare city life and country life with a partner. Use trivas, längta efter, vänja sig vid, pendla and flytta till. Decide together where each of you would like to live.'
+};
+LESSONS[58]={
+unit:59,title:'A life in Swedish',sv:'Livet',place:'LIVET',
+rule:'Review: idioms, particles, passive, linking words',
+reference:'A mixed review of the C-level toolkit: set phrases (rakt på sak, i och för sig), particle verbs (ta över, ge sig av), passive (sorteras, blev skriven), linking words (därför, dessutom, däremot, visserligen) and relative clauses (som, vars, vilket).',
+intro:'A story about life choices: practise everything together.',
+words:[['i och för sig','in itself, admittedly'],['mer eller mindre','more or less'],['i längden','in the long run'],['på sikt','in the long term'],['hur som helst','anyhow'],['över lag','generally'],['enligt','according to'],['trots allt','after all'],['en vändpunkt','a turning point'],['ett val','a choice'],['en erfarenhet','an experience'],['sammanfatta','to sum up']],
+story:{title:'Vändpunkten',lines:[
+['Hon fick ett erbjudande som blev en vändpunkt.','She got an offer that became a turning point.'],
+['I och för sig var jobbet bra, men hon längtade efter något nytt.','In itself the job was good, but she longed for something new.'],
+['Därför gav hon sig av, och staden där hon flyttade blev hennes nya hem.','Therefore she set off, and the city where she moved became her new home.'],
+['Enligt henne själv var valet svårt, men inte fel.','According to herself the choice was hard but not wrong.'],
+['På sikt har det gett henne erfarenheter som hon aldrig hade fått annars.','In the long run it has given her experiences she would never have had otherwise.'],
+['Hur som helst, trots allt är hon glad i dag.','Anyhow, after all she is happy today.']]},
+tasks:[
+pick('Choose the right phrase.','___ var jobbet bra, men hon ville något annat.',['I och för sig','På sikt','Hur som helst'],0,'Admittedly.','I och för sig.'),
+pick('Choose the right word.','Staden ___ hon bor är stor.',['där','som','vars'],0,'Place.','Där.'),
+pick('Choose the right verb form.','Beslutet ___ av styrelsen.',['fattades','fattar','fattat'],0,'Passive.','Fattades.'),
+type('Write the particle.','Hon gav sig ___ tidigt.',['av'],'Set off.','Gav sig av.'),
+type('Write the missing word.','Den ___ vågar vinner.',['som'],'Who.','Den som.'),
+pick('Choose the right linking word.','Det var dyrt. ___ köpte vi den.',['Ändå','Eftersom','Så att'],0,'Nevertheless.','Ändå.'),
+tile('Put the words in order.',['På','sikt','blir','det','bättre.'],'In the long term it gets better.','Verb second.'),
+tile('Put the words in order.',['Hon','blev','glad,','trots','att','det','var','svårt.'],'She became happy, even though it was hard.','Trots att.'),
+listen('Listen. What became a turning point?','Erbjudandet blev en vändpunkt.',['The offer','The holiday','The exam'],0,'Erbjudande.','The offer.'),
+pick('Story check: how does she feel today?','Hon är glad i dag.',['Happy','Angry','Tired'],0,'Glad.','Happy.'),
+pick('Choose the meaning.','Hur som helst.',['Anyhow','Next to him','How often'],0,'Set phrase.','Anyhow.'),
+pick('Choose the meaning.','Sammanfatta texten.',['Sum up the text.','Copy the text.','Print the text.'],0,'Sammanfatta.','Sum up.')
+],
+boss:'Tell the story of an important choice in your life in about eight sentences. Use at least one idiom, one particle verb, one passive, one relative clause and two linking words.'
+};
