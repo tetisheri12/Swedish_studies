@@ -1870,13 +1870,13 @@ function hintBtn(text,host){const b=button('💡 English hint',()=>{b.replaceWit
 function imgBtn(w){const a=node('a','🔍 Bilder');a.href='https://www.google.com/search?tbm=isch&q='+encodeURIComponent(bare(w).replace(/ …/g,''))+'&hl=sv';a.target='_blank';a.rel='noopener';a.className='say';a.style.textDecoration='none';a.style.border='1px solid var(--line)';a.style.borderRadius='14px';return a}
 function vocabCard(s,c,done){
   s.append(node('p','What does it mean? Explain it to yourself, then check.'+(c.src?' · '+c.src:''),'label'));const h=node('div',undefined,'word');h.append(artSpan(c.w),sayBtn(c.w));s.append(h);
-  if(c.ex){s.append(exNode(c.ex,false));const r0=node('div','','row center');r0.append(sayBtn(exFull(c.ex),'🔊 Meningen'));s.append(r0)}
-  if(c.note)s.append(node('div','💭 '+c.note,'note'));const mn=mnemonic(c);if(mn)s.append(mn);
+  if(c.ex){s.append(exNode(c.ex,false));const r0=node('div','','row center');r0.append(sayBtn(exFull(c.ex),'🔊 Hear sentence'));s.append(r0)}
+  if(c.note)s.append(node('div','💭 My memory hook: '+c.note,'note'));const mn=mnemonic(c);if(mn)s.append(mn);
   const r=node('div',undefined,'row center');const show=button('Visa svaret',()=>{r.remove();const e=node('div',c.en,'word');e.style.fontSize='28px';e.style.fontWeight='normal';s.append(e);if(c.f)s.append(sv('p',c.f.join(' · '),'center muted'));else if(c.raw)s.append(sv('p',c.raw,'center muted'));const og=originOf(c.w);if(og)s.append(node('div','📜 '+og,'origin'));selfGrade(s,done)},'primary');think(show);r.append(show);s.append(r);say(c.w)}
 function vprodCard(s,c,done){
   s.append(node('p','Say the missing Swedish word'+(/^(en|ett) /.test(c.w)?' — with en or ett!':'!'),'label'));
   if(c.ex)s.append(exNode(c.ex,true));else s.append(node('div','🧩','pic'));
-  if(c.note)s.append(node('div','💭 '+c.note,'note'));const mn=mnemonic(c);if(mn)s.append(mn);
+  if(c.note)s.append(node('div','💭 My memory hook: '+c.note,'note'));const mn=mnemonic(c);if(mn)s.append(mn);
   const hr=node('div','','row center');hr.append(hintBtn(c.en));if(c.ex)hr.append(button('🔊 Hear the sentence',()=>say(exFull(c.ex).replace(c.exw||'','…'))));s.append(hr);
   const r=node('div',undefined,'row center');const show=button('Visa svaret',()=>{r.remove();hr.remove();const h=node('div',undefined,'word');h.append(artSpan(c.w),sayBtn(c.w));s.append(h);if(c.ex){s.append(exNode(c.ex,false))}say(c.ex?exFull(c.ex):c.w);selfGrade(s,done)},'primary');think(show);r.append(show);s.append(r)}
 function formsCard(s,c,done){
@@ -1924,7 +1924,7 @@ function runUnitCheck(u,after){
     const talk=node('div','','oktalk');if(window.catEl)talk.append(catEl(['peek','smug','shock','happy','face'][pos%5],['tabby','orange','tuxedo','calico','grey'][Math.floor(pos/5)%5],'okcat'));
     talk.append(node('div',!v.ex?'Känner du igen det här ordet?':pos===(st.cpos||0)?'Hej! Läs meningen och lyssna. Förstår du det gula ordet?':['Förstår du det här?','Och det här ordet?','Vad sägs om det här?','Nästa! Känner du igen det?'][pos%4],'okbubble'));s.append(talk);
     const card=node('div','','okcard');const h=node('div',undefined,'word');h.append(artSpan(vWord(v)),sayBtn(vWord(v)));card.append(h);
-    if(v.ex){card.append(exNode(v.ex,false));const r0=node('div','','row center');r0.append(sayBtn(exFull(v.ex),'🔊 Meningen'),button('🐢',()=>say(exFull(v.ex),.65)));card.append(r0)}
+    if(v.ex){card.append(exNode(v.ex,false));const r0=node('div','','row center');r0.append(sayBtn(exFull(v.ex),'🔊 Hear sentence'),button('🐢',()=>say(exFull(v.ex),.65)));card.append(r0)}
     const hr=node('div','','row center');hr.append(hintBtn(v.en));card.append(hr);s.append(card);
     const go=(known,cls)=>{if(!known){if(!unk.has(v.id))fresh++;unk.add(v.id)}else unk.delete(v.id);card.classList.add(cls);document.onkeydown=null;setTimeout(()=>{pos++;draw()},230)};
     const r=node('div','','row center okbtns');
@@ -1974,7 +1974,7 @@ function runNew(){
   function introVoc(v,u){
     const w=vWord(v);const s=shell('Nytt ord',i+' / '+total+' · '+u.title);
     const h=node('div',undefined,'word');h.append(artSpan(w),sayBtn(w),imgBtn(w));s.append(h);
-    if(v.ex){s.append(exNode(v.ex,false));const r0=node('div','','row center');r0.append(sayBtn(exFull(v.ex),'🔊 Meningen'),button('🐢',()=>say(exFull(v.ex),.65)));s.append(r0)}
+    if(v.ex){s.append(exNode(v.ex,false));const r0=node('div','','row center');r0.append(sayBtn(exFull(v.ex),'🔊 Hear sentence'),button('🐢',()=>say(exFull(v.ex),.65)));s.append(r0)}
     const hr=node('div','','row center');hr.append(hintBtn(v.en));s.append(hr);
     if(v.f){const f=sv('p',v.f.join(' · '),'center muted');f.append(' ',sayBtn(v.f.join(', ')));s.append(f)}else if(v.raw)s.append(sv('p',v.raw,'center muted'));
     const og=originOf(v.sv);if(og)s.append(node('div','📜 Ordets ursprung: '+og,'origin'));
