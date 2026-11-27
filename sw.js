@@ -1,6 +1,6 @@
 /* Swedish Studies offline cache: network first, cache as backup. */
-const CACHE='svenska-v17';
-const CORE=['daily.html','arena.html','index.html','reader.html','app.html','resurser.html','ordbank.html','grammatik.html','lessons.js','reader-data.js','reader-bank.js','manifest.webmanifest','favicon.svg','favicon.ico','favicon-32.png','icon-192.png','icon-512.png','apple-touch-icon.png'];
+const CACHE='svenska-v18';
+const CORE=['daily.html','sync.js','firebase-config.js','arena.html','index.html','reader.html','app.html','resurser.html','ordbank.html','grammatik.html','lessons.js','reader-data.js','reader-bank.js','manifest.webmanifest','favicon.svg','favicon.ico','favicon-32.png','icon-192.png','icon-512.png','apple-touch-icon.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>Promise.all(CORE.map(u=>c.add(u).catch(()=>null)))).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(e.request.method!=='GET')return;
