@@ -1,4 +1,4 @@
-/* Swedish Studies · lessons data. Original practice content following the topic
+/* Ragnars skatt · lessons data. Original practice content following the topic
    sequence of Colloquial Swedish (4th ed.). No text copied from the book. */
 'use strict';
 const pick=(prompt,scene,choices,correct,hint,why)=>({type:'pick',prompt,scene,choices,correct,hint,why});

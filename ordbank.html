@@ -1,4 +1,4 @@
-<!doctype html><html lang="sv"><head><meta charset="utf-8"><script src="firebase-config.js"></script><script src="sync.js"></script><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Swedish Studies · Ordbank</title><style>
+<!doctype html><html lang="sv"><head><meta charset="utf-8"><script src="firebase-config.js"></script><script src="sync.js"></script><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Ragnars skatt · Ordbank</title><style>
 :root{--bg:#f7f3e9;--ink:#203536;--muted:#526665;--accent:#a53e23;--line:#c8cec3;--wash:#e7eddf;--card:#fffdf7;--good:#2f6b45;--due:#b4521f;--key:#f6e3a1;--r:14px}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 'Trebuchet MS',Arial,sans-serif}
 button,input,select{font:inherit;color:inherit}button{border:2px solid var(--line);border-radius:999px;background:#fff;padding:8px 16px;font-weight:bold;cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #f2d4c8;border-color:var(--accent)}button.primary{background:var(--accent);border-color:var(--accent);color:#fff}button.small{padding:4px 10px;font-size:14px}
 a{color:var(--accent)}header,main,footer{max-width:980px;margin:auto;padding:24px}header{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}header nav{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}header nav a{padding:6px 0;text-decoration:none;font-size:14px}header nav a[aria-current="page"]{color:var(--ink);font-weight:bold;border-bottom:2px solid var(--accent)}
@@ -15,7 +15,7 @@ h2{margin:6px 0 10px}.label{font-size:12px;text-transform:uppercase;letter-spaci
 .empty{background:var(--card);border:1.5px solid var(--line);border-radius:var(--r);padding:20px;text-align:center}.empty .cat{width:110px;height:110px;display:inline-block}
 @media(max-width:560px){.row{grid-template-columns:auto 1fr}.row .acts{grid-column:1/-1;justify-content:flex-start}}
 </style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat+Brush&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Svenska"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png"><link rel="shortcut icon" href="favicon.ico"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#f7f3e9">
+<link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Ragnars skatt"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png"><link rel="shortcut icon" href="favicon.ico"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#f7f3e9">
 <style>.brandlogo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:inherit}.brandlogo img{width:38px;height:38px;border-radius:10px;flex:none}</style>
 <style>.tabbar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(255,253,247,.97);border-top:1px solid #c8cec3;padding:6px 6px calc(6px + env(safe-area-inset-bottom));justify-content:space-around;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}.tabbar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;color:#526665;font-size:12px;font-weight:bold;padding:4px 0;border-radius:12px}.tabbar a i{font-style:normal;font-size:24px;line-height:1.1}.tabbar a[aria-current=page]{color:#a53e23;background:#f2e6dc}
 html.app .tabbar{display:flex}html.app header nav{display:none}html.app body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}html.app header{padding-top:calc(14px + env(safe-area-inset-top))}html.app footer{display:none}html.app body{-webkit-user-select:none;user-select:none}html.app input,html.app textarea{-webkit-user-select:text;user-select:text}
@@ -87,7 +87,7 @@ ol.roman li{counter-increment:r;display:flex;justify-content:space-between;paddi
 ol.roman li::after{content:counter(r,upper-roman);font-family:var(--serif);color:var(--muted)}
 ol.roman li.on{color:var(--good)}
 .meter{background:var(--wash)}
-</style><script>(function(){try{var m=location.search.match(/theme=([a-z]+)/);if(m)localStorage.setItem('svTheme',m[1]);if(localStorage.getItem('svTheme')!=='classic')document.getElementById('srtheme').media='all'}catch(e){document.getElementById('srtheme').media='all'}})()</script><script>/* Shared profile + word-bank helpers for every page of Swedish Studies. */
+</style><script>(function(){try{var m=location.search.match(/theme=([a-z]+)/);if(m)localStorage.setItem('svTheme',m[1]);if(localStorage.getItem('svTheme')!=='classic')document.getElementById('srtheme').media='all'}catch(e){document.getElementById('srtheme').media='all'}})()</script><script>/* Shared profile + word-bank helpers for every page of Ragnars skatt. */
 (function(){
 var PKEY='swedish-profiles-v1',DKEY='swedish-daily-v1';
 function rd(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded',function(){if(document.body.classLi
  var nav=document.querySelector('header nav');if(nav&&!document.documentElement.classList.contains('app')){nav.appendChild(chip())}
  else{var h=document.createElement('div');h.className='profhost';h.appendChild(chip());var hd=document.querySelector('header');if(hd)hd.appendChild(h);else document.body.insertBefore(h,document.body.firstChild)}});
 })();
-</script><script>/* Original watercolour-and-ink cats drawn in SVG for Swedish Studies. */
+</script><script>/* Original watercolour-and-ink cats drawn in SVG for Ragnars skatt. */
 (function(){
 var n=0;
 /* Wash-and-pencil cats: a soft watercolour wash with a few charcoal lines. Drawn for this site. */
@@ -285,7 +285,7 @@ window.catAvatar=function(av){var m=AVRE.exec(av||'');return m?avHTML(m[1]):null
  function start(){if(!document.body)return;run();new MutationObserver(function(ms){if(busy)return;busy=true;try{ms.forEach(function(m){m.addedNodes.forEach(function(n){if(n.nodeType===3){if(AVRE.test(n.nodeValue)&&n.parentNode){var s=document.createElement('span');n.parentNode.insertBefore(s,n);s.appendChild(n);avConv(s);while(s.firstChild)s.parentNode.insertBefore(s.firstChild,s);s.remove()}}else if(n.nodeType===1)avConv(n)})})}finally{busy=false}}).observe(document.body,{childList:true,subtree:true})}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start()})();
 })();
-</script></head><body><header><a class="brandlogo" href="daily.html"><img src="icon-192.png" alt="" width="38" height="38"><strong>SWEDISH / STUDIES</strong></a><nav aria-label="Main navigation">
+</script></head><body><header><a class="brandlogo" href="daily.html"><img src="icon-192.png" alt="" width="38" height="38"><strong>RAGNARS SKATT</strong></a><nav aria-label="Main navigation">
     <a href="daily.html">Idag</a>
     <a href="index.html">Uppdrag</a>
     <a href="arena.html">Arena</a>
