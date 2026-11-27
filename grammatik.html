@@ -65,7 +65,45 @@ a{color:var(--accent)}
 .arenahero{position:relative}.arenahero h1{padding-right:120px}.herocat{position:absolute;right:-6px;bottom:-24px;width:110px;height:110px}
 .resultcat{display:block;width:150px;height:150px;margin:0 auto}
 @media(max-width:700px){.herocat{width:96px;height:96px}.arenahero h1{padding-right:84px}.peekcat{width:116px;height:116px;top:-110px}}
-</style><script>/* Shared profile + word-bank helpers for every page of Swedish Studies. */
+</style><style id="srtheme" media="not all">/* superr-inspired v2: calm cream page, serif headings, handwritten orange notes, thin-ink cards, dashed dividers, roman-numeral rows */
+:root{--bg:#fcfaf8;--card:#fff;--ink:#2b1a0d;--muted:#6b5a4c;--line:#ecd9cc;--wash:#f7efe8;--accent:#ff6f1e;--good:#1fa85a;--sky:#2f62a8;--pink:#e052b8;--r:12px;
+--hand:'Caveat','Bradley Hand','Segoe Print','Marker Felt','Comic Sans MS',cursive;--serif:'Lora','Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif}
+body{background:var(--bg);background-image:none;color:var(--ink)}
+h1,h2,h3,.mega,header strong{font-family:var(--serif);text-transform:none;font-stretch:normal;font-weight:700;letter-spacing:-.01em}
+h1,.mega{font-size:clamp(38px,7vw,60px)!important;line-height:1.02}
+h2{font-size:clamp(26px,4vw,34px);line-height:1.1}
+header strong{font-size:22px}header strong::after{content:''}
+.label{background:none;color:var(--accent);padding:0;transform:rotate(-2deg);display:inline-block;font-family:var(--hand);font-size:22px;letter-spacing:0;text-transform:none;font-weight:700}
+.script{font-family:var(--hand)}
+/* cards: white, thin ink, soft radius, no heavy shadow */
+.stage,.unitcard,.tcard,.game,.pl,.prof,dialog,.course,.streakcard,.path .st{background-color:var(--card);border:1.5px solid var(--ink);border-radius:var(--r);box-shadow:none;transform:none}
+.stage,.unitcard,.tcard,.pl,.prof{background-image:repeating-linear-gradient(transparent 0,transparent 31px,rgba(47,98,168,.07) 31px,rgba(47,98,168,.07) 32px)}
+.stage::before{content:'';position:absolute;left:14px;top:0;bottom:0;width:1.5px;background:rgba(224,82,60,.25);pointer-events:none}
+.streakcard{background-image:none}.streakcard::before{content:none}
+.course:nth-child(n){background:var(--card)}
+.course{padding:12px 16px}.course.cur{box-shadow:0 0 0 3px rgba(255,111,30,.18)}
+.cbar{background:var(--wash);border:0}
+.path .st.ok{background:#e9f6ee;border-color:var(--good)}.path .st.next{border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,111,30,.15)}
+/* buttons: flat and friendly */
+button{border:1.5px solid var(--ink);border-radius:10px;background:var(--card);color:var(--ink);font-weight:600}button:hover{background:var(--wash)}
+button.primary,button.selected{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:none;transform:none}button.primary:hover{filter:brightness(1.05)}button.primary:active{transform:translateY(1px)}
+button.good{box-shadow:none}
+.tabs button{border-radius:10px}.tabs button.on{background:var(--ink);color:#fff;box-shadow:none}
+/* dashed peach dividers like the FAQ */
+.srow{border-bottom:1.5px dashed var(--line)}section,hr{border-color:var(--line)}
+h2::after{content:none}
+.tabbar{background:rgba(252,250,248,.96);border-top:1px solid var(--line)}.tabbar a[aria-current=page]{color:var(--accent)}
+a{color:var(--accent)}
+/* handwritten notes */
+.note{background:none;border:0;border-radius:0;padding:0;box-shadow:none;transform:rotate(-1deg);font-family:var(--hand);font-size:1.3em;color:var(--accent)}
+.hand{font-family:var(--hand);color:var(--accent);font-size:1.25em;display:inline-block;transform:rotate(-3deg)}
+/* roman-numeral rows (the "magic paper" list) */
+ol.roman{list-style:none;counter-reset:r;padding:0;margin:0;border:1.5px solid var(--ink);border-radius:var(--r);background:#fff;overflow:hidden}
+ol.roman li{counter-increment:r;display:flex;justify-content:space-between;padding:11px 18px;border-top:1px solid var(--line)}ol.roman li:first-child{border-top:0}
+ol.roman li::after{content:counter(r,upper-roman);font-family:var(--serif);color:var(--muted)}
+ol.roman li.on{color:var(--good)}
+.meter{background:var(--wash)}
+</style><script>(function(){try{var m=location.search.match(/theme=([a-z]+)/);if(m)localStorage.setItem('svTheme',m[1]);if(localStorage.getItem('svTheme')==='superr')document.getElementById('srtheme').media='all'}catch(e){}})()</script><script>/* Shared profile + word-bank helpers for every page of Swedish Studies. */
 (function(){
 var PKEY='swedish-profiles-v1',DKEY='swedish-daily-v1';
 function rd(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}
