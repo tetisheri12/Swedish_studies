@@ -116,9 +116,16 @@
 
   function fail(e) {
     console.warn('[sync]', e);
-    setState('error');
     var code = e && (e.code || e.message) || '';
-    if (/permission/i.test(code)) toast('Cloud sync: this Google account is not allowed. Ask the person who set up the site.');
+    // Who may sync is decided only by the Firestore rules (the allowed/{email} list in the console).
+    // An account that is not on it is refused on its first read: sign it out and say so.
+    if (/permission/i.test(code) && user) {
+      var email = user.email;
+      user = null; backend.signOut(); setState('off');
+      ready.then(function () { dialog('Not allowed', email + ' is not on this site’s list of accounts. Sign in with one of the family’s Gmail accounts.', [['OK', function () {}, true]]); });
+      return;
+    }
+    setState('error');
   }
 
   /* ---------- first sign-in on this device ---------- */
@@ -269,12 +276,6 @@
   Promise.resolve(FAKE || firebaseBackend()).then(function (b) {
     backend = b;
     b.onAuth(function (u) {
-      var allow = (window.SYNC_ALLOWED_EMAILS || []).map(function (e) { return String(e).toLowerCase(); });
-      if (u && allow.length && allow.indexOf(String(u.email).toLowerCase()) < 0) {
-        b.signOut(); user = null; setState('off');
-        ready.then(function () { dialog('Not allowed', u.email + ' is not on this site’s list of accounts. Sign in with one of the family’s Gmail accounts.', [['OK', function () {}, true]]); });
-        return;
-      }
       user = u; if (!u) { setState('off'); return; }
       ready.then(start);
     });

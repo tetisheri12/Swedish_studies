@@ -1,12 +1,14 @@
 rules_version = '2';
-// Paste this into Firebase console → Firestore Database → Rules.
-// Keep the Gmail list the same as SYNC_ALLOWED_EMAILS in firebase-config.js.
+// Paste this into Firebase console → Firestore Database → Rules, then Publish.
+// Who may sign in is the "allowed" collection: one document per person, whose ID is
+// their Gmail address in lower case. Add or delete those documents in Firestore → Data.
+// Nobody can read or change "allowed" from the site; only the console can.
 service cloud.firestore {
   match /databases/{database}/documents {
     function allowed() {
       return request.auth != null
         && request.auth.token.email_verified == true
-        && request.auth.token.email in ['semramacar@gmail.com', 'mcahmetcinar@gmail.com'];
+        && exists(/databases/$(database)/documents/allowed/$(request.auth.token.email.lower()));
     }
     // Each person can only see and change their own saved progress.
     match /users/{uid}/{document=**} {
