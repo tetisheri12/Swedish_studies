@@ -1,5 +1,5 @@
 /* Swedish Studies offline cache: network first, cache as backup. */
-const CACHE='svenska-v13';
+const CACHE='svenska-v14';
 const CORE=['daily.html','arena.html','index.html','reader.html','app.html','resurser.html','ordbank.html','grammatik.html','lessons.js','reader-data.js','reader-bank.js','manifest.webmanifest','favicon.svg','favicon.ico','favicon-32.png','icon-192.png','icon-512.png','apple-touch-icon.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>Promise.all(CORE.map(u=>c.add(u).catch(()=>null)))).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});

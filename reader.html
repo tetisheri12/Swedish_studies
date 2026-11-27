@@ -101,7 +101,7 @@ ol.roman li{counter-increment:r;display:flex;justify-content:space-between;paddi
 ol.roman li::after{content:counter(r,upper-roman);font-family:var(--serif);color:var(--muted)}
 ol.roman li.on{color:var(--good)}
 .meter{background:var(--wash)}
-</style><script>(function(){try{var m=location.search.match(/theme=([a-z]+)/);if(m)localStorage.setItem('svTheme',m[1]);if(localStorage.getItem('svTheme')==='superr')document.getElementById('srtheme').media='all'}catch(e){}})()</script><script>/* Shared profile + word-bank helpers for every page of Swedish Studies. */
+</style><script>(function(){try{var m=location.search.match(/theme=([a-z]+)/);if(m)localStorage.setItem('svTheme',m[1]);if(localStorage.getItem('svTheme')!=='classic')document.getElementById('srtheme').media='all'}catch(e){document.getElementById('srtheme').media='all'}})()</script><script>/* Shared profile + word-bank helpers for every page of Swedish Studies. */
 (function(){
 var PKEY='swedish-profiles-v1',DKEY='swedish-daily-v1';
 function rd(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}
