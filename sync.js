@@ -1,4 +1,4 @@
-/* Swedish Studies cloud sync: sign in with Google, keep progress the same on every device.
+/* Ragnars skatt cloud sync: sign in with Google, keep progress the same on every device.
    Syncs every localStorage key that starts with "swedish" (all profiles, words, missions, reader texts)
    to Firestore under users/{uid}/kv/{key}. Audiobook files (IndexedDB) stay on the device.
    Loaded as a classic script in <head>, before the page's own scripts, so it can note what this
