@@ -169,11 +169,12 @@
   }
 
   /* ---------- UI ---------- */
-  var btn = null, dlg = null, ban = null;
+  var dlg = null, ban = null;
   function css() {
     var s = document.createElement('style');
-    s.textContent = '.syncbtn{font:inherit;font-size:15px;background:var(--card,#fff);border:1.5px solid var(--line,#c8cec3);border-radius:999px;padding:5px 12px;cursor:pointer;color:inherit;white-space:nowrap;margin-left:auto;align-self:center}' +
-      '.syncbtn.on{border-color:#5a9a6b}.syncbtn.error{border-color:#c0392b}' +
+    s.textContent = '.syncrow{display:grid;gap:6px;margin-top:4px;padding-top:10px;border-top:1px solid #e3e6dc;font-size:14px;line-height:1.35}' +
+      '.profpop .syncrow button{justify-content:center}' +
+      '.profpop .syncrow button.primary{background:var(--accent,#ee4d1f);border-color:var(--accent,#ee4d1f);color:#fff}' +
       '.synccard{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:18px 0 22px;padding:14px 16px;border:1.5px dashed var(--line,#c8cec3);border-radius:14px;background:var(--card,#fff);max-width:640px;line-height:1.45}' +
       '.synccard button{font:inherit;border-radius:10px;padding:9px 14px;cursor:pointer;border:1.5px solid var(--line,#c8cec3);background:var(--card,#fff);color:inherit;white-space:nowrap}' +
       '.synccard button.primary{background:var(--accent,#ee4d1f);border-color:var(--accent,#ee4d1f);color:#fff;font-weight:600}' +
@@ -185,29 +186,32 @@
       '.syncban button{font:inherit;border:0;border-radius:8px;padding:6px 10px;cursor:pointer}';
     document.head.appendChild(s);
   }
-  /* Card on the "Hej! Vem är du?" screen: the natural place to bring progress to a new device. */
-  var card = null;
-  function renderCard() {
-    if (!card) return;
-    card.replaceChildren();
+  /* Sign-in lives in "Vem är du?" only: the card on the Idag picker screen, and a row in the
+     "Vem tränar?" profile popup that the 👤 chip opens on every page. */
+  var boxes = [];
+  function fillBox(el, compact) {
+    el.replaceChildren();
     var t = document.createElement('div'), b = document.createElement('button');
-    b.type = 'button'; b.onclick = menu;
+    b.type = 'button';
+    b.onclick = function () { var pop = el.closest('.profpop'); if (pop) pop.remove(); menu(); };
+    var mail = user ? String(user.email).replace(/[<>&]/g, '') : '';
     if (!user) {
-      t.innerHTML = '<b>☁️ Practising on another device too?</b><br>Sign in with Google to bring your profiles, words and streak here — and keep them safe.';
-      b.textContent = 'Sign in with Google'; b.className = 'primary';
+      t.innerHTML = compact ? '<b>☁️ Spara i molnet</b><br>Keep progress on every device.'
+        : '<b>☁️ Practising on another device too?</b><br>Sign in with Google to bring your profiles, words and streak here — and keep them safe.';
+      b.textContent = state === 'busy' ? 'Signing in …' : 'Sign in with Google'; b.className = 'primary';
     } else {
-      t.innerHTML = '<b>☁️ Signed in as ' + String(user.email).replace(/[<>&]/g, '') + '</b><br>' +
-        (state === 'error' ? 'The last sync failed — check your internet connection.' : 'Every profile on this device is saved to your Google account.');
+      t.innerHTML = '<b>☁️ ' + (state === 'busy' ? 'Syncing …' : state === 'error' ? 'Sync problem' : 'Synced') + '</b><br>' + mail +
+        (state === 'error' ? ' — check your internet connection.' : compact ? '' : ' · every profile on this device is saved to your Google account.');
       b.textContent = 'Account';
     }
-    card.append(t, b);
+    el.append(t, b);
   }
   function setState(s) {
-    state = s; renderCard(); if (!btn) return;
-    btn.className = 'syncbtn ' + s;
-    btn.textContent = !user ? '☁️ Sign in' : s === 'busy' ? '☁️ …' : s === 'error' ? '☁️ ⚠' : '☁️ ✓';
-    btn.title = !user ? 'Sign in with Google to keep progress on every device' : user.email + (s === 'error' ? ' · sync problem — tap for details' : ' · synced');
+    state = s;
+    boxes = boxes.filter(function (x) { return x[0].isConnected; });
+    boxes.forEach(function (x) { fillBox(x[0], x[1]); });
   }
+  function addBox(el, compact) { boxes.push([el, compact]); fillBox(el, compact); }
   function toast(msg) {
     var t = document.createElement('div'); t.className = 'syncban'; t.textContent = msg; document.body.appendChild(t);
     setTimeout(function () { t.remove(); }, 4200);
@@ -248,16 +252,15 @@
   }
   function mount() {
     css();
-    // Sit in the header next to the logo, not inside the menu: the home-screen app (iPad/iPhone)
-    // hides the header menu and uses the bottom tab bar instead.
-    var header = document.querySelector('header');
-    if (!header) return;
-    btn = document.createElement('button'); btn.type = 'button'; btn.onclick = menu;
-    var nav = header.querySelector('nav');
-    if (nav) header.insertBefore(btn, nav); else header.appendChild(btn);
     var list = document.getElementById('proflist');
-    if (list) { card = document.createElement('div'); card.className = 'synccard'; list.parentNode.insertBefore(card, list); }
-    setState(state);
+    if (list) { var card = document.createElement('div'); card.className = 'synccard'; list.parentNode.insertBefore(card, list); addBox(card, false); }
+    // The shared profile helper builds the "Vem tränar?" popup on demand: add the sign-in row when it opens.
+    new MutationObserver(function (ms) {
+      ms.forEach(function (m) { m.addedNodes.forEach(function (n) {
+        var c = n.nodeType === 1 && n.classList.contains('profpop') && n.querySelector('.card');
+        if (c) { var row = document.createElement('div'); row.className = 'syncrow'; c.appendChild(row); addBox(row, true); }
+      }); });
+    }).observe(document.body, { childList: true });
   }
 
   /* ---------- go ---------- */

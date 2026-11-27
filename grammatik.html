@@ -301,12 +301,12 @@ window.catAvatar=function(av){var m=AVRE.exec(av||'');return m?avHTML(m[1]):null
  function start(){if(!document.body)return;run();new MutationObserver(function(ms){if(busy)return;busy=true;try{ms.forEach(function(m){m.addedNodes.forEach(function(n){if(n.nodeType===3){if(AVRE.test(n.nodeValue)&&n.parentNode){var s=document.createElement('span');n.parentNode.insertBefore(s,n);s.appendChild(n);avConv(s);while(s.firstChild)s.parentNode.insertBefore(s.firstChild,s);s.remove()}}else if(n.nodeType===1)avConv(n)})})}finally{busy=false}}).observe(document.body,{childList:true,subtree:true})}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start()})();
 })();
-</script><style>header nav a[data-en]{display:inline-flex;flex-direction:column;align-items:center;line-height:1.1}header nav a[data-en]::after{content:attr(data-en);font-size:10px;opacity:.65;font-weight:400;text-decoration:none}</style></head><body><header><a class="brandlogo" href="daily.html"><img src="icon-192.png" alt="" width="38" height="38"><strong>SWEDISH / STUDIES</strong></a><nav aria-label="Main navigation">
-    <a href="daily.html" data-en="Today">Idag</a>
-    <a href="index.html" data-en="Missions">Uppdrag</a>
-    <a href="arena.html" aria-current="page" data-en="Games">Arena</a>
-    <a href="reader.html" data-en="Read">Läsa</a>
-    <a href="ordbank.html" data-en="Words">Ord</a><a href="resurser.html" data-en="Extras">Resurser</a>
+</script></head><body><header><a class="brandlogo" href="daily.html"><img src="icon-192.png" alt="" width="38" height="38"><strong>SWEDISH / STUDIES</strong></a><nav aria-label="Main navigation">
+    <a href="daily.html">Idag</a>
+    <a href="index.html">Uppdrag</a>
+    <a href="arena.html" aria-current="page">Arena</a>
+    <a href="reader.html">Läsa</a>
+    <a href="ordbank.html">Ord</a><a href="resurser.html">Resurser</a>
   </nav></header>
 <main id="main"></main>
 <footer>Original lessons written for this app. Progress stays in this browser.</footer>
