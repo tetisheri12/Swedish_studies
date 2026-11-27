@@ -172,7 +172,7 @@
   var btn = null, dlg = null, ban = null;
   function css() {
     var s = document.createElement('style');
-    s.textContent = '.syncbtn{font:inherit;background:none;border:1.5px solid var(--line,#c8cec3);border-radius:999px;padding:3px 11px;cursor:pointer;color:inherit;white-space:nowrap}' +
+    s.textContent = '.syncbtn{font:inherit;font-size:15px;background:var(--card,#fff);border:1.5px solid var(--line,#c8cec3);border-radius:999px;padding:5px 12px;cursor:pointer;color:inherit;white-space:nowrap;margin-left:auto;align-self:center}' +
       '.syncbtn.on{border-color:#5a9a6b}.syncbtn.error{border-color:#c0392b}' +
       '.syncdlg{border:1.5px solid var(--line,#c8cec3);border-radius:16px;padding:20px 22px;max-width:360px;background:var(--card,#fff);color:var(--ink,#161412)}' +
       '.syncdlg::backdrop{background:rgba(0,0,0,.35)}.syncdlg h2{margin:0 0 8px;font-size:22px}.syncdlg p{margin:6px 0 14px;line-height:1.45}' +
@@ -228,10 +228,14 @@
   }
   function mount() {
     css();
-    var nav = document.querySelector('header nav') || document.querySelector('header');
-    if (!nav) return;
+    // Sit in the header next to the logo, not inside the menu: the home-screen app (iPad/iPhone)
+    // hides the header menu and uses the bottom tab bar instead.
+    var header = document.querySelector('header');
+    if (!header) return;
     btn = document.createElement('button'); btn.type = 'button'; btn.onclick = menu;
-    nav.appendChild(btn); setState(state);
+    var nav = header.querySelector('nav');
+    if (nav) header.insertBefore(btn, nav); else header.appendChild(btn);
+    setState(state);
   }
 
   /* ---------- go ---------- */
