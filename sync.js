@@ -174,6 +174,9 @@
     var s = document.createElement('style');
     s.textContent = '.syncbtn{font:inherit;font-size:15px;background:var(--card,#fff);border:1.5px solid var(--line,#c8cec3);border-radius:999px;padding:5px 12px;cursor:pointer;color:inherit;white-space:nowrap;margin-left:auto;align-self:center}' +
       '.syncbtn.on{border-color:#5a9a6b}.syncbtn.error{border-color:#c0392b}' +
+      '.synccard{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:18px 0 22px;padding:14px 16px;border:1.5px dashed var(--line,#c8cec3);border-radius:14px;background:var(--card,#fff);max-width:640px;line-height:1.45}' +
+      '.synccard button{font:inherit;border-radius:10px;padding:9px 14px;cursor:pointer;border:1.5px solid var(--line,#c8cec3);background:var(--card,#fff);color:inherit;white-space:nowrap}' +
+      '.synccard button.primary{background:var(--accent,#ee4d1f);border-color:var(--accent,#ee4d1f);color:#fff;font-weight:600}' +
       '.syncdlg{border:1.5px solid var(--line,#c8cec3);border-radius:16px;padding:20px 22px;max-width:360px;background:var(--card,#fff);color:var(--ink,#161412)}' +
       '.syncdlg::backdrop{background:rgba(0,0,0,.35)}.syncdlg h2{margin:0 0 8px;font-size:22px}.syncdlg p{margin:6px 0 14px;line-height:1.45}' +
       '.syncdlg .row{display:flex;gap:8px;flex-wrap:wrap}.syncdlg button{font:inherit;border-radius:10px;padding:9px 14px;cursor:pointer;border:1.5px solid var(--line,#c8cec3);background:var(--card,#fff);color:inherit}' +
@@ -182,8 +185,25 @@
       '.syncban button{font:inherit;border:0;border-radius:8px;padding:6px 10px;cursor:pointer}';
     document.head.appendChild(s);
   }
+  /* Card on the "Hej! Vem är du?" screen: the natural place to bring progress to a new device. */
+  var card = null;
+  function renderCard() {
+    if (!card) return;
+    card.replaceChildren();
+    var t = document.createElement('div'), b = document.createElement('button');
+    b.type = 'button'; b.onclick = menu;
+    if (!user) {
+      t.innerHTML = '<b>☁️ Practising on another device too?</b><br>Sign in with Google to bring your profiles, words and streak here — and keep them safe.';
+      b.textContent = 'Sign in with Google'; b.className = 'primary';
+    } else {
+      t.innerHTML = '<b>☁️ Signed in as ' + String(user.email).replace(/[<>&]/g, '') + '</b><br>' +
+        (state === 'error' ? 'The last sync failed — check your internet connection.' : 'Every profile on this device is saved to your Google account.');
+      b.textContent = 'Account';
+    }
+    card.append(t, b);
+  }
   function setState(s) {
-    state = s; if (!btn) return;
+    state = s; renderCard(); if (!btn) return;
     btn.className = 'syncbtn ' + s;
     btn.textContent = !user ? '☁️ Sign in' : s === 'busy' ? '☁️ …' : s === 'error' ? '☁️ ⚠' : '☁️ ✓';
     btn.title = !user ? 'Sign in with Google to keep progress on every device' : user.email + (s === 'error' ? ' · sync problem — tap for details' : ' · synced');
@@ -235,6 +255,8 @@
     btn = document.createElement('button'); btn.type = 'button'; btn.onclick = menu;
     var nav = header.querySelector('nav');
     if (nav) header.insertBefore(btn, nav); else header.appendChild(btn);
+    var list = document.getElementById('proflist');
+    if (list) { card = document.createElement('div'); card.className = 'synccard'; list.parentNode.insertBefore(card, list); }
     setState(state);
   }
 
