@@ -1660,9 +1660,9 @@ function harvest(){
 function fromBrackets(text,src,id){const m=text.match(/\[([^\]]+)\]/);const full=text.replace(/[\[\]]/g,'').trim();return m?{id,kind:'cloze',full,blank:m[1].trim(),src}:{id,kind:'echo',full,src}}
 
 /* ---------- day record ---------- */
-const STEPS=[['ear','Ljud','👂','Sounds'],['new','Nya ord','🆕','New words'],['lesson','Lektion','🎓','Lesson'],['game','Grammatik','🎯','Grammar'],['review','Repetera','🔁','Review'],['watch','Titta','📺','Watch'],['mission','Uppdrag','📖','Mission'],['say','Säg','🎙','Speak']];const MINSTEPS=5;
+const STEPS=[['new','Nya ord','🆕','New words'],['lesson','Lektion','🎓','Lesson'],['game','Grammatik','🎯','Grammar'],['ear','Ljud','👂','Sounds'],['review','Repetera','🔁','Review'],['watch','Titta','📺','Watch'],['mission','Uppdrag','📖','Mission'],['say','Säg','🎙','Speak']];const MINSTEPS=5;
 function D(){return S.days[T]||(S.days[T]={})}
-const GROUPS4=[['Lär','📚',['ear','new','lesson','game']],['Repetera','🔁',['review']],['Titta','📺',['watch']],['Säg','🎙',['mission','say']]];
+const GROUPS4=[['Lär','📚',['new','lesson','game','ear']],['Repetera','🔁',['review']],['Titta','📺',['watch']],['Säg','🎙',['mission','say']]];
 const ST_LESS={k1:['imper'],k2:['fraga'],k5:['tal'],a1:['basics','pron'],a2:['fraga'],a3:['tal'],a5:['imper','framtid'],a11:['tempus'],b1:['adverb'],b2:['indef'],b3:['gen'],b4:['tvarv']};
 function gramDone(){return(readLS(profKeyB('swedish-gram-v1',curProf()))||{}).done||{}}
 function stationLessons(u){const ids=[];if(GRAM_PATH.some(x=>x[0]===u.game))ids.push(u.game);(ST_LESS[u.id]||[]).forEach(i=>{if(!ids.includes(i))ids.push(i)});return ids}
@@ -1852,7 +1852,7 @@ function earStats(id){return S.ear[id]||(S.ear[id]=[])}
 function earPassed(id){const a=(S.ear[id]||[]).slice(-20);return a.length>=20&&a.filter(Boolean).length>=18}
 function runEar(){
   const all=EAR.every(e=>earPassed(e.id));const focus=EAR.find(e=>!earPassed(e.id))||pickOne(EAR);
-  let n=0,ok=0;const TOTAL=all?8:16;
+  let n=0,ok=0;const TOTAL=all?6:10;
   function trial(){
     if(n>=TOTAL){const s=shell('Ljud: klart!','');s.append(node('p','You heard '+ok+' of '+TOTAL+' right.','fb ok'),chips(),node('p',all?'All sounds mastered — this was a quick warm-up.':earPassed(focus.id)?'You have mastered “'+focus.name+'”! Tomorrow: the next sound.':'Mastered means 18 of your last 20 right.','muted'));const r=node('div',undefined,'row');r.append(button('Next step →',finishStep,'primary'),exitBtn());s.append(r);return}
     const c=all?pickOne(EAR):(Math.random()<.75||!EAR.some(e=>e!==focus&&(S.ear[e.id]||[]).length)?focus:pickOne(EAR.filter(e=>e!==focus&&(S.ear[e.id]||[]).length)));
@@ -1882,9 +1882,9 @@ function compCard(s,c,done){
   opts.forEach(p=>{const b=button(p,()=>{if(ans)return;ans=true;const ok=p===right;b.className=ok?'right':'wrong';Array.from(g.children).forEach(x=>{if(x.textContent===right)x.className='right'});fb.textContent=ok?'Rätt! ✓':'Det här är '+w+'.';fb.className='fb '+(ok?'ok':'no');say(w);s.append(nextRow(done,ok))});g.append(b)});
   s.append(g,fb);say(w)}
 function prodCard(s,c,done){
-  const w=c.w,lx=LEXI.get(w);s.append(node('p','Say the word out loud — with en or ett!','label'),node('div',picOf(w),'pic'));
+  const w=c.w,lx=LEXI.get(w);s.append(node('p','What is this in Swedish? Type it — with en or ett if you can.','label'),node('div',picOf(w),'pic'));
   if(S.words[w]&&S.words[w].tag)s.append(node('div',S.words[w].tag,'tag'));if(lx&&lx.clue)s.append(sv('div',lx.clue,'clue'));
-  const r=node('div',undefined,'row center');const show=button('Visa svaret',()=>{r.remove();const h=node('div',undefined,'word');h.append(sv('span',w),sayBtn(w));s.append(h);say(w);selfGrade(s,done)},'primary');think(show);r.append(show);s.append(r)}
+  typeIn(s,{ph:'svenska ord',accept:[w,bare(w)],skip:'I’ll say it · Visa svaret',done,reveal:()=>{const h=node('div',undefined,'word');h.append(sv('span',w),sayBtn(w));s.append(h);say(w)}})}
 function selfGrade(s,done){const r=node('div',undefined,'row center');r.append(button('✗ Inte än',()=>done(false)),button('✓ Jag kunde det',()=>done(true),'good'));s.append(node('p','Did you remember it?','muted center'),r)}
 function spellCard(s,c,done){
   const w=c.w;s.append(node('p','Listen and write the word','label'),node('div',picOf(w),'pic'));const r0=node('div',undefined,'row center');r0.append(button('🔊 Lyssna',()=>say(w)));s.append(r0);
@@ -1894,10 +1894,25 @@ function spellCard(s,c,done){
   inp.onkeydown=e=>{if(e.key==='Enter')check()};let fin=false;
   function check(){if(fin)return;const v=norm(inp.value);if(!v){fb.textContent='Write the word first.';return}fin=true;const ok=v===norm(w)||v===norm(bare(w));fb.textContent=ok?'Rätt! ✓ '+w:'It is written: '+w;fb.className='fb '+(ok?'ok':'no');say(w);go.remove();s.append(nextRow(done,ok))}
   say(w);setTimeout(()=>inp.focus(),100)}
+function engAlts(en){return String(en).split(/[,;\/]|\bor\b/).map(x=>norm(x).replace(/\(.*?\)/g,'').replace(/^(to|a|an|the)\s+/,'').trim()).filter(Boolean)}
+function typeIn(s,o){
+  const inp=node('input',undefined,'spell');inp.lang=o.lang||'sv';inp.autocomplete='off';inp.setAttribute('autocapitalize','off');inp.setAttribute('autocorrect','off');inp.spellcheck=false;inp.placeholder=o.ph||'';inp.setAttribute('aria-label',o.ph||'Your answer');
+  const r=node('div',undefined,'row center');r.append(inp);s.append(r);
+  let lt=null;if(!o.en){lt=node('div',undefined,'row center');['å','ä','ö'].forEach(ch=>lt.append(button(ch,()=>{inp.value+=ch;inp.focus()})));s.append(lt)}
+  const fb=node('div','','fb');const go=button('Check',check,'primary');const sk=button(o.skip||'Visa svaret',skip);const r2=node('div',undefined,'row center');r2.append(go,sk);s.append(r2,fb);
+  let fin=false;inp.onkeydown=e=>{if(e.key==='Enter')check()};
+  function end(){fin=true;r2.remove();if(lt)lt.remove();inp.disabled=true}
+  function check(){if(fin)return;const v=norm(inp.value);if(!v){fb.textContent='Type your answer first — or tap “'+(o.skip||'Visa svaret')+'”.';return}
+    const ok=o.accept.some(a=>{const n=norm(a);return v===n||(o.lenient&&n.length>=4&&v.length>=4&&(n.includes(v)||v.includes(n)))});
+    end();fb.textContent=ok?'Rätt! ✓':'Not quite.';fb.className='fb '+(ok?'ok':'no');o.reveal();
+    if(ok)s.append(nextRow(o.done,true));else if(o.lenient){s.append(node('p','Your answer may be right too (synonyms count).','muted center'));selfGrade(s,o.done)}else s.append(nextRow(o.done,false))}
+  function skip(){if(fin)return;end();o.reveal();selfGrade(s,o.done)}
+  if(!o.noFocus)setTimeout(()=>inp.focus(),150)}
 function clozeHTML(full,blank,reveal){const p=sv('div',undefined,'cloze');const i=full.indexOf(blank);if(i<0){p.textContent=full;return p}p.append(document.createTextNode(full.slice(0,i)));if(reveal)p.append(node('mark',blank));else p.append(node('span',' ','gap'));p.append(document.createTextNode(full.slice(i+blank.length)));return p}
 function clozeCard(s,c,done){
-  s.append(node('p','Which word is missing? Say it, then check.'+(c.src?' · '+c.src:''),'label'));let p=clozeHTML(c.full,c.blank,false);s.append(p);
-  const r=node('div',undefined,'row center');r.append(button('💡 Hint: hear the sentence',()=>say(c.full)));const show=button('Visa svaret',()=>{r.remove();const q=clozeHTML(c.full,c.blank,true);p.replaceWith(q);p=q;say(c.full);selfGrade(s,done)},'primary');think(show);r.append(show);s.append(r)}
+  s.append(node('p','Type the missing word.'+(c.src?' · '+c.src:''),'label'));let p=clozeHTML(c.full,c.blank,false);s.append(p);
+  const hr=node('div',undefined,'row center');hr.append(button('💡 Hear the sentence',()=>say(c.full)));s.append(hr);
+  typeIn(s,{ph:'missing word',accept:[c.blank],skip:'Visa svaret',done,reveal:()=>{const q=clozeHTML(c.full,c.blank,true);p.replaceWith(q);p=q;say(c.full)}})}
 function vWord(v){return v.art&&!/^(en|ett) /.test(v.sv)?v.art+' '+v.sv:v.sv}
 function artSpan(w,tag){const n=sv(tag||'span');const m=String(w).match(/^(en|ett) (.*)$/);if(m){n.append(node('span',m[1],'art-'+m[1]),document.createTextNode(' '+m[2]))}else n.textContent=w;return n}
 function exParts(ex){const m=ex.match(/^(.*?)\[([^\]]+)\](.*?)(?:\[([^\]]+)\](.*))?$/);if(!m)return null;return m}
@@ -1907,16 +1922,18 @@ function mnemonic(c){if(!c||(c.lapses||0)<2)return null;const m=String(c.w||'').
 function hintBtn(text,host){const b=button('💡 English hint',()=>{b.replaceWith(node('p',text,'center muted'))},'hintbtn');return b}
 function imgBtn(w){const a=node('a','🔍 Bilder');a.href='https://www.google.com/search?tbm=isch&q='+encodeURIComponent(bare(w).replace(/ …/g,''))+'&hl=sv';a.target='_blank';a.rel='noopener';a.className='say';a.style.textDecoration='none';a.style.border='1px solid var(--line)';a.style.borderRadius='14px';return a}
 function vocabCard(s,c,done){
-  s.append(node('p','What does it mean? Explain it to yourself, then check.'+(c.src?' · '+c.src:''),'label'));const h=node('div',undefined,'word');h.append(artSpan(c.w),sayBtn(c.w));s.append(h);
+  s.append(node('p','What does it mean? Type the English meaning, then check.'+(c.src?' · '+c.src:''),'label'));const h=node('div',undefined,'word');h.append(artSpan(c.w),sayBtn(c.w));s.append(h);
   if(c.ex){s.append(exNode(c.ex,false));const r0=node('div','','row center');r0.append(sayBtn(exFull(c.ex),'🔊 Hear sentence'));s.append(r0)}
   if(c.note)s.append(node('div','💭 My memory hook: '+c.note,'note'));const mn=mnemonic(c);if(mn)s.append(mn);
-  const r=node('div',undefined,'row center');const show=button('Visa svaret',()=>{r.remove();const e=node('div',c.en,'word');e.style.fontSize='28px';e.style.fontWeight='normal';s.append(e);if(c.f)s.append(sv('p',c.f.join(' · '),'center muted'));else if(c.raw)s.append(sv('p',c.raw,'center muted'));const og=originOf(c.w);if(og)s.append(node('div','📜 '+og,'origin'));selfGrade(s,done)},'primary');think(show);r.append(show);s.append(r);say(c.w)}
+  const reveal=()=>{const e=node('div',c.en,'word');e.style.fontSize='28px';e.style.fontWeight='normal';s.append(e);if(c.f)s.append(sv('p',c.f.join(' · '),'center muted'));else if(c.raw)s.append(sv('p',c.raw,'center muted'));const og=originOf(c.w);if(og)s.append(node('div','📜 '+og,'origin'))};
+  typeIn(s,{ph:'English meaning',lang:'en',en:true,accept:engAlts(c.en),lenient:true,skip:'Visa svaret',done,reveal,noFocus:true});say(c.w)}
 function vprodCard(s,c,done){
-  s.append(node('p','Say the missing Swedish word'+(/^(en|ett) /.test(c.w)?' — with en or ett!':'!'),'label'));
+  s.append(node('p','Fill the gap: type the missing Swedish word (en/ett optional).','label'));
   if(c.ex)s.append(exNode(c.ex,true));else s.append(node('div','🧩','pic'));
   if(c.note)s.append(node('div','💭 My memory hook: '+c.note,'note'));const mn=mnemonic(c);if(mn)s.append(mn);
   const hr=node('div','','row center');hr.append(hintBtn(c.en));if(c.ex)hr.append(button('🔊 Hear the sentence',()=>say(exFull(c.ex).replace(c.exw||'','…'))));s.append(hr);
-  const r=node('div',undefined,'row center');const show=button('Visa svaret',()=>{r.remove();hr.remove();const h=node('div',undefined,'word');h.append(artSpan(c.w),sayBtn(c.w));s.append(h);if(c.ex){s.append(exNode(c.ex,false))}say(c.ex?exFull(c.ex):c.w);selfGrade(s,done)},'primary');think(show);r.append(show);s.append(r)}
+  const acc=[c.w,bare(c.w)];if(c.exw)acc.push(c.exw);if(c.ex)(c.ex.match(/\[([^\]]+)\]/g)||[]).forEach(x=>acc.push(x.slice(1,-1)));
+  typeIn(s,{ph:'missing word',accept:acc,skip:'I’ll say it · Visa svaret',done,reveal:()=>{hr.remove();const h=node('div',undefined,'word');h.append(artSpan(c.w),sayBtn(c.w));s.append(h);if(c.ex){s.append(exNode(c.ex,false))}say(c.ex?exFull(c.ex):c.w)}})}
 function formsCard(s,c,done){
   const q={noun:'Say the forms: the …, many …, all the …',verb:'Say the forms: now, yesterday, has …',adj:'Say the forms: ett …, många …'}[c.pos]||'Say the forms';
   s.append(node('p',q,'label'));const h=node('div',undefined,'word');h.append(sv('span',c.w),sayBtn(c.w));s.append(h,node('p',c.en,'center muted'));
