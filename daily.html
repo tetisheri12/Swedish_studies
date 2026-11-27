@@ -358,15 +358,19 @@ window.catAvatar=function(av){var m=AVRE.exec(av||'');return m?avHTML(m[1]):null
  function start(){if(!document.body)return;run();new MutationObserver(function(ms){if(busy)return;busy=true;try{ms.forEach(function(m){m.addedNodes.forEach(function(n){if(n.nodeType===3){if(AVRE.test(n.nodeValue)&&n.parentNode){var s=document.createElement('span');n.parentNode.insertBefore(s,n);s.appendChild(n);avConv(s);while(s.firstChild)s.parentNode.insertBefore(s.firstChild,s);s.remove()}}else if(n.nodeType===1)avConv(n)})})}finally{busy=false}}).observe(document.body,{childList:true,subtree:true})}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start()})();
 })();
-</script></head><body><header>
+</script><style>
+@media(max-width:700px){.streakcard .sticker{right:12px;top:-92px;bottom:auto;width:84px;height:84px;font-size:13px}.streakcard .sticker b{font-size:11px}}
+body.nopeople #backup{display:none}
+.okshow{outline:3px solid var(--gold);outline-offset:4px}
+</style><style>header nav a[data-en]{display:inline-flex;flex-direction:column;align-items:center;line-height:1.1}header nav a[data-en]::after{content:attr(data-en);font-size:10px;opacity:.65;font-weight:400;text-decoration:none}</style></head><body><header>
   <a class="brandlogo" href="daily.html"><img src="icon-192.png" alt="" width="38" height="38"><strong>SWEDISH / STUDIES</strong></a>
   <nav aria-label="Main navigation">
-    <a href="daily.html" aria-current="page">Idag</a>
-    <a href="index.html">Uppdrag</a>
-    <a href="arena.html">Arena</a>
+    <a href="daily.html" aria-current="page" data-en="Today">Idag</a>
+    <a href="index.html" data-en="Missions">Uppdrag</a>
+    <a href="arena.html" data-en="Games">Arena</a>
     
-    <a href="reader.html">Läsa</a>
-    <a href="ordbank.html">Ord</a><a href="resurser.html">Resurser</a>
+    <a href="reader.html" data-en="Read">Läsa</a>
+    <a href="ordbank.html" data-en="Words">Ord</a><a href="resurser.html" data-en="Extras">Resurser</a>
   </nav>
 </header><main>
 <div id="pick" hidden><div class="label">Vem tränar idag? · who is practising?</div><h1>Hej! Vem är du?</h1><p class="muted">Everyone has their own level, words and streak. Tap your name.</p><div id="proflist" class="profiles"></div></div>
@@ -380,7 +384,7 @@ window.catAvatar=function(av){var m=AVRE.exec(av||'');return m?avHTML(m[1]):null
 <aside class="board streakcard"><span class="cat peekcat" data-cat="peek" data-col="orange"></span><div class="sticker" aria-hidden="true">Medlem i<br><b>Viking&shy;klubben</b><br>sedan idag</div><div class="srow"><span class="ic fire">🔥</span><span class="lbl">Streak</span><b id="sStreak">0</b><span class="unit">dagar</span></div><div class="srow"><span class="ic ok">✓</span><span class="lbl">Ord & meningar</span><b id="sWords">0</b></div><div class="srow"><span class="ic star">★</span><span class="lbl">XP</span><b id="sXP">0</b></div><div class="srow"><span class="ic due">↻</span><span class="lbl">Att repetera idag</span><b id="sDue">0</b></div><div class="cal" id="cal" aria-label="Last 14 days"></div><p class="muted" id="sRet" style="margin:8px 0 0;font-size:14px"></p></aside></div>
 
 <div class="tabs" id="tabs" role="tablist"></div>
-<section id="journey" class="tabpane"><div class="label">Resan · the journey A2 → C1</div><h2>Din resa</h2><p class="muted">Each station has new words, a grammar lesson and game, a video, a mission and a speaking task. Finish them all to unlock the next station.</p>
+<section id="journey" class="tabpane"><div class="label">Resan · the journey A1 → C1</div><h2>Din resa</h2><p class="muted">Each station has new words, a grammar lesson and game, a video, a mission and a speaking task. Finish them all to unlock the next station.</p>
 <div id="courses" class="courses"></div><div id="unitcard" class="unitcard"></div><div id="map"></div></section>
 
 <section id="testsec" class="tabpane"><div class="label">Nivåprov · level tests</div><h2>Testa din nivå</h2><p class="muted">When you finish all stations of a level, take its test: words, grammar and listening. It shows your weak spots — and those come back in your daily practice until they are strong. You can also take a test any time as a check-up.</p><div id="tests" class="tests"></div></section>
@@ -1553,7 +1557,7 @@ const UNITS=UNITS_RAW.trim().split('\n').map(l=>{const[id,lvl,book,ch,title,game
 const UIDX=new Map(UNITS.map((u,i)=>[u.id,i]));
 const GAME_NAMES={verb:['⚡','Verb-blixten'],grupp:['🧩','Verbgrupper'],enett:['⚖️','En eller ett?'],plural:['🎈','Plural-poppen'],def:['🎯','Bestämd form'],adj:['🎨','Adjektiv-matchen'],v2:['🧱','Ordföljd'],inte:['🚫','Var står inte?']};
 GRAMMAR_GAMES.forEach(g=>GAME_NAMES[g.id]=[g.e,g.name]);
-function rivParse(raw,pre,up){return raw.split('\n').map(l=>{const[ch,svw,f,en]=l.split('|');let x=f?expandForms(svw,f):null;if(x&&x.pos==='verb'&&VERB_OVR[svw])x={pos:'verb',art:'',forms:VERB_OVR[svw]};return{id:pre+':'+ch+':'+norm(svw)+':'+norm(en).slice(0,12),u:up+ch,sv:svw,en,raw:f,f:x?x.forms:null,pos:x?x.pos:'',art:x?x.art:''}})}
+function rivParse(raw,pre,up){return raw.split('\n').map(l=>{const[ch,svw,f,en]=l.split('|');let x=f?expandForms(svw,f):null;if(VERB_OVR[svw]&&(!x||x.pos==='verb'||x.pos==='noun'))x={pos:'verb',art:'',forms:VERB_OVR[svw]};return{id:pre+':'+ch+':'+norm(svw)+':'+norm(en).slice(0,12),u:up+ch,sv:svw,en,raw:f,f:x?x.forms:null,pos:x?x.pos:'',art:x?x.art:''}})}
 const RIV=rivParse(RIV_RAW,'v','a'),RIVB=rivParse(RIVB_RAW,'w','b');
 const NEWV=NEW_VOCAB.trim().split('\n').filter(l=>l&&l[0]!=='#').filter(l=>!/^b/.test(l)).map(l=>{const[u,svw,f,en]=l.split('|');const forms=f&&f!=='—'?f.split(' · '):null;const pos=/^(en|ett) /.test(svw)?(forms?'noun':''):forms&&forms.some(x=>/^har /.test(x))?'verb':forms?'adj':'';return{id:'n:'+u+':'+norm(svw),u,sv:svw,en,raw:'',f:forms,pos,art:''}});
 const EXM=new Map(EXAMPLES_RAW.trim().split('\n').filter(l=>l&&l[0]!=='#').map(l=>{const p=l.split('|');return[p[0]+'|'+p[1],p[2]]}));
@@ -1680,22 +1684,23 @@ function streak(){let n=0,d=T;if(!(S.days[d]&&STEPS.filter(s=>S.days[d][s[0]]).l
 function delProfile(p){const b=$('dlgbody');b.replaceChildren(node('h2','Delete '+p.name+'?'),node('p','This removes '+p.name+'’s progress, cards, word bank, reading and missions on this device. It cannot be undone.','muted'));
   const r=node('div','','row');r.append(button('Yes, delete '+p.name,()=>{['swedish-daily-v1','swedish-reader-v1','swedish-missions-v1'].forEach(k=>{try{localStorage.removeItem(profKeyB(k,p))}catch(e){}});$('dlgclose').textContent='OK';P.list=P.list.filter(x=>x.id!==p.id);if(P.cur===p.id)P.cur=P.list.length?P.list[0].id:null;saveP();$('dlg').close();toast(p.name+' deleted');if(P.cur){load();showPick()}else showPick()},'danger'));b.append(r);
   $('dlgclose').textContent='Cancel';$('dlgclose').onclick=()=>{$('dlg').close()};if(!$('dlg').open)$('dlg').showModal()}
-function showPick(){$('home').hidden=true;$('session').hidden=true;$('pick').hidden=false;const l=$('proflist');l.replaceChildren();
+document.getElementById('dlg').addEventListener('close',()=>{const c=document.getElementById('dlgclose');c.textContent='OK';c.onclick=()=>document.getElementById('dlg').close()});
+function showPick(){$('home').hidden=true;$('session').hidden=true;$('pick').hidden=false;document.body.classList.toggle('nopeople',!P.list.length);const l=$('proflist');l.replaceChildren();
   P.list.forEach(p=>{const d=node('div','','prof');d.tabIndex=0;d.setAttribute('role','button');const s=readLS(profKey(p))||{};const u=UNITS[Math.min(s.unit||p.start||0,UNITS.length-1)];
-    d.append(node('div',p.av,'av'),node('b',p.name),node('small',u.lvl+' · '+u.title));const ed=button('✏️',e=>{e.stopPropagation();editProfile(p)},'profedit');ed.setAttribute('aria-label','Edit or delete '+p.name);d.append(ed);const go=()=>{P.cur=p.id;saveP();load();showHome()};d.onclick=go;d.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}};l.append(d)});
+    d.append(node('div',p.av,'av'),node('b',p.name),node('small',(u.lvl==='A2'&&UNITS.indexOf(u)<2?'A1–A2':u.lvl)+' · '+u.title));const ed=button('✏️',e=>{e.stopPropagation();editProfile(p)},'profedit');ed.setAttribute('aria-label','Edit or delete '+p.name);d.append(ed);const go=()=>{P.cur=p.id;saveP();load();showHome()};d.onclick=go;d.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}};l.append(d)});
   const add=node('div','','prof');add.tabIndex=0;add.setAttribute('role','button');add.append(node('div','＋','av'),node('b','Add person'),node('small','kid or grown-up'));add.onclick=()=>editProfile(null);l.append(add)}
 function editProfile(p){const isNew=!p;const old=readLS(BASEKEY);p=p||{id:P.list.some(x=>x.id==='p1')||!old?'p'+Date.now():'p1',name:'',av:AVATARS[P.list.length%AVATARS.length],lv:P.list.length?'pro':'junior',start:0,harvest:!P.list.length};
   const b=$('dlgbody');b.replaceChildren(node('h2',isNew?'New person':'Edit '+p.name));
   const inp=node('input');inp.type='text';inp.value=p.name;inp.placeholder='Name';inp.maxLength=16;inp.style.fontSize='22px';inp.setAttribute('aria-label','Name');b.append(inp);
   const av=node('div','','row');AVATARS.forEach(a=>{const x=button(a,()=>{p.av=a;Array.from(av.children).forEach(c=>c.classList.toggle('selected',c===x))},a===p.av?'selected':'');x.style.fontSize='24px';x.style.padding='6px 9px';av.append(x)});b.append(av);
   const lv=node('div','','row');[['junior','Junior — tap answers in games'],['pro','Pro — type answers in games']].forEach(([k,t])=>{const l=node('label');const r=node('input');r.type='radio';r.name='plv';r.checked=p.lv===k;r.onchange=()=>p.lv=k;l.append(r,' '+t);lv.append(l)});b.append(lv);
-  let startSel=null;if(isNew){const r=node('div','','row');const l=node('label','Start at ');startSel=node('select');[['a1','A1 · from the start'],['a3','A2 · station 3 (school Swedish)'],['b1','B1 · start of Mellan'],['b10','B2 · Mellan, station 10'],['c1','B2/C1 · start of Expert']].forEach(([id,t])=>{const o=node('option',t);o.value=id;startSel.append(o)});if(p.id==='p1'&&old)startSel.disabled=true;l.append(startSel);r.append(l);b.append(r);if(p.id==='p1'&&old)b.append(node('p','This person keeps the progress already saved on this iPad.','muted'))}
-  const hv=node('label');const hc=node('input');hc.type='checkbox';hc.checked=p.harvest!==false;hc.onchange=()=>p.harvest=hc.checked;hv.append(hc,' Make cards from Missions and Reader words (use for one person only)');b.append(node('div','','row'));b.lastChild.append(hv);
+  let startSel=null;if(isNew){const r=node('div','','row');const l=node('label','Start at ');startSel=node('select');[['a1','A1 · from the start'],['test','🧭 Not sure — find my level (about 5 min)'],['a3','A2 · station 3 (school Swedish)'],['b1','B1 · start of Mellan'],['b10','B2 · Mellan, station 10'],['c1','B2/C1 · start of Expert']].forEach(([id,t])=>{const o=node('option',t);o.value=id;startSel.append(o)});if(p.id==='p1'&&old)startSel.disabled=true;l.append(startSel);r.append(l);b.append(r);if(p.id==='p1'&&old)b.append(node('p','This person keeps the progress already saved on this iPad.','muted'))}
+  const hv=node('label');const hc=node('input');hc.type='checkbox';hc.checked=p.harvest!==false;hc.onchange=()=>p.harvest=hc.checked;hv.append(hc,' Also make flashcards from words found in Uppdrag and Läsa (tick this for only one person per device)');b.append(node('div','','row'));b.lastChild.append(hv);
   if(!isNew)b.append(button('🗑 Delete this person',()=>delProfile(p),'danger'));
-  $('dlgclose').onclick=()=>{p.name=inp.value.trim()||('Person '+(P.list.length+1));if(isNew){p.s6=1;p.s7=1;p.start=startSel&&!startSel.disabled?UIDX.get(startSel.value):0;P.list.push(p);P.cur=p.id;saveP();$('dlg').close();load();showHome()}else{saveP();$('dlg').close();showHome()}};$('dlg').showModal();setTimeout(()=>inp.focus(),50)}
+  const cx=button('Cancel',()=>{$('dlg').close()},'ghost');cx.style.marginTop='8px';b.append(cx);$('dlgclose').textContent=isNew?'Create':'Save';$('dlgclose').onclick=()=>{p.name=inp.value.trim()||('Person '+(P.list.length+1));if(isNew){p.s6=1;p.s7=1;const sv0=startSel&&!startSel.disabled?startSel.value:'a1';p.askPlace=sv0==='test';p.start=sv0==='test'?0:UIDX.get(sv0);P.list.push(p);P.cur=p.id;saveP();$('dlg').close();load();showHome()}else{saveP();$('dlg').close();showHome()}};$('dlg').showModal();setTimeout(()=>inp.focus(),50)}
 
 /* ---------- home ---------- */
-function showHome(){$('pick').hidden=true;$('session').hidden=true;$('home').hidden=false;renderHome()}
+function showHome(){document.body.classList.remove('nopeople');$('pick').hidden=true;$('session').hidden=true;$('home').hidden=false;renderHome()}
 
 const GRAM_PATH=[["basics", "Grammar words in plain English", "A1"], ["tal", "Numbers, dates, clock and prices", "A1"], ["pron", "Pronouns: jag or mig, han or honom", "A2"], ["fraga", "Asking questions: vad, vem, var, vart", "A2"], ["imper", "Orders, infinitive and modal verbs", "A2"], ["framtid", "Talking about the future", "A2"], ["verb", "Verb forms: now, then and have-done", "A2"], ["grupp", "The five verb groups", "A2"], ["enett", "En or ett: the two kinds of noun", "A2"], ["plural", "Making plurals", "A2"], ["def", "Putting “the” on the end: bestämd form", "A2"], ["adj", "Matching adjectives to nouns", "A2"], ["v2", "Word order: the verb is in place 2", "A2"], ["inte", "Where does inte go?", "A2"], ["sin", "Sin, sitt, sina: his own or someone else’s", "B1"], ["konj", "Linking words: och, men, så, eftersom", "B1"], ["indef", "Some, no one, all: någon, ingen, alla", "B1"], ["tempus", "Past and perfect: åt, har ätit, hade ätit", "B1"], ["gen", "Compound words and the -s: Annas bil", "B1"], ["adverb", "Adverbs: where, when, how often", "B1"], ["tvarv", "Verbs with and without an object: lägga or ligga?", "B1"], ["bisats", "Where does inte go in a tail clause?", "B1"], ["v2b", "Longer sentences: the verb stays in place two", "B1"], ["prep", "Time words: om, för sedan, i and på", "B1"], ["hos", "Hem or hemma? Going there versus being there", "B1"], ["tanka", "Tycker, tror, tänker: three ways to think", "B1"], ["komp", "Bra, bättre, bäst: comparing things", "B1"], ["kond", "Om jag vore...: if and would", "B1"], ["passiv", "S-passive: Huset byggdes 1902", "B2"], ["part", "Participles: stängd and gråtande", "B2"], ["rel", "Som, vars, vilket and där: describing with extra clauses", "B2"], ["satsadv", "Ju, väl, nog and friends: Swedish mood words", "B2"], ["lagga", "Ligger or lägger? Being there versus putting it there", "B2"], ["partikel", "Partikelverb: verbs with a small word that changes everything", "B2"], ["samband", "Sambandsord: connecting ideas in longer texts", "C1"], ["prepverb", "Verbs that need a small word: verb + preposition", "C1"], ["idiom", "Swedish idioms: sayings with a hidden meaning", "C1"], ["register", "Formal or everyday Swedish: choosing the right word", "C1"], ["ordbild", "Building words: Swedish word Lego", "C1"]];
 const ST_MISS={b1:[29],b2:[30],b3:[31],b4:[32],b5:[33],b6:[34],b7:[35],b8:[36],b9:[37],b10:[38],b11:[39],b12:[40],b13:[41],b14:[42],b15:[43],b16:[44],b17:[45],b18:[46],c1:[47],c2:[48],c3:[49],c4:[50],c5:[51],c6:[52],c7:[53],c8:[54],c9:[55],c10:[56],c11:[57],c12:[58],k1:[24],k2:[25],k3:[26],k4:[27],k5:[28],a1:[1],a2:[19],a3:[8],a4:[0,15],a5:[17,10],a6:[9],a7:[14,20],a9:[2,11],a10:[6],a11:[3],a12:[4],a13:[23],a16:[7,18],a17:[5,21],a18:[16,22],a19:[12],a20:[13]};
@@ -1705,17 +1710,17 @@ function weekDays(){let n=0;for(let d=T-6;d<=T;d++){const r=S.days[d];if(r&&STEP
 function weekDots(){const w=node('span','','wk');for(let d=T-6;d<=T;d++){const r=S.days[d];const ok=r&&STEPS.filter(s=>r[s[0]]).length>=MINSTEPS;const i=node('i','',ok?'full':(r&&STEPS.some(s=>r[s[0]])?'part':''));if(d===T)i.classList.add('today');w.append(i)}return w}
 function startFor(lvl,frac){const us=UNITS.filter(u=>u.lvl===lvl);return us.length?UNITS.indexOf(us[Math.floor(us.length*frac)]):S.unit}
 function runLevelCheck(after){const qs=[];['A2','B1','B2'].forEach(L=>{const all=buildTest(L).filter(q=>q.skill!=='listen');const v=all.filter(q=>q.skill==='vocab').slice(0,4),g=all.filter(q=>q.skill!=='vocab').slice(0,4);v.concat(g).forEach(q=>{q.lv=L;qs.push(q)})});
-  runTest('A2',{qs,label:'Nivåtest · where should I start?',finish:(qs2,res)=>{const sc={};qs2.forEach((q,k)=>{const b=sc[q.lv]||(sc[q.lv]={n:0,ok:0});b.n++;if(res[k])b.ok++});
+  runTest('A2',{qs,label:'Nivåtest · where should I start?',stopIf:(n,res)=>{if(n%8)return false;const blk=res.slice(n-8,n);return blk.filter(Boolean).length/8<.85},finish:(qs2,res)=>{const sc={};qs2.forEach((q,k)=>{const b=sc[q.lv]||(sc[q.lv]={n:0,ok:0});b.n++;if(res[k])b.ok++});
     let target=0,lvl='A2',part='from the start';for(const L of ['A2','B1','B2']){const b=sc[L]||{n:1,ok:0},r=b.ok/b.n;if(r>=.85){continue}lvl=L;if(r>=.6){target=startFor(L,.5);part='from the middle'}else target=startFor(L,0);break;}
     if(sc.B2&&sc.B2.ok/sc.B2.n>=.85){lvl='C1';target=startFor('C1',0);part='from the start'}
     if(sc.A2&&sc.A2.ok/sc.A2.n>=.85&&lvl==='A2'){}
     const s=stage();s.replaceChildren();s.append(node('div','Nivåtest · result','label'),node('h2','Start at '+lvl+' · '+part));
     ['A2','B1','B2'].forEach(L=>{if(sc[L])s.append(node('p',L+': '+sc[L].ok+'/'+sc[L].n+' correct','muted'))});
     const u=UNITS[Math.min(target,UNITS.length-1)];s.append(node('p','Suggested station: '+(target+1)+' · '+u.title+'.'));
-    s.append(node('p','Stations before it stay open on the path, so skipped words can still be practised. You can change the station any time in the parent corner.','muted'));
-    const r=node('div','','row');r.append(button(target>S.unit?'▶ Start at station '+(target+1):'Stay where I am',()=>{if(target>S.unit)S.unit=target;S.placement={day:T,lvl,target,sc};save();backHome()},'primary'),button('Back',backHome));s.append(r)}})}
+    s.append(node('p','Stations before it stay open on the path, so skipped words can still be practised. You can retake the test or change the station any time in the parent corner.','muted'));
+    const r=node('div','','row');const keep=()=>{S.placement={day:T,lvl,target,sc};save();backHome()};if(target!==S.unit){r.append(button('▶ Start at station '+(target+1),()=>{S.unit=target;keep()},'primary'),button('Keep station '+(S.unit+1)+' · '+UNITS[S.unit].title,keep))}else r.append(button('▶ Continue at station '+(target+1),keep,'primary'));s.append(r)}})}
 function renderRoute(){const box=$('route');if(!box)return;box.replaceChildren();const p=curProf();const u=curUnit();
-  const top=node('div','','rtop');const goal=S.goal||5;top.append(node('span','📅 '+weekDays()+'/'+goal),weekDots());
+  const top=node('div','','rtop');const goal=S.goal||5;const wl=node('span','📅 '+weekDays()+'/'+goal+' days this week');wl.title='Days practised this week / your weekly goal';top.append(wl,weekDots());
   if(!S.placement)top.append(button('🧭',()=>{$('home').hidden=true;$('session').hidden=false;window.scrollTo(0,0);runLevelCheck()},'rlv'));box.append(top);
 }
 function ns0(){return nextStep()}
@@ -1740,7 +1745,7 @@ function renderTabs(){const t=$('tabs');t.replaceChildren();TABS.forEach(([id,la
 const TIPS=TIPS_RAW.trim().split('\n').map(l=>{const[id,lvl,title,tip,ex]=l.split('|');return{id,lvl,title,tip,ex}});
 function tipsForMe(){const L=['A2','B1','B2','C1'];const top=Math.max(L.indexOf(curUnit().lvl),0);return TIPS.filter(t=>L.indexOf(t.lvl)<=top)}
 function tipNode(t,open){const d=node('details','','tip');if(open)d.open=true;const sm=node('summary');sm.append(node('span',t.lvl,'tlvl'),node('b',t.title));d.append(sm,node('p',t.tip));const ex=sv('p',t.ex,'tex');ex.append(' ',sayBtn(t.ex));d.append(ex);return d}
-function renderTips(){const mine=tipsForMe();if(!mine.length)return;const today=mine[T%mine.length];const c=$('tipCard');c.replaceChildren(node('div','💡 Dagens lagom-tips','label'),tipNode(today,true));
+function renderTips(){const mine=tipsForMe();if(!mine.length)return;const own=mine.filter(t=>t.lvl===curUnit().lvl);const pool=own.length?own:mine;const today=pool[T%pool.length];const c=$('tipCard');c.replaceChildren(node('div','💡 Dagens lagom-tips','label'),tipNode(today,true));
   const box=$('tipsList');box.replaceChildren();mine.forEach(t=>box.append(tipNode(t,false)));const locked=TIPS.length-mine.length;if(locked)box.append(node('p','🔒 '+locked+' more tips unlock at higher levels.','muted'))}
 /* ---------- audiobooks (files stay on this device, in IndexedDB) ---------- */
 const ADB={db:null,open(){return this.db?Promise.resolve(this.db):new Promise((ok,no)=>{const r=indexedDB.open('svenska-audio',1);r.onupgradeneeded=()=>{const d=r.result;d.createObjectStore('books',{keyPath:'id'});d.createObjectStore('tracks')};r.onsuccess=()=>{this.db=r.result;ok(this.db)};r.onerror=()=>no(r.error)})},
@@ -1823,7 +1828,7 @@ function fillSettings(){$('setNew').value=String(S.set.newWords);$('setCap').val
 let stepIdx=0;
 function stage(){return $('stage')}
 function shell(title,sub){const s=stage();s.replaceChildren();const bar=node('div',undefined,'steps');const curK=STEPS[stepIdx]&&STEPS[stepIdx][0];GROUPS4.forEach(g=>{const done=g[2].every(k=>D()[k]);const sp=node('span',(done?'✓ ':g[1]+' ')+g[0],done?'ok':'');if(g[2].includes(curK))sp.className='on';bar.append(sp)});s.append(bar);if(title){const h=node('h2');h.append(sv('span',title));s.append(h)}if(sub)s.append(node('p',sub,'muted'));return s}
-function openSession(){if(!S.placement&&!S.skipPlace&&!(S.xp>0)&&!Object.keys(S.cards).length&&!Object.keys(S.units||{}).some(k=>S.units[k].checked)){S.skipPlace=true;save();$('home').hidden=true;$('session').hidden=false;window.scrollTo(0,0);runLevelCheck();return}const ns=nextStep();$('home').hidden=true;$('session').hidden=false;window.scrollTo(0,0);if(ns<0){stepIdx=STEPS.findIndex(x=>x[0]==='review');runReview(true);return}stepIdx=ns;runStep()}
+function openSession(){const cp=curProf();if(cp&&cp.askPlace&&!S.placement&&!S.skipPlace){S.skipPlace=true;save();$('home').hidden=true;$('session').hidden=false;window.scrollTo(0,0);runLevelCheck();return}const ns=nextStep();$('home').hidden=true;$('session').hidden=false;window.scrollTo(0,0);if(ns<0){stepIdx=STEPS.findIndex(x=>x[0]==='review');runReview(true);return}stepIdx=ns;runStep()}
 function finishStep(){if(!D()[STEPS[stepIdx][0]]){D()[STEPS[stepIdx][0]]=true;S.xp=(S.xp||0)+10}S.lastActive=T;save();
   const u=curUnit(),st=ust(u);if(!st.done&&unitComplete(u)){stationDone(u);return}
   const ns=nextStep();if(ns<0){celebrate();return}stepIdx=ns;runStep()}
@@ -1929,6 +1934,8 @@ function vocabCard(s,c,done){
   if(c.ex){s.append(exNode(c.ex,false));const r0=node('div','','row center');r0.append(sayBtn(exFull(c.ex),'🔊 Hear sentence'));s.append(r0)}
   if(c.note)s.append(node('div','💭 My memory hook: '+c.note,'note'));const mn=mnemonic(c);if(mn)s.append(mn);
   const reveal=()=>{const e=node('div',c.en,'word');e.style.fontSize='28px';e.style.fontWeight='normal';s.append(e);if(c.f)s.append(sv('p',c.f.join(' · '),'center muted'));else if(c.raw)s.append(sv('p',c.raw,'center muted'));const og=originOf(c.w);if(og)s.append(node('div','📜 '+og,'origin'))};
+  const pj=curProf();if(pj&&pj.lv==='junior'){s.firstChild.textContent='What does it mean? Tap the right answer.'+(c.src?' · '+c.src:'');const enOf=a=>[...new Set(a.map(v=>v.en).filter(e=>e&&e!==c.en))];const near=shuffle(enOf(unitWords(curUnit())));const pool=near.length>=3?near:near.concat(shuffle(enOf([...VOCAB.values()].flat())));const opts=shuffle([c.en].concat(pool.slice(0,3)));const o=node('div','','topts');const fb=node('div','','fb');let fin=false;
+    opts.forEach(op=>{const b=button(op,()=>{if(fin)return;fin=true;const ok=op===c.en;b.classList.add(ok?'right':'wrong');Array.from(o.children).forEach(x=>{if(x.textContent===c.en)x.classList.add('right')});fb.textContent=ok?'Rätt! ✓':'Nästan! It means: '+c.en;fb.className='fb '+(ok?'ok':'no');s.append(nextRow(done,ok))});o.append(b)});s.append(o,fb);say(c.w);return}
   typeIn(s,{ph:'English meaning',lang:'en',en:true,accept:engAlts(c.en),lenient:true,skip:'Visa svaret',done,reveal,noFocus:true});say(c.w)}
 function vprodCard(s,c,done){
   s.append(node('p','Fill the gap: type the missing Swedish word (en/ett optional).','label'));
@@ -1970,10 +1977,10 @@ function checkDone(u){const st=ust(u);return st.checked&&(st.cpos==null||st.cpos
 function checkDueToday(u){const st=ust(u);return !st.checked||(!checkDone(u)&&st.cday!==T)}
 const CHUNK=25;
 function runUnitCheck(u,after){
-  const words=checkWords(u);const st=ust(u);let pos=st.checked?(st.cpos||0):0;const end=Math.min(words.length,pos+CHUNK);const unk=new Set(st.checked?st.unknown:[]);let fresh=0;
+  const words=checkWords(u);const st=ust(u);let pos=st.checked?(st.cpos||0):0;const pk=curProf();const end=Math.min(words.length,pos+(pk&&pk.lv==='junior'?10:CHUNK));const unk=new Set(st.checked?st.unknown:[]);let fresh=0;
   if(!words.length||pos>=words.length){st.checked=true;st.cpos=words.length;save();after();return}
   const finish=all=>{if(all)pos=words.length;st.unknown=[...unk];st.checked=true;st.cpos=pos;st.cday=T;D().checkDay=1;save();
-    const left=words.length-pos;toast(fresh+' nya ord'+(left>0?' · '+left+' kvar till nästa gång':' · ordkollen klar!'));after()};
+    const left=words.length-pos;toast(fresh+' new words to learn'+(left>0?' · '+left+' left to check next time':' · word check done!'));after()};
   function draw(){
     if(pos>=end){finish(false);return}
     const v=words[pos];const s=shell('Ordkoll','Station '+(UIDX.get(u.id)+1)+' · '+u.title);
@@ -1984,7 +1991,8 @@ function runUnitCheck(u,after){
     const card=node('div','','okcard');const h=node('div',undefined,'word');h.append(artSpan(vWord(v)),sayBtn(vWord(v)));card.append(h);
     if(v.ex){card.append(exNode(v.ex,false));const r0=node('div','','row center');r0.append(sayBtn(exFull(v.ex),'🔊 Hear sentence'),button('🐢',()=>say(exFull(v.ex),.65)));card.append(r0)}
     const hr=node('div','','row center');hr.append(hintBtn(v.en));card.append(hr);s.append(card);
-    const go=(known,cls)=>{if(!known){if(!unk.has(v.id))fresh++;unk.add(v.id)}else unk.delete(v.id);card.classList.add(cls);document.onkeydown=null;setTimeout(()=>{pos++;draw()},230)};
+    let going=false;const go=(known,cls)=>{if(going)return;going=true;if(!known){if(!unk.has(v.id))fresh++;unk.add(v.id)}else unk.delete(v.id);document.onkeydown=null;
+      if(!known){hr.replaceChildren(node('p','= '+v.en,'center'));card.classList.add('okshow');setTimeout(()=>{card.classList.add(cls);setTimeout(()=>{pos++;draw()},230)},1500)}else{card.classList.add(cls);setTimeout(()=>{pos++;draw()},230)}};
     const r=node('div','','row center okbtns');
     r.append(button('✗ Nytt för mig',()=>go(false,'okleft'),'oknew'),button('🤔 Osäker',()=>go(false,'okleft'),'okmaybe'),button('✓ Jag förstår',()=>go(true,'okright'),'primary okyes'));s.append(r);
     const r2=node('div','','row center');
@@ -2133,15 +2141,15 @@ function renderTests(){const box=$('tests');box.replaceChildren();S.tests=S.test
     if(t)d.append(node('p',(t.best>=75?'✓ Passed · best ':'Best ')+t.best+'% · last '+t.last+'% ('+dayStr(t.day)+')'));
     d.append(button(ready?(t?'Take it again':'▶ Take the test'):'Check-up test',()=>runTest(L),ready&&!t?'primary':''));box.append(d)})}
 function runTest(L,opt){opt=opt||{};const qs=opt.qs||buildTest(L);$('home').hidden=true;$('session').hidden=false;window.scrollTo(0,0);let i=0;const res=[];
-  function draw(){if(i>=qs.length){opt.finish?opt.finish(qs,res):results(L,qs,res);return}const q=qs[i];const s=stage();s.replaceChildren();
-    s.append(node('div',(opt.label||tlab(L))+' · question '+(i+1)+' of '+qs.length,'label'));const bar=node('div','','qbar');const bi=node('i');bi.style.width=(100*i/qs.length)+'%';bar.append(bi);s.append(bar);
+  function draw(){if(i>=qs.length||(opt.stopIf&&i>0&&i<qs.length&&opt.stopIf(i,res))){const q2=qs.slice(0,res.length);opt.finish?opt.finish(q2,res):results(L,q2,res);return}const q=qs[i];const s=stage();s.replaceChildren();
+    s.append(node('div',(opt.label||tlab(L))+' · question '+(i+1)+(opt.stopIf?' (up to '+qs.length+')':' of '+qs.length),'label'));const bar=node('div','','qbar');const bi=node('i');bi.style.width=(100*i/qs.length)+'%';bar.append(bi);s.append(bar);
     const nm=skillName(q.skill);s.append(node('p',nm[0]+' '+nm[1],'muted'));
     if(q.listen){s.append(node('h2',q.q));const r=node('div','','row');r.append(button('🔊 Play again',()=>say(q.sayQ,.85)));s.append(r);setTimeout(()=>say(q.sayQ,.85),300)}
     else{const h=sv('div','','cloze');const at=q.q.indexOf('___');if(at>=0){h.append(document.createTextNode(q.q.slice(0,at)),node('span',' ','gap'),document.createTextNode(q.q.slice(at+3)))}else h.textContent=q.q;s.append(h);if(q.sayQ){const r=node('div','','row center');r.append(sayBtn(q.sayQ));s.append(r)}}
     const o=node('div','','topts'+(q.long?' long':''));o.lang='sv';const fb=node('div','','fb');let done=false;
     q.opts.forEach(op=>{const b=button(op,()=>{if(done)return;done=true;const ok=op===q.ans;res.push(ok);b.classList.add(ok?'right':'wrong');Array.from(o.children).forEach(x=>{if(x.textContent===q.ans)x.classList.add('right')});fb.textContent=ok?'Rätt! ✓':'Rätt svar: '+q.ans;fb.className='fb '+(ok?'ok':'no');
-      const r=node('div','','row center');const nb=button(i+1>=qs.length?'See results 🏁':'Nästa →',()=>{i++;draw()},'primary');r.append(nb);s.append(r);setTimeout(()=>nb.focus(),50)});o.append(b)});
-    s.append(o,fb);const ex=node('div','','row');ex.append(button('Stop the test',()=>{if(confirm('Stop the test? Your answers will not be saved.'))backHome()}));s.append(ex)}
+      dk.remove();const r=node('div','','row center');const nb=button(i+1>=qs.length?'See results 🏁':'Nästa →',()=>{i++;draw()},'primary');r.append(nb);ex.before(r);setTimeout(()=>nb.focus(),50)});o.append(b)});
+    const dk=button('🤷 Vet inte · I don’t know',()=>{if(done)return;done=true;res.push(false);dk.remove();Array.from(o.children).forEach(x=>{if(x.textContent===q.ans)x.classList.add('right')});fb.textContent='Rätt svar: '+q.ans;fb.className='fb no';const r=node('div','','row center');const nb=button(i+1>=qs.length?'See results 🏁':'Nästa →',()=>{i++;draw()},'primary');r.append(nb);ex.before(r);setTimeout(()=>nb.focus(),50)},'ghost');const dkr=node('div','','row center');dkr.append(dk);s.append(o,dkr,fb);const ex=node('div','','row');ex.style.marginTop='18px';ex.append(button('Stop the test',()=>{if(confirm('Stop the test? Your answers will not be saved.'))backHome()}));s.append(ex)}
   draw()}
 function results(L,qs,res){const by={};qs.forEach((q,k)=>{const b=by[q.skill]||(by[q.skill]={n:0,ok:0});b.n++;if(res[k])b.ok++});
   const pct=Math.round(100*res.filter(Boolean).length/qs.length);S.tests=S.tests||{};const t=S.tests[L]||{best:0};const first=!t.day||t.best<75;t.last=pct;t.best=Math.max(t.best||0,pct);t.day=T;t.skills=Object.fromEntries(Object.entries(by).map(([k,v])=>[k,Math.round(100*v.ok/v.n)]));S.tests[L]=t;

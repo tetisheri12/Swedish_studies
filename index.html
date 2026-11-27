@@ -352,17 +352,17 @@ window.catAvatar=function(av){var m=AVRE.exec(av||'');return m?avHTML(m[1]):null
  function start(){if(!document.body)return;run();new MutationObserver(function(ms){if(busy)return;busy=true;try{ms.forEach(function(m){m.addedNodes.forEach(function(n){if(n.nodeType===3){if(AVRE.test(n.nodeValue)&&n.parentNode){var s=document.createElement('span');n.parentNode.insertBefore(s,n);s.appendChild(n);avConv(s);while(s.firstChild)s.parentNode.insertBefore(s.firstChild,s);s.remove()}}else if(n.nodeType===1)avConv(n)})})}finally{busy=false}}).observe(document.body,{childList:true,subtree:true})}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start()})();
 })();
-</script></head><body><header>
+</script><style>header nav a[data-en]{display:inline-flex;flex-direction:column;align-items:center;line-height:1.1}header nav a[data-en]::after{content:attr(data-en);font-size:10px;opacity:.65;font-weight:400;text-decoration:none}</style></head><body><header>
   <a class="brandlogo" href="daily.html"><img src="icon-192.png" alt="" width="38" height="38"><strong>SWEDISH / STUDIES</strong></a>
   <nav aria-label="Main navigation">
-    <a href="daily.html">Idag</a>
-    <a href="index.html" aria-current="page">Uppdrag</a>
-    <a href="arena.html">Arena</a>
+    <a href="daily.html" data-en="Today">Idag</a>
+    <a href="index.html" aria-current="page" data-en="Missions">Uppdrag</a>
+    <a href="arena.html" data-en="Games">Arena</a>
     
-    <a href="reader.html">Läsa</a>
-    <a href="ordbank.html">Ord</a><a href="resurser.html">Resurser</a>
+    <a href="reader.html" data-en="Read">Läsa</a>
+    <a href="ordbank.html" data-en="Words">Ord</a><a href="resurser.html" data-en="Extras">Resurser</a>
   </nav>
-</header><main><div class="hero"><div><div class="label">Mission edition · 59 missions</div><h1>A little Swedish.<br>A real mission.</h1><p>Run a café. Catch a train. Plan a party. Learn the words, read the story, build the sentences — and hear every word in Swedish.</p><div class="row"><a href="daily.html"><button class="primary">▶ Start today’s session</button></a><button id="continue">Choose your next mission</button></div><p class="muted">No timer. No lost lives. Try, investigate, try again.</p></div><aside class="board"><div class="label">Your mission passport</div><h2>Places to go.</h2><div id="passport" class="passport"></div><div class="stats"><span><b id="solved">0</b> challenges solved</span><span><b id="stamps">0</b> / <span id="stamptotal">12</span> stamps</span></div></aside></div>
+</header><main><div class="hero"><div><div class="label">Mission edition · 59 missions</div><h1>A little Swedish.<br>A real mission.</h1><p>Run a café. Catch a train. Plan a party. Learn the words, read the story, build the sentences — and hear every word in Swedish.</p><div class="row"><a href="daily.html"><button class="primary">▶ Play today’s mission</button></a><button id="continue">Choose your next mission</button></div><p class="muted">No timer. No lost lives. Try, investigate, try again.</p></div><aside class="board"><div class="label">Your mission passport</div><h2>Places to go.</h2><div id="passport" class="passport"></div><div class="stats"><span><b id="solved">0</b> challenges solved</span><span><b id="stamps">0</b> / <span id="stamptotal">12</span> stamps</span></div></aside></div>
 <nav class="page-shortcuts" aria-label="On this page">
   <span>On this page</span>
   <a href="#missions">Choose a mission</a>
